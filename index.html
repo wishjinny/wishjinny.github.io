@@ -1,20 +1,938 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wish Jinny</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/home.css">
-</head>
-<body>
-    <div class="smoke-bg"></div>
-    <main class="hero">
-        <canvas id="scratch-art"></canvas>
-        <div id="offer" class="hidden">
-            <h2>SPECIAL OFFERS AWAIT!</h2>
+<section id="home" class="hero">
+      <div class="hero-content">
+        <div class="eyebrow">Premium Shopping Experience</div>
+
+        <h1>Make Your Wish Come True.</h1>
+
+        <p>
+          Discover beauty, fashion, jewellery and everyday essentials —
+          all in one stylish shopping destination with quality at the right price.
+        </p>
+
+        <div class="hero-buttons">
+          <a class="primary-btn" href="#products">Shop Now →</a>
+          <a class="secondary-btn" href="#categories">
+            Explore Categories
+          </a>
         </div>
-    </main>
-    <script src="js/main.js"></script>
+      </div>
+    </section>
+
+    <section aria-label="Search products">
+      <div class="search-container">
+        <span class="search-icon">⌕</span>
+
+        <input
+          class="search-bar"
+          id="searchBar"
+          type="search"
+          placeholder="Search cosmetics, jewellery, fashion..."
+          autocomplete="off"
+        >
+      </div>
+    </section>
+
+    <section id="categories">
+
+      <div class="section-heading">
+        <div>
+          <h2>Shop By Category</h2>
+          <p>Find something special for every wish.</p>
+        </div>
+      </div>
+
+      <div class="category-grid">
+
+        <a
+          class="category-icon"
+          href="#products"
+          data-category="Cosmetics"
+        >
+          <span class="icon-image">💄</span>
+          <span class="icon-label">Cosmetics</span>
+        </a>
+
+        <a
+          class="category-icon"
+          href="#products"
+          data-category="Jewellery"
+        >
+          <span class="icon-image">💎</span>
+          <span class="icon-label">Jewellery</span>
+        </a>
+
+        <a
+          class="category-icon"
+          href="#products"
+          data-category="Fashion"
+        >
+          <span class="icon-image">👗</span>
+          <span class="icon-label">Fashion</span>
+        </a>
+
+        <a
+          class="category-icon"
+          href="#products"
+          data-category="Footwear"
+        >
+          <span class="icon-image">👟</span>
+          <span class="icon-label">Footwear</span>
+        </a>
+
+        <a
+          class="category-icon"
+          href="#products"
+          data-category="Beauty"
+        >
+          <span class="icon-image">🧴</span>
+          <span class="icon-label">Skin Care</span>
+        </a>
+
+        <a
+          class="category-icon"
+          href="#products"
+          data-category="Home"
+        >
+          <span class="icon-image">🏠</span>
+          <span class="icon-label">Home</span>
+        </a>
+
+        <a
+          class="category-icon"
+          href="#products"
+          data-category="Gadgets"
+        >
+          <span class="icon-image">📱</span>
+          <span class="icon-label">Gadgets</span>
+        </a>
+
+        <a
+          class="category-icon"
+          href="#products"
+          data-category="Accessories"
+        >
+          <span class="icon-image">👜</span>
+          <span class="icon-label">Accessories</span>
+        </a>
+
+      </div>
+    </section>
+
+    <section id="products">
+
+      <div class="section-heading">
+
+        <div>
+          <h2>Featured Products</h2>
+          <p>Popular picks selected for you.</p>
+        </div>
+
+        <a class="view-all" href="#products">
+          View All →
+        </a>
+
+      </div>
+
+      <div class="product-grid" id="productGrid">
+
+        <article
+          class="product-card"
+          data-name="Glow Face Serum"
+          data-category="Beauty Cosmetics Skin Care"
+        >
+
+          <div class="product-image-wrap">
+
+            <span class="badge">
+              BESTSELLER
+            </span>
+
+            <img
+              class="product-image"
+              src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=700&q=85"
+              alt="Glow face serum"
+              loading="lazy"
+            >
+
+          </div>
+
+          <h3 class="product-title">
+            Glow Face Serum
+          </h3>
+
+          <div class="product-rating">
+            ★★★★★
+            <span style="color:#aaa;">
+              (128)
+            </span>
+          </div>
+
+          <div class="product-price">
+            ₹499
+            <span class="old-price">
+              ₹899
+            </span>
+          </div>
+
+          <button
+            class="add-to-bag-btn"
+            data-product="Glow Face Serum"
+          >
+            Add to Bag
+          </button>
+
+        </article>
+
+
+        <article
+          class="product-card"
+          data-name="Luxury Jewellery Set"
+          data-category="Jewellery Accessories"
+        >
+
+          <div class="product-image-wrap">
+
+            <span class="badge">
+              NEW
+            </span>
+
+            <img
+              class="product-image"
+              src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=700&q=85"
+              alt="Luxury jewellery set"
+              loading="lazy"
+            >
+
+          </div>
+
+          <h3 class="product-title">
+            Luxury Jewellery Set
+          </h3>
+
+          <div class="product-rating">
+            ★★★★★
+            <span style="color:#aaa;">
+              (94)
+            </span>
+          </div>
+
+          <div class="product-price">
+            ₹799
+            <span class="old-price">
+              ₹1,499
+            </span>
+          </div>
+
+          <button
+            class="add-to-bag-btn"
+            data-product="Luxury Jewellery Set"
+          >
+            Add to Bag
+          </button>
+
+        </article>
+
+
+        <article
+          class="product-card"
+          data-name="Premium Lipstick"
+          data-category="Cosmetics Beauty"
+        >
+
+          <div class="product-image-wrap">
+
+            <span class="badge">
+              50% OFF
+            </span>
+
+            <img
+              class="product-image"
+              src="https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=700&q=85"
+              alt="Premium lipstick"
+              loading="lazy"
+            >
+
+          </div>
+
+          <h3 class="product-title">
+            Premium Lipstick
+          </h3>
+
+          <div class="product-rating">
+            ★★★★★
+            <span style="color:#aaa;">
+              (176)
+            </span>
+          </div>
+
+          <div class="product-price">
+            ₹299
+            <span class="old-price">
+              ₹599
+            </span>
+          </div>
+
+          <button
+            class="add-to-bag-btn"
+            data-product="Premium Lipstick"
+          >
+            Add to Bag
+          </button>
+
+        </article>
+
+
+        <article
+          class="product-card"
+          data-name="Elegant Handbag"
+          data-category="Accessories Fashion"
+        >
+
+          <div class="product-image-wrap">
+
+            <span class="badge">
+              TRENDING
+            </span>
+
+            <img
+              class="product-image"
+              src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=700&q=85"
+              alt="Elegant handbag"
+              loading="lazy"
+            >
+
+          </div>
+
+          <h3 class="product-title">
+            Elegant Handbag
+          </h3>
+
+          <div class="product-rating">
+            ★★★★☆
+            <span style="color:#aaa;">
+              (81)
+            </span>
+          </div>
+
+          <div class="product-price">
+            ₹999
+            <span class="old-price">
+              ₹1,799
+            </span>
+          </div>
+
+          <button
+            class="add-to-bag-btn"
+            data-product="Elegant Handbag"
+          >
+            Add to Bag
+          </button>
+
+        </article>
+        <article
+          class="product-card"
+          data-name="Hydrating Skin Cream"
+          data-category="Beauty Skin Care Cosmetics"
+        >
+          <div class="product-image-wrap">
+            <span class="badge">POPULAR</span>
+
+            <img
+              class="product-image"
+              src="https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?auto=format&fit=crop&w=700&q=85"
+              alt="Hydrating Skin Cream"
+              loading="lazy"
+            >
+          </div>
+
+          <h3 class="product-title">
+            Hydrating Skin Cream
+          </h3>
+
+          <div class="product-rating">
+            ★★★★★
+            <span style="color:#aaa;">(213)</span>
+          </div>
+
+          <div class="product-price">
+            ₹399
+            <span class="old-price">₹699</span>
+          </div>
+
+          <button
+            class="add-to-bag-btn"
+            data-product="Hydrating Skin Cream"
+          >
+            Add to Bag
+          </button>
+        </article>
+
+
+        <article
+          class="product-card"
+          data-name="Classic Sneakers"
+          data-category="Footwear Fashion"
+        >
+          <div class="product-image-wrap">
+            <span class="badge">HOT</span>
+
+            <img
+              class="product-image"
+              src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=85"
+              alt="Classic Sneakers"
+              loading="lazy"
+            >
+          </div>
+
+          <h3 class="product-title">
+            Classic Sneakers
+          </h3>
+
+          <div class="product-rating">
+            ★★★★☆
+            <span style="color:#aaa;">(67)</span>
+          </div>
+
+          <div class="product-price">
+            ₹1,299
+            <span class="old-price">₹1,999</span>
+          </div>
+
+          <button
+            class="add-to-bag-btn"
+            data-product="Classic Sneakers"
+          >
+            Add to Bag
+          </button>
+        </article>
+
+
+        <article
+          class="product-card"
+          data-name="Designer Earrings"
+          data-category="Jewellery Accessories"
+        >
+          <div class="product-image-wrap">
+            <span class="badge">SALE</span>
+
+            <img
+              class="product-image"
+              src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=700&q=85"
+              alt="Designer Earrings"
+              loading="lazy"
+            >
+          </div>
+
+          <h3 class="product-title">
+            Designer Earrings
+          </h3>
+
+          <div class="product-rating">
+            ★★★★★
+            <span style="color:#aaa;">(109)</span>
+          </div>
+
+          <div class="product-price">
+            ₹349
+            <span class="old-price">₹799</span>
+          </div>
+
+          <button
+            class="add-to-bag-btn"
+            data-product="Designer Earrings"
+          >
+            Add to Bag
+          </button>
+        </article>
+
+
+        <article
+          class="product-card"
+          data-name="Smart Home Gadget"
+          data-category="Gadgets Home"
+        >
+          <div class="product-image-wrap">
+            <span class="badge">DEAL</span>
+
+            <img
+              class="product-image"
+              src="https://images.unsplash.com/photo-1558089687-f282ffcbc126?auto=format&fit=crop&w=700&q=85"
+              alt="Smart Home Gadget"
+              loading="lazy"
+            >
+          </div>
+
+          <h3 class="product-title">
+            Smart Home Gadget
+          </h3>
+
+          <div class="product-rating">
+            ★★★★☆
+            <span style="color:#aaa;">(52)</span>
+          </div>
+
+          <div class="product-price">
+            ₹699
+            <span class="old-price">₹1,199</span>
+          </div>
+
+          <button
+            class="add-to-bag-btn"
+            data-product="Smart Home Gadget"
+          >
+            Add to Bag
+          </button>
+        </article>
+
+      </div>
+    </section>
+
+
+    <section id="offers" class="promo-banner">
+
+      <h2 class="promo-title">
+        Special Wishes, Special Prices ✨
+      </h2>
+
+      <p class="promo-text">
+        Get exclusive deals and early access to new collections.
+        Subscribe to Wish Jinny and never miss a special offer.
+      </p>
+
+      <form
+        class="subscribe-form"
+        id="subscribeForm"
+      >
+
+        <input
+          class="subscribe-input"
+          type="email"
+          id="subscribeEmail"
+          placeholder="Enter your email address"
+          autocomplete="email"
+          required
+        >
+
+        <button
+          class="subscribe-btn"
+          type="submit"
+        >
+          Subscribe
+        </button>
+
+      </form>
+
+    </section>
+
+
+    <section
+      id="about"
+      class="promo-banner"
+      style="margin-top:20px;"
+    >
+
+      <h2 class="promo-title">
+        Welcome to Wish Jinny
+      </h2>
+
+      <p class="promo-text">
+        Your modern multi-category shopping destination for beauty,
+        jewellery, fashion, footwear, home essentials and more —
+        designed to make online shopping simple, stylish and enjoyable.
+      </p>
+
+    </section>
+
+  </main>
+
+
+  <footer id="contact">
+
+    <div class="footer-content">
+
+      <div class="footer-section">
+
+        <h3>WISH JINNY</h3>
+
+        <p>
+          Make every wish a little more special with quality products,
+          attractive prices and a premium shopping experience.
+        </p>
+
+        <div class="social-icons">
+
+          <a href="#" aria-label="Instagram">
+            ◎
+          </a>
+
+          <a href="#" aria-label="Facebook">
+            f
+          </a>
+
+          <a href="#" aria-label="YouTube">
+            ▶️
+          </a>
+
+          <a href="#" aria-label="WhatsApp">
+            ◉
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div class="footer-section">
+
+        <h4>Quick Links</h4>
+
+        <a href="#home">
+          Home
+        </a>
+
+        <a href="#categories">
+          Categories
+        </a>
+
+        <a href="#products">
+          Shop
+        </a>
+
+        <a href="#offers">
+          Offers
+        </a>
+
+      </div>
+
+
+      <div class="footer-section">
+
+        <h4>Customer Care</h4>
+
+        <a href="#">
+          My Account
+        </a>
+
+        <a href="#">
+          Track Order
+        </a>
+
+        <a href="#">
+          Shipping Policy
+        </a>
+
+        <a href="#">
+          Return & Refund
+        </a>
+
+        <a href="#">
+          Privacy Policy
+        </a>
+
+      </div>
+
+
+      <div class="footer-section">
+
+        <h4>Stay Connected</h4>
+
+        <p style="margin-bottom:12px;">
+          Subscribe for latest offers and updates.
+        </p>
+
+        <form id="footerForm">
+
+          <input
+            type="email"
+            id="footerEmail"
+            placeholder="Your email"
+            autocomplete="email"
+            required
+          >
+
+          <button type="submit">
+            Join Now
+          </button>
+
+        </form>
+
+      </div>
+
+    </div>
+
+
+    <div class="copyright">
+      ©️ <span id="year"></span>
+      Wish Jinny. All Rights Reserved.
+    </div>
+
+  </footer>
+
+
+  <div
+    class="toast"
+    id="toast"
+    role="status"
+    aria-live="polite"
+  ></div>
+
+
+  <script>
+
+    const bagCount =
+      document.getElementById("bagCount");
+
+    const toast =
+      document.getElementById("toast");
+
+    const searchBar =
+      document.getElementById("searchBar");
+
+    const productCards =
+      [...document.querySelectorAll(".product-card")];
+
+    let cartCount = 0;
+
+    let toastTimer;
+
+
+    function showToast(message) {
+
+      toast.textContent = message;
+
+      toast.classList.add("show");
+
+      clearTimeout(toastTimer);
+
+      toastTimer =
+        setTimeout(
+          () => toast.classList.remove("show"),
+          2200
+        );
+    }
+
+
+    document
+      .querySelectorAll(".add-to-bag-btn")
+      .forEach(button => {
+
+        button.addEventListener("click", () => {
+
+          cartCount++;
+
+          bagCount.textContent =
+            cartCount;
+
+          showToast(
+            button.dataset.product +
+            " added to your bag."
+          );
+
+        });
+
+      });
+
+
+    searchBar.addEventListener(
+      "input",
+      () => {
+
+        const query =
+          searchBar.value
+            .trim()
+            .toLowerCase();
+
+        productCards.forEach(card => {
+
+          const searchable =
+            (
+              card.dataset.name +
+              " " +
+              card.dataset.category
+            ).toLowerCase();
+
+          card.style.display =
+            searchable.includes(query)
+              ? ""
+              : "none";
+
+        });
+
+      }
+    );
+
+
+    document
+      .querySelectorAll(".category-icon")
+      .forEach(category => {
+
+        category.addEventListener(
+          "click",
+          () => {
+
+            const value =
+              category.dataset.category
+                .toLowerCase();
+
+            searchBar.value = value;
+
+            searchBar.dispatchEvent(
+              new Event("input")
+            );
+
+          }
+        );
+
+      });
+
+
+    document
+      .getElementById("searchFocus")
+      .addEventListener(
+        "click",
+        () => {
+
+          searchBar.focus();
+
+          window.scrollTo({
+            top:
+              searchBar.getBoundingClientRect().top +
+              window.scrollY -
+              100,
+
+            behavior: "smooth"
+          });
+
+        }
+      );
+
+
+    document
+      .getElementById("bagButton")
+      .addEventListener(
+        "click",
+        () => {
+
+          showToast(
+            cartCount
+              ? `You have ${cartCount} item${cartCount > 1 ? "s" : ""} in your bag.`
+              : "Your shopping bag is empty."
+          );
+
+        }
+      );
+
+
+    document
+      .getElementById("subscribeForm")
+      .addEventListener(
+        "submit",
+        event => {
+
+          event.preventDefault();
+
+          const email =
+            document
+              .getElementById("subscribeEmail")
+              .value
+              .trim();
+
+          if (email) {
+
+            showToast(
+              "Thank you for subscribing to Wish Jinny!"
+            );
+
+            event.target.reset();
+
+          }
+
+        }
+      );
+
+
+    document
+      .getElementById("footerForm")
+      .addEventListener(
+        "submit",
+        event => {
+
+          event.preventDefault();
+
+          const email =
+            document
+              .getElementById("footerEmail")
+              .value
+              .trim();
+
+          if (email) {
+
+            showToast(
+              "You're successfully subscribed!"
+            );
+
+            event.target.reset();
+
+          }
+
+        }
+      );
+
+
+    const mobileToggle =
+      document.getElementById(
+        "mobileToggle"
+      );
+
+    const navLinks =
+      document.getElementById(
+        "navLinks"
+      );
+
+
+    mobileToggle.addEventListener(
+      "click",
+      () => {
+
+        navLinks.classList.toggle(
+          "open"
+        );
+
+        mobileToggle.textContent =
+          navLinks.classList.contains("open")
+            ? "✕"
+            : "☰";
+
+      }
+    );
+
+
+    navLinks
+      .querySelectorAll("a")
+      .forEach(link => {
+
+        link.addEventListener(
+          "click",
+          () => {
+
+            navLinks.classList.remove(
+              "open"
+            );
+
+            mobileToggle.textContent =
+              "☰";
+
+          }
+        );
+
+      });
+
+
+    document.getElementById("year")
+      .textContent =
+      new Date().getFullYear();
+
+  </script>
+
 </body>
 </html>
