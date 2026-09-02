@@ -1,973 +1,558 @@
+Wish Jinny Custom Poster
+An attached artifact
+headlin me Anan Hai WISH JINNY JINNY WILL FULILL YOUR EVERY WISH Aor Jo photu bhej raha hu same usi kintarha poora dhaacha rahega same to same aorsare pech rahenge bilkul isi tarha banao
+
+
+Website artifact
+All set — 4 fresh designs for you. Check them out and vote for the strongest one.
+1st
+Claude Fable 5.1 logo
+Claude Fable 5.1
+
+
+Added to Drive
+
+
+
+
+
+
+
+
+
+
+
+
+Describe what you want to build…
+
+
+
+
+Claude Fable 5.1
+
+Preview
+Code
+index.html
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wish Jinny</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/home.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Wish Jinny — Jinny Will Fulfill Your Every Wish</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#b8860b; --gold2:#d4a72c; --gold3:#f3d27a; --gold-dark:#8a6410;
+  --ink:#111; --muted:#6b6b6b; --line:#e6e0cc; --bg:#fff; --soft:#f6f6f6;
+  --red:#e0282e; --blue:#1f6feb; --nav-h:68px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{font-family:'Inter',system-ui,sans-serif;background:#efefef;color:var(--ink);-webkit-font-smoothing:antialiased}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+input{font-family:inherit}
+.app{max-width:430px;margin:0 auto;background:var(--bg);min-height:100dvh;position:relative;box-shadow:0 0 40px rgba(0,0,0,.08);overflow-x:hidden}
+.page{display:none;padding-bottom:calc(var(--nav-h) + 12px)}
+.page.active{display:block;animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* sparkles */
+.sparkle{position:absolute;color:var(--gold2);font-size:14px;pointer-events:none;animation:tw 2.4s ease-in-out infinite;opacity:.8}
+.sparkle:nth-child(2n){animation-delay:.8s}.sparkle:nth-child(3n){animation-delay:1.4s;font-size:10px}
+@keyframes tw{0%,100%{opacity:.25;transform:scale(.8)}50%{opacity:1;transform:scale(1.15)}}
+
+/* header */
+.hero-head{position:relative;text-align:center;padding:12px 16px 6px;overflow:hidden}
+.logo{width:230px;height:190px;margin:0 auto;background-image:url('https://dvxrhkgloakisnvqoxgl.supabase.co/storage/v1/object/sign/images/inputs/1788384038689_gx5vcrnkk.jpeg?token=eyJraWQiOiI0NWE1YWU1ZS0xNzg4LTRiMWYtYWM5OC1hMjgwNmQ2OTM4ZWMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJpbWFnZXMvaW5wdXRzLzE3ODgzODQwMzg2ODlfZ3g1dmNybmtrLmpwZWciLCJzY29wZSI6ImRvd25sb2FkIiwiaWF0IjoxNzg4Mzg0MDQ5LCJleHAiOjE4MTk5MjAwNDl9.32Mq8A89ofMVeOUoKeY6UVWSGscKCEsb2HVi_JsA-GE');background-size:246.7% auto;background-position:49.7% 7.4%;background-repeat:no-repeat;cursor:pointer;border-radius:16px}
+.headline{font-family:'Playfair Display',serif;font-weight:900;line-height:1.1;margin:10px auto 2px;padding:0 6px}
+.headline .brand{display:block;font-size:34px;letter-spacing:3px;background:linear-gradient(180deg,#e9c766 0%,#b8860b 45%,#7d5a0c 100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 1px 0 rgba(255,255,255,.4)}
+.headline .tag{display:block;font-size:20px;font-style:italic;font-weight:700;margin-top:6px;background:linear-gradient(180deg,#d4a72c,#8a6410);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:.3px}
+
+/* search row */
+.toolbar{display:flex;align-items:center;gap:10px;padding:14px 16px 12px;position:sticky;top:0;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);z-index:20;border-bottom:1px solid #eee}
+.search{flex:1;display:flex;align-items:center;gap:8px;background:var(--soft);border-radius:999px;padding:0 14px;height:44px;border:1.5px solid transparent;transition:.2s}
+.search:focus-within{border-color:var(--gold2);background:#fff;box-shadow:0 0 0 3px rgba(212,167,44,.18)}
+.search input{flex:1;border:0;background:transparent;font-size:14px;outline:none;min-width:0}
+.search svg{width:18px;height:18px;color:#888;flex:none}
+.iconbtn{position:relative;width:38px;height:38px;display:grid;place-items:center;border-radius:12px;transition:.15s}
+.iconbtn:active{transform:scale(.9);background:#f0f0f0}
+.iconbtn svg{width:24px;height:24px}
+.badge{position:absolute;top:-4px;right:-2px;min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:#111;color:#fff;font-size:11px;font-weight:700;display:grid;place-items:center;border:2px solid #fff}
+.badge:empty{display:none}
+.avatar{width:38px;height:38px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#7fb1ff,#1f4fa3);border:2px solid #eee;display:grid;place-items:center;color:#fff;font-weight:700;font-size:14px}
+
+/* hero banner */
+.banner{margin:14px 12px 10px;position:relative;border-radius:14px;overflow:hidden;border:2px solid var(--gold2);outline:1px solid var(--gold3);outline-offset:3px;aspect-ratio:552/360;background:#fff url('https://dvxrhkgloakisnvqoxgl.supabase.co/storage/v1/object/sign/images/inputs/1788384038689_gx5vcrnkk.jpeg?token=eyJraWQiOiI0NWE1YWU1ZS0xNzg4LTRiMWYtYWM5OC1hMjgwNmQ2OTM4ZWMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJpbWFnZXMvaW5wdXRzLzE3ODgzODQwMzg2ODlfZ3g1dmNybmtrLmpwZWciLCJzY29wZSI6ImRvd25sb2FkIiwiaWF0IjoxNzg4Mzg0MDQ5LCJleHAiOjE4MTk5MjAwNDl9.32Mq8A89ofMVeOUoKeY6UVWSGscKCEsb2HVi_JsA-GE') no-repeat;background-size:107.2% auto;background-position:50% 48.9%}
+.chip{position:absolute;width:19%;aspect-ratio:1;background:#fff;border:1.5px solid #ddd;border-radius:9px;box-shadow:0 4px 12px rgba(0,0,0,.15);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:9px;font-weight:700;transition:.15s;padding:4px}
+.chip span.e{font-size:26px;line-height:1}
+.chip:active{transform:scale(.93)!important}
+.chip.c1{left:58%;top:10%;width:14%}
+.chip.c2{left:72%;top:16%;transform:rotate(-38deg);width:14%}
+.chip.c3{left:78%;top:44%;transform:rotate(-12deg);width:13%}
+.chip.c4{left:72%;top:66%;transform:rotate(36deg);width:15%}
+.banner .cta{position:absolute;left:4%;bottom:6%;background:linear-gradient(180deg,#e3bd52,#a67a12);color:#fff;font-weight:700;font-size:12px;padding:8px 14px;border-radius:999px;box-shadow:0 4px 14px rgba(150,110,20,.35)}
+
+/* section heads */
+.sec{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 6px}
+.sec h2{font-size:17px;font-weight:800}
+.sec button{color:var(--gold-dark);font-weight:600;font-size:13px}
+
+/* product grid */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:8px 12px 16px}
+.card{border:1.5px solid var(--line);border-radius:14px;background:#fff;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.04);display:flex;flex-direction:column;position:relative;transition:transform .15s}
+.card:active{transform:scale(.985)}
+.thumb{aspect-ratio:1/1;position:relative;display:grid;place-items:center;font-size:74px;cursor:pointer;overflow:hidden}
+.thumb .e{filter:drop-shadow(0 10px 14px rgba(0,0,0,.25));transition:transform .3s}
+.card:hover .thumb .e{transform:scale(1.08) rotate(-4deg)}
+.tag-b{position:absolute;top:10px;left:10px;font-size:11px;font-weight:700;padding:4px 9px;border-radius:999px;background:#0b1b3a;color:#fff}
+.tag-b.deal{background:#0b1b3a;color:#ffd257}
+.tag-b.new{background:#1f7a3a}
+.off{position:absolute;top:10px;right:10px;font-size:11px;font-weight:700;padding:4px 8px;border-radius:999px;background:var(--red);color:#fff}
+.heart{position:absolute;bottom:8px;right:8px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.92);display:grid;place-items:center;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.heart svg{width:18px;height:18px;fill:none;stroke:#333;stroke-width:2}
+.heart.on svg{fill:var(--red);stroke:var(--red)}
+.info{padding:10px 10px 10px}
+.meta{display:flex;justify-content:space-between;font-size:12px;color:#444}
+.meta .stock{color:#444}.meta .stock.low{color:#c0392b;font-weight:600}
+.name{font-weight:700;font-size:14px;margin-top:3px;line-height:1.3;cursor:pointer}
+.rating{display:flex;align-items:center;gap:4px;font-size:12px;margin-top:5px;color:#333}
+.stars{color:#f5a623;letter-spacing:-1px;font-size:13px}
+.price{margin-top:8px;display:flex;align-items:baseline;gap:8px}
+.price b{font-size:17px}.price s{color:#888;font-size:13px}
+.addbtn{margin-top:10px;width:100%;height:38px;border-radius:9px;color:#fff;font-weight:700;font-size:14px;background:linear-gradient(180deg,#d9b24d 0%,#a87d17 55%,#8a6410 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 3px 8px rgba(138,100,16,.3);transition:.15s}
+.addbtn:active{transform:translateY(1px);filter:brightness(.95)}
+.addbtn.in{background:linear-gradient(180deg,#2d6e3e,#1f5a2e)}
+
+/* filters */
+.filters{display:flex;gap:8px;padding:10px 12px;overflow-x:auto;scrollbar-width:none}
+.filters::-webkit-scrollbar{display:none}
+.fbtn{flex:none;padding:8px 14px;border-radius:999px;border:1.5px solid var(--line);font-size:13px;font-weight:600;background:#fff;transition:.15s}
+.fbtn.on{background:#111;color:#fff;border-color:#111}
+.sortrow{display:flex;align-items:center;justify-content:space-between;padding:4px 16px;font-size:13px;color:var(--muted)}
+.sortrow select{border:1.5px solid var(--line);border-radius:8px;padding:6px 8px;font-size:13px;background:#fff}
+
+/* page header */
+.ph{display:flex;align-items:center;gap:10px;padding:16px 16px 6px}
+.ph h1{font-family:'Playfair Display',serif;font-size:26px;background:linear-gradient(180deg,#d4a72c,#8a6410);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ph small{color:var(--muted);font-size:13px;margin-left:auto}
+.empty{text-align:center;padding:60px 24px;color:var(--muted)}
+.empty .big{font-size:60px;margin-bottom:10px}
+.empty button{margin-top:16px;padding:12px 22px;border-radius:999px;background:#111;color:#fff;font-weight:700}
+
+/* cart */
+.crow{display:flex;gap:12px;padding:12px 16px;border-bottom:1px solid #f0f0f0;align-items:center}
+.crow .ct{width:74px;height:74px;border-radius:12px;display:grid;place-items:center;font-size:36px;flex:none}
+.crow .cn{flex:1;min-width:0}
+.crow .cn b{display:block;font-size:14px}
+.crow .cn span{font-size:12px;color:var(--muted)}
+.qty{display:flex;align-items:center;gap:0;border:1.5px solid var(--line);border-radius:999px;overflow:hidden;margin-top:8px;width:max-content}
+.qty button{width:32px;height:30px;font-size:18px;font-weight:700}
+.qty button:active{background:#f0f0f0}
+.qty span{min-width:26px;text-align:center;font-weight:700;font-size:14px}
+.crow .cp{text-align:right}
+.crow .cp b{display:block;font-size:15px}
+.crow .cp button{font-size:12px;color:var(--red);margin-top:8px;font-weight:600}
+.summary{margin:16px;border:1.5px solid var(--line);border-radius:14px;padding:14px;background:#fffdf5}
+.summary .r{display:flex;justify-content:space-between;font-size:14px;padding:5px 0;color:#444}
+.summary .r.t{border-top:1px dashed #ddd;margin-top:6px;padding-top:10px;font-weight:800;font-size:17px;color:#111}
+.promo{display:flex;gap:8px;margin:0 16px}
+.promo input{flex:1;border:1.5px solid var(--line);border-radius:10px;padding:11px 12px;font-size:14px;outline:none}
+.promo input:focus{border-color:var(--gold2)}
+.promo button{padding:0 16px;border-radius:10px;background:#111;color:#fff;font-weight:700;font-size:13px}
+.primary{display:block;margin:14px 16px;width:calc(100% - 32px);height:50px;border-radius:12px;color:#fff;font-weight:800;font-size:16px;background:linear-gradient(180deg,#d9b24d 0%,#a87d17 55%,#8a6410 100%);box-shadow:0 6px 16px rgba(138,100,16,.3)}
+.primary:active{transform:translateY(1px)}
+
+/* account */
+.acc-card{margin:12px 16px;border:1.5px solid var(--line);border-radius:16px;padding:18px;background:linear-gradient(135deg,#fffbe9,#fff)}
+.acc-card .top{display:flex;align-items:center;gap:14px}
+.acc-card .avatar{width:56px;height:56px;font-size:20px}
+.field{margin:12px 16px 0}
+.field label{display:block;font-size:12px;font-weight:600;color:#555;margin-bottom:6px}
+.field input{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:12px;font-size:15px;outline:none;transition:.15s}
+.field input:focus{border-color:var(--gold2);box-shadow:0 0 0 3px rgba(212,167,44,.18)}
+.field .err{font-size:12px;color:var(--red);margin-top:5px;display:none}
+.field.bad input{border-color:var(--red)}.field.bad .err{display:block}
+.list{margin:12px 16px;border:1.5px solid var(--line);border-radius:14px;overflow:hidden}
+.list button{width:100%;display:flex;align-items:center;gap:12px;padding:14px;text-align:left;font-size:14px;font-weight:600;border-bottom:1px solid #f0f0f0}
+.list button:last-child{border-bottom:0}
+.list button:active{background:#fafafa}
+.list button span:last-child{margin-left:auto;color:#aaa}
+
+/* bottom nav */
+.bottomnav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;height:var(--nav-h);background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-top:1px solid #e5e5e5;display:grid;grid-template-columns:repeat(5,1fr);z-index:40;padding-bottom:env(safe-area-inset-bottom)}
+.nb{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:12px;color:#333;position:relative;transition:.15s}
+.nb svg{width:26px;height:26px;stroke:#111;fill:none;stroke-width:1.8}
+.nb.on{font-weight:800}
+.nb.on svg{stroke-width:2.4}
+.nb .badge{top:6px;right:calc(50% - 22px)}
+.nb:active{transform:scale(.92)}
+
+/* drawer / modals */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:60;opacity:0;pointer-events:none;transition:.25s}
+.overlay.show{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;height:100%;width:290px;max-width:85vw;background:#fff;z-index:70;transform:translateX(100%);transition:.3s cubic-bezier(.2,.8,.2,1);padding:24px 20px;display:flex;flex-direction:column}
+.drawer.show{transform:none}
+.drawer h3{font-family:'Playfair Display',serif;font-size:24px;color:var(--gold-dark);margin-bottom:16px}
+.drawer a{display:block;padding:14px 4px;border-bottom:1px solid #f0f0f0;font-weight:600;font-size:15px;color:#111;text-decoration:none;cursor:pointer}
+.drawer .close{position:absolute;top:14px;right:14px;font-size:26px;width:36px;height:36px}
+.sheet{position:fixed;left:50%;bottom:0;transform:translate(-50%,105%);width:100%;max-width:430px;background:#fff;z-index:70;border-radius:22px 22px 0 0;padding:14px 18px calc(24px + env(safe-area-inset-bottom));transition:.3s cubic-bezier(.2,.8,.2,1);max-height:88dvh;overflow:auto}
+.sheet.show{transform:translate(-50%,0)}
+.sheet .grab{width:44px;height:5px;border-radius:3px;background:#ddd;margin:0 auto 12px}
+.sheet .big{aspect-ratio:1.4;border-radius:16px;display:grid;place-items:center;font-size:110px;position:relative}
+.sheet h3{font-size:20px;font-weight:800;margin-top:14px}
+.sheet p{color:#555;font-size:14px;line-height:1.55;margin-top:8px}
+.sheet .row{display:flex;gap:10px;margin-top:14px}
+.sheet .row .addbtn{height:48px;font-size:15px;margin:0;flex:1}
+.sheet .row .heart{position:static;width:48px;height:48px;border:1.5px solid var(--line);box-shadow:none}
+.mod{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:20px;opacity:0;pointer-events:none;transition:.2s}
+.mod.show{opacity:1;pointer-events:auto}
+.mod .box{background:#fff;border-radius:20px;padding:26px 22px;max-width:360px;width:100%;text-align:center;transform:scale(.9);transition:.2s}
+.mod.show .box{transform:none}
+.mod .box .ico{font-size:56px}
+.mod .box h3{font-size:20px;margin:10px 0 6px}
+.mod .box p{color:#666;font-size:14px}
+.mod .box button{margin-top:18px;width:100%;height:46px;border-radius:12px;background:#111;color:#fff;font-weight:700}
+.toast{position:fixed;left:50%;bottom:calc(var(--nav-h) + 18px);transform:translate(-50%,20px);background:#111;color:#fff;padding:11px 18px;border-radius:999px;font-size:13px;font-weight:600;z-index:90;opacity:0;transition:.25s;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.footer{text-align:center;color:#999;font-size:12px;padding:10px 16px 20px}
+.footer b{color:var(--gold-dark)}
+@media (min-width:480px){.headline .brand{font-size:38px}}
+</style>
 </head>
 <body>
-  <div class="smoke-bg"></div>
-  <main class="hero">
-    <canvas id="scratch-art"></canvas>
-    <div id="offer">
-      <h2>SPECIAL OFFERS AWAIT!</h2>
-    </div><div id="magicLamp">Magic Lamp</div  </main>
-<div id="smokeBurst"></div><div id="smokeBurst"></div>
-<div<div  <div class="product-grid">
-    <div class="product-card">
-      <h3>प्रोडक्ट 1</h3>
-      <p>कीमत: ₹999</p>
-      <button class="add-to-bag-btn">Add to Bag</button>
-    </div>
-    <div class="product-card">
-      <h3>प्रोडक्ट 2</h3>
-      <p>कीमत: ₹1499</p>
-      <button class="add-to-bag-btn">Add to Bag</button>
-    </div>
-  </div>
+<div class="app">
 
-  <section class="about-section">
-    <h2>About Us</h2>
-    <p>Welcome to Wish Jinny, your ultimate destination for premium cosmetics and jewelry. We are dedicated to bringing you the best quality products that enhance your natural beauty and style.</p>
+  <!-- ============ HOME ============ -->
+  <section class="page active" id="page-home">
+    <header class="hero-head">
+      <span class="sparkle" style="left:8%;top:12%">✦</span><span class="sparkle" style="left:16%;top:70%">✦</span>
+      <span class="sparkle" style="right:10%;top:14%">✦</span><span class="sparkle" style="right:18%;top:62%">✦</span>
+      <span class="sparkle" style="left:30%;top:30%">✧</span><span class="sparkle" style="right:30%;top:36%">✧</span>
+      <div class="logo" onclick="go('home')" role="img" aria-label="Wish Jinny logo"></div>
+      <h1 class="headline">
+        <span class="brand">WISH JINNY</span>
+        <span class="tag">Jinny will fulfill your every wish.</span>
+      </h1>
+    </header>
+
+    <div class="toolbar">
+      <label class="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="searchInput" type="search" placeholder="Search products, brands, essentia..." autocomplete="off">
+      </label>
+      <button class="iconbtn" onclick="go('wishlist')" aria-label="Wishlist">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2"><path d="M12 21s-7-4.6-9.3-9.1C1 8 3.4 4.5 7 4.5c2 0 3.5 1.1 5 3 1.5-1.9 3-3 5-3 3.6 0 6 3.5 4.3 7.4C19 16.4 12 21 12 21z"/></svg>
+        <span class="badge" data-wishbadge></span>
+      </button>
+      <button class="iconbtn" onclick="go('cart')" aria-label="Cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2"><path d="M6 8h12l1 12H5L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+        <span class="badge" data-cartbadge></span>
+      </button>
+      <button class="iconbtn" onclick="go('account')" aria-label="Account"><div class="avatar">R</div></button>
+      <button class="iconbtn" onclick="openDrawer()" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+
+    <div class="banner" id="banner">
+      <button class="chip c1" onclick="shopCat('Accessories')"><span class="e">⌚</span>Accessories</button>
+      <button class="chip c2" onclick="shopCat('Beauty')"><span class="e">💄</span>Beauty</button>
+      <button class="chip c3" onclick="shopCat('Electronics')"><span class="e">🎧</span>Electronics</button>
+      <button class="chip c4" onclick="shopCat('Deals')"><span class="e">🏷️</span>Deals</button>
+      <button class="cta" onclick="go('shop')">✨ Make a Wish → Shop Now</button>
+    </div>
+
+    <div class="sec"><h2>Trending Wishes</h2><button onclick="go('shop')">View all →</button></div>
+    <div class="grid" id="homeGrid"></div>
+
+    <div class="sec"><h2>Beauty Picks</h2><button onclick="shopCat('Beauty')">View all →</button></div>
+    <div class="grid" id="homeGrid2"></div>
+
+    <div class="footer">🔒 wishjinny.ai.studio · <b>Your wish, our command</b></div>
   </section>
 
-  <section class="cta-premium">
-    <div class="cta-content">
-   
-
-        <h1>Make Your Wish Come True.</h1>
-
-        <p>
-          Discover beauty, fashion, jewellery and everyday essentials —
-          all in one stylish shopping destination with quality at the right price.
-        </p>
-
-        <div class="hero-buttons">
-          <a class="primary-btn" href="#products">Shop Now →</a>
-          <a class="secondary-btn" href="#categories">
-            Explore Categories
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section aria-label="Search products">
-      <div class="search-container">
-        <span class="search-icon">⌕</span>
-
-        <input
-          class="search-bar"
-          id="searchBar"
-          type="search"
-          placeholder="Search cosmetics, jewellery, fashion..."
-          autocomplete="off"
-        >
-      </div>
-    </section>
-
-    <section id="categories">
-
-      <div class="section-heading">
-        <div>
-          <h2>Shop By Category</h2>
-          <p>Find something special for every wish.</p>
-        </div>
-      </div>
-
-      <div class="category-grid">
-
-        <a
-          class="category-icon"
-          href="#products"
-          data-category="Cosmetics"
-        >
-          <span class="icon-image">💄</span>
-          <span class="icon-label">Cosmetics</span>
-        </a>
-
-        <a
-          class="category-icon"
-          href="#products"
-          data-category="Jewellery"
-        >
-          <span class="icon-image">💎</span>
-          <span class="icon-label">Jewellery</span>
-        </a>
-
-        <a
-          class="category-icon"
-          href="#products"
-          data-category="Fashion"
-        >
-          <span class="icon-image">👗</span>
-          <span class="icon-label">Fashion</span>
-        </a>
-
-        <a
-          class="category-icon"
-          href="#products"
-          data-category="Footwear"
-        >
-          <span class="icon-image">👟</span>
-          <span class="icon-label">Footwear</span>
-        </a>
-
-        <a
-          class="category-icon"
-          href="#products"
-          data-category="Beauty"
-        >
-          <span class="icon-image">🧴</span>
-          <span class="icon-label">Skin Care</span>
-        </a>
-
-        <a
-          class="category-icon"
-          href="#products"
-          data-category="Home"
-        >
-          <span class="icon-image">🏠</span>
-          <span class="icon-label">Home</span>
-        </a>
-
-        <a
-          class="category-icon"
-          href="#products"
-          data-category="Gadgets"
-        >
-          <span class="icon-image">📱</span>
-          <span class="icon-label">Gadgets</span>
-        </a>
-
-        <a
-          class="category-icon"
-          href="#products"
-          data-category="Accessories"
-        >
-          <span class="icon-image">👜</span>
-          <span class="icon-label">Accessories</span>
-        </a>
-
-      </div>
-    </section>
-
-    <section id="products">
-
-      <div class="section-heading">
-
-        <div>
-          <h2>Featured Products</h2>
-          <p>Popular picks selected for you.</p>
-        </div>
-
-        <a class="view-all" href="#products">
-          View All →
-        </a>
-
-      </div>
-
-      <div class="product-grid" id="productGrid">
-
-        <article
-          class="product-card"
-          data-name="Glow Face Serum"
-          data-category="Beauty Cosmetics Skin Care"
-        >
-
-          <div class="product-image-wrap">
-
-            <span class="badge">
-              BESTSELLER
-            </span>
-
-            <img
-              class="product-image"
-              src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=700&q=85"
-              alt="Glow face serum"
-              loading="lazy"
-            >
-
-          </div>
-
-          <h3 class="product-title">
-            Glow Face Serum
-          </h3>
-
-          <div class="product-rating">
-            ★★★★★
-            <span style="color:#aaa;">
-              (128)
-            </span>
-          </div>
-
-          <div class="product-price">
-            ₹499
-            <span class="old-price">
-              ₹899
-            </span>
-          </div>
-
-          <button
-            class="add-to-bag-btn"
-            data-product="Glow Face Serum"
-          >
-            Add to Bag
-          </button>
-
-        </article>
-
-
-        <article
-          class="product-card"
-          data-name="Luxury Jewellery Set"
-          data-category="Jewellery Accessories"
-        >
-
-          <div class="product-image-wrap">
-
-            <span class="badge">
-              NEW
-            </span>
-
-            <img
-              class="product-image"
-              src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=700&q=85"
-              alt="Luxury jewellery set"
-              loading="lazy"
-            >
-
-          </div>
-
-          <h3 class="product-title">
-            Luxury Jewellery Set
-          </h3>
-
-          <div class="product-rating">
-            ★★★★★
-            <span style="color:#aaa;">
-              (94)
-            </span>
-          </div>
-
-          <div class="product-price">
-            ₹799
-            <span class="old-price">
-              ₹1,499
-            </span>
-          </div>
-
-          <button
-            class="add-to-bag-btn"
-            data-product="Luxury Jewellery Set"
-          >
-            Add to Bag
-          </button>
-
-        </article>
-
-
-        <article
-          class="product-card"
-          data-name="Premium Lipstick"
-          data-category="Cosmetics Beauty"
-        >
-
-          <div class="product-image-wrap">
-
-            <span class="badge">
-              50% OFF
-            </span>
-
-            <img
-              class="product-image"
-              src="https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=700&q=85"
-              alt="Premium lipstick"
-              loading="lazy"
-            >
-
-          </div>
-
-          <h3 class="product-title">
-            Premium Lipstick
-          </h3>
-
-          <div class="product-rating">
-            ★★★★★
-            <span style="color:#aaa;">
-              (176)
-            </span>
-          </div>
-
-          <div class="product-price">
-            ₹299
-            <span class="old-price">
-              ₹599
-            </span>
-          </div>
-
-          <button
-            class="add-to-bag-btn"
-            data-product="Premium Lipstick"
-          >
-            Add to Bag
-          </button>
-
-        </article>
-
-
-        <article
-          class="product-card"
-          data-name="Elegant Handbag"
-          data-category="Accessories Fashion"
-        >
-
-          <div class="product-image-wrap">
-
-            <span class="badge">
-              TRENDING
-            </span>
-
-            <img
-              class="product-image"
-              src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=700&q=85"
-              alt="Elegant handbag"
-              loading="lazy"
-            >
-
-          </div>
-
-          <h3 class="product-title">
-            Elegant Handbag
-          </h3>
-
-          <div class="product-rating">
-            ★★★★☆
-            <span style="color:#aaa;">
-              (81)
-            </span>
-          </div>
-
-          <div class="product-price">
-            ₹999
-            <span class="old-price">
-              ₹1,799
-            </span>
-          </div>
-
-          <button
-            class="add-to-bag-btn"
-            data-product="Elegant Handbag"
-          >
-            Add to Bag
-          </button>
-
-        </article>
-        <article
-          class="product-card"
-          data-name="Hydrating Skin Cream"
-          data-category="Beauty Skin Care Cosmetics"
-        >
-          <div class="product-image-wrap">
-            <span class="badge">POPULAR</span>
-
-            <img
-              class="product-image"
-              src="https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?auto=format&fit=crop&w=700&q=85"
-              alt="Hydrating Skin Cream"
-              loading="lazy"
-            >
-          </div>
-
-          <h3 class="product-title">
-            Hydrating Skin Cream
-          </h3>
-
-          <div class="product-rating">
-            ★★★★★
-            <span style="color:#aaa;">(213)</span>
-          </div>
-
-          <div class="product-price">
-            ₹399
-            <span class="old-price">₹699</span>
-          </div>
-
-          <button
-            class="add-to-bag-btn"
-            data-product="Hydrating Skin Cream"
-          >
-            Add to Bag
-          </button>
-        </article>
-
-
-        <article
-          class="product-card"
-          data-name="Classic Sneakers"
-          data-category="Footwear Fashion"
-        >
-          <div class="product-image-wrap">
-            <span class="badge">HOT</span>
-
-            <img
-              class="product-image"
-              src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=85"
-              alt="Classic Sneakers"
-              loading="lazy"
-            >
-          </div>
-
-          <h3 class="product-title">
-            Classic Sneakers
-          </h3>
-
-          <div class="product-rating">
-            ★★★★☆
-            <span style="color:#aaa;">(67)</span>
-          </div>
-
-          <div class="product-price">
-            ₹1,299
-            <span class="old-price">₹1,999</span>
-          </div>
-
-          <button
-            class="add-to-bag-btn"
-            data-product="Classic Sneakers"
-          >
-            Add to Bag
-          </button>
-        </article>
-
-
-        <article
-          class="product-card"
-          data-name="Designer Earrings"
-          data-category="Jewellery Accessories"
-        >
-          <div class="product-image-wrap">
-            <span class="badge">SALE</span>
-
-            <img
-              class="product-image"
-              src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=700&q=85"
-              alt="Designer Earrings"
-              loading="lazy"
-            >
-          </div>
-
-          <h3 class="product-title">
-            Designer Earrings
-          </h3>
-
-          <div class="product-rating">
-            ★★★★★
-            <span style="color:#aaa;">(109)</span>
-          </div>
-
-          <div class="product-price">
-            ₹349
-            <span class="old-price">₹799</span>
-          </div>
-
-          <button
-            class="add-to-bag-btn"
-            data-product="Designer Earrings"
-          >
-            Add to Bag
-          </button>
-        </article>
-
-
-        <article
-          class="product-card"
-          data-name="Smart Home Gadget"
-          data-category="Gadgets Home"
-        >
-          <div class="product-image-wrap">
-            <span class="badge">DEAL</span>
-
-            <img
-              class="product-image"
-              src="https://images.unsplash.com/photo-1558089687-f282ffcbc126?auto=format&fit=crop&w=700&q=85"
-              alt="Smart Home Gadget"
-              loading="lazy"
-            >
-          </div>
-
-          <h3 class="product-title">
-            Smart Home Gadget
-          </h3>
-
-          <div class="product-rating">
-            ★★★★☆
-            <span style="color:#aaa;">(52)</span>
-          </div>
-
-          <div class="product-price">
-            ₹699
-            <span class="old-price">₹1,199</span>
-          </div>
-
-          <button
-            class="add-to-bag-btn"
-            data-product="Smart Home Gadget"
-          >
-            Add to Bag
-          </button>
-        </article>
-
-      </div>
-    </section>
-
-
-    <section id="offers" class="promo-banner">
-
-      <h2 class="promo-title">
-        Special Wishes, Special Prices ✨
-      </h2>
-
-      <p class="promo-text">
-        Get exclusive deals and early access to new collections.
-        Subscribe to Wish Jinny and never miss a special offer.
-      </p>
-
-      <form
-        class="subscribe-form"
-        id="subscribeForm"
-      >
-
-        <input
-          class="subscribe-input"
-          type="email"
-          id="subscribeEmail"
-          placeholder="Enter your email address"
-          autocomplete="email"
-          required
-        >
-
-        <button
-          class="subscribe-btn"
-          type="submit"
-        >
-          Subscribe
-        </button>
-
-      </form>
-
-    </section>
-
-
-    <section
-      id="about"
-      class="promo-banner"
-      style="margin-top:20px;"
-    >
-
-      <h2 class="promo-title">
-        Welcome to Wish Jinny
-      </h2>
-
-      <p class="promo-text">
-        Your modern multi-category shopping destination for beauty,
-        jewellery, fashion, footwear, home essentials and more —
-        designed to make online shopping simple, stylish and enjoyable.
-      </p>
-
-    </section>
-
-  </main>
-
-
-  <footer id="contact">
-
-    <div class="footer-content">
-
-      <div class="footer-section">
-
-        <h3>WISH JINNY</h3>
-
-        <p>
-          Make every wish a little more special with quality products,
-          attractive prices and a premium shopping experience.
-        </p>
-
-        <div class="social-icons">
-
-          <a href="#" aria-label="Instagram">
-            ◎
-          </a>
-
-          <a href="#" aria-label="Facebook">
-            f
-          </a>
-
-          <a href="#" aria-label="YouTube">
-            ▶️
-          </a>
-
-          <a href="#" aria-label="WhatsApp">
-            ◉
-          </a>
-
-        </div>
-
-      </div>
-
-
-      <div class="footer-section">
-
-        <h4>Quick Links</h4>
-
-        <a href="#home">
-          Home
-        </a>
-
-        <a href="#categories">
-          Categories
-        </a>
-
-        <a href="#products">
-          Shop
-        </a>
-
-        <a href="#offers">
-          Offers
-        </a>
-
-      </div>
-
-
-      <div class="footer-section">
-
-        <h4>Customer Care</h4>
-
-        <a href="#">
-          My Account
-        </a>
-
-        <a href="#">
-          Track Order
-        </a>
-
-        <a href="#">
-          Shipping Policy
-        </a>
-
-        <a href="#">
-          Return & Refund
-        </a>
-
-        <a href="#">
-          Privacy Policy
-        </a>
-
-      </div>
-
-
-      <div class="footer-section">
-
-        <h4>Stay Connected</h4>
-
-        <p style="margin-bottom:12px;">
-          Subscribe for latest offers and updates.
-        </p>
-
-        <form id="footerForm">
-
-          <input
-            type="email"
-            id="footerEmail"
-            placeholder="Your email"
-            autocomplete="email"
-            required
-          >
-
-          <button type="submit">
-            Join Now
-          </button>
-
-        </form>
-
-      </div>
-
+  <!-- ============ SHOP ============ -->
+  <section class="page" id="page-shop">
+    <div class="ph"><h1>Shop</h1><small id="shopCount"></small></div>
+    <div class="toolbar" style="position:static;border:0;padding-top:4px">
+      <label class="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="shopSearch" type="search" placeholder="Search in shop..." autocomplete="off">
+      </label>
     </div>
-
-
-    <div class="copyright">
-      ©️ <span id="year"></span>
-      Wish Jinny. All Rights Reserved.
+    <div class="filters" id="filters"></div>
+    <div class="sortrow"><span id="sortLabel">Sorted by popularity</span>
+      <select id="sortSel"><option value="pop">Popularity</option><option value="lh">Price: Low–High</option><option value="hl">Price: High–Low</option><option value="rate">Rating</option><option value="disc">Discount</option></select>
     </div>
-
-  </footer>
-
-
-  <div
-    class="toast"
-    id="toast"
-    role="status"
-    aria-live="polite"
-  ></div>
-
-
-  <script>
-
-    const bagCount =
-      document.getElementById("bagCount");
-
-    const toast =
-      document.getElementById("toast");
-
-    const searchBar =
-      document.getElementById("searchBar");
-
-    const productCards =
-      [...document.querySelectorAll(".product-card")];
-
-    let cartCount = 0;
-
-    let toastTimer;
-
-
-    function showToast(message) {
-
-      toast.textContent = message;
-
-      toast.classList.add("show");
-
-      clearTimeout(toastTimer);
-
-      toastTimer =
-        setTimeout(
-          () => toast.classList.remove("show"),
-          2200
-        );
-    }
-
-
-    document
-      .querySelectorAll(".add-to-bag-btn")
-      .forEach(button => {
-
-        button.addEventListener("click", () => {
-
-          cartCount++;
-
-          bagCount.textContent =
-            cartCount;
-
-          showToast(
-            button.dataset.product +
-            " added to your bag."
-          );
-
-        });
-
-      });
-
-
-    searchBar.addEventListener(
-      "input",
-      () => {
-
-        const query =
-          searchBar.value
-            .trim()
-            .toLowerCase();
-
-        productCards.forEach(card => {
-
-          const searchable =
-            (
-              card.dataset.name +
-              " " +
-              card.dataset.category
-            ).toLowerCase();
-
-          card.style.display =
-            searchable.includes(query)
-              ? ""
-              : "none";
-
-        });
-
-      }
-    );
-
-
-    document
-      .querySelectorAll(".category-icon")
-      .forEach(category => {
-
-        category.addEventListener(
-          "click",
-          () => {
-
-            const value =
-              category.dataset.category
-                .toLowerCase();
-
-            searchBar.value = value;
-
-            searchBar.dispatchEvent(
-              new Event("input")
-            );
-
-          }
-        );
-
-      });
-
-
-    document
-      .getElementById("searchFocus")
-      .addEventListener(
-        "click",
-        () => {
-
-          searchBar.focus();
-
-          window.scrollTo({
-            top:
-              searchBar.getBoundingClientRect().top +
-              window.scrollY -
-              100,
-
-            behavior: "smooth"
-          });
-
-        }
-      );
-
-
-    document
-      .getElementById("bagButton")
-      .addEventListener(
-        "click",
-        () => {
-
-          showToast(
-            cartCount
-              ? `You have ${cartCount} item${cartCount > 1 ? "s" : ""} in your bag.`
-              : "Your shopping bag is empty."
-          );
-
-        }
-      );
-
-
-    document
-      .getElementById("subscribeForm")
-      .addEventListener(
-        "submit",
-        event => {
-
-          event.preventDefault();
-
-          const email =
-            document
-              .getElementById("subscribeEmail")
-              .value
-              .trim();
-
-          if (email) {
-
-            showToast(
-              "Thank you for subscribing to Wish Jinny!"
-            );
-
-            event.target.reset();
-
-          }
-
-        }
-      );
-
-
-    document
-      .getElementById("footerForm")
-      .addEventListener(
-        "submit",
-        event => {
-
-          event.preventDefault();
-
-          const email =
-            document
-              .getElementById("footerEmail")
-              .value
-              .trim();
-
-          if (email) {
-
-            showToast(
-              "You're successfully subscribed!"
-            );
-
-            event.target.reset();
-
-          }
-
-        }
-      );
-
-
-    const mobileToggle =
-      document.getElementById(
-        "mobileToggle"
-      );
-
-    const navLinks =
-      document.getElementById(
-        "navLinks"
-      );
-
-
-    mobileToggle.addEventListener(
-      "click",
-      () => {
-
-        navLinks.classList.toggle(
-          "open"
-        );
-
-        mobileToggle.textContent =
-          navLinks.classList.contains("open")
-            ? "✕"
-            : "☰";
-
-      }
-    );
-
-
-    navLinks
-      .querySelectorAll("a")
-      .forEach(link => {
-
-        link.addEventListener(
-          "click",
-          () => {
-
-            navLinks.classList.remove(
-              "open"
-            );
-
-            mobileToggle.textContent =
-              "☰";
-
-          }
-        );
-
-      });
-
-
-    document.getElementById("year")
-      .textContent =
-      new Date().getFullYear();
-
-  </script>
-
+    <div class="grid" id="shopGrid"></div>
+  </section>
+
+  <!-- ============ WISHLIST ============ -->
+  <section class="page" id="page-wishlist">
+    <div class="ph"><h1>Wishlist</h1><small id="wishCount"></small></div>
+    <div id="wishWrap"></div>
+  </section>
+
+  <!-- ============ CART ============ -->
+  <section class="page" id="page-cart">
+    <div class="ph"><h1>Cart</h1><small id="cartCount"></small></div>
+    <div id="cartWrap"></div>
+  </section>
+
+  <!-- ============ ACCOUNT ============ -->
+  <section class="page" id="page-account">
+    <div class="ph"><h1>Account</h1></div>
+    <div id="accountWrap"></div>
+  </section>
+
+  <!-- bottom nav -->
+  <nav class="bottomnav">
+    <button class="nb on" data-nav="home" onclick="go('home')"><svg viewBox="0 0 24 24"><path d="M3 11 12 3l9 8v10H14v-6h-4v6H3z"/></svg>Home</button>
+    <button class="nb" data-nav="shop" onclick="go('shop')"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>Shop</button>
+    <button class="nb" data-nav="wishlist" onclick="go('wishlist')"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.6-9.3-9.1C1 8 3.4 4.5 7 4.5c2 0 3.5 1.1 5 3 1.5-1.9 3-3 5-3 3.6 0 6 3.5 4.3 7.4C19 16.4 12 21 12 21z"/></svg>Wishlist<span class="badge" data-wishbadge></span></button>
+    <button class="nb" data-nav="cart" onclick="go('cart')"><svg viewBox="0 0 24 24"><path d="M6 8h12l1 12H5L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>Cart<span class="badge" data-cartbadge></span></button>
+    <button class="nb" data-nav="account" onclick="go('account')"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>Account</button>
+  </nav>
+</div>
+
+<!-- drawer -->
+<div class="overlay" id="overlay" onclick="closeAll()"></div>
+<aside class="drawer" id="drawer">
+  <button class="close" onclick="closeAll()">×</button>
+  <h3>Wish Jinny</h3>
+  <a onclick="go('home');closeAll()">🏠 Home</a>
+  <a onclick="shopCat('All');closeAll()">🛍️ All Products</a>
+  <a onclick="shopCat('Electronics');closeAll()">🎧 Electronics</a>
+  <a onclick="shopCat('Accessories');closeAll()">⌚ Accessories</a>
+  <a onclick="shopCat('Beauty');closeAll()">💄 Beauty</a>
+  <a onclick="shopCat('Deals');closeAll()">🏷️ Deals & Offers</a>
+  <a onclick="go('wishlist');closeAll()">🤍 Wishlist</a>
+  <a onclick="go('cart');closeAll()">🛒 Cart</a>
+  <a onclick="go('account');closeAll()">👤 Account</a>
+  <div style="margin-top:auto;font-size:12px;color:#999">Your wish, our command ✨</div>
+</aside>
+
+<!-- product sheet -->
+<div class="sheet" id="sheet"></div>
+
+<!-- modal -->
+<div class="mod" id="modal"><div class="box" id="modalBox"></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ---------------- DATA ---------------- */
+const P = [
+ {id:1,brand:'APEXTECH',name:'Apex Pro Smartwatch',cat:'Accessories',price:21999,mrp:29999,rate:4.9,n:312,badge:'Best Seller',e:'⌚',bg:'linear-gradient(135deg,#f7f7f7,#dcdcdc)',stock:12,pop:98,desc:'AMOLED always-on display, 14-day battery, SpO₂ & ECG tracking, 5ATM water resistance. Your wish for a smarter day, granted.'},
+ {id:2,brand:'AURAAUDIO',name:'AuraSound ANC Headphones',cat:'Electronics',price:13499,mrp:18999,rate:4.8,n:428,badge:'Deal',e:'🎧',bg:'linear-gradient(135deg,#ffd93b,#f2b705)',stock:8,pop:97,desc:'Hybrid active noise cancellation, 40h playtime, Hi-Res audio, plush memory-foam cushions and multipoint Bluetooth 5.3.'},
+ {id:3,brand:'AURAAUDIO',name:'AuraBuds Pro Earbuds',cat:'Electronics',price:6999,mrp:9999,rate:4.6,n:1204,badge:'Deal',e:'🎵',bg:'linear-gradient(135deg,#dfe9ff,#b8c8ff)',stock:30,pop:95,desc:'Feather-light earbuds with adaptive ANC, wireless charging case and crystal-clear calls.'},
+ {id:4,brand:'VOLTIQ',name:'Voltiq 20000mAh Power Bank',cat:'Electronics',price:2499,mrp:3999,rate:4.5,n:867,badge:'New',e:'🔋',bg:'linear-gradient(135deg,#e6fff2,#a8f0c6)',stock:3,pop:80,desc:'65W fast charging, dual USB-C, charges laptops, phones and watches together.'},
+ {id:5,brand:'LUMIÈRE',name:'Lumière Velvet Lipstick Set',cat:'Beauty',price:1899,mrp:2999,rate:4.7,n:2310,badge:'Best Seller',e:'💄',bg:'linear-gradient(135deg,#ffe0ea,#ffb3c7)',stock:22,pop:92,desc:'6 long-wear velvet matte shades, vegan formula enriched with vitamin E and shea butter.'},
+ {id:6,brand:'MYST',name:'Myst Oud Royale Perfume 100ml',cat:'Beauty',price:3499,mrp:5999,rate:4.8,n:640,badge:'Deal',e:'🧴',bg:'linear-gradient(135deg,#f6e9ff,#d8b8ff)',stock:15,pop:90,desc:'Warm oud, saffron and amber. A magical 12-hour lasting eau de parfum for every wish-worthy evening.'},
+ {id:7,brand:'GLOWUP',name:'GlowUp Makeup Brush Kit',cat:'Beauty',price:1299,mrp:2199,rate:4.4,n:512,badge:'New',e:'🖌️',bg:'linear-gradient(135deg,#fff5e0,#ffd9a0)',stock:40,pop:75,desc:'12-piece cruelty-free synthetic brushes with a rose-gold travel pouch.'},
+ {id:8,brand:'NOMAD',name:'Nomad Leather Wallet',cat:'Accessories',price:1599,mrp:2499,rate:4.6,n:389,badge:'Best Seller',e:'👛',bg:'linear-gradient(135deg,#f3e2c8,#d8b48a)',stock:18,pop:84,desc:'Full-grain leather, RFID-blocking, 8 card slots. Ages beautifully with you.'},
+ {id:9,brand:'SOLARIS',name:'Solaris Aviator Sunglasses',cat:'Accessories',price:2299,mrp:4499,rate:4.5,n:275,badge:'Deal',e:'🕶️',bg:'linear-gradient(135deg,#e8f4ff,#b6dcff)',stock:9,pop:82,desc:'Polarised UV400 lenses, feather-light titanium frame, comes with a hard case.'},
+ {id:10,brand:'APEXTECH',name:'Apex Fit Band 3',cat:'Accessories',price:3299,mrp:4999,rate:4.3,n:1890,badge:'New',e:'📿',bg:'linear-gradient(135deg,#f0f0f0,#cfd8dc)',stock:50,pop:78,desc:'Slim fitness band with 21-day battery, 120 sport modes and sleep coaching.'},
+ {id:11,brand:'BOOMBOX',name:'Boombox Mini Speaker',cat:'Electronics',price:2999,mrp:4499,rate:4.6,n:733,badge:'Deal',e:'🔊',bg:'linear-gradient(135deg,#ffe7d6,#ffb88c)',stock:14,pop:86,desc:'360° sound, IP67 waterproof, 24h playtime, pairs with a second speaker for stereo.'},
+ {id:12,brand:'NOMAD',name:'Nomad Urban Backpack 24L',cat:'Accessories',price:3799,mrp:5999,rate:4.7,n:421,badge:'Best Seller',e:'🎒',bg:'linear-gradient(135deg,#e0e7ef,#a9b8c8)',stock:6,pop:83,desc:'Water-repellent, laptop sleeve up to 16", hidden anti-theft pocket and USB pass-through.'}
+];
+const CATS=['All','Deals','Electronics','Accessories','Beauty'];
+const fmt=n=>'₹'+n.toLocaleString('en-IN');
+const off=p=>Math.round((1-p.price/p.mrp)*100);
+
+/* ---------------- STATE ---------------- */
+let wish=new Set(JSON.parse(localStorage.getItem('wj_wish')||'[1,2,5]'));
+let cart=new Map(JSON.parse(localStorage.getItem('wj_cart')||'[[2,1]]'));
+let user=JSON.parse(localStorage.getItem('wj_user')||'null');
+let shopCatSel='All',shopQ='',sort='pop',promo=null;
+const save=()=>{localStorage.setItem('wj_wish',JSON.stringify([...wish]));localStorage.setItem('wj_cart',JSON.stringify([...cart]));localStorage.setItem('wj_user',JSON.stringify(user));};
+
+/* ---------------- HELPERS ---------------- */
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+function stars(r){let s='';for(let i=1;i<=5;i++)s+=r>=i?'★':r>=i-.5?'⯨':'☆';return s.replace(/⯨/g,'★');}
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),1800);}
+function badgeCls(b){return b==='Deal'?'deal':b==='New'?'new':'';}
+
+function cardHTML(p){
+  const inCart=cart.has(p.id);
+  return `<article class="card" data-id="${p.id}">
+    <div class="thumb" style="background:${p.bg}" onclick="openSheet(${p.id})">
+      <span class="e">${p.e}</span>
+      <span class="tag-b ${badgeCls(p.badge)}">${p.badge==='Deal'?'🏷️ ':''}${p.badge}</span>
+      <span class="off">-${off(p)}%</span>
+      <button class="heart ${wish.has(p.id)?'on':''}" onclick="event.stopPropagation();toggleWish(${p.id})" aria-label="Wishlist"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.6-9.3-9.1C1 8 3.4 4.5 7 4.5c2 0 3.5 1.1 5 3 1.5-1.9 3-3 5-3 3.6 0 6 3.5 4.3 7.4C19 16.4 12 21 12 21z"/></svg></button>
+    </div>
+    <div class="info">
+      <div class="meta"><span>${p.brand}</span><span class="stock ${p.stock<5?'low':''}">${p.stock<5?'Only '+p.stock+' left':'In Stock'}</span></div>
+      <div class="name" onclick="openSheet(${p.id})">${p.name}</div>
+      <div class="rating"><span class="stars">${stars(p.rate)}</span> ${p.rate} <span style="color:#777">(${p.n})</span></div>
+      <div class="price"><b>${fmt(p.price)}</b><s>${fmt(p.mrp)}</s></div>
+      <button class="addbtn ${inCart?'in':''}" onclick="addToBag(${p.id})">${inCart?'✓ In Bag · View':'Add to Bag'}</button>
+    </div></article>`;
+}
+
+/* ---------------- ACTIONS ---------------- */
+function toggleWish(id){
+  if(wish.has(id)){wish.delete(id);toast('Removed from wishlist');}else{wish.add(id);toast('❤️ Added to wishlist');}
+  save();renderAll();
+}
+function addToBag(id){
+  if(cart.has(id)){go('cart');return;}
+  cart.set(id,1);save();renderAll();
+  toast('🧞 Added to bag — wish granted!');
+}
+function setQty(id,q){ if(q<=0){cart.delete(id);}else{cart.set(id,Math.min(q,10));} save();renderAll(); }
+function shopCat(c){shopCatSel=c;shopQ='';$('#shopSearch').value='';go('shop');}
+
+/* ---------------- RENDER ---------------- */
+function renderBadges(){
+  $$('[data-wishbadge]').forEach(b=>b.textContent=wish.size||'');
+  let n=0;cart.forEach(q=>n+=q);
+  $$('[data-cartbadge]').forEach(b=>b.textContent=n||'');
+}
+function renderHome(){
+  const q=($('#searchInput').value||'').toLowerCase().trim();
+  let list=P.filter(p=>!q||(p.name+p.brand+p.cat).toLowerCase().includes(q));
+  if(q){
+    $('#homeGrid').innerHTML=list.length?list.map(cardHTML).join(''):`<div class="empty" style="grid-column:1/-1"><div class="big">🧞</div>No wishes match "<b>${q}</b>"</div>`;
+    $('#homeGrid').previousElementSibling.querySelector('h2').textContent=`Results (${list.length})`;
+    $('#homeGrid2').innerHTML='';$('#homeGrid2').previousElementSibling.style.display='none';
+  }else{
+    $('#homeGrid').previousElementSibling.querySelector('h2').textContent='Trending Wishes';
+    $('#homeGrid').innerHTML=[...P].sort((a,b)=>b.pop-a.pop).slice(0,4).map(cardHTML).join('');
+    $('#homeGrid2').previousElementSibling.style.display='';
+    $('#homeGrid2').innerHTML=P.filter(p=>p.cat==='Beauty').slice(0,2).map(cardHTML).join('');
+  }
+}
+function renderShop(){
+  $('#filters').innerHTML=CATS.map(c=>`<button class="fbtn ${c===shopCatSel?'on':''}" onclick="shopCatSel='${c}';renderShop()">${c==='Deals'?'🏷️ ':''}${c}</button>`).join('');
+  let list=P.filter(p=>shopCatSel==='All'||(shopCatSel==='Deals'?off(p)>=30||p.badge==='Deal':p.cat===shopCatSel));
+  const q=shopQ.toLowerCase().trim();
+  if(q)list=list.filter(p=>(p.name+p.brand+p.cat).toLowerCase().includes(q));
+  const sorters={pop:(a,b)=>b.pop-a.pop,lh:(a,b)=>a.price-b.price,hl:(a,b)=>b.price-a.price,rate:(a,b)=>b.rate-a.rate,disc:(a,b)=>off(b)-off(a)};
+  list.sort(sorters[sort]);
+  $('#shopCount').textContent=`${list.length} item${list.length!==1?'s':''}`;
+  $('#sortLabel').textContent='Sorted by '+$('#sortSel').selectedOptions[0].text.toLowerCase();
+  $('#shopGrid').innerHTML=list.length?list.map(cardHTML).join(''):`<div class="empty" style="grid-column:1/-1"><div class="big">🔍</div>Nothing found here.<br><button onclick="shopCat('All')">Browse everything</button></div>`;
+}
+function renderWish(){
+  const list=P.filter(p=>wish.has(p.id));
+  $('#wishCount').textContent=`${list.length} saved`;
+  $('#wishWrap').innerHTML=list.length?`<div class="grid">${list.map(cardHTML).join('')}</div>
+   <button class="primary" onclick="list_all_to_bag()">Add all ${list.length} to Bag</button>`:
+   `<div class="empty"><div class="big">🤍</div>Your wishlist is empty.<br>Tap the heart on any product to save it.<br><button onclick="go('shop')">Start wishing</button></div>`;
+}
+function list_all_to_bag(){wish.forEach(id=>{if(!cart.has(id))cart.set(id,1)});save();renderAll();toast('All wishes added to bag 🧞');go('cart');}
+function renderCart(){
+  const items=[...cart].map(([id,q])=>({p:P.find(x=>x.id===id),q}));
+  let n=0;items.forEach(i=>n+=i.q);
+  $('#cartCount').textContent=`${n} item${n!==1?'s':''}`;
+  if(!items.length){$('#cartWrap').innerHTML=`<div class="empty"><div class="big">🛒</div>Your bag is empty.<br>Jinny is waiting for your wish!<br><button onclick="go('shop')">Shop now</button></div>`;return;}
+  const sub=items.reduce((s,i)=>s+i.p.price*i.q,0), mrp=items.reduce((s,i)=>s+i.p.mrp*i.q,0);
+  const disc=promo?Math.round(sub*promo.pct/100):0; const ship=sub-disc>999?0:79; const total=sub-disc+ship;
+  $('#cartWrap').innerHTML=items.map(({p,q})=>`<div class="crow">
+     <div class="ct" style="background:${p.bg}" onclick="openSheet(${p.id})">${p.e}</div>
+     <div class="cn"><b>${p.name}</b><span>${p.brand} · ${p.cat}</span>
+       <div class="qty"><button onclick="setQty(${p.id},${q-1})">−</button><span>${q}</span><button onclick="setQty(${p.id},${q+1})">+</button></div></div>
+     <div class="cp"><b>${fmt(p.price*q)}</b><s style="color:#999;font-size:12px">${fmt(p.mrp*q)}</s><br><button onclick="setQty(${p.id},0)">Remove</button></div>
+   </div>`).join('')+
+   `<div class="promo" style="margin-top:14px"><input id="promoIn" placeholder="Promo code (try JINNY10)" value="${promo?promo.code:''}"><button onclick="applyPromo()">${promo?'Remove':'Apply'}</button></div>
+    <div class="summary">
+      <div class="r"><span>MRP total</span><span>${fmt(mrp)}</span></div>
+      <div class="r"><span>Offer savings</span><span style="color:#1f7a3a">−${fmt(mrp-sub)}</span></div>
+      ${promo?`<div class="r"><span>Promo ${promo.code} (${promo.pct}%)</span><span style="color:#1f7a3a">−${fmt(disc)}</span></div>`:''}
+      <div class="r"><span>Delivery</span><span>${ship?fmt(ship):'<span style="color:#1f7a3a">FREE</span>'}</span></div>
+      <div class="r t"><span>Total</span><span>${fmt(total)}</span></div>
+    </div>
+    <button class="primary" onclick="checkout(${total})">Checkout · ${fmt(total)}</button>`;
+}
+function applyPromo(){
+  if(promo){promo=null;renderCart();toast('Promo removed');return;}
+  const c=$('#promoIn').value.trim().toUpperCase();
+  const codes={JINNY10:10,WISH20:20,GENIE5:5};
+  if(codes[c]){promo={code:c,pct:codes[c]};toast(`🎉 ${c} applied — ${codes[c]}% off`);}else toast('Invalid promo code');
+  renderCart();
+}
+function checkout(total){
+  if(!user){toast('Please sign in to checkout');go('account');return;}
+  showModal('🧞‍♂️','Wish granted!',`Order of ${fmt(total)} placed. Jinny will deliver in 2–4 days to ${user.name}.`,()=>{cart.clear();promo=null;save();renderAll();go('home');});
+}
+function renderAccount(){
+  const w=$('#accountWrap');
+  if(user){
+    w.innerHTML=`<div class="acc-card"><div class="top"><div class="avatar">${user.name[0].toUpperCase()}</div><div><b style="font-size:17px">${user.name}</b><br><span style="color:#666;font-size:13px">${user.email}</span><br><span style="color:var(--gold-dark);font-size:12px;font-weight:700">✦ Gold Wisher</span></div></div></div>
+    <div class="list">
+      <button onclick="toast('No orders yet — make a wish!')"><span>📦</span>My Orders<span>›</span></button>
+      <button onclick="go('wishlist')"><span>🤍</span>Wishlist (${wish.size})<span>›</span></button>
+      <button onclick="toast('Address book coming soon')"><span>📍</span>Saved Addresses<span>›</span></button>
+      <button onclick="toast('Payment methods: UPI · Cards · COD')"><span>💳</span>Payments<span>›</span></button>
+      <button onclick="toast('Support: help@wishjinny.com')"><span>💬</span>Help & Support<span>›</span></button>
+      <button onclick="logout()" style="color:var(--red)"><span>🚪</span>Sign Out<span>›</span></button>
+    </div>`;
+  }else{
+    w.innerHTML=`<div class="acc-card"><div class="top"><div class="avatar">🧞</div><div><b style="font-size:17px">Welcome, Wisher!</b><br><span style="color:#666;font-size:13px">Sign in to track orders & checkout faster.</span></div></div></div>
+    <form id="loginForm" novalidate onsubmit="return login(event)">
+      <div class="field"><label>Full name</label><input id="fName" placeholder="Rahul Sharma"><div class="err">Please enter your name</div></div>
+      <div class="field"><label>Email</label><input id="fEmail" type="email" placeholder="you@example.com"><div class="err">Enter a valid email address</div></div>
+      <div class="field"><label>Password</label><input id="fPass" type="password" placeholder="Min 6 characters"><div class="err">Password must be at least 6 characters</div></div>
+      <button class="primary" type="submit">Sign In / Create Account</button>
+      <p style="text-align:center;font-size:12px;color:#999;padding:0 16px">By continuing you agree to Wish Jinny's Terms & Privacy Policy.</p>
+    </form>`;
+  }
+}
+function login(e){
+  e.preventDefault();let ok=true;
+  const f=(id,test)=>{const el=$('#'+id),wrap=el.closest('.field');const good=test(el.value.trim());wrap.classList.toggle('bad',!good);if(!good)ok=false;return el.value.trim();};
+  const name=f('fName',v=>v.length>=2),email=f('fEmail',v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v));f('fPass',v=>v.length>=6);
+  if(!ok)return false;
+  user={name,email};save();renderAccount();toast(`Welcome, ${name.split(' ')[0]}! ✨`);return false;
+}
+function logout(){user=null;save();renderAccount();toast('Signed out');}
+
+function renderAll(){renderBadges();renderHome();renderShop();renderWish();renderCart();renderAccount();}
+
+/* ---------------- NAV ---------------- */
+function go(page){
+  $$('.page').forEach(p=>p.classList.toggle('active',p.id==='page-'+page));
+  $$('.nb').forEach(b=>b.classList.toggle('on',b.dataset.nav===page));
+  if(page==='shop')renderShop();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function openDrawer(){$('#drawer').classList.add('show');$('#overlay').classList.add('show');}
+function closeAll(){$('#drawer').classList.remove('show');$('#sheet').classList.remove('show');$('#overlay').classList.remove('show');}
+function openSheet(id){
+  const p=P.find(x=>x.id===id);
+  $('#sheet').innerHTML=`<div class="grab"></div>
+    <div class="big" style="background:${p.bg}">${p.e}<span class="tag-b ${badgeCls(p.badge)}">${p.badge}</span><span class="off">-${off(p)}%</span></div>
+    <div class="meta" style="margin-top:14px"><span>${p.brand} · ${p.cat}</span><span class="stock ${p.stock<5?'low':''}">${p.stock<5?'Only '+p.stock+' left':'In Stock'}</span></div>
+    <h3>${p.name}</h3>
+    <div class="rating"><span class="stars">${stars(p.rate)}</span> ${p.rate} <span style="color:#777">(${p.n} reviews)</span></div>
+    <div class="price"><b style="font-size:24px">${fmt(p.price)}</b><s>${fmt(p.mrp)}</s><span style="color:#1f7a3a;font-weight:700;font-size:13px">Save ${fmt(p.mrp-p.price)}</span></div>
+    <p>${p.desc}</p>
+    <div class="row">
+      <button class="heart ${wish.has(p.id)?'on':''}" onclick="toggleWish(${p.id});openSheet(${p.id})"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.6-9.3-9.1C1 8 3.4 4.5 7 4.5c2 0 3.5 1.1 5 3 1.5-1.9 3-3 5-3 3.6 0 6 3.5 4.3 7.4C19 16.4 12 21 12 21z"/></svg></button>
+      <button class="addbtn ${cart.has(p.id)?'in':''}" onclick="addToBag(${p.id});closeAll()">${cart.has(p.id)?'✓ In Bag · View Cart':'Add to Bag'}</button>
+    </div>`;
+  $('#sheet').classList.add('show');$('#overlay').classList.add('show');
+}
+function showModal(ico,title,msg,cb){
+  $('#modalBox').innerHTML=`<div class="ico">${ico}</div><h3>${title}</h3><p>${msg}</p><button id="modalOk">Done</button>`;
+  $('#modal').classList.add('show');
+  $('#modalOk').onclick=()=>{$('#modal').classList.remove('show');cb&&cb();};
+}
+
+/* ---------------- EVENTS ---------------- */
+$('#searchInput').addEventListener('input',renderHome);
+$('#shopSearch').addEventListener('input',e=>{shopQ=e.target.value;renderShop();});
+$('#sortSel').addEventListener('change',e=>{sort=e.target.value;renderShop();});
+$('#modal').addEventListener('click',e=>{if(e.target.id==='modal')$('#modal').classList.remove('show');});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeAll();$('#modal').classList.remove('show');}});
+// swipe-down to close sheet
+let sy=0;$('#sheet').addEventListener('touchstart',e=>sy=e.touches[0].clientY,{passive:true});
+$('#sheet').addEventListener('touchend',e=>{if(e.changedTouches[0].clientY-sy>80&&$('#sheet').scrollTop===0)closeAll();});
+
+renderAll();
+</script>
 </body>
-  </html>
+</html>
