@@ -1,1301 +1,982 @@
-
-index.html
-
-<html lang="en">
+<!DOCTYPE html>
+<html lang="hi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Wish Jinny — Jinny Will Fulfill Your Every Wish</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600;1,700&display=swap" rel="stylesheet">
-<style>
-/* ============ BASE ============ */
-:root{
-  --gold:#b8860b; --gold2:#d4a72c; --gold3:#f3d27a; --gold-dark:#8a6410; --gold-soft:#fdf6e3;
-  --ink:#141210; --muted:#6f6a61; --line:#e8e0c9; --paper:#ffffff; --soft:#f7f5ef;
-  --red:#e0282e; --green:#1f7a3a; --navy:#0b1030;
-  --nav-h:64px; --head-h:0px;
-  --shadow:0 10px 30px rgba(60,40,0,.10);
-}
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-html,body{height:100%}
-body{
-  font-family:'Inter',system-ui,-apple-system,sans-serif;color:var(--ink);
-  -webkit-font-smoothing:antialiased; overflow-x:hidden;
-}
-button,input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
-button{cursor:pointer;border:0;background:none}
-a{color:inherit;text-decoration:none}
-img{max-width:100%;display:block}
-::-webkit-scrollbar{width:8px;height:8px}
-::-webkit-scrollbar-thumb{background:#d9cd9f;border-radius:8px}
-::-webkit-scrollbar-track{background:transparent}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wish Jinny // Flat 50% Off Everything • 7 Curated Departments</title>
+  <meta name="description" content="Wish Jinny - 7 Core Departments at Flat 50% Discount: Cosmetics, Jewelries, Garments, Footwears, Undergarments, Gadgets, and Kitchenware with Cash on Delivery across India." />
 
-/* ============ FULL SCREEN MAGICAL BACKGROUND ============ */
-#magicbg{position:fixed;inset:0;z-index:-3;
-  background:
-    radial-gradient(1200px 700px at 15% 0%, #1b2a6b 0%, transparent 60%),
-    radial-gradient(900px 700px at 90% 15%, #3a1e63 0%, transparent 55%),
-    radial-gradient(1000px 800px at 50% 110%, #07202f 0%, transparent 60%),
-    linear-gradient(180deg,#050716 0%, #0b1030 40%, #120a24 100%);
-}
-#magicbg::after{content:"";position:absolute;inset:0;
-  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/></filter><rect width='160' height='160' filter='url(%23n)' opacity='.35'/></svg>");
-  opacity:.22;mix-blend-mode:overlay}
-.stars{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden}
-.star{position:absolute;color:#ffe9a8;font-size:12px;opacity:.6;animation:twinkle 3.2s ease-in-out infinite;text-shadow:0 0 10px rgba(255,220,140,.9)}
-@keyframes twinkle{0%,100%{opacity:.15;transform:scale(.7) rotate(0deg)}50%{opacity:.95;transform:scale(1.25) rotate(25deg)}}
-.lamp-glow{position:fixed;left:50%;top:12%;width:60vw;height:60vw;max-width:760px;max-height:760px;transform:translate(-50%,-30%);
-  background:radial-gradient(circle,rgba(240,190,80,.20) 0%,rgba(120,60,180,.10) 40%,transparent 70%);z-index:-2;pointer-events:none;filter:blur(10px);animation:breathe 7s ease-in-out infinite}
-@keyframes breathe{0%,100%{opacity:.7;transform:translate(-50%,-30%) scale(1)}50%{opacity:1;transform:translate(-50%,-30%) scale(1.12)}}
+  <!-- Google Fonts: Editorial Serif & Clean Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&family=Yantramanav:wght@400;500;700;900&display=swap" rel="stylesheet" />
 
-/* ============ APP SHELL ============ */
-.app{width:100%;min-height:100dvh;position:relative;
-  background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(255,253,247,.98));
-  padding-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom));
-}
-.wrap{width:100%;max-width:1320px;margin:0 auto;padding:0 clamp(12px,3vw,28px)}
-.page{display:none}
-.page.active{display:block;animation:fade .3s ease}
-@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            canvas: '#FAF9F6',
+            ink: '#1A1A1A',
+            hairline: '#E5E2DC',
+            vermilion: '#D93D26',
+            gold: '#C59B27',
+            mutedText: '#73706B'
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', '"Yantramanav"', 'system-ui', 'sans-serif'],
+            mono: ['"Space Mono"', 'monospace'],
+            cinzel: ['"Cinzel"', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
 
-/* ============ HEADER ============ */
-.hero{position:relative;text-align:center;padding:clamp(14px,3vw,26px) 16px 6px;overflow:hidden;
-  background:
-    radial-gradient(700px 260px at 50% -40%, rgba(243,210,122,.55), transparent 70%),
-    linear-gradient(180deg,#fffdf6 0%,#ffffff 100%);
-  border-bottom:1px solid var(--line)}
-.hero::before,.hero::after{content:"";position:absolute;width:120px;height:120px;border:1px solid rgba(184,134,111,.35);border-radius:50%;top:-40px}
-.hero::before{left:-45px}.hero::after{right:-45px}
-.logo-mark{width:clamp(110px,20vw,150px);height:clamp(110px,20vw,150px);margin:0 auto;border-radius:50%;
-  background:linear-gradient(160deg,#f6e2a5,#c99b2c 45%,#7a5409);
-  padding:4px;box-shadow:0 14px 34px rgba(150,110,20,.35), inset 0 0 0 1px rgba(255,255,255,.5);cursor:pointer;
-  animation:float 6s ease-in-out infinite}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
-.logo-mark .inner{width:100%;height:100%;border-radius:50%;overflow:hidden;background:#0c1436;display:grid;place-items:center}
-.logo-mark img{width:100%;height:100%;object-fit:cover}
-.brand{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(30px,7vw,54px);letter-spacing:2px;line-height:1;margin-top:12px;
-  background:linear-gradient(180deg,#e9c766 0%,#b8860b 45%,#6f4d08 100%);-webkit-background-clip:text;background-clip:text;color:transparent;
-  filter:drop-shadow(0 1px 0 rgba(255,255,255,.6))}
-.brand-sub{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:clamp(14px,3.4vw,20px);letter-spacing:.5px;margin-top:4px;
-  background:linear-gradient(180deg,#c9a13a,#8a6410);-webkit-background-clip:text;background-clip:text;color:transparent}
-.tagline{font-size:clamp(12px,3vw,15px);color:var(--muted);margin-top:6px;font-weight:500}
-.rule{display:flex;align-items:center;gap:10px;justify-content:center;margin:12px auto 4px;max-width:420px;color:var(--gold2)}
-.rule i{height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--gold2),transparent)}
+  <!-- React 18 & ReactDOM 18 CDN -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 
-/* toolbar */
-.toolbar{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--line);box-shadow:0 6px 20px rgba(90,70,10,.06)}
-.toolbar .wrap{display:flex;align-items:center;gap:10px;padding-top:10px;padding-bottom:10px}
-.search{flex:1;display:flex;align-items:center;gap:8px;background:var(--soft);border:1.5px solid transparent;border-radius:999px;padding:0 14px;height:46px;position:relative;transition:.2s}
-.search:focus-within{border-color:var(--gold2);background:#fff;box-shadow:0 0 0 4px rgba(212,167,44,.16)}
-.search input{flex:1;border:0;background:transparent;outline:none;font-size:14px;min-width:0}
-.search svg{width:19px;height:19px;color:#9a9384;flex:none}
-.suggest{position:absolute;top:54px;left:0;right:0;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 18px 40px rgba(0,0,0,.16);overflow:hidden;z-index:80;display:none;text-align:left}
-.suggest.open{display:block}
-.suggest button{display:flex;gap:10px;align-items:center;width:100%;padding:9px 12px;text-align:left;border-bottom:1px solid #f2eee2}
-.suggest button:hover{background:var(--gold-soft)}
-.suggest img{width:38px;height:38px;border-radius:9px;object-fit:cover;background:#eee}
-.suggest .sname{font-size:13px;font-weight:600}
-.suggest .sprice{font-size:12px;color:var(--gold-dark);font-weight:700}
-.iconbtn{position:relative;width:42px;height:42px;display:grid;place-items:center;border-radius:13px;transition:.15s;background:#fff;border:1px solid var(--line)}
-.iconbtn:active{transform:scale(.9)}
-.iconbtn:hover{background:var(--gold-soft);border-color:var(--gold3)}
-.iconbtn svg{width:22px;height:22px}
-.badge{position:absolute;top:-6px;right:-6px;min-width:19px;height:19px;padding:0 5px;border-radius:10px;background:linear-gradient(180deg,#2b2b2b,#000);color:#fff;font-size:10px;font-weight:800;display:grid;place-items:center;border:2px solid #fff}
-.badge.hide{display:none}
-.avatar{width:42px;height:42px;border-radius:50%;background:radial-gradient(circle at 38% 32%,#8bb6ff,#21489b);display:grid;place-items:center;color:#fff;font-weight:800;font-size:14px;border:2px solid var(--gold3);cursor:pointer}
+  <!-- Babel Standalone (In-Browser JSX compilation) -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-/* ============ SALE BANNER ============ */
-.sale-banner{position:relative;overflow:hidden;margin:clamp(14px,3vw,26px) 0;padding:clamp(22px,5vw,46px) clamp(16px,4vw,50px);
-  color:#fff9e8;text-align:center;
-  background:
-    radial-gradient(600px 300px at 20% 20%, rgba(255,205,90,.30), transparent 60%),
-    radial-gradient(500px 320px at 85% 80%, rgba(150,80,255,.35), transparent 60%),
-    linear-gradient(120deg,#1a1147 0%,#3a1c6d 45%,#12245c 100%);
-  border-top:2px solid var(--gold2);border-bottom:2px solid var(--gold2)}
-.sale-banner::before{content:"";position:absolute;inset:0;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='120' height='120' filter='url(%23n)' opacity='.5'/></svg>");opacity:.2;mix-blend-mode:overlay}
-.sale-inner{position:relative;z-index:2;max-width:1000px;margin:0 auto}
-.sale-kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:3px;font-weight:800;text-transform:uppercase;color:var(--gold3);border:1px solid rgba(243,210,122,.5);padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.06)}
-.sale-title{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(38px,11vw,86px);line-height:.95;margin:14px 0 4px;
-  background:linear-gradient(180deg,#fff6d8 0%,#f3d27a 40%,#c68f14 75%,#8a6410 100%);-webkit-background-clip:text;background-clip:text;color:transparent;
-  filter:drop-shadow(0 6px 18px rgba(255,205,90,.35))}
-.sale-sub{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(14px,3.6vw,22px);color:#f0e6ff}
-.coupon{display:inline-flex;align-items:center;gap:10px;margin-top:16px;padding:8px 8px 8px 16px;border:1.5px dashed var(--gold3);border-radius:12px;background:rgba(0,0,0,.28);font-weight:800;letter-spacing:2px}
-.coupon button{background:linear-gradient(180deg,#f3d27a,#c68f14);color:#2a1c00;font-size:12px;font-weight:800;padding:8px 14px;border-radius:8px;letter-spacing:1px}
-.countdown{display:flex;gap:10px;justify-content:center;margin-top:18px;flex-wrap:wrap}
-.cd{min-width:66px;background:rgba(255,255,255,.08);border:1px solid rgba(243,210,122,.35);border-radius:12px;padding:8px 6px;backdrop-filter:blur(6px)}
-.cd b{display:block;font-size:24px;font-weight:900;color:#ffe9a8;font-variant-numeric:tabular-nums}
-.cd span{font-size:10px;letter-spacing:1.6px;color:#d9cdea;text-transform:uppercase}
-.btn-gold{display:inline-block;background:linear-gradient(180deg,#f0cb63 0%,#c2920f 55%,#8a6410 100%);color:#231700;font-weight:800;
-  padding:13px 26px;border-radius:999px;box-shadow:0 8px 22px rgba(198,143,20,.45),inset 0 1px 0 rgba(255,255,255,.5);transition:.18s;letter-spacing:.4px}
-.btn-gold:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(198,143,20,.55)}
-.btn-gold:active{transform:translateY(1px)}
-.btn-ghost{display:inline-block;border:1.5px solid var(--gold2);color:var(--gold-dark);font-weight:700;padding:12px 24px;border-radius:999px;background:#fff;transition:.18s}
-.btn-ghost:hover{background:var(--gold-soft)}
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
-/* ============ SECTIONS ============ */
-.sec{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding:clamp(18px,4vw,30px) 0 10px;flex-wrap:wrap}
-.sec h2{font-family:'Playfair Display',serif;font-size:clamp(20px,4.6vw,30px);font-weight:900;line-height:1.1}
-.sec h2 em{font-style:italic;color:var(--gold-dark)}
-.sec p{font-size:13px;color:var(--muted);margin-top:4px}
-.link{color:var(--gold-dark);font-weight:700;font-size:13px;display:inline-flex;align-items:center;gap:5px}
-.link:hover{text-decoration:underline}
-.sec-head-center{text-align:center;display:block;padding-top:clamp(20px,4vw,34px)}
-.divider{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:6px 0}
-
-/* categories rail */
-.rail{display:flex;gap:12px;overflow-x:auto;padding:6px 0 14px;scrollbar-width:none;scroll-snap-type:x mandatory}
-.rail::-webkit-scrollbar{display:none}
-.cat{flex:none;width:120px;text-align:center;scroll-snap-align:start;transition:.2s}
-.cat:hover{transform:translateY(-4px)}
-.cat .circ{width:120px;height:120px;border-radius:50%;overflow:hidden;border:2px solid var(--gold3);box-shadow:0 8px 20px rgba(120,90,10,.14);background:#f2ecdc}
-.cat .circ img{width:100%;height:100%;object-fit:cover}
-.cat span{display:block;margin-top:8px;font-size:12.5px;font-weight:700}
-.cat.on .circ{border-color:var(--gold);box-shadow:0 0 0 4px rgba(212,167,44,.22)}
-
-/* category grid page */
-.catgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;padding-bottom:10px}
-.catcard{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#fff;box-shadow:var(--shadow);transition:.2s}
-.catcard:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(90,70,10,.18)}
-.catcard img{aspect-ratio:4/3;object-fit:cover;width:100%}
-.catcard .cc-body{padding:10px 12px 12px}
-.catcard h3{font-size:14.5px;font-weight:800}
-.catcard small{color:var(--muted);font-size:12px}
-
-/* ============ PRODUCT GRID ============ */
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(10px,2.4vw,18px);padding-bottom:8px}
-@media(min-width:620px){.grid{grid-template-columns:repeat(3,1fr)}}
-@media(min-width:960px){.grid{grid-template-columns:repeat(4,1fr)}}
-@media(min-width:1320px){.grid{grid-template-columns:repeat(5,1fr)}}
-.card{border:1px solid var(--line);border-radius:16px;background:#fff;overflow:hidden;box-shadow:0 3px 14px rgba(70,50,0,.07);display:flex;flex-direction:column;position:relative;transition:.2s}
-.card:hover{transform:translateY(-4px);box-shadow:0 18px 34px rgba(90,70,10,.16);border-color:var(--gold3)}
-.thumb{aspect-ratio:1/1;position:relative;overflow:hidden;background:linear-gradient(160deg,#f8f4e6,#efe7cf);cursor:pointer}
-.thumb img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
-.card:hover .thumb img{transform:scale(1.07)}
-.tag-b{position:absolute;top:9px;left:9px;font-size:10.5px;font-weight:800;padding:5px 9px;border-radius:999px;background:#12183a;color:#ffd257;letter-spacing:.3px}
-.tag-b.best{background:#12183a;color:#fff}
-.tag-b.new{background:#0f5c2c;color:#fff}
-.off{position:absolute;top:9px;right:9px;font-size:10.5px;font-weight:800;padding:5px 8px;border-radius:999px;background:var(--red);color:#fff}
-.heart{position:absolute;bottom:9px;right:9px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.94);display:grid;place-items:center;box-shadow:0 3px 10px rgba(0,0,0,.16);transition:.15s}
-.heart svg{width:18px;height:18px;fill:none;stroke:#333;stroke-width:2}
-.heart.on svg{fill:var(--red);stroke:var(--red)}
-.heart:active{transform:scale(.85)}
-.info{padding:11px 11px 12px;display:flex;flex-direction:column;flex:1}
-.meta{display:flex;justify-content:space-between;gap:6px;font-size:11.5px;color:#7a746a;font-weight:600}
-.meta .stock.low{color:#c0392b}
-.meta .stock.in{color:var(--green)}
-.name{font-weight:700;font-size:14px;margin-top:4px;line-height:1.32;cursor:pointer;flex:1}
-.name:hover{color:var(--gold-dark)}
-.rating{display:flex;align-items:center;gap:5px;font-size:11.5px;margin-top:6px;color:#555}
-.stars{color:#f5a623;letter-spacing:-1px;font-size:12.5px}
-.price{margin-top:8px;display:flex;align-items:baseline;gap:7px;flex-wrap:wrap}
-.price b{font-size:17px}
-.price s{color:#9a948a;font-size:12.5px}
-.price .save{font-size:11px;color:var(--green);font-weight:700}
-.addbtn{margin-top:10px;width:100%;height:40px;border-radius:10px;color:#fff;font-weight:800;font-size:13.5px;letter-spacing:.3px;
-  background:linear-gradient(180deg,#ddb852 0%,#a87d17 55%,#7d5a0c 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 4px 10px rgba(138,100,16,.28);transition:.15s}
-.addbtn:active{transform:translateY(1px);filter:brightness(.95)}
-.addbtn.in{background:linear-gradient(180deg,#2f7a45,#1e5a30)}
-
-/* filters */
-.filterbar{position:sticky;top:67px;z-index:40;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:10px 0}
-.chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
-.chips::-webkit-scrollbar{display:none}
-.fchip{flex:none;padding:8px 15px;border-radius:999px;border:1.5px solid var(--line);font-size:12.5px;font-weight:700;background:#fff;transition:.15s;white-space:nowrap}
-.fchip:hover{border-color:var(--gold2)}
-.fchip.on{background:linear-gradient(180deg,#2a2a2a,#000);color:#fff;border-color:#000}
-.sortrow{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0;font-size:12.5px;color:var(--muted);flex-wrap:wrap}
-.sortrow select{border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;background:#fff;font-weight:600;font-size:12.5px;outline:none}
-.sortrow select:focus{border-color:var(--gold2)}
-.range{display:flex;align-items:center;gap:8px}
-.range input{accent-color:var(--gold);width:130px}
-.switch{display:inline-flex;align-items:center;gap:7px;font-weight:600;cursor:pointer}
-.switch input{accent-color:var(--gold);width:16px;height:16px}
-.empty{text-align:center;padding:50px 20px;color:var(--muted)}
-.empty .big{font-size:46px}
-
-/* ============ LISTS (cart / wishlist) ============ */
-.two-col{display:grid;grid-template-columns:1fr;gap:18px;padding:14px 0 20px}
-@media(min-width:900px){.two-col{grid-template-columns:1.6fr 1fr;align-items:start}}
-.litem{display:flex;gap:12px;border:1px solid var(--line);border-radius:14px;background:#fff;padding:10px;box-shadow:0 2px 10px rgba(70,50,0,.05);margin-bottom:12px}
-.litem img{width:88px;height:88px;border-radius:10px;object-fit:cover;background:#f1ecdd;flex:none}
-.litem .li-body{flex:1;min-width:0}
-.litem h4{font-size:14px;font-weight:700;line-height:1.3}
-.litem small{color:var(--muted);font-size:12px}
-.li-price{font-weight:800;margin-top:6px;font-size:15px}
-.qty{display:inline-flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;overflow:hidden;margin-top:8px}
-.qty button{width:32px;height:32px;font-weight:800;font-size:16px;background:var(--soft)}
-.qty button:hover{background:var(--gold-soft)}
-.qty span{width:38px;text-align:center;font-weight:700;font-size:14px}
-.li-actions{display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between;gap:8px}
-.mini{font-size:12px;font-weight:700;color:var(--gold-dark)}
-.mini.danger{color:var(--red)}
-.panel{border:1px solid var(--line);border-radius:16px;background:#fff;padding:16px;box-shadow:var(--shadow);position:sticky;top:150px}
-.panel h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:900;margin-bottom:10px}
-.row{display:flex;justify-content:space-between;font-size:13.5px;padding:6px 0;color:#4c4740}
-.row.total{border-top:1px dashed var(--line);margin-top:6px;padding-top:12px;font-size:17px;font-weight:900;color:var(--ink)}
-.row .free{color:var(--green);font-weight:700}
-.coupon-row{display:flex;gap:8px;margin:10px 0}
-.coupon-row input{flex:1;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;outline:none;font-size:13px;min-width:0}
-.coupon-row input:focus{border-color:var(--gold2)}
-.coupon-row button{padding:0 16px;border-radius:10px;background:#111;color:#fff;font-weight:700;font-size:13px}
-.applied{font-size:12px;color:var(--green);font-weight:700;margin-bottom:6px}
-
-/* ============ OFFERS ============ */
-.offer-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;padding-bottom:10px}
-.offer{border-radius:16px;padding:18px;color:#fff;position:relative;overflow:hidden;min-height:170px;display:flex;flex-direction:column;justify-content:space-between;
-  box-shadow:var(--shadow);transition:.2s}
-.offer:hover{transform:translateY(-4px)}
-.offer h3{font-family:'Playfair Display',serif;font-size:26px;font-weight:900;line-height:1}
-.offer p{font-size:12.5px;opacity:.9;margin-top:6px}
-.offer .code{margin-top:12px;align-self:flex-start;border:1.5px dashed rgba(255,255,255,.7);border-radius:9px;padding:7px 12px;font-weight:800;letter-spacing:2px;font-size:12.5px;background:rgba(0,0,0,.2)}
-.o1{background:linear-gradient(140deg,#3a1c6d,#12245c)}
-.o2{background:linear-gradient(140deg,#8a6410,#d4a72c)}
-.o3{background:linear-gradient(140deg,#0f4c3a,#1f9c6b)}
-.o4{background:linear-gradient(140deg,#6d1230,#c2305a)}
-
-/* ============ ABOUT / CONTACT ============ */
-.prose{font-size:14.5px;line-height:1.75;color:#413c34;max-width:820px}
-.prose p{margin-bottom:12px}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:14px;margin:18px 0}
-.stat{border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center;background:linear-gradient(180deg,#fffdf6,#f9f4e6)}
-.stat b{display:block;font-size:26px;font-weight:900;color:var(--gold-dark);font-family:'Playfair Display',serif}
-.stat span{font-size:12px;color:var(--muted)}
-.field{margin-bottom:12px}
-.field label{display:block;font-size:12.5px;font-weight:700;margin-bottom:6px}
-.field input,.field textarea,.field select{width:100%;border:1.5px solid var(--line);border-radius:11px;padding:12px 13px;outline:none;background:#fff;font-size:14px;transition:.15s}
-.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--gold2);box-shadow:0 0 0 4px rgba(212,167,44,.14)}
-.field textarea{min-height:110px;resize:vertical}
-.field .err{color:var(--red);font-size:11.5px;margin-top:5px;display:none;font-weight:600}
-.field.bad input,.field.bad textarea{border-color:var(--red)}
-.field.bad .err{display:block}
-.acc{border:1px solid var(--line);border-radius:13px;background:#fff;margin-bottom:10px;overflow:hidden}
-.acc h4{padding:14px 16px;font-size:14px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;gap:10px}
-.acc .acc-body{max-height:0;overflow:hidden;transition:max-height .32s ease;font-size:13.5px;color:#555;line-height:1.65}
-.acc .acc-body div{padding:0 16px 15px}
-.acc.open h4{color:var(--gold-dark)}
-.acc .plus{transition:.25s;font-weight:800;color:var(--gold)}
-.acc.open .plus{transform:rotate(45deg)}
-.info-card{border:1px solid var(--line);border-radius:16px;padding:18px;background:linear-gradient(180deg,#fffdf6,#fff);box-shadow:var(--shadow);margin-bottom:14px}
-.info-card h4{font-size:15px;font-weight:800;margin-bottom:6px}
-.info-card p{font-size:13.5px;color:#555;line-height:1.6}
-
-/* ============ TRUST / PROMO ============ */
-.cards3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;padding:6px 0 10px}
-.tcard{border:1px solid var(--line);border-radius:16px;padding:18px;background:#fff;box-shadow:0 3px 14px rgba(70,50,0,.06);transition:.2s}
-.tcard:hover{transform:translateY(-3px);border-color:var(--gold3)}
-.tcard .ic{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(180deg,#f7e6b4,#d9b24d);font-size:22px;margin-bottom:10px}
-.tcard h4{font-size:15px;font-weight:800;margin-bottom:5px}
-.tcard p{font-size:13px;color:var(--muted);line-height:1.6}
-.jinny-promo{margin:20px 0;border-radius:20px;overflow:hidden;position:relative;color:#fff;
-  background:radial-gradient(500px 250px at 15% 10%,rgba(255,205,90,.32),transparent 60%),linear-gradient(120deg,#1a1147,#0f2a5c 60%,#2b1250);
-  padding:clamp(20px,4vw,34px);display:flex;gap:18px;align-items:center;flex-wrap:wrap;border:1px solid rgba(243,210,122,.4)}
-.jinny-promo .jp-txt{flex:1;min-width:220px}
-.jinny-promo h3{font-family:'Playfair Display',serif;font-size:clamp(22px,5vw,32px);font-weight:900}
-.jinny-promo p{font-size:13.5px;color:#ddd4f0;margin-top:6px;max-width:560px;line-height:1.6}
-.jp-avatar{width:96px;height:96px;border-radius:50%;border:3px solid var(--gold3);overflow:hidden;flex:none;box-shadow:0 0 40px rgba(243,210,122,.5);animation:float 5s ease-in-out infinite}
-.jp-avatar img{width:100%;height:100%;object-fit:cover}
-
-/* ============ FOOTER ============ */
-footer{background:linear-gradient(180deg,#0d1330,#070a1c);color:#cfc9e6;margin-top:26px;padding:34px 0 22px}
-footer .fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:22px}
-footer h5{color:#f3d27a;font-size:13px;letter-spacing:1.6px;text-transform:uppercase;margin-bottom:12px;font-weight:800}
-footer a,footer li{font-size:13px;line-height:2;color:#b9b3d4;cursor:pointer;list-style:none}
-footer a:hover{color:#f3d27a}
-.fbrand{font-family:'Playfair Display',serif;font-size:26px;font-weight:900;background:linear-gradient(180deg,#f7e2a8,#c68f14);-webkit-background-clip:text;background-clip:text;color:transparent}
-.fbottom{margin-top:24px;padding-top:16px;border-top:1px solid rgba(255,255,255,.12);font-size:12px;color:#8f89ad;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
-
-/* ============ BOTTOM NAV ============ */
-.bottomnav{position:fixed;left:0;right:0;bottom:0;z-index:70;height:calc(var(--nav-h) + env(safe-area-inset-bottom));
-  padding-bottom:env(safe-area-inset-bottom);background:rgba(255,255,255,.96);backdrop-filter:blur(16px);border-top:1.5px solid var(--gold3);
-  display:flex;box-shadow:0 -6px 24px rgba(80,60,10,.12)}
-.navbtn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:10px;font-weight:700;color:#7d776c;position:relative;transition:.15s;min-width:0;padding:0 2px}
-.navbtn svg{width:21px;height:21px}
-.navbtn.on{color:var(--gold-dark)}
-.navbtn.on::after{content:"";position:absolute;top:0;left:22%;right:22%;height:3px;border-radius:0 0 4px 4px;background:linear-gradient(90deg,#f3d27a,#b8860b)}
-.navbtn:active{transform:scale(.92)}
-.navbtn .badge{top:4px;right:18%}
-@media(max-width:400px){.navbtn span.lbl{font-size:9px}.navbtn svg{width:19px;height:19px}}
-
-/* ============ DRAWER / MODALS / TOAST ============ */
-.scrim{position:fixed;inset:0;background:rgba(10,8,20,.55);backdrop-filter:blur(3px);z-index:90;opacity:0;pointer-events:none;transition:.25s}
-.scrim.open{opacity:1;pointer-events:auto}
-.drawer{position:fixed;top:0;right:0;bottom:0;width:min(84vw,340px);background:#fff;z-index:95;transform:translateX(102%);transition:transform .3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;box-shadow:-10px 0 40px rgba(0,0,0,.25)}
-.drawer.open{transform:none}
-.drawer .dhead{padding:22px 20px;background:linear-gradient(135deg,#1a1147,#2b1250);color:#fff}
-.drawer .dhead b{font-family:'Playfair Display',serif;font-size:22px;display:block;background:linear-gradient(180deg,#f7e2a8,#c68f14);-webkit-background-clip:text;background-clip:text;color:transparent}
-.drawer .dhead small{font-size:12px;color:#cfc6e8}
-.drawer nav{padding:10px;overflow-y:auto;flex:1}
-.drawer nav button{display:flex;align-items:center;gap:12px;width:100%;padding:13px 14px;border-radius:12px;font-size:14.5px;font-weight:600;text-align:left}
-.drawer nav button:hover{background:var(--gold-soft);color:var(--gold-dark)}
-.drawer nav .sep{height:1px;background:var(--line);margin:8px 12px}
-.drawer nav .grp{font-size:11px;letter-spacing:1.6px;text-transform:uppercase;color:#a29b8c;padding:12px 14px 4px;font-weight:800}
-
-.modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:16px}
-.modal.open{display:flex}
-.modal .m\boxed{background:#fff;border-radius:20px;width:min(560px,100%);max-height:90dvh;overflow-y:auto;box-shadow:0 30px 70px rgba(0,0,0,.4);animation:pop .28s cubic-bezier(.3,1.4,.5,1)}
-@keyframes pop{from{opacity:0;transform:translateY(22px) scale(.96)}to{opacity:1;transform:none}}
-.mhead{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff;z-index:2}
-.mhead h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:900}
-.mclose{width:34px;height:34px;border-radius:50%;background:var(--soft);display:grid;place-items:center;font-size:18px;font-weight:700}
-.mclose:hover{background:#ffe9e9;color:var(--red)}
-.mbody{padding:18px}
-.pv{display:flex;gap:16px;flex-wrap:wrap}
-.pv img{width:min(240px,100%);aspect-ratio:1;object-fit:cover;border-radius:14px;border:1px solid var(--line);background:#f4efdf}
-.pv .pvinfo{flex:1;min-width:200px}
-.pv h2{font-family:'Playfair Display',serif;font-size:24px;font-weight:900;line-height:1.2}
-.pv .brandline{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--gold-dark);font-weight:800;margin-top:6px}
-.pv .desc{font-size:13.5px;color:#57524a;line-height:1.65;margin-top:12px}
-.pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-.pill{font-size:11.5px;font-weight:700;border:1px solid var(--line);border-radius:999px;padding:5px 11px;background:var(--soft)}
-.steps{display:flex;gap:6px;align-items:center;margin-bottom:16px;flex-wrap:wrap}
-.step{font-size:11.5px;font-weight:800;padding:6px 12px;border-radius:999px;background:var(--soft);color:#8b8478}
-.step.on{background:linear-gradient(180deg,#2a2a2a,#000);color:#fff}
-.step.done{background:var(--gold-soft);color:var(--gold-dark)}
-.summary{background:var(--soft);border-radius:12px;padding:12px 14px;margin-top:6px}
-
-/* toast */
-#toasts{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(var(--nav-h) + 18px);z-index:120;display:flex;flex-direction:column;gap:8px;width:min(92vw,400px)}
-.toast{background:#141210;color:#fff;padding:12px 16px;border-radius:12px;font-size:13px;font-weight:600;box-shadow:0 12px 30px rgba(0,0,0,.35);
-  display:flex;align-items:center;gap:10px;border-left:4px solid var(--gold2);animation:slidein .3s ease}
-.toast.ok{border-left-color:#39c46e}
-@keyframes slidein{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-
-/* AI JINNY CHAT */
-.jinny-fab{position:fixed;right:16px;bottom:calc(var(--nav-h) + 16px + env(safe-area-inset-bottom));z-index:75;width:58px;height:58px;border-radius:50%;overflow:hidden;
-  border:2.5px solid var(--gold3);box-shadow:0 10px 26px rgba(0,0,0,.35);animation:float 4s ease-in-out infinite}
-.jinny-fab img{width:100%;height:100%;object-fit:cover}
-.jinny-fab::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:2px solid rgba(243,210,122,.55);animation:ring 2.2s ease-out infinite}
-@keyframes ring{0%{transform:scale(.9);opacity:.9}100%{transform:scale(1.3);opacity:0}}
-.chat{position:fixed;right:12px;left:12px;bottom:calc(var(--nav-h) + 12px + env(safe-area-inset-bottom));z-index:110;width:min(400px,calc(100vw - 24px));height:min(70vh,560px);
-  background:#fff;border-radius:20px;box-shadow:0 24px 60px rgba(0,0,0,.4);display:none;flex-direction:column;overflow:hidden;border:1px solid var(--gold3);margin-left:auto}
-.chat.open{display:flex;animation:pop .28s ease}
-.chat .chead{background:linear-gradient(135deg,#1a1147,#2b1250);color:#fff;padding:12px 14px;display:flex;align-items:center;gap:10px}
-.chat .chead img{width:38px;height:38px;border-radius:50%;object-fit:cover;border:2px solid var(--gold3)}
-.chat .chead b{font-family:'Playfair Display',serif;font-size:16px;display:block}
-.chat .chead small{font-size:11px;color:#bfe9c9}
-.clog{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;background:linear-gradient(180deg,#fdfbf4,#fff)}
-.msg{max-width:82%;padding:10px 13px;border-radius:14px;font-size:13.5px;line-height:1.55;animation:fade .25s ease}
-.msg.bot{background:#fff;border:1px solid var(--line);border-bottom-left-radius:4px;align-self:flex-start}
-.msg.me{background:linear-gradient(180deg,#2a2a2a,#000);color:#fff;border-bottom-right-radius:4px;align-self:flex-end}
-.msg .mprod{display:flex;gap:8px;align-items:center;margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:7px;cursor:pointer;background:#fff;color:var(--ink)}
-.msg .mprod img{width:40px;height:40px;border-radius:8px;object-fit:cover}
-.cform{display:flex;gap:8px;padding:10px;border-top:1px solid var(--line);background:#fff}
-.cform input{flex:1;border:1.5px solid var(--line);border-radius:999px;padding:10px 14px;outline:none;font-size:13.5px;min-width:0}
-.cform input:focus{border-color:var(--gold2)}
-.cform button{width:42px;height:42px;border-radius:50%;background:linear-gradient(180deg,#ddb852,#8a6410);color:#fff;display:grid;place-items:center;flex:none}
-.qreplies{display:flex;gap:6px;overflow-x:auto;padding:0 10px 8px;scrollbar-width:none}
-.qreplies::-webkit-scrollbar{display:none}
-.qreplies button{flex:none;font-size:11.5px;font-weight:700;border:1px solid var(--line);border-radius:999px;padding:6px 11px;background:var(--gold-soft);color:var(--gold-dark);white-space:nowrap}
-.spinner{width:16px;height:16px;border:2px solid var(--line);border-top-color:var(--gold);border-radius:50%;animation:spin .7s linear infinite;display:inline-block}
-@keyframes spin{to{transform:rotate(360deg)}}
-.hidden{display:none!important}
-</style>
+  <style>
+    body {
+      background-color: #FAF9F6;
+      color: #1A1A1A;
+      font-family: 'Plus Jakarta Sans', 'Yantramanav', sans-serif;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+    ::selection {
+      background: #D93D26;
+      color: #FFFFFF;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #FAF9F6;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #D5D1C8;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #1A1A1A;
+    }
+  </style>
 </head>
-<body>
-<div id="magicbg"></div>
-<div class="lamp-glow"></div>
-<div class="stars" id="stars"></div>
+<body class="bg-[#FAF9F6] text-[#1A1A1A] antialiased selection:bg-[#D93D26] selection:text-white">
+  <div id="root"></div>
 
-<div class="app">
-  <!-- ============ HEADER ============ -->
-  <header class="hero">
-    <div class="wrap">
-      <div class="logo-mark" onclick="navigate('home')" title="Wish Jinny">
-        <div class="inner"><img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=400&q=80" alt="Wish Jinny magic" onerror="this.style.display='none'"></div>
-      </div>
-      <h1 class="brand">WISH JINNY</h1>
-      <div class="brand-sub">Your Wish, Our Command</div>
-      <p class="tagline">Wishjinny.com — yahan milega bahut saara pyaar aur bahut saare offers</p>
-      <div class="rule"><i></i><span>✦</span><i></i></div>
-    </div>
-  </header>
+  <!-- Standalone React Application -->
+  <script type="text/babel">
+    const { useState, useEffect, useMemo } = React;
 
-  <!-- ============ TOOLBAR / SEARCH ============ -->
-  <div class="toolbar">
-    <div class="wrap">
-      <div class="search">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-        <input id="searchInput" type="search" placeholder="Search products, brands, essentials…" autocomplete="off">
-        <div class="suggest" id="suggest"></div>
-      </div>
-      <button class="iconbtn" onclick="navigate('wishlist')" aria-label="Wishlist">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20.5S3.5 15 3.5 9.2A4.7 4.7 0 0 1 12 6.6a4.7 4.7 0 0 1 8.5 2.6C20.5 15 12 20.5 12 20.5z"/></svg>
-        <i class="badge hide" id="wishBadge"></i>
-      </button>
-      <button class="iconbtn" onclick="navigate('cart')" aria-label="Cart">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg>
-        <i class="badge hide" id="cartBadge"></i>
-      </button>
-      <button class="avatar" onclick="navigate('account')" title="Account">WJ</button>
-      <button class="iconbtn" onclick="openDrawer()" aria-label="Menu">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-      </button>
-    </div>
-  </div>
+    // Inline Vector Icons
+    const Icon = ({ name, className = "w-4 h-4" }) => {
+      switch (name) {
+        case "Sparkles":
+          return <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>;
+        case "ShoppingBag":
+          return <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>;
+        case "Heart":
+          return <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>;
+        case "Search":
+          return <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>;
+        case "CheckCircle":
+          return <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>;
+        case "Clock":
+          return <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>;
+        case "Video":
+          return <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg>;
+        case "Trash":
+          return <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>;
+        case "Send":
+          return <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>;
+        default:
+          return <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/></svg>;
+      }
+    };
 
-  <main>
-    <!-- ============ HOME ============ -->
-    <section class="page active" id="page-home">
-      <div class="wrap">
-        <div class="sec">
-          <div>
-            <h2>Namaste, <em>Jinny ka mehmaan</em> ✨</h2>
-            <p>2,40,000+ wishes fulfilled across India</p>
-          </div>
-          <a class="link" onclick="navigate('shop')">All products →</a>
-        </div>
-      </div>
+    const CATEGORIES = [
+      { id: "cosmetics", nameHi: "कॉस्मेटिक्स", nameEn: "Cosmetics & Beauty", badge: "-50%", desc: "24K Serums, Velvet Lipsticks, Glow Oils" },
+      { id: "jewelries", nameHi: "ज्वेलरीज़", nameEn: "Jewelry Collection", badge: "-50%", desc: "Royal Kundan, Temple Gold, Polki Chokers" },
+      { id: "garments", nameHi: "गारमेंट्स", nameEn: "Garments & Apparel", badge: "-50%", desc: "Kanjeevaram Sarees, Kurtis, Linen Shirts" },
+      { id: "footwears", nameHi: "फुटवेयर्स", nameEn: "Footwear & Shoes", badge: "-50%", desc: "Kolhapuri Juttis, Leather Loafers, Heels" },
+      { id: "undergarments", nameHi: "अंडरगारमेंट्स", nameEn: "Undergarments", badge: "-50%", desc: "Bamboo Cotton Sets, Modal Briefs, Shapewear" },
+      { id: "gadgets", nameHi: "गैजेट्स", nameEn: "Smart Gadgets", badge: "-50%", desc: "AMOLED Smartwatches, ANC Buds, Fast Chargers" },
+      { id: "kitchenware", nameHi: "किचन वेयर", nameEn: "Kitchenware", badge: "-50%", desc: "Granite Cookware, Cold Press Blenders, Cast Iron" },
+    ];
 
-      <!-- 50% SALE MAGICAL BANNER (full width) -->
-      <div class="sale-banner">
-        <div class="sale-inner">
-          <span class="sale-kicker">✦ Magical Mahotsav ✦</span>
-          <div class="sale-title">FLAT 50% OFF</div>
-          <div class="sale-sub">Har wish par double khushi — sitaron ki baarish</div>
-          <div class="coupon">
-            <span id="couponCode">JINNY50</span>
-            <button onclick="copyCode('JINNY50',this)">COPY</button>
-          </div>
-          <div class="countdown" id="countdown">
-            <div class="cd"><b id="cd-h">00</b><span>Hours</span></div>
-            <div class="cd"><b id="cd-m">00</b><span>Mins</span></div>
-            <div class="cd"><b id="cd-s">00</b><span>Secs</span></div>
-          </div>
-          <div style="margin-top:20px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
-            <button class="btn-gold" onclick="navigate('offers')">Grab The Offer</button>
-            <button class="btn-ghost" style="background:transparent;color:#f3d27a" onclick="navigate('shop')">Browse Store</button>
-          </div>
-        </div>
-      </div>
+    const PRODUCTS = [
+      {
+        id: "cos-01",
+        categoryId: "cosmetics",
+        nameHi: "24K गोल्ड ग्लो फेशियल सीरम व प्राइमर",
+        nameEn: "24K Gold Radiant Facial Serum & Primer",
+        descriptionHi: "त्वचा को तुरंत चमकदार और हाइड्रेटेड बनाने वाला 24 कैरेट गोल्ड इन्फ्यूज्ड सीरम। 50% की भारी छूट पर उपलब्ध।",
+        descriptionEn: "Infused with 24K gold flakes and pure hyaluronic acid for deep hydration and glass-skin glow.",
+        originalPrice: 1999,
+        discountedPrice: 999,
+        rating: 4.8,
+        images: ["https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=700&auto=format&fit=crop&q=80"],
+        stockCount: 14,
+        specs: [{ label: "Formulation", value: "Lightweight Serum" }, { label: "Key Ingredient", value: "24K Gold + Hyaluronic Acid" }]
+      },
+      {
+        id: "cos-02",
+        categoryId: "cosmetics",
+        nameHi: "मैट 16-घंटे वाटरप्रूफ लिपस्टिक सेट (6 शेड्स)",
+        nameEn: "Velvet Matte 16-Hour Longwear Lipstick Kit (Set of 6)",
+        descriptionHi: "स्मज-प्रूफ और हाइड्रेटिंग मैट लिपस्टिक किट। सभी स्किन टोंस के लिए 6 खूबसूरत ट्रेंडी शेड्स।",
+        descriptionEn: "Super lightweight, non-drying transfer-proof liquid lip colors with intense pigment.",
+        originalPrice: 1598,
+        discountedPrice: 799,
+        rating: 4.9,
+        images: ["https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=700&auto=format&fit=crop&q=80"],
+        stockCount: 8,
+        specs: [{ label: "Finish", value: "Ultra Matte" }, { label: "Duration", value: "Up to 16 Hours" }]
+      },
+      {
+        id: "jew-01",
+        categoryId: "jewelries",
+        nameHi: "रॉयल कुंदन व पर्ल ब्राइडल चोकर सेट",
+        nameEn: "Royal Kundan & Pearl Heritage Choker Set",
+        descriptionHi: "शाही राजपूताना डिजाइन वाला 22K गोल्ड प्लेटेड कुंदन चोकर सेट। शादी-विवाह और फेस्टिव के लिए परफेक्ट।",
+        descriptionEn: "Intricately handcrafted Kundan choker with cascading emerald beads, matching jhumkas and maangtikka.",
+        originalPrice: 4999,
+        discountedPrice: 2499,
+        rating: 4.9,
+        images: ["https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=700&auto=format&fit=crop&q=80"],
+        stockCount: 5,
+        specs: [{ label: "Plating", value: "22K Micron Gold Plated" }, { label: "Stones", value: "Handcut Kundan & Fresh Pearls" }]
+      },
+      {
+        id: "gar-01",
+        categoryId: "garments",
+        nameHi: "प्योर कांजीवरम सिल्क साड़ी (जरी बॉर्डर + ब्लाउज)",
+        nameEn: "Pure Kanjeevaram Jacquard Silk Saree with Zari Weave",
+        descriptionHi: "पारंपरिक साउथ इंडियन कांजीवरम रिच पल्लू साड़ी। प्योर गोल्डन जरी वर्क और अनस्टिच्ड ब्लाउज पीस।",
+        descriptionEn: "Opulent woven jacquard silk saree with temple zari border, festive motifs and matching blouse.",
+        originalPrice: 5999,
+        discountedPrice: 2999,
+        rating: 4.9,
+        images: ["https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=700&auto=format&fit=crop&q=80"],
+        stockCount: 7,
+        specs: [{ label: "Fabric", value: "Pure Blended Kanjeevaram Silk" }, { label: "Length", value: "6.3 Meters with Blouse" }]
+      },
+      {
+        id: "foot-01",
+        categoryId: "footwears",
+        nameHi: "हैंडक्राफ्टेड एम्ब्रॉयडर्ड पंजाबी जूती",
+        nameEn: "Artisanal Velvet Hand-Embroidered Punjabi Mojari Jutti",
+        descriptionHi: "असली लेदर सोल और आरामदायक कुशनिंग वाली हाथ की कढ़ाई वाली ट्रेडिशनल जूती।",
+        descriptionEn: "Cushioned insole with genuine leather sole, zero bite guarantee, and dabka threadwork.",
+        originalPrice: 1999,
+        discountedPrice: 999,
+        rating: 4.8,
+        images: ["https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=700&auto=format&fit=crop&q=80"],
+        stockCount: 12,
+        specs: [{ label: "Sole", value: "100% Genuine Leather" }, { label: "Padding", value: "Memory Foam Insole" }]
+      },
+      {
+        id: "und-01",
+        categoryId: "undergarments",
+        nameHi: "बैम्बू कॉटन अल्ट्रा-सॉफ्ट ब्रीफ्स (3 का पैक)",
+        nameEn: "Organic Bamboo Cotton Breathable Trunks (Pack of 3)",
+        descriptionHi: "एंटी-बैक्टीरियल, बदबू-मुक्त और बेहद आरामदायक ऑर्गेनिक बैम्बू कॉटन अंडरवियर पैक।",
+        descriptionEn: "4-way stretch moisture-wicking organic bamboo fabric with no-roll waistband.",
+        originalPrice: 1198,
+        discountedPrice: 599,
+        rating: 4.8,
+        images: ["https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?w=700&auto=format&fit=crop&q=80"],
+        stockCount: 25,
+        specs: [{ label: "Material", value: "95% Bamboo Fibre, 5% Spandex" }]
+      },
+      {
+        id: "gad-01",
+        categoryId: "gadgets",
+        nameHi: "अल्ट्रा 2.01\" AMOLED ब्लूटूथ कॉलिंग स्मार्टवॉच",
+        nameEn: "Titanium Elite 2.01\" AMOLED BT Calling Smartwatch",
+        descriptionHi: "शानदार AMOLED डिस्प्ले, मेटालिक केसिंग, हार्ट-रेट, SpO2 और 7 दिन की बैटरी बैकअप।",
+        descriptionEn: "Always-On 1000 Nits AMOLED display with military zinc alloy frame and fast magnetic charger.",
+        originalPrice: 4999,
+        discountedPrice: 2499,
+        rating: 4.9,
+        images: ["https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=700&auto=format&fit=crop&q=80"],
+        stockCount: 10,
+        specs: [{ label: "Display", value: "2.01 inch Curved AMOLED" }, { label: "Battery", value: "Up to 7 Days" }]
+      },
+      {
+        id: "kit-01",
+        categoryId: "kitchenware",
+        nameHi: "ग्रेनाइट 3-पीस नॉन-स्टिक कुकवेयर सेट",
+        nameEn: "German Granite 3-Piece Non-Stick Cookware Master Set",
+        descriptionHi: "जर्मन तकनीक वाला 5-लेयर ग्रेनाइट नॉन-स्टिक सेट। 100% PFOA फ्री और इंडक्शन कम्पैटिबल।",
+        descriptionEn: "Tough scratch-resistant granite coating, cool-touch bakelite handles, and heavy induction bottom.",
+        originalPrice: 3998,
+        discountedPrice: 1999,
+        rating: 4.9,
+        images: ["https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=700&auto=format&fit=crop&q=80"],
+        stockCount: 8,
+        specs: [{ label: "Pieces", value: "Kadhai + Tawa + Frypan" }, { label: "Coating", value: "5-Layer German Granite" }]
+      }
+    ];
 
-      <div class="wrap">
-        <!-- categories rail -->
-        <div class="sec">
-          <div><h2>Shop by <em>Category</em></h2><p>Jinny ke jaadui collection se apni pasand chuniye</p></div>
-          <a class="link" onclick="navigate('categories')">See all →</a>
-        </div>
-        <div class="rail" id="catRail"></div>
+    function App() {
+      const [lang, setLang] = useState("hi");
+      const [selectedCategory, setSelectedCategory] = useState("all");
+      const [searchQuery, setSearchQuery] = useState("");
+      const [sortBy, setSortBy] = useState("featured");
 
-        <!-- featured -->
-        <div class="sec">
-          <div><h2>✨ Jinny's <em>Top Wishes</em></h2><p>Bestsellers loved by 1M+ shoppers</p></div>
-          <a class="link" onclick="navigate('shop')">View all →</a>
-        </div>
-        <div class="grid" id="featuredGrid"></div>
+      const [cart, setCart] = useState([]);
+      const [wishlist, setWishlist] = useState([]);
+      const [isCartOpen, setIsCartOpen] = useState(false);
+      const [isWishlistOpen, setIsWishlistOpen] = useState(false);
+      const [selectedProduct, setSelectedProduct] = useState(null);
+      const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+      const [checkoutStep, setCheckoutStep] = useState("form");
+      const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+      const [isJinnyAssistantOpen, setIsJinnyAssistantOpen] = useState(false);
+      const [toastMsg, setToastMsg] = useState("");
 
-        <!-- deal of the day strip -->
-        <div class="sec"><div><h2>Deal of the <em>Day</em></h2><p>Prices that disappear at midnight</p></div></div>
-        <div class="grid" id="dealGrid"></div>
+      const [couponCode, setCouponCode] = useState("");
+      const [couponDiscount, setCouponDiscount] = useState(0);
 
-        <!-- trust -->
-        <div class="sec"><div><h2>Why <em>Wish Jinny</em>?</h2></div></div>
-        <div class="cards3">
-          <div class="tcard"><div class="ic">🪔</div><h4>Jaadui Prices</h4><p>Up to 70% off on 12,000+ products from verified vendors across India.</p></div>
-          <div class="tcard"><div class="ic">🚚</div><h4>Free & Fast Delivery</h4><p>Free shipping above ₹499. Express 2-day delivery in 19,000+ pin codes.</p></div>
-          <div class="tcard"><div class="ic">🔄</div><h4>7-Day Easy Returns</h4><p>Wish nahi bhooi? Instant pickup and refund within 72 hours.</p></div>
-          <div class="tcard"><div class="ic">🔒</div><h4>100% Secure Payments</h4><p>UPI, cards, wallets & COD protected by Jinny Shield encryption.</p></div>
-        </div>
+      const [clientName, setClientName] = useState("");
+      const [clientPhone, setClientPhone] = useState("");
+      const [clientAddress, setClientAddress] = useState("");
+      const [clientCity, setClientCity] = useState("");
+      const [clientPincode, setClientPincode] = useState("");
+      const [paymentMethod, setPaymentMethod] = useState("cod");
+      const [lastOrder, setLastOrder] = useState(null);
 
-        <!-- AI Jinny promo -->
-        <div class="jinny-promo">
-          <div class="jp-avatar"><img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=300&q=80" alt="AI Jinny"></div>
-          <div class="jp-txt">
-            <h3>AI Jinny — Aapka Personal Shopper</h3>
-            <p>Bolo, "Mere liye ₹5,000 ke andar gift dhoondo" — Jinny turant best products, coupons aur delivery date bata dega. 24×7 free.</p>
-            <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
-              <button class="btn-gold" onclick="openChat()">Talk to Jinny</button>
-              <button class="btn-ghost" style="background:transparent;color:#f3d27a;border-color:#f3d27a" onclick="navigate('vendor')">Become a Vendor</button>
+      const [chatMessages, setChatMessages] = useState([
+        { sender: "jinny", text: "नमस्ते! मैं Wish Jinny AI सहायक हूँ। सभी 7 डिपार्टमेंट्स पर आज फ्लैट 50% डिस्काउंट उपलब्ध है। मैं आपकी क्या मदद करूँ?" }
+      ]);
+      const [chatInput, setChatInput] = useState("");
+
+      const [timeLeft, setTimeLeft] = useState({ h: 3, m: 42, s: 19 });
+      useEffect(() => {
+        const timer = setInterval(() => {
+          setTimeLeft(prev => {
+            if (prev.s > 0) return { ...prev, s: prev.s - 1 };
+            if (prev.m > 0) return { ...prev, m: 59, s: 59 };
+            if (prev.h > 0) return { h: prev.h - 1, m: 59, s: 59 };
+            return { h: 3, m: 59, s: 59 };
+          });
+        }, 1000);
+        return () => clearInterval(timer);
+      }, []);
+
+      const showToast = (msg) => {
+        setToastMsg(msg);
+        setTimeout(() => setToastMsg(""), 3000);
+      };
+
+      const filteredProducts = useMemo(() => {
+        return PRODUCTS.filter(p => {
+          const matchCat = selectedCategory === "all" || p.categoryId === selectedCategory;
+          const q = searchQuery.toLowerCase().trim();
+          const matchSearch = !q || p.nameEn.toLowerCase().includes(q) || p.nameHi.toLowerCase().includes(q) || p.categoryId.toLowerCase().includes(q);
+          return matchCat && matchSearch;
+        }).sort((a, b) => {
+          if (sortBy === "price-low") return a.discountedPrice - b.discountedPrice;
+          if (sortBy === "price-high") return b.discountedPrice - a.discountedPrice;
+          if (sortBy === "rating") return b.rating - a.rating;
+          return -1;
+        });
+      }, [selectedCategory, searchQuery, sortBy]);
+
+      const cartOriginalTotal = cart.reduce((acc, item) => acc + item.product.originalPrice * item.quantity, 0);
+      const cartDiscountedTotal = cart.reduce((acc, item) => acc + item.product.discountedPrice * item.quantity, 0);
+      const flat50Savings = cartOriginalTotal - cartDiscountedTotal;
+      const finalCheckoutTotal = Math.max(0, cartDiscountedTotal - couponDiscount);
+
+      const addToCart = (product) => {
+        setCart(prev => {
+          const idx = prev.findIndex(item => item.product.id === product.id);
+          if (idx >= 0) {
+            const updated = [...prev];
+            updated[idx].quantity += 1;
+            return updated;
+          }
+          return [...prev, { product, quantity: 1 }];
+        });
+        showToast(lang === "hi" ? `"${product.nameHi}" कार्ट में जोड़ा गया!` : `Added "${product.nameEn}" to Bag!`);
+      };
+
+      const updateQuantity = (id, delta) => {
+        setCart(prev => prev.map(item => {
+          if (item.product.id === id) {
+            const n = item.quantity + delta;
+            return n > 0 ? { ...item, quantity: n } : null;
+          }
+          return item;
+        }).filter(Boolean));
+      };
+
+      const removeFromCart = (id) => {
+        setCart(prev => prev.filter(item => item.product.id !== id));
+      };
+
+      const toggleWishlist = (product) => {
+        const exists = wishlist.some(p => p.id === product.id);
+        if (exists) {
+          setWishlist(prev => prev.filter(p => p.id !== product.id));
+          showToast(lang === "hi" ? "विशलिस्ट से हटाया गया" : "Removed from Wishlist");
+        } else {
+          setWishlist(prev => [...prev, product]);
+          showToast(lang === "hi" ? "विशलिस्ट में सुरक्षित किया गया" : "Saved to Wishlist");
+        }
+      };
+
+      const applyCoupon = (e) => {
+        e.preventDefault();
+        const code = couponCode.trim().toUpperCase();
+        if (code === "JINNY50" || code === "WISH50" || code === "FLAT50") {
+          const extra = 250;
+          setCouponDiscount(extra);
+          showToast(lang === "hi" ? `कूपन ${code} लागू! ₹${extra} की अतिरिक्त छूट मिली!` : `Coupon ${code} applied! ₹${extra} extra off!`);
+        } else {
+          showToast(lang === "hi" ? "अमान्य कूपन। 'JINNY50' आज़माएं।" : "Invalid Code. Try 'JINNY50'");
+        }
+      };
+
+      const handleConfirmOrder = (e) => {
+        e.preventDefault();
+        if (!clientName || !clientPhone || !clientAddress || !clientCity || !clientPincode) {
+          alert(lang === "hi" ? "कृपया सभी आवश्यक जानकारी भरें।" : "Please complete all shipping fields.");
+          return;
+        }
+
+        const newOrderId = "WJ-" + Math.floor(100000 + Math.random() * 900000);
+        const orderData = {
+          orderId: newOrderId,
+          name: clientName,
+          phone: clientPhone,
+          address: clientAddress,
+          city: clientCity,
+          pincode: clientPincode,
+          payment: paymentMethod,
+          items: [...cart],
+          total: finalCheckoutTotal,
+          savings: flat50Savings + couponDiscount,
+          date: new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })
+        };
+
+        setLastOrder(orderData);
+        setCheckoutStep("success");
+        setCart([]);
+        if (window.confetti) {
+          window.confetti({ particleCount: 120, spread: 70, origin: { y: 0.6 } });
+        }
+      };
+
+      const handleSendMessage = (e) => {
+        e.preventDefault();
+        if (!chatInput.trim()) return;
+
+        const userMsg = chatInput;
+        setChatMessages(prev => [...prev, { sender: "user", text: userMsg }]);
+        setChatInput("");
+
+        setTimeout(() => {
+          let reply = "";
+          const lower = userMsg.toLowerCase();
+          if (lower.includes("साड़ी") || lower.includes("saree")) {
+            reply = "कांजीवरम सिल्क साड़ी (जरी वर्क) अभी 50% छूट पर केवल ₹2,999 में उपलब्ध है। इसके साथ अनस्टिच्ड ब्लाउज और फ्री कैश ऑन डिलीवरी मिलती है।";
+          } else if (lower.includes("ज्वेलरी") || lower.includes("चोकर") || lower.includes("kundan")) {
+            reply = "रॉयल कुंदन व पर्ल ब्राइडल चोकर सेट केवल ₹2,499 (पहले ₹4,999) में उपलब्ध है। इसमें 22K गोल्ड प्लेटिंग, मैचिंग झुमके और मांगटीका शामिल हैं।";
+          } else if (lower.includes("स्मार्टवॉच") || lower.includes("watch")) {
+            reply = "2.01\" AMOLED ब्लूटूथ कॉलिंग स्मार्टवॉच ₹2,499 में 7-दिन की बैटरी लाइफ और 120 स्पोर्ट्स मोड्स के साथ उपलब्ध है।";
+          } else {
+            reply = "Wish Jinny पर सभी 7 डिपार्टमेंट्स (कॉस्मेटिक्स, ज्वेलरी, गारमेंट्स, फुटवियर, अंडरगारमेंट्स, गैजेट्स, किचनवेयर) पर फ्लैट 50% छूट और फ्री COD उपलब्ध है।";
+          }
+          setChatMessages(prev => [...prev, { sender: "jinny", text: reply }]);
+        }, 500);
+      };
+
+      return (
+        <div className="min-h-screen flex flex-col justify-between">
+          {toastMsg && (
+            <div className="fixed bottom-6 right-6 z-50 bg-[#1A1A1A] text-white px-5 py-3 border border-[#E5E2DC] shadow-2xl flex items-center gap-3 text-xs font-mono">
+              <Icon name="CheckCircle" className="w-4 h-4 text-[#D93D26]" />
+              <span>{toastMsg}</span>
+            </div>
+          )}
+
+          {/* Top Marquee */}
+          <div className="bg-[#1A1A1A] text-white text-[11px] font-mono tracking-widest py-2 px-4 border-b border-[#333333] flex justify-between items-center">
+            <div className="flex items-center gap-2">
+              <span className="bg-[#D93D26] text-white px-2 py-0.5 text-[9px] font-bold uppercase">ARCHIVE NOTICE</span>
+              <span className="hidden sm:inline">सब कुछ फ्लैट 50% डिस्काउंट पर • सातों कैटेगरीज़ में कैश ऑन डिलीवरी</span>
+            </div>
+            <div className="flex items-center gap-4 text-xs font-mono">
+              <span className="text-[#D93D26] flex items-center gap-1 font-bold">
+                <Icon name="Clock" className="w-3.5 h-3.5" />
+                समाप्त: {String(timeLeft.h).padStart(2, '0')}:{String(timeLeft.m).padStart(2, '0')}:{String(timeLeft.s).padStart(2, '0')}
+              </span>
+              <button 
+                onClick={() => setLang(l => l === 'en' ? 'hi' : 'en')}
+                className="hover:text-[#D93D26] uppercase border border-[#444] px-2 py-0.5"
+              >
+                {lang === 'en' ? 'हिन्दी (HI)' : 'ENGLISH'}
+              </button>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- ============ CATEGORIES ============ -->
-    <section class="page" id="page-categories">
-      <div class="wrap">
-        <div class="sec"><div><h2>All <em>Categories</em></h2><p>12 jaadui collections — tap karke shop karein</p></div></div>
-        <div class="catgrid" id="catGrid"></div>
-        <div class="sec"><div><h2>Trending <em>Now</em></h2></div></div>
-        <div class="grid" id="trendGrid"></div>
-      </div>
-    </section>
+          {/* Header */}
+          <header className="sticky top-0 z-40 bg-[#FAF9F6] border-b border-[#E5E2DC] backdrop-blur-md">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between gap-4">
+              <div className="flex items-center gap-3 cursor-pointer" onClick={() => { setSelectedCategory("all"); setSearchQuery(""); }}>
+                <div className="w-9 h-9 bg-[#1A1A1A] text-white flex items-center justify-center font-serif font-bold text-lg">
+                  W
+                </div>
+                <div>
+                  <h1 className="font-serif font-bold text-xl sm:text-2xl text-[#1A1A1A] tracking-wider uppercase">
+                    WISH JINNY
+                  </h1>
+                  <p className="text-[9px] font-mono text-[#73706B] tracking-widest uppercase">
+                    FLAT 50% STORE // 7 DEPARTMENTS
+                  </p>
+                </div>
+              </div>
 
-    <!-- ============ SHOP ============ -->
-    <section class="page" id="page-shop">
-      <div class="wrap">
-        <div class="sec"><div><h2>The <em>Wish Store</em></h2><p id="resultCount">Loading products…</p></div></div>
-      </div>
-      <div class="filterbar">
-        <div class="wrap">
-          <div class="chips" id="filterChips"></div>
-          <div class="sortrow">
-            <label class="switch"><input type="checkbox" id="inStockOnly"> In stock only</label>
-            <div class="range">
-              <span>Max <b id="priceLabel">₹50,000</b></span>
-              <input type="range" id="priceRange" min="500" max="50000" step="500" value="50000">
+              {/* Search */}
+              <div className="hidden md:flex flex-1 max-w-md relative">
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder={lang === 'hi' ? "7 कैटेगरीज़ में खोजें..." : "Search across 7 departments..."}
+                  className="w-full bg-white border border-[#E5E2DC] px-4 py-2 pl-9 text-xs text-[#1A1A1A] outline-none"
+                />
+                <Icon name="Search" className="w-4 h-4 text-[#73706B] absolute left-3 top-2.5" />
+              </div>
+
+              {/* Actions */}
+              <div className="flex items-center gap-2 sm:gap-3">
+                <button
+                  onClick={() => setIsVideoModalOpen(true)}
+                  className="hidden sm:flex items-center gap-1.5 px-3 py-2 border border-[#E5E2DC] bg-white hover:bg-[#FAF9F6] text-xs font-mono uppercase"
+                >
+                  <Icon name="Video" className="w-3.5 h-3.5 text-[#D93D26]" />
+                  <span>वीडियो AI</span>
+                </button>
+
+                <button
+                  onClick={() => setIsWishlistOpen(true)}
+                  className="relative p-2.5 border border-[#E5E2DC] bg-white text-[#1A1A1A]"
+                >
+                  <Icon name="Heart" className="w-4 h-4" />
+                  {wishlist.length > 0 && (
+                    <span className="absolute -top-1.5 -right-1.5 bg-[#D93D26] text-white text-[9px] font-mono w-4 h-4 flex items-center justify-center font-bold">
+                      {wishlist.length}
+                    </span>
+                  )}
+                </button>
+
+                <button
+                  onClick={() => setIsCartOpen(true)}
+                  className="relative flex items-center gap-2 px-4 py-2 bg-[#1A1A1A] hover:bg-[#D93D26] text-white text-xs font-mono uppercase tracking-wider transition-colors"
+                >
+                  <Icon name="ShoppingBag" className="w-4 h-4" />
+                  <span>बैग ({cart.reduce((a, c) => a + c.quantity, 0)})</span>
+                </button>
+              </div>
             </div>
-            <label>Sort:
-              <select id="sortSelect">
-                <option value="pop">Popularity</option>
-                <option value="low">Price: Low → High</option>
-                <option value="high">Price: High → Low</option>
-                <option value="rate">Customer Rating</option>
-                <option value="disc">Biggest Discount</option>
-              </select>
-            </label>
-          </div>
+
+            {/* Department Navigation Tabs */}
+            <div className="border-t border-[#E5E2DC] bg-white overflow-x-auto scrollbar-none">
+              <div className="max-w-7xl mx-auto px-4 flex items-center gap-1 sm:gap-2 py-2">
+                <button
+                  onClick={() => setSelectedCategory("all")}
+                  className={`px-3 py-1.5 text-xs font-mono uppercase whitespace-nowrap ${
+                    selectedCategory === "all" ? "bg-[#1A1A1A] text-white font-bold" : "text-[#1A1A1A] hover:bg-[#FAF9F6]"
+                  }`}
+                >
+                  {lang === 'hi' ? 'सभी 7 कैटेगरीज़' : 'All Departments (7)'}
+                </button>
+                {CATEGORIES.map(cat => (
+                  <button
+                    key={cat.id}
+                    onClick={() => setSelectedCategory(cat.id)}
+                    className={`px-3 py-1.5 text-xs font-mono uppercase whitespace-nowrap ${
+                      selectedCategory === cat.id ? "bg-[#1A1A1A] text-white font-bold" : "text-[#73706B] hover:text-[#1A1A1A]"
+                    }`}
+                  >
+                    {lang === 'hi' ? cat.nameHi : cat.nameEn}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </header>
+
+          {/* Hero Banner */}
+          <section className="bg-white border-b border-[#E5E2DC] py-12 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div className="lg:col-span-7 space-y-4">
+                <div className="inline-flex items-center gap-2 border border-[#E5E2DC] bg-[#FAF9F6] px-3 py-1 text-[10px] font-mono tracking-widest uppercase">
+                  <span className="w-2 h-2 bg-[#D93D26] inline-block"></span>
+                  WISH JINNY 50% OFFICIAL ARCHIVE
+                </div>
+                <h2 className="font-serif text-3xl sm:text-5xl font-bold text-[#1A1A1A] leading-tight">
+                  सब कुछ सीधे 50% की भारी छूट पर।
+                </h2>
+                <p className="text-sm text-[#73706B] max-w-xl leading-relaxed">
+                  कॉस्मेटिक्स, राजपूताना ज्वेलरी, कांजीवरम साड़ियां, फुटवियर, अंडरगारमेंट्स, गैजेट्स और किचनवेयर पर आधी कीमत और पूरे भारत में सुरक्षित कैश ऑन डिलीवरी।
+                </p>
+                <div className="pt-2 flex flex-wrap gap-3">
+                  <button 
+                    onClick={() => {
+                      const el = document.getElementById("catalog-grid");
+                      if (el) el.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className="px-6 py-3 bg-[#1A1A1A] hover:bg-[#D93D26] text-white text-xs font-mono uppercase tracking-widest transition-colors cursor-pointer"
+                  >
+                    50% कलेक्शन देखें
+                  </button>
+                  <button 
+                    onClick={() => setIsJinnyAssistantOpen(true)}
+                    className="px-6 py-3 border border-[#1A1A1A] text-[#1A1A1A] hover:bg-[#FAF9F6] text-xs font-mono uppercase tracking-widest cursor-pointer"
+                  >
+                    जिनी AI से पूछें
+                  </button>
+                </div>
+              </div>
+
+              <div className="lg:col-span-5 border border-[#E5E2DC] p-3 bg-[#FAF9F6] shadow-xl">
+                <img
+                  src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&auto=format&fit=crop&q=80"
+                  alt="Kundan Set"
+                  className="w-full h-72 object-cover"
+                />
+                <div className="p-3 bg-white border-t border-[#E5E2DC] flex justify-between items-center">
+                  <div>
+                    <div className="text-[10px] font-mono text-[#73706B]">FEATURED</div>
+                    <div className="font-serif font-bold text-sm text-[#1A1A1A]">रॉयल कुंदन चोकर सेट</div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-xs line-through text-[#73706B] font-mono">₹4,999</div>
+                    <div className="text-base font-serif font-bold text-[#D93D26]">₹2,499 (-50%)</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Catalog Grid */}
+          <main id="catalog-grid" className="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-1">
+            <div className="flex justify-between items-center gap-4 mb-8 pb-4 border-b border-[#E5E2DC]">
+              <div>
+                <h3 className="font-serif font-bold text-2xl text-[#1A1A1A]">
+                  {selectedCategory === "all" ? "सभी प्रोडक्ट्स पर फ्लैट 50% छूट" : selectedCategory.toUpperCase()}
+                </h3>
+                <p className="text-xs font-mono text-[#73706B] mt-0.5">
+                  {filteredProducts.length} प्रोडक्ट्स उपलब्ध • 50% डिस्काउंट पहले से लागू
+                </p>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-mono text-[#73706B]">सॉर्ट:</span>
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                  className="bg-white border border-[#E5E2DC] px-3 py-1.5 text-xs font-mono outline-none"
+                >
+                  <option value="featured">लोकप्रिय (Featured)</option>
+                  <option value="price-low">कीमत: कम से ज्यादा</option>
+                  <option value="price-high">कीमत: ज्यादा से कम</option>
+                  <option value="rating">हाई रेटिंग</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {filteredProducts.map(product => {
+                const inWishlist = wishlist.some(w => w.id === product.id);
+                return (
+                  <div key={product.id} className="bg-white border border-[#E5E2DC] flex flex-col justify-between group hover:border-[#1A1A1A] transition-all">
+                    <div className="relative overflow-hidden bg-[#FAF9F6]">
+                      <img
+                        src={product.images[0]}
+                        alt={product.nameEn}
+                        className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105 cursor-pointer"
+                        onClick={() => setSelectedProduct(product)}
+                      />
+                      <span className="absolute top-3 left-3 bg-[#D93D26] text-white text-[10px] font-mono px-2 py-0.5 uppercase tracking-widest font-bold">
+                        -50% FLAT
+                      </span>
+                      <button
+                        onClick={() => toggleWishlist(product)}
+                        className={`absolute top-3 right-3 p-2 bg-white/90 border border-[#E5E2DC] ${
+                          inWishlist ? "text-[#D93D26]" : "text-[#73706B]"
+                        }`}
+                      >
+                        <Icon name="Heart" className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+
+                    <div className="p-4 flex-1 flex flex-col justify-between">
+                      <div>
+                        <div className="text-[10px] font-mono uppercase text-[#73706B] tracking-wider mb-1">
+                          {product.categoryId}
+                        </div>
+                        <h4
+                          onClick={() => setSelectedProduct(product)}
+                          className="font-serif font-bold text-sm text-[#1A1A1A] line-clamp-1 hover:text-[#D93D26] cursor-pointer"
+                        >
+                          {lang === 'hi' ? product.nameHi : product.nameEn}
+                        </h4>
+                        <p className="text-xs text-[#73706B] mt-1 line-clamp-2 leading-relaxed">
+                          {lang === 'hi' ? product.descriptionHi : product.descriptionEn}
+                        </p>
+                      </div>
+
+                      <div className="pt-4 border-t border-[#E5E2DC] mt-4">
+                        <div className="flex items-baseline justify-between">
+                          <div>
+                            <span className="text-xs text-[#73706B] line-through font-mono">₹{product.originalPrice.toLocaleString('en-IN')}</span>
+                            <span className="ml-2 font-serif font-bold text-base text-[#1A1A1A]">₹{product.discountedPrice.toLocaleString('en-IN')}</span>
+                          </div>
+                          <div className="text-[10px] font-mono text-[#D93D26] font-bold">50% बचत</div>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-2 mt-3">
+                          <button
+                            onClick={() => addToCart(product)}
+                            className="w-full py-2 bg-[#FAF9F6] hover:bg-[#EFECE6] border border-[#E5E2DC] text-[#1A1A1A] text-[11px] font-mono uppercase"
+                          >
+                            कार्ट में जोड़ें
+                          </button>
+                          <button
+                            onClick={() => {
+                              addToCart(product);
+                              setIsCheckoutOpen(true);
+                            }}
+                            className="w-full py-2 bg-[#1A1A1A] hover:bg-[#D93D26] text-white text-[11px] font-mono uppercase"
+                          >
+                            बाय करें
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </main>
+
+          {/* Cart Drawer */}
+          {isCartOpen && (
+            <div className="fixed inset-0 z-50 bg-black/50 flex justify-end">
+              <div className="w-full max-w-md bg-[#FAF9F6] h-full shadow-2xl border-l border-[#E5E2DC] flex flex-col justify-between">
+                <div className="p-4 border-b border-[#E5E2DC] bg-white flex justify-between items-center">
+                  <div className="flex items-center gap-2">
+                    <Icon name="ShoppingBag" className="w-4 h-4 text-[#D93D26]" />
+                    <h3 className="font-serif font-bold text-base text-[#1A1A1A]">शॉपिंग बैग</h3>
+                  </div>
+                  <button onClick={() => setIsCartOpen(false)} className="p-1 border border-[#E5E2DC]">✕</button>
+                </div>
+
+                <div className="p-4 overflow-y-auto flex-1 space-y-3">
+                  {cart.length === 0 ? (
+                    <div className="py-20 text-center text-[#73706B]">
+                      <Icon name="ShoppingBag" className="w-12 h-12 mx-auto stroke-1 text-[#D5D1C8] mb-3" />
+                      <div className="font-serif font-bold text-base text-[#1A1A1A]">बैग खाली है</div>
+                    </div>
+                  ) : (
+                    cart.map(({ product, quantity }) => (
+                      <div key={product.id} className="p-3 bg-white border border-[#E5E2DC] flex gap-3 items-center">
+                        <img src={product.images[0]} alt={product.nameEn} className="w-16 h-16 object-cover border border-[#E5E2DC]" />
+                        <div className="flex-1 min-w-0">
+                          <h4 className="font-serif font-bold text-xs text-[#1A1A1A] truncate">{lang === 'hi' ? product.nameHi : product.nameEn}</h4>
+                          <div className="flex items-baseline gap-2 mt-1">
+                            <span className="font-serif font-bold text-sm text-[#1A1A1A]">₹{product.discountedPrice.toLocaleString('en-IN')}</span>
+                            <span className="text-[10px] line-through text-[#73706B] font-mono">₹{product.originalPrice.toLocaleString('en-IN')}</span>
+                          </div>
+                          <div className="flex items-center gap-2 mt-2">
+                            <button onClick={() => updateQuantity(product.id, -1)} className="w-6 h-6 border border-[#E5E2DC] bg-[#FAF9F6] text-xs font-mono">-</button>
+                            <span className="text-xs font-mono px-2">{quantity}</span>
+                            <button onClick={() => updateQuantity(product.id, 1)} className="w-6 h-6 border border-[#E5E2DC] bg-[#FAF9F6] text-xs font-mono">+</button>
+                          </div>
+                        </div>
+                        <button onClick={() => removeFromCart(product.id)} className="p-1 text-[#73706B] hover:text-[#D93D26]">
+                          <Icon name="Trash" className="w-4 h-4" />
+                        </button>
+                      </div>
+                    ))
+                  )}
+                </div>
+
+                {cart.length > 0 && (
+                  <div className="p-4 border-t border-[#E5E2DC] bg-white space-y-3">
+                    <form onSubmit={applyCoupon} className="flex gap-2">
+                      <input
+                        type="text"
+                        value={couponCode}
+                        onChange={(e) => setCouponCode(e.target.value)}
+                        placeholder="कूपन कोड (उदा: JINNY50)"
+                        className="flex-1 bg-[#FAF9F6] border border-[#E5E2DC] px-3 py-1.5 text-xs font-mono uppercase outline-none"
+                      />
+                      <button type="submit" className="px-3 py-1.5 bg-[#1A1A1A] text-white text-xs font-mono uppercase">
+                        लागू करें
+                      </button>
+                    </form>
+
+                    <div className="space-y-1 text-xs font-mono">
+                      <div className="flex justify-between text-[#73706B]">
+                        <span>असली कीमत:</span>
+                        <span>₹{cartOriginalTotal.toLocaleString('en-IN')}</span>
+                      </div>
+                      <div className="flex justify-between text-[#D93D26] font-bold">
+                        <span>50% फ्लैट छूट:</span>
+                        <span>-₹{flat50Savings.toLocaleString('en-IN')}</span>
+                      </div>
+                      {couponDiscount > 0 && (
+                        <div className="flex justify-between text-[#2E7D32] font-bold">
+                          <span>अतिरिक्त कूपन छूट:</span>
+                          <span>-₹{couponDiscount.toLocaleString('en-IN')}</span>
+                        </div>
+                      )}
+                      <div className="flex justify-between text-sm font-serif font-bold text-[#1A1A1A] pt-2 border-t border-[#E5E2DC]">
+                        <span>कुल भुगतान:</span>
+                        <span>₹{finalCheckoutTotal.toLocaleString('en-IN')}</span>
+                      </div>
+                    </div>
+
+                    <button
+                      onClick={() => {
+                        setIsCartOpen(false);
+                        setIsCheckoutOpen(true);
+                      }}
+                      className="w-full py-3 bg-[#1A1A1A] hover:bg-[#D93D26] text-white text-xs font-mono uppercase tracking-widest transition-colors"
+                    >
+                      चेकआउट के लिए आगे बढ़ें
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Checkout Modal */}
+          {isCheckoutOpen && (
+            <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
+              <div className="bg-[#FAF9F6] border border-[#E5E2DC] max-w-xl w-full max-h-[90vh] overflow-y-auto p-6 shadow-2xl relative">
+                <button onClick={() => setIsCheckoutOpen(false)} className="absolute top-4 right-4 p-2 bg-white border border-[#E5E2DC]">✕</button>
+
+                {checkoutStep === "form" ? (
+                  <form onSubmit={handleConfirmOrder} className="space-y-4">
+                    <div className="border-b border-[#E5E2DC] pb-3">
+                      <span className="text-[10px] font-mono text-[#D93D26] uppercase">ऑर्डर विवरण</span>
+                      <h3 className="font-serif font-bold text-xl text-[#1A1A1A]">डिलीवरी पता व भुगतान</h3>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div>
+                        <label className="block text-[11px] font-mono text-[#73706B] mb-1">पूरा नाम *</label>
+                        <input
+                          type="text"
+                          required
+                          value={clientName}
+                          onChange={(e) => setClientName(e.target.value)}
+                          placeholder="उदा: राहुल वर्मा"
+                          className="w-full bg-white border border-[#E5E2DC] px-3 py-2 text-xs outline-none"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-[11px] font-mono text-[#73706B] mb-1">मोबाइल नंबर *</label>
+                        <input
+                          type="tel"
+                          required
+                          value={clientPhone}
+                          onChange={(e) => setClientPhone(e.target.value)}
+                          placeholder="उदा: 9876543210"
+                          className="w-full bg-white border border-[#E5E2DC] px-3 py-2 text-xs outline-none"
+                        />
+                      </div>
+                      <div className="sm:col-span-2">
+                        <label className="block text-[11px] font-mono text-[#73706B] mb-1">मकान नं. व पता *</label>
+                        <input
+                          type="text"
+                          required
+                          value={clientAddress}
+                          onChange={(e) => setClientAddress(e.target.value)}
+                          placeholder="उदा: 402, शांति अपार्टमेंट, सिविल लाइंस"
+                          className="w-full bg-white border border-[#E5E2DC] px-3 py-2 text-xs outline-none"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-[11px] font-mono text-[#73706B] mb-1">शहर / राज्य *</label>
+                        <input
+                          type="text"
+                          required
+                          value={clientCity}
+                          onChange={(e) => setClientCity(e.target.value)}
+                          placeholder="उदा: जयपुर, राजस्थान"
+                          className="w-full bg-white border border-[#E5E2DC] px-3 py-2 text-xs outline-none"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-[11px] font-mono text-[#73706B] mb-1">पिनकोड *</label>
+                        <input
+                          type="text"
+                          required
+                          value={clientPincode}
+                          onChange={(e) => setClientPincode(e.target.value)}
+                          placeholder="उदा: 302001"
+                          className="w-full bg-white border border-[#E5E2DC] px-3 py-2 text-xs outline-none"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-[11px] font-mono text-[#73706B] mb-2">भुगतान का तरीका:</label>
+                      <div className="grid grid-cols-2 gap-2">
+                        {[
+                          { id: "cod", title: "कैश ऑन डिलीवरी (COD)", desc: "सामान आने पर पैसे दें" },
+                          { id: "upi", title: "UPI / QR कोड", desc: "GPay, PhonePe, Paytm" },
+                        ].map(m => (
+                          <div
+                            key={m.id}
+                            onClick={() => setPaymentMethod(m.id)}
+                            className={`p-2.5 border cursor-pointer bg-white ${
+                              paymentMethod === m.id ? "border-[#1A1A1A] ring-1 ring-[#1A1A1A]" : "border-[#E5E2DC]"
+                            }`}
+                          >
+                            <div className="font-serif font-bold text-xs text-[#1A1A1A]">{m.title}</div>
+                            <div className="text-[10px] font-mono text-[#73706B]">{m.desc}</div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="p-3 bg-white border border-[#E5E2DC] text-xs font-mono space-y-1">
+                      <div className="flex justify-between text-[#73706B]">
+                        <span>कुल भुगतान:</span>
+                        <span className="font-serif font-bold text-sm text-[#1A1A1A]">₹{finalCheckoutTotal.toLocaleString('en-IN')}</span>
+                      </div>
+                      <div className="text-[10px] text-[#2E7D32]">✓ पूरे भारत में फ्री डिलीवरी व 7-दिन की आसान वापसी</div>
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="w-full py-3.5 bg-[#1A1A1A] hover:bg-[#D93D26] text-white text-xs font-mono uppercase tracking-widest transition-colors cursor-pointer"
+                    >
+                      ऑर्डर कन्फर्म करें (₹{finalCheckoutTotal.toLocaleString('en-IN')})
+                    </button>
+                  </form>
+                ) : (
+                  <div className="text-center py-6 space-y-4">
+                    <div className="w-12 h-12 bg-white border border-[#E5E2DC] text-[#2E7D32] flex items-center justify-center mx-auto">
+                      <Icon name="CheckCircle" className="w-6 h-6" />
+                    </div>
+                    <h3 className="font-serif font-bold text-2xl text-[#1A1A1A]">ऑर्डर सफलतापूर्वक दर्ज हुआ!</h3>
+                    <p className="text-xs font-mono text-[#73706B]">
+                      ऑर्डर आईडी: {lastOrder?.orderId} • जल्द डिस्पैच होगा
+                    </p>
+
+                    <div className="bg-white border border-[#E5E2DC] p-4 text-left text-xs font-mono space-y-2">
+                      <div className="flex justify-between border-b border-[#E5E2DC] pb-1">
+                        <span className="text-[#73706B]">ग्राहक:</span>
+                        <span className="text-[#1A1A1A] font-bold">{lastOrder?.name}</span>
+                      </div>
+                      <div className="flex justify-between border-b border-[#E5E2DC] pb-1">
+                        <span className="text-[#73706B]">पता:</span>
+                        <span className="text-[#1A1A1A]">{lastOrder?.address}, {lastOrder?.city} - {lastOrder?.pincode}</span>
+                      </div>
+                      <div className="flex justify-between border-b border-[#E5E2DC] pb-1">
+                        <span className="text-[#73706B]">भुगतान:</span>
+                        <span className="text-[#1A1A1A] font-bold uppercase">{lastOrder?.payment} (₹{lastOrder?.total.toLocaleString('en-IN')})</span>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-3 justify-center pt-2">
+                      <button onClick={() => window.print()} className="px-5 py-2.5 border border-[#1A1A1A] text-xs font-mono uppercase">
+                        रसीद प्रिंट करें
+                      </button>
+                      <button onClick={() => { setIsCheckoutOpen(false); setCheckoutStep("form"); }} className="px-5 py-2.5 bg-[#1A1A1A] text-white text-xs font-mono uppercase">
+                        दुकान पर वापस जाएं
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Jinny Concierge Assistant */}
+          {isJinnyAssistantOpen && (
+            <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
+              <div className="bg-[#FAF9F6] border border-[#E5E2DC] max-w-lg w-full h-[500px] flex flex-col justify-between shadow-2xl">
+                <div className="p-4 border-b border-[#E5E2DC] bg-white flex justify-between items-center">
+                  <div className="flex items-center gap-2">
+                    <Icon name="Sparkles" className="w-4 h-4 text-[#D93D26]" />
+                    <h3 className="font-serif font-bold text-base text-[#1A1A1A]">Wish Jinny AI सहायक</h3>
+                  </div>
+                  <button onClick={() => setIsJinnyAssistantOpen(false)} className="p-1 border border-[#E5E2DC]">✕</button>
+                </div>
+
+                <div className="p-4 overflow-y-auto flex-1 space-y-3">
+                  {chatMessages.map((m, idx) => (
+                    <div key={idx} className={`flex ${m.sender === "user" ? "justify-end" : "justify-start"}`}>
+                      <div className={`max-w-[85%] p-3 text-xs ${m.sender === "user" ? "bg-[#1A1A1A] text-white font-mono" : "bg-white border border-[#E5E2DC] text-[#1A1A1A]"}`}>
+                        {m.text}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <form onSubmit={handleSendMessage} className="p-3 border-t border-[#E5E2DC] bg-white flex gap-2">
+                  <input
+                    type="text"
+                    value={chatInput}
+                    onChange={(e) => setChatInput(e.target.value)}
+                    placeholder="साड़ी, ज्वेलरी, स्मार्टवॉच या 50% छूट के बारे में पूछें..."
+                    className="flex-1 bg-[#FAF9F6] border border-[#E5E2DC] px-3 py-2 text-xs outline-none"
+                  />
+                  <button type="submit" className="px-4 py-2 bg-[#1A1A1A] text-white text-xs font-mono uppercase">
+                    <Icon name="Send" className="w-3.5 h-3.5" />
+                  </button>
+                </form>
+              </div>
+            </div>
+          )}
+
+          {/* Footer */}
+          <footer className="bg-white border-t border-[#E5E2DC] py-12 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+              <div>
+                <h4 className="font-serif font-bold text-lg text-[#1A1A1A]">WISH JINNY</h4>
+                <p className="text-xs font-mono text-[#73706B] mt-1">
+                  7 कोर डिपार्टमेंट्स • पूरे भारत में फ्लैट 50% भारी छूट • सुरक्षित कैश ऑन डिलीवरी
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-4 text-xs font-mono text-[#73706B]">
+                <span>100% सुरक्षित COD</span>
+                <span>•</span>
+                <span>7-दिन आसान वापसी</span>
+                <span>•</span>
+                <span>100% ओरिजिनल सामान</span>
+              </div>
+            </div>
+          </footer>
         </div>
-      </div>
-      <div class="wrap">
-        <div class="grid" id="shopGrid"></div>
-        <div class="empty hidden" id="shopEmpty"><div class="big">🪔</div><h3>Koi wish mili nahi</h3><p>Try a different search or category.</p><br><button class="btn-ghost" onclick="resetFilters()">Reset filters</button></div>
-      </div>
-    </section>
+      );
+    }
 
-    <!-- ============ OFFERS ============ -->
-    <section class="page" id="page-offers">
-      <div class="sale-banner" style="margin-top:0">
-        <div class="sale-inner">
-          <span class="sale-kicker">✦ Limited Period ✦</span>
-          <div class="sale-title">50% SALE</div>
-          <div class="sale-sub">Extra 10% off on first order + Free express delivery</div>
-          <div class="coupon"><span>JINNY50</span><button onclick="copyCode('JINNY50',this)">COPY</button></div>
-        </div>
-      </div>
-      <div class="wrap">
-        <div class="sec"><div><h2>Live <em>Offers</em></h2><p>Code copy karo aur checkout par apply karo</p></div></div>
-        <div class="offer-grid" id="offerGrid"></div>
-        <div class="sec"><div><h2>Offers ka <em>Mela</em></h2><p>Products jinpar aaj sabse zyada discount chal raha hai</p></div></div>
-        <div class="grid" id="offerProducts"></div>
-      </div>
-    </section>
-
-    <!-- ============ WISHLIST ============ -->
-    <section class="page" id="page-wishlist">
-      <div class="wrap">
-        <div class="sec"><div><h2>My <em>Wishlist</em></h2><p id="wishCountText">0 wishes saved</p></div>
-          <button class="btn-ghost" onclick="moveAllWish()">Move all to bag</button>
-        </div>
-        <div class="grid" id="wishGrid"></div>
-        <div class="empty hidden" id="wishEmpty"><div class="big">💖</div><h3>Aapki wishlist khali hai</h3><p>Dil wale icon dabakar products save karein.</p><br><button class="btn-gold" onclick="navigate('shop')">Explore Store</button></div>
-      </div>
-    </section>
-
-    <!-- ============ CART ============ -->
-    <section class="page" id="page-cart">
-      <div class="wrap">
-        <div class="sec"><div><h2>Shopping <em>Bag</em></h2><p id="cartCountText">0 items</p></div><a class="link" onclick="navigate('shop')">+ Add more</a></div>
-        <div class="two-col">
-          <div id="cartList"></div>
-          <div class="panel" id="cartSummary"></div>
-        </div>
-        <div class="empty hidden" id="cartEmpty"><div class="big">🛒</div><h3>Aapka bag khaali hai</h3><p>Jinny kuch jaadui laaye kya?</p><br><button class="btn-gold" onclick="navigate('shop')">Start Shopping</button></div>
-      </div>
-    </section>
-
-    <!-- ============ ACCOUNT ============ -->
-    <section class="page" id="page-account">
-      <div class="wrap">
-        <div class="sec"><div><h2>My <em>Account</em></h2><p>Namaste, Wish Jinny Member 🪔</p></div></div>
-        <div class="cards3">
-          <div class="tcard"><div class="ic">👤</div><h4>Rahul Sharma</h4><p>+91 98•••••210<br>rahul.sharma@example.com<br>Gold Magic Member</p>
-            <button class="btn-ghost" style="margin-top:10px;padding:9px 16px;font-size:13px" onclick="toast('Profile editing coming soon ✨')">Edit Profile</button></div>
-          <div class="tcard"><div class="ic">📦</div><h4>My Orders</h4><p>3 active orders · 24 delivered<br>Track, return or exchange anytime.</p>
-            <button class="btn-ghost" style="margin-top:10px;padding:9px 16px;font-size:13px" onclick="openOrders()">Track Order</button></div>
-          <div class="tcard"><div class="ic">🪙</div><h4>Jinny Coins</h4><p><b style="font-size:22px;color:var(--gold-dark)">1,240</b> coins = ₹124 off<br>Earn 5% back on every order.</p></div>
-        </div>
-
-        <div class="sec"><div><h2>Quick <em>Links</em></h2></div></div>
-        <div class="cards3">
-          <div class="tcard" onclick="openChat()" style="cursor:pointer"><div class="ic">🧞</div><h4>AI Jinny Assistant</h4><p>Instant product search, gift ideas, order help — 24×7.</p></div>
-          <div class="tcard" onclick="navigate('vendor')" style="cursor:pointer"><div class="ic">✅</div><h4>Vendor Verification</h4><p>Sell on Wish Jinny. Get GST-verified in 48 hours.</p></div>
-          <div class="tcard" onclick="navigate('about')" style="cursor:pointer"><div class="ic">📖</div><h4>About Wish Jinny</h4><p>Our story, mission and the magic behind the lamp.</p></div>
-          <div class="tcard" onclick="navigate('contact')" style="cursor:pointer"><div class="ic">💬</div><h4>Customer Care</h4><p>support@wishjinny.com · 1800 200 JINNY</p></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ VENDOR ============ -->
-    <section class="page" id="page-vendor">
-      <div class="wrap">
-        <div class="sec"><div><h2>Vendor <em>Verification</em></h2><p>Sell on Wish Jinny — verified sellers get the ✅ Jaadui Badge</p></div></div>
-        <div class="two-col">
-          <div class="panel" style="position:static">
-            <h3>Apply as a Seller</h3>
-            <form id="vendorForm" novalidate>
-              <div class="field"><label>Business / Brand name</label><input name="bname" placeholder="e.g. Aura Audio Pvt Ltd"><div class="err">Please enter your business name</div></div>
-              <div class="field"><label>GSTIN</label><input name="gst" placeholder="22AAAAA0000A1Z5"><div class="err">Enter a valid 15-digit GSTIN</div></div>
-              <div class="field"><label>Category</label><select name="vc"><option>Electronics</option><option>Fashion</option><option>Beauty</option><option>Home & Living</option><option>Accessories</option></select></div>
-              <div class="field"><label>Email</label><input name="vemail" type="email" placeholder="you@brand.com"><div class="err">Enter a valid email</div></div>
-              <div class="field"><label>Phone</label><input name="vphone" placeholder="+91 98765 43210"><div class="err">Enter a 10-digit phone number</div></div>
-              <button class="btn-gold" type="submit" style="width:100%">Submit for Verification</button>
-            </form>
-          </div>
-          <div>
-            <div class="info-card"><h4>✅ Verification Steps</h4><p>1. Business details & GSTIN<br>2. Cancelled cheque / bank verification<br>3. Brand authorization (if applicable)<br>4. Quality check by Jinny team — 48 hrs</p></div>
-            <div class="info-card"><h4>🌟 Jaadui Seller Benefits</h4><p>Zero listing fee for 90 days · 0% commission on first 50 orders · Priority placement in Sale events · Dedicated relationship manager · Weekly payouts.</p></div>
-            <div class="info-card"><h4>📞 Seller Helpdesk</h4><p>seller@wishjinny.com · +91 80 4000 1111<br>Mon–Sat, 9 AM – 8 PM IST</p></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ ABOUT ============ -->
-    <section class="page" id="page-about">
-      <div class="wrap">
-        <div class="sec"><div><h2>About <em>Wish Jinny</em></h2><p>Hamari kahani — ek chhoti si lamp se shuru hui</p></div></div>
-        <div class="prose">
-          <p><b>Wish Jinny</b> ek jaadui marketplace hai jahan har order ek wish ki tarah poora hota hai. 2019 mein Jaipur ke ek chhote se office se shuru hua hamara sapna, aaj 19,000+ pin codes mein 2 lakh se zyada customers ki khushi ban chuka hai.</p>
-          <p>Hum maante hain ki shopping sirf products kharidna nahi — ek experience hai. Isliye har product hamari team dwara check hota hai, har vendor GST-verified hota hai, aur har delivery par "Wish Fulfilled" likha ek chhota sa note aapke paas aata hai.</p>
-          <p>Hamara mission: <b>premium quality ko affordable banana</b> — bina kisi jaadu ke, sirf sachchi mehnat aur smart logistics se.</p>
-        </div>
-        <div class="stats">
-          <div class="stat"><b>2.4L+</b><span>Happy Customers</span></div>
-          <div class="stat"><b>12K+</b><span>Products</span></div>
-          <div class="stat"><b>850+</b><span>Verified Vendors</span></div>
-          <div class="stat"><b>4.8★</b><span>Average Rating</span></div>
-        </div>
-        <div class="cards3">
-          <div class="tcard"><div class="ic">🎯</div><h4>Our Mission</h4><p>Har ghar tak verified, affordable aur delightful products pahunchana.</p></div>
-          <div class="tcard"><div class="ic">🤝</div><h4>Our Promise</h4><p>Transparent pricing, genuine reviews aur zero hidden charges — hamesha.</p></div>
-          <div class="tcard"><div class="ic">🌱</div><h4>Our Values</h4><p>Sustainability, fair vendor pay aur customer-first decision making.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ CONTACT ============ -->
-    <section class="page" id="page-contact">
-      <div class="wrap">
-        <div class="sec"><div><h2>Contact & <em>Customer Care</em></h2><p>Hum 24×7 available hain — aapki wish sunne ke liye</p></div></div>
-        <div class="two-col">
-          <div class="panel" style="position:static">
-            <h3>Send a Wish 🪔</h3>
-            <form id="contactForm" novalidate>
-              <div class="field"><label>Your name</label><input name="cname" placeholder="Full name"><div class="err">Please enter your name</div></div>
-              <div class="field"><label>Email</label><input name="cemail" type="email" placeholder="you@example.com"><div class="err">Enter a valid email</div></div>
-              <div class="field"><label>Topic</label><select name="ct"><option>Order issue</option><option>Returns & refunds</option><option>Product question</option><option>Vendor enquiry</option><option>Feedback</option></select></div>
-              <div class="field"><label>Message</label><textarea name="cmsg" placeholder="Apni wish batayein…"></textarea><div class="err">Please write at least 10 characters</div></div>
-              <button class="btn-gold" type="submit" style="width:100%">Send Message</button>
-            </form>
-          </div>
-          <div>
-            <div class="info-card"><h4>📞 Toll Free</h4><p>1800 200 JINNY (54669)<br>Mon–Sun, 8 AM – 11 PM IST</p></div>
-            <div class="info-card"><h4>✉️ Email</h4><p>support@wishjinny.com · Orders: orders@wishjinny.com<br>Vendors: seller@wishjinny.com</p></div>
-            <div class="info-card"><h4>🏢 Registered Office</h4><p>Wish Jinny Technologies Pvt. Ltd.<br>3rd Floor, Amrapali Marg, Vaishali Nagar, Jaipur, Rajasthan 302021</p></div>
-            <div class="sec" style="padding-top:6px"><div><h2 style="font-size:20px">FAQs</h2></div></div>
-            <div id="faqList"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- ============ FOOTER ============ -->
-  <footer>
-    <div class="wrap">
-      <div class="fgrid">
-        <div>
-          <div class="fbrand">WISH JINNY</div>
-          <p style="font-size:13px;margin-top:8px;line-height:1.7;color:#b9b3d4">Your Wish, Our Command. India's magical marketplace for verified brands, honest prices and delightful delivery.</p>
-          <div style="margin-top:12px"><button class="btn-gold" style="padding:10px 18px;font-size:13px" onclick="openChat()">🧞 Talk to AI Jinny</button></div>
-        </div>
-        <div><h5>Shop</h5><ul>
-          <li onclick="navigate('shop')">All Products</li><li onclick="navigate('categories')">Categories</li>
-          <li onclick="navigate('offers')">Offers</li><li onclick="navigate('wishlist')">Wishlist</li><li onclick="navigate('cart')">Cart & Checkout</li></ul></div>
-        <div><h5>Company</h5><ul>
-          <li onclick="navigate('about')">About Us</li><li onclick="navigate('contact')">Contact</li>
-          <li onclick="navigate('vendor')">Vendor Verification</li><li onclick="navigate('contact')">Customer Care</li></ul></div>
-        <div><h5>Support</h5><ul>
-          <li onclick="navigate('contact')">Shipping & Delivery</li><li onclick="navigate('contact')">Returns & Refunds</li>
-          <li onclick="navigate('contact')">Privacy Policy</li><li onclick="navigate('contact')">Terms of Use</li></ul></div>
-      </div>
-      <div class="fbottom"><span>© 2025 Wish Jinny Technologies Pvt. Ltd.</span><span>Made with 🪔 in Jaipur, India</span></div>
-    </div>
-  </footer>
-</div>
-
-<!-- ============ BOTTOM NAV ============ -->
-<nav class="bottomnav" id="bottomNav">
-  <button class="navbtn on" data-page="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/></svg><span class="lbl">Home</span></button>
-  <button class="navbtn" data-page="categories"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3.5" y="3.5" width="7" height="7" rx="2"/><rect x="13.5" y="3.5" width="7" height="7" rx="2"/><rect x="3.5" y="13.5" width="7" height="7" rx="2"/><rect x="13.5" y="13.5" width="7" height="7" rx="2"/></svg><span class="lbl">Categories</span></button>
-  <button class="navbtn" data-page="shop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8h16l-1 12H5z"/><path d="M8.5 8V6a3.5 3.5 0 0 1 7 0v2"/></svg><span class="lbl">Shop</span></button>
-  <button class="navbtn" data-page="offers"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.5 12.5 12 21l-8.5-8.5V4h8.5z"/><circle cx="8" cy="8" r="1.4"/></svg><span class="lbl">Offers</span></button>
-  <button class="navbtn" data-page="wishlist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20.5S3.5 15 3.5 9.2A4.7 4.7 0 0 1 12 6.6a4.7 4.7 0 0 1 8.5 2.6C20.5 15 12 20.5 12 20.5z"/></svg><span class="lbl">Wishlist</span><i class="badge hide" id="navWishBadge"></i></button>
-  <button class="navbtn" data-page="cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg><span class="lbl">Cart</span><i class="badge hide" id="navCartBadge"></i></button>
-  <button class="navbtn" data-page="account"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8.5" r="3.5"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg><span class="lbl">Account</span></button>
-</nav>
-
-<!-- ============ DRAWER ============ -->
-<div class="scrim" id="scrim" onclick="closeAll()"></div>
-<aside class="drawer" id="drawer">
-  <div class="dhead"><b>WISH JINNY</b><small>Your Wish, Our Command</small></div>
-  <nav>
-    <div class="grp">Explore</div>
-    <button onclick="nav('home')">🪔 Home</button>
-    <button onclick="nav('categories')">🗂️ Categories</button>
-    <button onclick="nav('shop')">🛍️ Shop All</button>
-    <button onclick="nav('offers')">🏷️ Offers & Sale</button>
-    <div class="sep"></div>
-    <div class="grp">You</div>
-    <button onclick="nav('wishlist')">💖 Wishlist</button>
-    <button onclick="nav('cart')">🛒 Cart & Checkout</button>
-    <button onclick="nav('account')">👤 My Account</button>
-    <div class="sep"></div>
-    <div class="grp">Magic</div>
-    <button onclick="closeAll();openChat()">🧞 AI Jinny</button>
-    <button onclick="nav('vendor')">✅ Vendor Verification</button>
-    <button onclick="nav('about')">📖 About Us</button>
-    <button onclick="nav('contact')">💬 Contact / Customer Care</button>
-  </nav>
-</aside>
-
-<!-- ============ PRODUCT MODAL ============ -->
-<div class="modal" id="productModal">
-  <div class="mbox">
-    <div class="mhead"><h3>Product Details</h3><button class="mclose" onclick="closeModal('productModal')">✕</button></div>
-    <div class="mbody" id="productBody"></div>
-  </div>
-</div>
-
-<!-- ============ CHECKOUT MODAL ============ -->
-<div class="modal" id="checkoutModal">
-  <div class="mbox">
-    <div class="mhead"><h3>Checkout 🪔</h3><button class="mclose" onclick="closeModal('checkoutModal')">✕</button></div>
-    <div class="mbody" id="checkoutBody"></div>
-  </div>
-</div>
-
-<!-- ============ ORDERS MODAL ============ -->
-<div class="modal" id="ordersModal">
-  <div class="mbox">
-    <div class="mhead"><h3>My Orders</h3><button class="mclose" onclick="closeModal('ordersModal')">✕</button></div>
-    <div class="mbody" id="ordersBody"></div>
-  </div>
-</div>
-
-<!-- ============ AI JINNY CHAT ============ -->
-<button class="jinny-fab" id="jinnyFab" onclick="toggleChat()" title="AI Jinny">
-  <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=200&q=80" alt="AI Jinny">
-</button>
-<div class="chat" id="chat">
-  <div class="chead">
-    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=200&q=80" alt="Jinny">
-    <div style="flex:1"><b>AI Jinny</b><small>● Online — aapki wish sunne ke liye</small></div>
-    <button class="mclose" style="background:rgba(255,255,255,.15);color:#fff" onclick="toggleChat()">✕</button>
-  </div>
-  <div class="clog" id="clog"></div>
-  <div class="qreplies">
-    <button onclick="quickAsk('Show me best sellers')">Best sellers</button>
-    <button onclick="quickAsk('Any offers today?')">Today's offers</button>
-    <button onclick="quickAsk('Gift under 5000')">Gift under ₹5000</button>
-    <button onclick="quickAsk('Track my order')">Track order</button>
-  </div>
-  <form class="cform" id="chatForm">
-    <input id="chatInput" placeholder="Apni wish bolo…" autocomplete="off">
-    <button type="submit" aria-label="Send"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
-  </form>
-</div>
-
-<div id="toasts"></div>
-
-<script>
-/* ================= DATA ================= */
-const IMG = {
-  watch:'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=700&q=80',
-  headphones:'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=700&q=80',
-  sunglasses:'https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=700&q=80',
-  perfume:'https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=700&q=80',
-  bag:'https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=700&q=80',
-  sneaker:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=80',
-  camera:'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=700&q=80',
-  laptop:'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=700&q=80',
-  speaker:'https://images.unsplash.com/photo-1543512214-318c7553f230?auto=format&fit=crop&w=700&q=80',
-  beauty:'https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=700&q=80',
-  jewellery:'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=700&q=80',
-  backpack:'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=700&q=80',
-  bracelet:'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=700&q=80',
-  phone:'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=700&q=80',
-  home:'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=700&q=80',
-  watch2:'https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=700&q=80',
-  watch3:'https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?auto=format&fit=crop&w=700&q=80',
-  jacket:'https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=700&q=80',
-  earbuds:'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=700&q=80',
-  lamp:'https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=700&q=80'
-};
-const CATEGORIES = [
-  {name:'Electronics', img:IMG.headphones},
-  {name:'Fashion', img:IMG.jacket},
-  {name:'Beauty', img:IMG.beauty},
-  {name:'Accessories', img:IMG.sunglasses},
-  {name:'Home & Living', img:IMG.home},
-  {name:'Watches', img:IMG.watch2},
-  {name:'Footwear', img:IMG.sneaker},
-  {name:'Bags', img:IMG.backpack},
-  {name:'Jewellery', img:IMG.jewellery},
-  {name:'Cameras', img:IMG.camera}
-];
-const PRODUCTS = [
-  {id:1,name:'Apex Pro Smartwatch',brand:'APEXTECH',cat:'Watches',price:21999,mrp:29999,rating:4.9,rev:312,stock:'in',tag:'Best Seller',img:IMG.watch,desc:'1.9" AMOLED display, 14-day battery, SpO2 + HRM, 120+ sport modes, 5ATM water resistance and Bluetooth calling.'},
-  {id:2,name:'AuraSound ANC Headphones',brand:'AURAAUDIO',cat:'Electronics',price:13499,mrp:18999,rating:4.8,rev:428,stock:'in',tag:'Deal',img:IMG.headphones,desc:'Hybrid active noise cancellation, 40h playback, LDAC Hi-Res audio, memory-foam earcups and multipoint pairing.'},
-  {id:3,name:'Solstice Polarized Sunglasses',brand:'SOLSTICE',cat:'Accessories',price:2499,mrp:4999,rating:4.6,rev:187,stock:'in',tag:'Deal',img:IMG.sunglasses,desc:'UV400 polarized lenses, TR90 feather-light frame, anti-slip temples with a magnetic travel case.'},
-  {id:4,name:'Noor Eau De Parfum 100ml',brand:'NOOR',cat:'Beauty',price:3299,mrp:5999,rating:4.7,rev:512,stock:'in',tag:'Best Seller',img:IMG.perfume,desc:'A royal blend of oud, saffron and jasmine with a warm vanilla base. 12-hour long-lasting Indian oud fragrance.'},
-  {id:5,name:'Aria Leather Tote Bag',brand:'ARIA',cat:'Bags',price:5899,mrp:9999,rating:4.5,rev:143,stock:'low',tag:'New',img:IMG.bag,desc:'Full-grain vegan leather tote with padded 15" laptop sleeve, gold hardware and detachable sling strap.'},
-  {id:6,name:'Velocity Running Sneakers',brand:'VELOCITY',cat:'Footwear',price:3799,mrp:6999,rating:4.4,rev:266,stock:'in',tag:'Deal',img:IMG.sneaker,desc:'Responsive foam midsole, breathable knit upper and high-grip outsole — engineered for daily training.'},
-  {id:7,name:'Lumen X100 Mirrorless Camera',brand:'LUMEN',cat:'Cameras',price:48999,mrp:62999,rating:4.8,rev:98,stock:'in',tag:'Premium',img:IMG.camera,desc:'24.2MP APS-C sensor, 4K60 video, in-body stabilisation and eye-detect AF with a 18-55mm kit lens.'},
-  {id:8,name:'Zenbook Air 14 Laptop',brand:'ZENPRO',cat:'Electronics',price:47990,mrp:64990,rating:4.7,rev:221,stock:'in',tag:'Deal',img:IMG.laptop,desc:'Intel Core Ultra 7, 16GB RAM, 1TB SSD, 2.8K 90Hz OLED display and 1.2kg magnesium chassis.'},
-  {id:9,name:'BoomPods Bluetooth Speaker',brand:'BOOMPOD',cat:'Electronics',price:2799,mrp:5499,rating:4.3,rev:390,stock:'in',tag:'Deal',img:IMG.speaker,desc:'360° sound with dual passive radiators, IPX7 waterproofing, 24h playtime and stereo pairing.'},
-  {id:10,name:'Velvet Matte Lip Kit',brand:'LUXEBEAUTÉ',cat:'Beauty',price:1299,mrp:2499,rating:4.6,rev:634,stock:'in',tag:'Best Seller',img:IMG.beauty,desc:'6-shade transfer-proof matte lip kit enriched with argan oil and vitamin E. Cruelty-free & vegan.'},
-  {id:11,name:'Celeste Gold Necklace',brand:'CELESTE',cat:'Jewellery',price:4499,mrp:8999,rating:4.7,rev:176,stock:'in',tag:'New',img:IMG.jewellery,desc:'18k gold-plated brass necklace with cubic zirconia drops and an anti-tarnish e-coating.'},
-  {id:12,name:'Terra Travel Backpack 28L',brand:'TERRA',cat:'Bags',price:2599,mrp:4299,rating:4.5,rev:302,stock:'in',tag:'Deal',img:IMG.backpack,desc:'Water-resistant 900D polyester, anti-theft back pocket, USB charging port and shoe compartment.'},
-  {id:13,name:'Mystic Gold Bracelet',brand:'MYSTIC',cat:'Jewellery',price:1899,mrp:3499,rating:4.4,rev:118,stock:'in',tag:'New',img:IMG.bracelet,desc:'Handcrafted chain bracelet with a genie-charm pendant, adjustable clasp and gift box included.'},
-  {id:14,name:'Nova 5G Smartphone',brand:'NOVA',cat:'Electronics',price:24999,mrp:31999,rating:4.6,rev:874,stock:'low',tag:'Deal',img:IMG.phone,desc:'6.7" 120Hz AMOLED, 108MP OIS camera, 5000mAh battery with 68W turbo charging.'},
-  {id:15,name:'Haven Accent Table Lamp',brand:'HAVEN',cat:'Home & Living',price:2199,mrp:3999,rating:4.5,rev:96,stock:'in',tag:'New',img:IMG.lamp,desc:'Warm dimmable LED with brass-finish base and linen shade — perfect for a cosy reading corner.'},
-  {id:16,name:'Zen Smart Speaker Mini',brand:'ZENPRO',cat:'Home & Living',price:3499,mrp:4999,rating:4.4,rev:210,stock:'in',tag:'Deal',img:IMG.speaker,desc:'Voice assistant ready, 360° audio, smart-home controls and multi-room grouping.'},
-  {id:17,name:'Chrono Steel Automatic Watch',brand:'CHRONO',cat:'Watches',price:15999,mrp:24999,rating:4.8,rev:151,stock:'in',tag:'Premium',img:IMG.watch3,desc:'Automatic movement with 42h power reserve, sapphire crystal and 100m water resistance.'},
-  {id:18,name:'Pulse Fitness Band',brand:'APEXTECH',cat:'Watches',price:1999,mrp:3999,rating:4.2,rev:721,stock:'in',tag:'Deal',img:IMG.watch2,desc:'AMOLED band with 100+ sport modes, sleep tracking, Bluetooth calling and 10-day battery.'},
-  {id:19,name:'Aero Studio Headphones',brand:'AURAAUDIO',cat:'Electronics',price:8999,mrp:12999,rating:4.5,rev:264,stock:'in',tag:'New',img:IMG.earbuds,desc:'Studio-grade drivers, wired + wireless hybrid mode and foldable design for creators on the move.'},
-  {id:20,name:'Heritage Denim Jacket',brand:'HERITAGE',cat:'Fashion',price:3499,mrp:6499,rating:4.5,rev:189,stock:'in',tag:'Deal',img:IMG.jacket,desc:'Washed indigo denim jacket with antique brass buttons and a relaxed unisex fit.'}
-];
-const OFFERS = [
-  {c:'o1',t:'FLAT 50% OFF',s:'Electronics, Watches & Audio par. Max ₹8,000 off.',code:'JINNY50'},
-  {c:'o2',t:'₹300 OFF',s:'First order par. Minimum cart value ₹999.',code:'WELCOME300'},
-  {c:'o3',t:'FREE DELIVERY',s:'Sabhi orders par — no minimum. Today only.',code:'FREESHIP'},
-  {c:'o4',t:'BUY 2 GET 1',s:'Beauty & Personal Care products par.',code:'TRIPLE3'}
-];
-const FAQS = [
-  ['Kitne time mein delivery milegi?','Metro cities mein 2–3 din, baaki India mein 4–7 din. Express delivery 19,000+ pin codes par 48 hours mein available hai.'],
-  ['Return kaise karein?','Order delivered hone ke 7 days ke andar Account → My Orders → Return choose karein. Free pickup hoga aur refund 72 hours mein aa jayega.'],
-  ['Coupon code kaise apply karein?','Cart page par "Apply Coupon" section mein code daalein. Ek baar mein ek coupon apply ho sakta hai.'],
-  ['Payment ke options kya hain?','UPI, credit/debit cards, net banking, wallets aur Cash on Delivery (selected pin codes).'],
-  ['Kya products original hain?','Haan. Har vendor GST-verified hai aur inventory hamari quality team dwara check ki jaata hai.']
-];
-const FAQ_TAB=[['Can I cancel my order?','Haan, dispatch se pehle kisi bhi time cancel karein — full refund milta hai.'],['Do you ship internationally?','Filhaal hum sirf India ke andar deliver karte hain.']];
-
-/* ================= STATE ================= */
-const store = {
-  cart: JSON.parse(localStorage.getItem('wj_cart')||'[]'),
-  wish: JSON.parse(localStorage.getItem('wj_wish')||'[]'),
-  coupon: localStorage.getItem('wj_coupon')||'',
-  query:'', cat:'All', sort:'pop', maxPrice:50000, inStock:false
-};
-const save=()=>{localStorage.setItem('wj_cart',JSON.stringify(store.cart));localStorage.setItem('wj_wish',JSON.stringify(store.wish));localStorage.setItem('wj_coupon',store.coupon);};
-const inr=n=>'₹'+Number(n).toLocaleString('en-IN');
-const disc=p=>Math.round((p.mrp-p.price)/p.mrp*100);
-const byId=id=>PRODUCTS.find(p=>p.id===+id);
-const stars=r=>'★'.repeat(Math.round(r))+'☆'.repeat(5-Math.round(r));
-const COUPONS={'JINNY50':.50,'WELCOME300':0,'FREESHIP':-1,'TRIPLE3':.15};
-
-/* ================= STARS ================= */
-(function(){const c=document.getElementById('stars');const gl=['✦','✧','✨','·','✵'];let h='';
- for(let i=0;i<70;i++){h+=`<span class="star" style="left:${(Math.random()*100).toFixed(2)}%;top:${(Math.random()*100).toFixed(2)}%;font-size:${(7+Math.random()*14).toFixed(0)}px;animation-delay:${(Math.random()*3).toFixed(2)}s;animation-duration:${(2+Math.random()*3).toFixed(2)}s">${gl[i%gl.length]}</span>`;}
- c.innerHTML=h;})();
-
-/* ================= NAVIGATION ================= */
-function navigate(page){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  const el=document.getElementById('page-'+page)||document.getElementById('page-home');
-  el.classList.add('active');
-  document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('on',b.dataset.page===page));
-  closeAll();
-  window.scrollTo({top:0,behavior:'smooth'});
-  if(page==='shop')renderShop();
-  if(page==='wishlist')renderWish();
-  if(page==='cart')renderCart();
-}
-document.querySelectorAll('.navbtn').forEach(b=>b.addEventListener('click',()=>navigate(b.dataset.page)));
-function nav(p){closeAll();navigate(p);}
-
-/* drawer */
-function openDrawer(){document.getElementById('drawer').classList.add('open');document.getElementById('scrim').classList.add('open');}
-function closeAll(){document.getElementById('drawer').classList.remove('open');document.getElementById('scrim').classList.remove('open');
-  document.querySelectorAll('.modal.open').forEach(m=>m.classList.remove('open'));}
-function closeModal(id){document.getElementById(id).classList.remove('open');}
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeAll();document.getElementById('chat').classList.remove('open');}});
-document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open');}));
-
-/* ================= CARD RENDER ================= */
-function cardHTML(p){
-  const wished=store.wish.includes(p.id);
-  const stockTxt=p.stock==='in'?'<span class="stock in">In Stock</span>':'<span class="stock low">Only few left</span>';
-  return `<article class="card">
-    <div class="thumb" onclick="openProduct(${p.id})">
-      <img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.style.opacity=.15">
-      ${p.tag?`<span class="tag-b ${p.tag==='Best Seller'?'best':p.tag==='New'?'new':''}">${p.tag==='Deal'?'⚡ ':''}${p.tag}</span>`:''}
-      <span class="off">${disc(p)}% OFF</span>
-      <button class="heart ${wished?'on':''}" onclick="event.stopPropagation();toggleWish(${p.id},this)" aria-label="wishlist">
-        <svg viewBox="0 0 24 24"><path d="M12 20.5S3.5 15 3.5 9.2A4.7 4.7 0 0 1 12 6.6a4.7 4.7 0 0 1 8.5 2.6C20.5 15 12 20.5 12 20.5z"/></svg></button>
-    </div>
-    <div class="info">
-      <div class="meta"><span>${p.brand}</span>${stockTxt}</div>
-      <div class="name" onclick="openProduct(${p.id})">${p.name}</div>
-      <div class="rating"><span class="stars">${stars(p.rating)}</span> ${p.rating} (${p.rev})</div>
-      <div class="price"><b>${inr(p.price)}</b><s>${inr(p.mrp)}</s><span class="save">Save ${inr(p.mrp-p.price)}</span></div>
-      <button class="addbtn ${store.cart.find(c=>c.id===p.id)?'in':''}" onclick="addToCart(${p.id},1,this)">${store.cart.find(c=>c.id===p.id)?'✓ In Bag':'Add to Bag'}</button>
-    </div>
-  </article>`;
-}
-function renderInto(id,list){document.getElementById(id).innerHTML=list.map(cardHTML).join('');}
-
-/* ================= HOME ================= */
-function renderHome(){
-  document.getElementById('catRail').innerHTML=CATEGORIES.slice(0,8).map(c=>`
-    <div class="cat" onclick="shopCat('${c.name.replace(/'/g,"\\'")}')">
-      <div class="circ"><img src="${c.img}" alt="${c.name}" loading="lazy" onerror="this.style.opacity=.2"></div><span>${c.name}</span></div>`).join('');
-  renderInto('featuredGrid',PRODUCTS.slice(0,10));
-  renderInto('dealGrid',PRODUCTS.filter(p=>disc(p)>=35).slice(0,5));
-  document.getElementById('catGrid').innerHTML=CATEGORIES.map(c=>{
-    const n=PRODUCTS.filter(p=>p.cat===c.name).length;
-    return `<div class="catcard" onclick="shopCat('${c.name.replace(/'/g,"\\'")}')">
-      <img src="${c.img}" alt="${c.name}" loading="lazy" onerror="this.style.opacity=.2">
-      <div class="cc-body"><h3>${c.name}</h3><small>${n} product${n===1?'':'s'} · Up to 50% off</small></div></div>`;}).join('');
-  renderInto('trendGrid',[...PRODUCTS].sort((a,b)=>b.rev-a.rev).slice(0,10));
-  document.getElementById('offerGrid').innerHTML=OFFERS.map(o=>`
-    <div class="offer ${o.c}"><div><h3>${o.t}</h3><p>${o.s}</p></div>
-    <button class="code" onclick="copyCode('${o.code}',this)">${o.code} · TAP TO COPY</button></div>`).join('');
-  renderInto('offerProducts',PRODUCTS.filter(p=>disc(p)>=40).slice(0,10));
-  document.getElementById('faqList').innerHTML=FAQS.concat(FAQ_TAB).map(f=>accHTML(f[0],f[1])).join('');
-  bindAccordions();
-}
-function accHTML(q,a){return `<div class="acc"><h4 onclick="this.parentNode.classList.toggle('open')">${q}<span class="plus">+</span></h4><div class="acc-body"><div>${a}</div></div></div>`;}
-function bindAccordions(){}
-
-function shopCat(c){store.cat=c;store.query='';document.getElementById('searchInput').value='';navigate('shop');}
-
-/* ================= SHOP ================= */
-function renderChips(){
-  const cats=['All',...CATEGORIES.map(c=>c.name)];
-  document.getElementById('filterChips').innerHTML=cats.map(c=>`<button class="fchip ${store.cat===c?'on':''}" onclick="setCat('${c.replace(/'/g,"\\'")}')">${c}</button>`).join('');
-}
-function setCat(c){store.cat=c;renderShop();}
-function resetFilters(){store.cat='All';store.query='';store.maxPrice=50000;store.sort='pop';store.inStock=false;
-  document.getElementById('searchInput').value='';document.getElementById('priceRange').value=50000;document.getElementById('inStockOnly').checked=false;
-  document.getElementById('sortSelect').value='pop';renderShop();}
-function filtered(){
-  let l=PRODUCTS.filter(p=>{
-    const q=store.query.toLowerCase();
-    const okQ=!q||p.name.toLowerCase().includes(q)||p.brand.toLowerCase().includes(q)||p.cat.toLowerCase().includes(q)||p.desc.toLowerCase().includes(q);
-    const okC=store.cat==='All'||p.cat===store.cat;
-    const okP=p.price<=store.maxPrice;
-    const okS=!store.inStock||p.stock==='in';
-    return okQ&&okC&&okP&&okS;});
-  const s=store.sort;
-  if(s==='low')l.sort((a,b)=>a.price-b.price);
-  else if(s==='high')l.sort((a,b)=>b.price-a.price);
-  else if(s==='rate')l.sort((a,b)=>b.rating-a.rating);
-  else if(s==='disc')l.sort((a,b)=>disc(b)-disc(a));
-  else l.sort((a,b)=>b.rev-a.rev);
-  return l;
-}
-function renderShop(){
-  renderChips();
-  const list=filtered();
-  document.getElementById('resultCount').textContent=`${list.length} product${list.length===1?'':'s'} found${store.cat!=='All'?' in '+store.cat:''}${store.query?` for “${store.query}”`:''}`;
-  document.getElementById('shopGrid').innerHTML=list.map(cardHTML).join('');
-  document.getElementById('shopEmpty').classList.toggle('hidden',list.length>0);
-}
-document.getElementById('priceRange').addEventListener('input',e=>{store.maxPrice=+e.target.value;document.getElementById('priceLabel').textContent=inr(store.maxPrice);renderShop();});
-document.getElementById('sortSelect').addEventListener('change',e=>{store.sort=e.target.value;renderShop();});
-document.getElementById('inStockOnly').addEventListener('change',e=>{store.inStock=e.target.checked;renderShop();});
-
-/* search + suggestions */
-const sInput=document.getElementById('searchInput'),sBox=document.getElementById('suggest');
-sInput.addEventListener('input',()=>{
-  store.query=sInput.value.trim();
-  if(store.query.length<1){sBox.classList.remove('open');if(document.getElementById('page-shop').classList.contains('active'))renderShop();return;}
-  const m=PRODUCTS.filter(p=>(p.name+p.brand+p.cat).toLowerCase().includes(store.query.toLowerCase())).slice(0,5);
-  sBox.innerHTML=m.length?m.map(p=>`<button onclick="openProduct(${p.id});hideSug()"><img src="${p.img}" alt=""><span><span class="sname">${p.name}</span><br><span class="sprice">${inr(p.price)}</span></span></button>`).join(''):`<div style="padding:14px;font-size:13px;color:#888">Koi product nahi mila “${store.query}”</div>`;
-  sBox.classList.add('open');
-  if(document.getElementById('page-shop').classList.contains('active'))renderShop();
-});
-sInput.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();hideSug();navigate('shop');}});
-sInput.addEventListener('focus',()=>{if(store.query)createSuggestOpen();});
-function createSuggestOpen(){sInput.dispatchEvent(new Event('input'));}
-function hideSug(){sBox.classList.remove('open');}
-document.addEventListener('click',e=>{if(!e.target.closest('.search'))hideSug();});
-
-/* ================= CART / WISHLIST ================= */
-function addToCart(id,qty=1,btn){
-  const p=byId(id);const ex=store.cart.find(c=>c.id===p.id);
-  if(ex)ex.qty+=qty;else store.cart.push({id:p.id,qty});
-  save();updateBadges();toast(`${p.name} added to bag 🪔`,true);
-  if(btn){btn.classList.add('in');btn.textContent='✓ In Bag';}
-  if(document.getElementById('page-cart').classList.contains('active'))renderCart();
-}
-function toggleWish(id,btn){
-  const i=store.wish.indexOf(id);
-  if(i>-1){store.wish.splice(i,1);toast('Removed from wishlist');}else{store.wish.push(id);toast('Saved to wishlist 💖',true);}
-  save();updateBadges();
-  if(btn)btn.classList.toggle('on',store.wish.includes(id));
-  if(document.getElementById('page-wishlist').classList.contains('active'))renderWish();
-  if(document.getElementById('page-shop').classList.contains('active'))renderShop();
-}
-function updateBadges(){
-  const cQty=store.cart.reduce((s,i)=>s+i.qty,0);
-  const set=(id,v)=>{const e=document.getElementById(id);if(!e)return;e.textContent=v||'';e.classList.toggle('hide',!v);};
-  set('cartBadge',cQty);set('navCartBadge',cQty);set('wishBadge',store.wish.length);set('navWishBadge',store.wish.length);
-}
-function renderWish(){
-  const list=PRODUCTS.filter(p=>store.wish.includes(p.id));
-  document.getElementById('wishCountText').textContent=`${list.length} wish${list.length===1?'':'es'} saved`;
-  document.getElementById('wishGrid').innerHTML=list.map(cardHTML).join('');
-  document.getElementById('wishEmpty').classList.toggle('hidden',list.length>0);
-}
-function moveAllWish(){
-  if(!store.wish.length)return toast('Wishlist khali hai');
-  store.wish.forEach(id=>{const ex=store.cart.find(c=>c.id===id);ex?ex.qty++:store.cart.push({id,qty:1});});
-  store.wish=[];save();updateBadges();renderWish();toast('All wishes moved to bag ✨',true);navigate('cart');
-}
-function setQty(id,d){const it=store.cart.find(c=>c.id===id);if(!it)return;it.qty+=d;if(it.qty<1)store.cart=store.cart.filter(c=>c.id!==id);save();updateBadges();renderCart();}
-function removeItem(id){store.cart=store.cart.filter(c=>c.id!==id);save();updateBadges();renderCart();toast('Item removed');}
-function totals(){
-  const sub=store.cart.reduce((s,i)=>s+byId(i.id).price*i.qty,0);
-  const mrp=store.cart.reduce((s,i)=>s+byId(i.id).mrp*i.qty,0);
-  let disc=0,ship=sub>0?(sub>=499?0:49):0,code=store.coupon;
-  if(code==='JINNY50')disc=Math.round(sub*.5);
-  else if(code==='WELCOME300')disc=sub>=999?300:0;
-  else if(code==='TRIPLE3')disc=Math.round(sub*.15);
-  else if(code==='FREESHIP'){ship=0;}
-  const total=Math.max(0,sub-disc+ship);
-  return{sub,mrp,disc,ship,total,code};
-}
-function renderCart(){
-  const t=totals();
-  document.getElementById('cartCountText').textContent=`${store.cart.reduce((s,i)=>s+i.qty,0)} item(s) · ${inr(t.sub)}`;
-  document.getElementById('cartList').innerHTML=store.cart.map(i=>{const p=byId(i.id);return `
-    <div class="litem">
-      <img src="${p.img}" alt="${p.name}" onclick="openProduct(${p.id})" onerror="this.style.opacity=.2">
-      <div class="li-body"><h4 onclick="openProduct(${p.id})" style="cursor:pointer">${p.name}</h4>
-        <small>${p.brand} · ${p.cat}</small>
-        <div class="li-price">${inr(p.price)} <s style="font-size:12px;color:#9a948a;font-weight:400">${inr(p.mrp)}</s></div>
-        <div class="qty"><button onclick="setQty(${p.id},-1)">−</button><span>${i.qty}</span><button onclick="setQty(${p.id},1)">+</button></div>
-      </div>
-      <div class="li-actions"><span style="font-weight:800">${inr(p.price*i.qty)}</span>
-        <button class="mini danger" onclick="removeItem(${p.id})">Remove</button></div>
-    </div>`;}).join('');
-  document.getElementById('cartSummary').innerHTML=`
-    <h3>Order Summary</h3>
-    <div class="row"><span>Subtotal</span><span>${inr(t.sub)}</span></div>
-    <div class="row"><span>You save (MRP)</span><span class="free">− ${inr(t.mrp-t.sub)}</span></div>
-    ${t.disc?`<div class="row"><span>Coupon ${t.code}</span><span class="free">− ${inr(t.disc)}</span></div>`:''}
-    <div class="row"><span>Delivery</span><span>${t.ship===0?'<span class="free">FREE</span>':inr(t.ship)}</span></div>
-    <div class="coupon-row"><input id="couponInput" placeholder="Coupon code (try JINNY50)" value="${t.code||''}"><button onclick="applyCoupon()">Apply</button></div>
-    ${t.code?`<div class="applied">✓ ${t.code} applied</div>`:''}
-    <div class="row total"><span>Total</span><span>${inr(t.total)}</span></div>
-    <button class="btn-gold" style="width:100%;margin-top:14px" onclick="startCheckout()">Proceed to Checkout →</button>
-    <p style="font-size:11.5px;color:#8b8578;margin-top:10px;text-align:center">🔒 100% secure payments · UPI · Cards · COD</p>`;
-  document.getElementById('cartEmpty').classList.toggle('hidden',store.cart.length>0);
-  document.querySelector('#page-cart .two-col').classList.toggle('hidden',store.cart.length===0);
-}
-function applyCoupon(){
-  const v=(document.getElementById('couponInput').value||'').trim().toUpperCase();
-  if(!COUPONS[v])return toast('Invalid coupon code 🚫');
-  store.coupon=v;save();renderCart();toast(`Coupon ${v} applied ✨`,true);
-}
-function copyCode(code,btn){
-  navigator.clipboard?.writeText(code).catch(()=>{});
-  toast(`Code ${code} copied ✨`,true);
-  if(btn&&btn.tagName==='BUTTON'){const o=btn.textContent;btn.textContent='COPIED ✓';setTimeout(()=>btn.textContent=o,1500);}
-}
-
-/* ================= PRODUCT MODAL ================= */
-function openProduct(id){
-  const p=byId(id);const wished=store.wish.includes(p.id);
-  document.getElementById('productBody').innerHTML=`
-    <div class="pv">
-      <img src="${p.img}" alt="${p.name}" onerror="this.style.opacity=.2">
-      <div class="pvinfo">
-        <div class="brandline">${p.brand}</div>
-        <h2>${p.name}</h2>
-        <div class="rating" style="margin-top:8px"><span class="stars">${stars(p.rating)}</span> ${p.rating} · ${p.rev} reviews</div>
-        <div class="price" style="margin-top:12px"><b style="font-size:24px">${inr(p.price)}</b><s>${inr(p.mrp)}</s><span class="save">${disc(p)}% OFF</span></div>
-        <p class="desc">${p.desc}</p>
-        <div class="pills"><span class="pill">${p.stock==='in'?'✅ In Stock':'⚠️ Only few left'}</span><span class="pill">🚚 Free delivery</span><span class="pill">🔄 7-day returns</span><span class="pill">🔒 Secure</span></div>
-        <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap">
-          <button class="btn-gold" onclick="addToCart(${p.id},1);closeModal('productModal')">Add to Bag</button>
-          <button class="btn-ghost" onclick="toggleWish(${p.id});openProduct(${p.id})">${wished?'♥ Saved':'♡ Wishlist'}</button>
-          <button class="btn-ghost" onclick="closeModal('productModal');quickAsk('Suggest something like ${p.name.replace(/'/g,"")}')">Ask Jinny</button>
-        </div>
-        <div class="summary" style="margin-top:14px;font-size:13px">
-          <b>Delivery:</b> Metro 2–3 days · Rest of India 4–7 days<br>
-          <b>Sold by:</b> Wish Jinny Verified Vendor · ✅ Jaadui Badge<br>
-          <b>Payments:</b> UPI · Cards · Netbanking · COD
-        </div>
-      </div>
-    </div>`;
-  document.getElementById('productModal').classList.add('open');
-}
-
-/* ================= CHECKOUT ================= */
-let coStep=1,coData={};
-function startCheckout(){
-  if(!store.cart.length)return toast('Bag khali hai');
-  coStep=1;coData={};renderCheckout();document.getElementById('checkoutModal').classList.add('open');
-}
-function stepsHTML(){
-  const labels=['Address','Payment','Review'];
-  return `<div class="steps">${labels.map((l,i)=>`<span class="step ${coStep===i+1?'on':coStep>i+1?'done':''}">${i+1}. ${l}</span>`).join('<span style="color:#ccc">→</span>')}</div>`;
-}
-function renderCheckout(){
-  const t=totals();const b=document.getElementById('checkoutBody');
-  if(coStep===1){
-    b.innerHTML=stepsHTML()+`<form id="addrForm" novalidate>
-      <div class="field"><label>Full name</label><input name="name" value="${coData.name||''}" placeholder="Rahul Sharma"><div class="err">Name required</div></div>
-      <div class="field"><label>Phone</label><input name="phone" value="${coData.phone||''}" placeholder="10-digit mobile"><div class="err">Valid 10-digit phone required</div></div>
-      <div class="field"><label>Address</label><textarea name="addr" placeholder="House no, street, landmark">${coData.addr||''}</textarea><div class="err">Address required (min 10 chars)</div></div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-        <div class="field"><label>City</label><input name="city" value="${coData.city||''}" placeholder="Jaipur"><div class="err">Required</div></div>
-        <div class="field"><label>PIN code</label><input name="pin" value="${coData.pin||''}" placeholder="302021"><div class="err">6-digit PIN</div></div>
-      </div>
-      <button class="btn-gold" style="width:100%" type="submit">Continue to Payment →</button></form>`;
-    document.getElementById('addrForm').addEventListener('submit',e=>{
-      e.preventDefault();const f=e.target;let ok=true;
-      const chk=(n,fn)=>{const el=f[n],fd=el.closest('.field');const good=fn(el.value.trim());fd.classList.toggle('bad',!good);if(!good)ok=false;return good;};
-      chk('name',v=>v.length>2);chk('phone',v=>/^[6-9]\d{9}$/.test(v.replace(/\s/g,'')));chk('addr',v=>v.length>=10);
-      chk('city',v=>v.length>1);chk('pin',v=>/^\d{6}$/.test(v));
-      if(!ok)return toast('Please fix the highlighted fields');
-      coData={...coData,...Object.fromEntries(new FormData(f).entries())};
-      coStep=2;renderCheckout();
-    });
-  } else if(coStep===2){
-    b.innerHTML=stepsHTML()+`
-      <div class="field"><label>Payment method</label>
-        <label style="display:flex;gap:10px;align-items:center;border:1.5px solid var(--line);border-radius:11px;padding:12px;margin-bottom:8px;cursor:pointer"><input type="radio" name="pay" value="UPI" checked> UPI / GPay / PhonePe</label>
-        <label style="display:flex;gap:10px;align-items:center;border:1.5px solid var(--line);border-radius:11px;padding:12px;margin-bottom:8px;cursor:pointer"><input type="radio" name="pay" value="Card"> Credit / Debit Card</label>
-        <label style="display:flex;gap:10px;align-items:center;border:1.5px solid var(--line);border-radius:11px;padding:12px;margin-bottom:8px;cursor:pointer"><input type="radio" name="pay" value="COD"> Cash on Delivery (+₹0)</label>
-      </div>
-      <div class="summary"><div class="row"><span>Items (${store.cart.reduce((s,i)=>s+i.qty,0)})</span><span>${inr(t.sub)}</span></div>
-      ${t.disc?`<div class="row"><span>Coupon ${t.code}</span><span class="free">− ${inr(t.disc)}</span></div>`:''}
-      <div class="row"><span>Delivery</span><span>${t.ship?inr(t.ship):'<span class="free">FREE</span>'}</span></div>
-      <div class="row total"><span>Payable</span><span>${inr(t.total)}</span></div></div>
-      <div style="display:flex;gap:10px;margin-top:14px"><button class="btn-ghost" onclick="coStep=1;renderCheckout()">← Back</button>
-      <button class="btn-gold" style="flex:1" onclick="payNow()">Pay ${inr(t.total)} Securely</button></div>`;
-  } else {
-    b.innerHTML=stepsHTML()+`<div class="summary" style="font-size:13.5px;line-height:1.9">
-      <b>Deliver to:</b> ${coData.name}, ${coData.addr}, ${coData.city} — ${coData.pin}<br>
-      <b>Phone:</b> ${coData.phone}<br><b>Payment:</b> ${coData.pay||'UPI'}</div>
-      <div style="margin-top:12px">${store.cart.map(i=>{const p=byId(i.id);return `<div class="litem" style="margin-bottom:8px"><img src="${p.img}" style="width:56px;height:56px" onerror="this.style.opacity=.2"><div class="li-body"><h4 style="font-size:13px">${p.name}</h4><small>Qty ${i.qty}</small></div><b>${inr(p.price*i.qty)}</b></div>`;}).join('')}</div>
-      <div class="row total"><span>Total</span><span>${inr(t.total)}</span></div>
-      <button class="btn-gold" style="width:100%;margin-top:12px" onclick="placeOrder()">✨ Place Order</button>
-      <button class="btn-ghost" style="width:100%;margin-top:8px" onclick="coStep=2;renderCheckout()">← Back to payment</button>`;
-  }
-}
-function payNow(){coData.pay=document.querySelector('input[name="pay"]:checked').value;coStep=3;renderCheckout();}
-function placeOrder(){
-  const t=totals();const id='WJ'+Math.floor(100000+Math.random()*899999);
-  orders.unshift({id,date:new Date().toLocaleDateString('en-IN'),total:t.total,items:store.cart.reduce((s,i)=>s+i.qty,0),status:'Packed ✨'});
-  store.cart=[];store.coupon='';save();updateBadges();
-  document.getElementById('checkoutBody').innerHTML=`
-    <div style="text-align:center;padding:12px 0">
-      <div style="font-size:56px">🪔</div>
-      <h2 style="font-family:'Playfair Display',serif;font-size:26px;font-weight:900;margin-top:6px">Wish Fulfilled!</h2>
-      <p style="color:#666;margin-top:8px;font-size:14px">Order <b>${id}</b> placed successfully.<br>Amount paid: <b>${inr(t.total)}</b></p>
-      <p style="font-size:13px;color:#8a8478;margin-top:10px">Delivery by ${new Date(Date.now()+3*864e5).toDateString().slice(0,10)} · Track it in My Orders.</p>
-      <div style="display:flex;gap:10px;justify-content:center;margin-top:18px;flex-wrap:wrap">
-        <button class="btn-gold" onclick="closeModal('checkoutModal');navigate('account')">Track Order</button>
-        <button class="btn-ghost" onclick="closeModal('checkoutModal');navigate('shop')">Continue Shopping</button>
-      </div></div>`;
-  renderCart();toast('Order placed — shukriya! 🎉',true);
-}
-const orders=[{id:'WJ482913',date:'12 Jun 2025',total:13499,items:2,status:'Delivered ✓'},{id:'WJ510224',date:'28 Jun 2025',total:5899,items:1,status:'Out for delivery 🚚'},{id:'WJ529980',date:'02 Jul 2025',total:21999,items:1,status:'Packed ✨'}];
-function openOrders(){
-  document.getElementById('ordersBody').innerHTML=orders.map(o=>`
-    <div class="litem"><div style="width:52px;height:52px;border-radius:12px;background:linear-gradient(180deg,#f7e6b4,#d9b24d);display:grid;place-items:center;font-size:22px;flex:none">📦</div>
-      <div class="li-body"><h4>Order ${o.id}</h4><small>${o.date} · ${o.items} item(s)</small>
-      <div class="li-price">${inr(o.total)}</div>
-      <div style="font-size:12px;font-weight:700;color:var(--gold-dark);margin-top:4px">${o.status}</div></div>
-      <div class="li-actions"><button class="mini" onclick="toast('Tracking link sent to your email ✉️')">Track</button>
-      <button class="mini danger" onclick="toast('Return requested — pickup scheduled')">Return</button></div></div>`).join('');
-  document.getElementById('ordersModal').classList.add('open');
-}
-
-/* ================= TOAST ================= */
-function toast(msg,ok){
-  const d=document.createElement('div');d.className='toast'+(ok?' ok':'');d.textContent=msg;
-  document.getElementById('toasts').appendChild(d);
-  setTimeout(()=>{d.style.opacity='0';d.style.transform='translateY(10px)';d.style.transition='.3s';setTimeout(()=>d.remove(),300);},2400);
-}
-
-/* ================= FORMS ================= */
-function bindForm(id,fn){
-  const f=document.getElementById(id);if(!f)return;
-  f.addEventListener('submit',e=>{e.preventDefault();if(fn(f))f.reset();});
-}
-bindForm('contactForm',f=>{
-  let ok=true;const chk=(n,fn)=>{const el=f[n],fd=el.closest('.field');const g=fn(el.value.trim());fd.classList.toggle('bad',!g);if(!g)ok=false;};
-  chk('cname',v=>v.length>1);chk('cemail',v=>/^\S+@\S+\.\S+$/.test(v));chk('cmsg',v=>v.length>=10);
-  if(!ok)return toast('Please complete the form');
-  toast('Message sent! Jinny 24 hrs mein reply karega ✨',true);return true;
-});
-bindForm('vendorForm',f=>{
-  let ok=true;const chk=(n,fn)=>{const el=f[n],fd=el.closest('.field');const g=fn(el.value.trim());fd.classList.toggle('bad',!g);if(!g)ok=false;};
-  chk('bname',v=>v.length>2);chk('gst',v=>/^[0-9A-Z]{15}$/.test(v.replace(/\s/g,'')));
-  chk('vemail',v=>/^\S+@\S+\.\S+$/.test(v));chk('vphone',v=>v.replace(/\D/g,'').length>=10);
-  if(!ok)return toast('Please fix the highlighted fields');
-  toast('Application submitted! Verification in 48 hrs ✅',true);return true;
-});
-
-/* ================= AI JINNY ================= */
-const chat=document.getElementById('chat'),clog=document.getElementById('clog');
-function toggleChat(){chat.classList.toggle('open');if(chat.classList.contains('open')&&!clog.children.length)botSay("Namaste! Main <b>AI Jinny</b> hoon 🪔 Aapki wish bolo — main products, offers aur orders mein madad karunga.");}
-function openChat(){chat.classList.add('open');if(!clog.children.length)botSay("Namaste! Main <b>AI Jinny</b> hoon 🪔 Aapki wish bolo — main products, offers aur orders mein madad karunga.");}
-function quickAsk(t){chat.classList.add('open');send(t);}
-document.getElementById('chatForm').addEventListener('submit',e=>{e.preventDefault();const i=document.getElementById('chatInput');if(!i.value.trim())return;send(i.value);i.value='';});
-function meSay(t){const d=document.createElement('div');d.className='msg me';d.innerHTML=t;clog.appendChild(d);clog.scrollTop=clog.scrollHeight;}
-function botSay(html){const d=document.createElement('div');d.className='msg bot';d.innerHTML=html;clog.appendChild(d);clog.scrollTop=clog.scrollHeight;}
-function send(t){
-  meSay(t.replace(/</g,'&lt;'));
-  const typing=document.createElement('div');typing.className='msg bot';typing.innerHTML='<span class="spinner"></span> Jinny soch raha hai…';clog.appendChild(typing);clog.scrollTop=clog.scrollHeight;
-  setTimeout(()=>{typing.remove();reply(t);},650);
-}
-function reply(q){
-  const s=q.toLowerCase();
-  if(/order|track|parcel|delivery status/.test(s)){
-    return botSay(`Aapke active orders:<br><b>${orders[0].id}</b> — ${orders[0].status} (${inr(orders[0].total)})<br><b>${orders[1].id}</b> — ${orders[1].status}<br><br>Full details <i>Account → My Orders</i> mein hain.`);
-  }
-  if(/offer|coupon|sale|discount|deal/.test(s)){
-    return botSay(`Aaj ka jaadui offer: <b>FLAT 50% OFF</b> — code <b>JINNY50</b> 🪔<br>Saath mein <b>WELCOME300</b> (₹300 off) aur <b>FREESHIP</b> available hain.<br><button class="btn-gold" style="margin-top:10px;padding:9px 16px;font-size:12.5px" onclick="navigate('offers');chat.classList.remove('open')">See all offers</button>`);
-  }
-  if(/gift|present|birthday|anniversary/.test(s)){
-    const g=PRODUCTS.filter(p=>p.price<=50000).sort((a,b)=>a.rating-b.rating).slice(0,3);
-    return botSay("Gift ke liye Jinny ki top picks ✨"+g.map(prodHTML).join(''));
-  }
-  if(/5000|5,000|under 5|sasta|budget|cheap/.test(s)){
-    const g=PRODUCTS.filter(p=>p.price<=5000).sort((a,b)=>b.rating-a.rating).slice(0,3);
-    return botSay("₹5,000 ke andar best-rated wishes 🪔"+g.map(prodHTML).join(''));
-  }
-  if(/return|refund|replace/.test(s)){
-    return botSay("Return bahut aasan hai: <i>Account → My Orders → Return</i>. Free pickup hoga aur refund 72 hours mein aa jayega. 7 days ka window hai.");
-  }
-  if(/vendor|sell|seller|gst/.test(s)){
-    return botSay("Vendor ke liye <b>Vendor Verification</b> form bharein — GSTIN ke saath 48 hours mein ✅ Jaadui Badge milega.<br><button class=\"btn-gold\" style=\"margin-top:10px;padding:9px 16px;font-size:12.5px\" onclick=\"navigate('vendor');chat.classList.remove('open')\">Apply as Seller</button>");
-  }
-  if(/hi|hello|hey|namaste|namaskar/.test(s))return botSay("Namaste ji! 🪔 Batayein — kya dhoondh rahe hain aaj? (Electronics, Fashion, Beauty…)");
-  // product search fallback
-  const words=s.split(/\s+/).filter(w=>w.length>2);
-  const hits=PRODUCTS.filter(p=>words.some(w=>(p.name+' '+p.brand+' '+p.cat+' '+p.desc).toLowerCase().includes(w)));
-  if(hits.length){
-    return botSay(`Jinny ko ${hits.length} wish mili ✨<br>Yeh dekhiye:`+hits.slice(0,3).map(prodHTML).join('')+`<br><button class="btn-ghost" style="margin-top:10px;padding:8px 14px;font-size:12.5px" onclick="navigate('shop');chat.classList.remove('open')">Store mein dekhein</button>`);
-  }
-  botSay("Jinny ko samajh nahi aaya 😅 Kripaya product ka naam, category (Electronics/Fashion/Beauty) ya budget batayein — jaise “headphones under 5000”.");
-}
-function prodHTML(p){return `<div class="mprod" onclick="openProduct(${p.id});chat.classList.remove('open')"><img src="${p.img}" onerror="this.style.opacity=.2"><div style="flex:1"><b style="font-size:13px">${p.name}</b><br><span style="font-size:12px;color:#8a6410;font-weight:700">${inr(p.price)}</span> <s style="font-size:11px;color:#aaa">${inr(p.mrp)}</s></div></div>`;}
-
-/* ================= COUNTDOWN ================= */
-function tick(){
-  const now=new Date(),end=new Date(now);end.setHours(23,59,59,999);
-  let d=Math.max(0,end-now);
-  const h=String(Math.floor(d/3.6e6)).padStart(2,'0'),m=String(Math.floor(d%3.6e6/6e4)).padStart(2,'0'),s=String(Math.floor(d%6e4/1000)).padStart(2,'0');
-  document.getElementById('cd-h').textContent=h;document.getElementById('cd-m').textContent=m;document.getElementById('cd-s').textContent=s;
-}
-tick();setInterval(tick,1000);
-
-/* ================= INIT ================= */
-renderHome();updateBadges();renderShop();
-window.addEventListener('load',()=>{document.querySelectorAll('img').forEach(i=>{i.loading='lazy';});});
-</script>
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
 </body>
 </html>
