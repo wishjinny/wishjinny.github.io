@@ -1,1652 +1,1411 @@
-<!DOCTYPE html>
-<html lang="hi">
+index.html
+
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wish Jinny // Flat 50% Off Everything • 7 Curated Departments</title>
-  <meta name="description" content="Wish Jinny - 7 Core Departments at Flat 50% Discount: Cosmetics, Jewelries, Garments, Footwears, Undergarments, Gadgets, and Kitchenware with Cash on Delivery across India." />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Wish Jinny — Jinny Will Fulfill Your Every Wish</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600;1,700&display=swap" rel="stylesheet">
+<style>
+/* ============ BASE ============ */
+:root{
+  --gold:#b8860b; --gold2:#d4a72c; --gold3:#f3d27a; --gold-dark:#8a6410; --gold-soft:#fdf6e3;
+  --ink:#141210; --muted:#6f6a61; --line:#e8e0c9; --paper:#ffffff; --soft:#f7f5ef;
+  --red:#e0282e; --green:#1f7a3a; --navy:#0b1030;
+  --nav-h:64px; --head-h:0px;
+  --shadow:0 10px 30px rgba(60,40,0,.10);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{
+  font-family:'Inter',system-ui,-apple-system,sans-serif;color:var(--ink);
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+button,input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-thumb{background:#d9cd9f;border-radius:8px}
+::-webkit-scrollbar-track{background:transparent}
 
-  <!-- Google Fonts: Editorial Serif & Clean Sans -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&family=Yantramanav:wght@400;500;700;900&display=swap" rel="stylesheet" />
+/* ============ FULL SCREEN MAGICAL BACKGROUND ============ */
+#magicbg{position:fixed;inset:0;z-index:-3;
+  background:
+    radial-gradient(1200px 700px at 15% 0%, #1b2a6b 0%, transparent 60%),
+    radial-gradient(900px 700px at 90% 15%, #3a1e63 0%, transparent 55%),
+    radial-gradient(1000px 800px at 50% 110%, #07202f 0%, transparent 60%),
+    linear-gradient(180deg,#050716 0%, #0b1030 40%, #120a24 100%);
+}
+#magicbg::after{content:"";position:absolute;inset:0;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/></filter><rect width='160' height='160' filter='url(%23n)' opacity='.35'/></svg>");
+  opacity:.22;mix-blend-mode:overlay}
+.stars{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden}
+.star{position:absolute;color:#ffe9a8;font-size:12px;opacity:.6;animation:twinkle 3.2s ease-in-out infinite;text-shadow:0 0 10px rgba(255,220,140,.9)}
+@keyframes twinkle{0%,100%{opacity:.15;transform:scale(.7) rotate(0deg)}50%{opacity:.95;transform:scale(1.25) rotate(25deg)}}
+.lamp-glow{position:fixed;left:50%;top:12%;width:60vw;height:60vw;max-width:760px;max-height:760px;transform:translate(-50%,-30%);
+  background:radial-gradient(circle,rgba(240,190,80,.20) 0%,rgba(120,60,180,.10) 40%,transparent 70%);z-index:-2;pointer-events:none;filter:blur(10px);animation:breathe 7s ease-in-out infinite}
+@keyframes breathe{0%,100%{opacity:.7;transform:translate(-50%,-30%) scale(1)}50%{opacity:1;transform:translate(-50%,-30%) scale(1.12)}}
 
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            canvas: '#FAF9F6',
-            ink: '#1A1A1A',
-            hairline: '#E5E2DC',
-            vermilion: '#D93D26',
-            gold: '#C59B27',
-            mutedText: '#73706B'
-          },
-          fontFamily: {
-            serif: ['"Playfair Display"', 'Georgia', 'serif'],
-            sans: ['"Plus Jakarta Sans"', '"Yantramanav"', 'system-ui', 'sans-serif'],
-            mono: ['"Space Mono"', 'monospace'],
-            cinzel: ['"Cinzel"', 'serif'],
-          }
-        }
-      }
-    }
-  </script>
+/* ============ APP SHELL ============ */
+.app{width:100%;min-height:100dvh;position:relative;
+  background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(255,253,247,.98));
+  padding-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom));
+}
+.wrap{width:100%;max-width:1320px;margin:0 auto;padding:0 clamp(12px,3vw,28px)}
+.page{display:none}
+.page.active{display:block;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
-  <!-- React 18 & ReactDOM 18 CDN -->
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+/* ============ HEADER ============ */
+.hero{position:relative;text-align:center;padding:clamp(14px,3vw,26px) 16px 6px;overflow:hidden;
+  background:
+    radial-gradient(700px 260px at 50% -40%, rgba(243,210,122,.55), transparent 70%),
+    linear-gradient(180deg,#fffdf6 0%,#ffffff 100%);
+  border-bottom:1px solid var(--line)}
+.hero::before,.hero::after{content:"";position:absolute;width:120px;height:120px;border:1px solid rgba(184,134,111,.35);border-radius:50%;top:-40px}
+.hero::before{left:-45px}.hero::after{right:-45px}
+.logo-mark{width:clamp(110px,20vw,150px);height:clamp(110px,20vw,150px);margin:0 auto;border-radius:50%;
+  background:linear-gradient(160deg,#f6e2a5,#c99b2c 45%,#7a5409);
+  padding:4px;box-shadow:0 14px 34px rgba(150,110,20,.35), inset 0 0 0 1px rgba(255,255,255,.5);cursor:pointer;
+  animation:float 6s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.logo-mark .inner{width:100%;height:100%;border-radius:50%;overflow:hidden;background:#0c1436;display:grid;place-items:center}
+.logo-mark img{width:100%;height:100%;object-fit:cover}
+.brand{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(30px,7vw,54px);letter-spacing:2px;line-height:1;margin-top:12px;
+  background:linear-gradient(180deg,#e9c766 0%,#b8860b 45%,#6f4d08 100%);-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 1px 0 rgba(255,255,255,.6))}
+.brand-sub{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:clamp(14px,3.4vw,20px);letter-spacing:.5px;margin-top:4px;
+  background:linear-gradient(180deg,#c9a13a,#8a6410);-webkit-background-clip:text;background-clip:text;color:transparent}
+.tagline{font-size:clamp(12px,3vw,15px);color:var(--muted);margin-top:6px;font-weight:500}
+.rule{display:flex;align-items:center;gap:10px;justify-content:center;margin:12px auto 4px;max-width:420px;color:var(--gold2)}
+.rule i{height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--gold2),transparent)}
 
-  <!-- Babel Standalone (In-Browser JSX compilation) -->
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+/* toolbar */
+.toolbar{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);box-shadow:0 6px 20px rgba(90,70,10,.06)}
+.toolbar .wrap{display:flex;align-items:center;gap:10px;padding-top:10px;padding-bottom:10px}
+.search{flex:1;display:flex;align-items:center;gap:8px;background:var(--soft);border:1.5px solid transparent;border-radius:999px;padding:0 14px;height:46px;position:relative;transition:.2s}
+.search:focus-within{border-color:var(--gold2);background:#fff;box-shadow:0 0 0 4px rgba(212,167,44,.16)}
+.search input{flex:1;border:0;background:transparent;outline:none;font-size:14px;min-width:0}
+.search svg{width:19px;height:19px;color:#9a9384;flex:none}
+.suggest{position:absolute;top:54px;left:0;right:0;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 18px 40px rgba(0,0,0,.16);overflow:hidden;z-index:80;display:none;text-align:left}
+.suggest.open{display:block}
+.suggest button{display:flex;gap:10px;align-items:center;width:100%;padding:9px 12px;text-align:left;border-bottom:1px solid #f2eee2}
+.suggest button:hover{background:var(--gold-soft)}
+.suggest img{width:38px;height:38px;border-radius:9px;object-fit:cover;background:#eee}
+.suggest .sname{font-size:13px;font-weight:600}
+.suggest .sprice{font-size:12px;color:var(--gold-dark);font-weight:700}
+.iconbtn{position:relative;width:42px;height:42px;display:grid;place-items:center;border-radius:13px;transition:.15s;background:#fff;border:1px solid var(--line)}
+.iconbtn:active{transform:scale(.9)}
+.iconbtn:hover{background:var(--gold-soft);border-color:var(--gold3)}
+.iconbtn svg{width:22px;height:22px}
+.badge{position:absolute;top:-6px;right:-6px;min-width:19px;height:19px;padding:0 5px;border-radius:10px;background:linear-gradient(180deg,#2b2b2b,#000);color:#fff;font-size:10px;font-weight:800;display:grid;place-items:center;border:2px solid #fff}
+.badge.hide{display:none}
+.avatar{width:42px;height:42px;border-radius:50%;background:radial-gradient(circle at 38% 32%,#8bb6ff,#21489b);display:grid;place-items:center;color:#fff;font-weight:800;font-size:14px;border:2px solid var(--gold3);cursor:pointer}
 
-  <!-- Canvas Confetti CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+/* ============ SALE BANNER ============ */
+.sale-banner{position:relative;overflow:hidden;margin:clamp(14px,3vw,26px) 0;padding:clamp(22px,5vw,46px) clamp(16px,4vw,50px);
+  color:#fff9e8;text-align:center;
+  background:
+    radial-gradient(600px 300px at 20% 20%, rgba(255,205,90,.30), transparent 60%),
+    radial-gradient(500px 320px at 85% 80%, rgba(150,80,255,.35), transparent 60%),
+    linear-gradient(120deg,#1a1147 0%,#3a1c6d 45%,#12245c 100%);
+  border-top:2px solid var(--gold2);border-bottom:2px solid var(--gold2)}
+.sale-banner::before{content:"";position:absolute;inset:0;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='120' height='120' filter='url(%23n)' opacity='.5'/></svg>");opacity:.2;mix-blend-mode:overlay}
+.sale-inner{position:relative;z-index:2;max-width:1000px;margin:0 auto}
+.sale-kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:3px;font-weight:800;text-transform:uppercase;color:var(--gold3);border:1px solid rgba(243,210,122,.5);padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.06)}
+.sale-title{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(38px,11vw,86px);line-height:.95;margin:14px 0 4px;
+  background:linear-gradient(180deg,#fff6d8 0%,#f3d27a 40%,#c68f14 75%,#8a6410 100%);-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 6px 18px rgba(255,205,90,.35))}
+.sale-sub{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(14px,3.6vw,22px);color:#f0e6ff}
+.coupon{display:inline-flex;align-items:center;gap:10px;margin-top:16px;padding:8px 8px 8px 16px;border:1.5px dashed var(--gold3);border-radius:12px;background:rgba(0,0,0,.28);font-weight:800;letter-spacing:2px}
+.coupon button{background:linear-gradient(180deg,#f3d27a,#c68f14);color:#2a1c00;font-size:12px;font-weight:800;padding:8px 14px;border-radius:8px;letter-spacing:1px}
+.countdown{display:flex;gap:10px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+.cd{min-width:66px;background:rgba(255,255,255,.08);border:1px solid rgba(243,210,122,.35);border-radius:12px;padding:8px 6px;backdrop-filter:blur(6px)}
+.cd b{display:block;font-size:24px;font-weight:900;color:#ffe9a8;font-variant-numeric:tabular-nums}
+.cd span{font-size:10px;letter-spacing:1.6px;color:#d9cdea;text-transform:uppercase}
+.btn-gold{display:inline-block;background:linear-gradient(180deg,#f0cb63 0%,#c2920f 55%,#8a6410 100%);color:#231700;font-weight:800;
+  padding:13px 26px;border-radius:999px;box-shadow:0 8px 22px rgba(198,143,20,.45),inset 0 1px 0 rgba(255,255,255,.5);transition:.18s;letter-spacing:.4px}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(198,143,20,.55)}
+.btn-gold:active{transform:translateY(1px)}
+.btn-ghost{display:inline-block;border:1.5px solid var(--gold2);color:var(--gold-dark);font-weight:700;padding:12px 24px;border-radius:999px;background:#fff;transition:.18s}
+.btn-ghost:hover{background:var(--gold-soft)}
 
-  <style>
-    body {
-      background-color: #FAF9F6;
-      color: #1A1A1A;
-      font-family: 'Plus Jakarta Sans', 'Yantramanav', sans-serif;
-      margin: 0;
-      padding: 0;
-      -webkit-font-smoothing: antialiased;
-    }
-    ::selection {
-      background: #D93D26;
-      color: #FFFFFF;
-    }
-    ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #FAF9F6;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #D5D1C8;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #1A1A1A;
-    }
-  </style>
+/* ============ SECTIONS ============ */
+.sec{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding:clamp(18px,4vw,30px) 0 10px;flex-wrap:wrap}
+.sec h2{font-family:'Playfair Display',serif;font-size:clamp(20px,4.6vw,30px);font-weight:900;line-height:1.1}
+.sec h2 em{font-style:italic;color:var(--gold-dark)}
+.sec p{font-size:13px;color:var(--muted);margin-top:4px}
+.link{color:var(--gold-dark);font-weight:700;font-size:13px;display:inline-flex;align-items:center;gap:5px}
+.link:hover{text-decoration:underline}
+.sec-head-center{text-align:center;display:block;padding-top:clamp(20px,4vw,34px)}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:6px 0}
+
+/* categories rail */
+.rail{display:flex;gap:12px;overflow-x:auto;padding:6px 0 14px;scrollbar-width:none;scroll-snap-type:x mandatory}
+.rail::-webkit-scrollbar{display:none}
+.cat{flex:none;width:120px;text-align:center;scroll-snap-align:start;transition:.2s}
+.cat:hover{transform:translateY(-4px)}
+.cat .circ{width:120px;height:120px;border-radius:50%;overflow:hidden;border:2px solid var(--gold3);box-shadow:0 8px 20px rgba(120,90,10,.14);background:#f2ecdc}
+.cat .circ img{width:100%;height:100%;object-fit:cover}
+.cat span{display:block;margin-top:8px;font-size:12.5px;font-weight:700}
+.cat.on .circ{border-color:var(--gold);box-shadow:0 0 0 4px rgba(212,167,44,.22)}
+
+/* category grid page */
+.catgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;padding-bottom:10px}
+.catcard{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#fff;box-shadow:var(--shadow);transition:.2s}
+.catcard:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(90,70,10,.18)}
+.catcard img{aspect-ratio:4/3;object-fit:cover;width:100%}
+.catcard .cc-body{padding:10px 12px 12px}
+.catcard h3{font-size:14.5px;font-weight:800}
+.catcard small{color:var(--muted);font-size:12px}
+
+/* ============ PRODUCT GRID ============ */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(10px,2.4vw,18px);padding-bottom:8px}
+@media(min-width:620px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:960px){.grid{grid-template-columns:repeat(4,1fr)}}
+@media(min-width:1320px){.grid{grid-template-columns:repeat(5,1fr)}}
+.card{border:1px solid var(--line);border-radius:16px;background:#fff;overflow:hidden;box-shadow:0 3px 14px rgba(70,50,0,.07);display:flex;flex-direction:column;position:relative;transition:.2s}
+.card:hover{transform:translateY(-4px);box-shadow:0 18px 34px rgba(90,70,10,.16);border-color:var(--gold3)}
+.thumb{aspect-ratio:1/1;position:relative;overflow:hidden;background:linear-gradient(160deg,#f8f4e6,#efe7cf);cursor:pointer}
+.thumb img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.card:hover .thumb img{transform:scale(1.07)}
+.tag-b{position:absolute;top:9px;left:9px;font-size:10.5px;font-weight:800;padding:5px 9px;border-radius:999px;background:#12183a;color:#ffd257;letter-spacing:.3px}
+.tag-b.best{background:#12183a;color:#fff}
+.tag-b.new{background:#0f5c2c;color:#fff}
+.off{position:absolute;top:9px;right:9px;font-size:10.5px;font-weight:800;padding:5px 8px;border-radius:999px;background:var(--red);color:#fff}
+.heart{position:absolute;bottom:9px;right:9px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.94);display:grid;place-items:center;box-shadow:0 3px 10px rgba(0,0,0,.16);transition:.15s}
+.heart svg{width:18px;height:18px;fill:none;stroke:#333;stroke-width:2}
+.heart.on svg{fill:var(--red);stroke:var(--red)}
+.heart:active{transform:scale(.85)}
+.info{padding:11px 11px 12px;display:flex;flex-direction:column;flex:1}
+.meta{display:flex;justify-content:space-between;gap:6px;font-size:11.5px;color:#7a746a;font-weight:600}
+.meta .stock.low{color:#c0392b}
+.meta .stock.in{color:var(--green)}
+.name{font-weight:700;font-size:14px;margin-top:4px;line-height:1.32;cursor:pointer;flex:1}
+.name:hover{color:var(--gold-dark)}
+.rating{display:flex;align-items:center;gap:5px;font-size:11.5px;margin-top:6px;color:#555}
+.stars{color:#f5a623;letter-spacing:-1px;font-size:12.5px}
+.price{margin-top:8px;display:flex;align-items:baseline;gap:7px;flex-wrap:wrap}
+.price b{font-size:17px}
+.price s{color:#9a948a;font-size:12.5px}
+.price .save{font-size:11px;color:var(--green);font-weight:700}
+.addbtn{margin-top:10px;width:100%;height:40px;border-radius:10px;color:#fff;font-weight:800;font-size:13.5px;letter-spacing:.3px;
+  background:linear-gradient(180deg,#ddb852 0%,#a87d17 55%,#7d5a0c 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 4px 10px rgba(138,100,16,.28);transition:.15s}
+.addbtn:active{transform:translateY(1px);filter:brightness(.95)}
+.addbtn.in{background:linear-gradient(180deg,#2f7a45,#1e5a30)}
+
+/* filters */
+.filterbar{position:sticky;top:67px;z-index:40;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:10px 0}
+.chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.chips::-webkit-scrollbar{display:none}
+.fchip{flex:none;padding:8px 15px;border-radius:999px;border:1.5px solid var(--line);font-size:12.5px;font-weight:700;background:#fff;transition:.15s;white-space:nowrap}
+.fchip:hover{border-color:var(--gold2)}
+.fchip.on{background:linear-gradient(180deg,#2a2a2a,#000);color:#fff;border-color:#000}
+.sortrow{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0;font-size:12.5px;color:var(--muted);flex-wrap:wrap}
+.sortrow select{border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;background:#fff;font-weight:600;font-size:12.5px;outline:none}
+.sortrow select:focus{border-color:var(--gold2)}
+.range{display:flex;align-items:center;gap:8px}
+.range input{accent-color:var(--gold);width:130px}
+.switch{display:inline-flex;align-items:center;gap:7px;font-weight:600;cursor:pointer}
+.switch input{accent-color:var(--gold);width:16px;height:16px}
+.empty{text-align:center;padding:50px 20px;color:var(--muted)}
+.empty .big{font-size:46px}
+
+/* ============ LISTS (cart / wishlist) ============ */
+.two-col{display:grid;grid-template-columns:1fr;gap:18px;padding:14px 0 20px}
+@media(min-width:900px){.two-col{grid-template-columns:1.6fr 1fr;align-items:start}}
+.litem{display:flex;gap:12px;border:1px solid var(--line);border-radius:14px;background:#fff;padding:10px;box-shadow:0 2px 10px rgba(70,50,0,.05);margin-bottom:12px}
+.litem img{width:88px;height:88px;border-radius:10px;object-fit:cover;background:#f1ecdd;flex:none}
+.litem .li-body{flex:1;min-width:0}
+.litem h4{font-size:14px;font-weight:700;line-height:1.3}
+.litem small{color:var(--muted);font-size:12px}
+.li-price{font-weight:800;margin-top:6px;font-size:15px}
+.qty{display:inline-flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;overflow:hidden;margin-top:8px}
+.qty button{width:32px;height:32px;font-weight:800;font-size:16px;background:var(--soft)}
+.qty button:hover{background:var(--gold-soft)}
+.qty span{width:38px;text-align:center;font-weight:700;font-size:14px}
+.li-actions{display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between;gap:8px}
+.mini{font-size:12px;font-weight:700;color:var(--gold-dark)}
+.mini.danger{color:var(--red)}
+.panel{border:1px solid var(--line);border-radius:16px;background:#fff;padding:16px;box-shadow:var(--shadow);position:sticky;top:150px}
+.panel h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:900;margin-bottom:10px}
+.row{display:flex;justify-content:space-between;font-size:13.5px;padding:6px 0;color:#4c4740}
+.row.total{border-top:1px dashed var(--line);margin-top:6px;padding-top:12px;font-size:17px;font-weight:900;color:var(--ink)}
+.row .free{color:var(--green);font-weight:700}
+.coupon-row{display:flex;gap:8px;margin:10px 0}
+.coupon-row input{flex:1;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;outline:none;font-size:13px;min-width:0}
+.coupon-row input:focus{border-color:var(--gold2)}
+.coupon-row button{padding:0 16px;border-radius:10px;background:#111;color:#fff;font-weight:700;font-size:13px}
+.applied{font-size:12px;color:var(--green);font-weight:700;margin-bottom:6px}
+
+/* ============ OFFERS ============ */
+.offer-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;padding-bottom:10px}
+.offer{border-radius:16px;padding:18px;color:#fff;position:relative;overflow:hidden;min-height:170px;display:flex;flex-direction:column;justify-content:space-between;
+  box-shadow:var(--shadow);transition:.2s}
+.offer:hover{transform:translateY(-4px)}
+.offer h3{font-family:'Playfair Display',serif;font-size:26px;font-weight:900;line-height:1}
+.offer p{font-size:12.5px;opacity:.9;margin-top:6px}
+.offer .code{margin-top:12px;align-self:flex-start;border:1.5px dashed rgba(255,255,255,.7);border-radius:9px;padding:7px 12px;font-weight:800;letter-spacing:2px;font-size:12.5px;background:rgba(0,0,0,.2)}
+.o1{background:linear-gradient(140deg,#3a1c6d,#12245c)}
+.o2{background:linear-gradient(140deg,#8a6410,#d4a72c)}
+.o3{background:linear-gradient(140deg,#0f4c3a,#1f9c6b)}
+.o4{background:linear-gradient(140deg,#6d1230,#c2305a)}
+
+/* ============ ABOUT / CONTACT ============ */
+.prose{font-size:14.5px;line-height:1.75;color:#413c34;max-width:820px}
+.prose p{margin-bottom:12px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:14px;margin:18px 0}
+.stat{border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center;background:linear-gradient(180deg,#fffdf6,#f9f4e6)}
+.stat b{display:block;font-size:26px;font-weight:900;color:var(--gold-dark);font-family:'Playfair Display',serif}
+.stat span{font-size:12px;color:var(--muted)}
+.field{margin-bottom:12px}
+.field label{display:block;font-size:12.5px;font-weight:700;margin-bottom:6px}
+.field input,.field textarea,.field select{width:100%;border:1.5px solid var(--line);border-radius:11px;padding:12px 13px;outline:none;background:#fff;font-size:14px;transition:.15s}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--gold2);box-shadow:0 0 0 4px rgba(212,167,44,.14)}
+.field textarea{min-height:110px;resize:vertical}
+.field .err{color:var(--red);font-size:11.5px;margin-top:5px;display:none;font-weight:600}
+.field.bad input,.field.bad textarea{border-color:var(--red)}
+.field.bad .err{display:block}
+.acc{border:1px solid var(--line);border-radius:13px;background:#fff;margin-bottom:10px;overflow:hidden}
+.acc h4{padding:14px 16px;font-size:14px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;gap:10px}
+.acc .acc-body{max-height:0;overflow:hidden;transition:max-height .32s ease;font-size:13.5px;color:#555;line-height:1.65}
+.acc .acc-body div{padding:0 16px 15px}
+.acc.open h4{color:var(--gold-dark)}
+.acc .plus{transition:.25s;font-weight:800;color:var(--gold)}
+.acc.open .plus{transform:rotate(45deg)}
+.info-card{border:1px solid var(--line);border-radius:16px;padding:18px;background:linear-gradient(180deg,#fffdf6,#fff);box-shadow:var(--shadow);margin-bottom:14px}
+.info-card h4{font-size:15px;font-weight:800;margin-bottom:6px}
+.info-card p{font-size:13.5px;color:#555;line-height:1.6}
+
+/* ============ TRUST / PROMO ============ */
+.cards3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;padding:6px 0 10px}
+.tcard{border:1px solid var(--line);border-radius:16px;padding:18px;background:#fff;box-shadow:0 3px 14px rgba(70,50,0,.06);transition:.2s}
+.tcard:hover{transform:translateY(-3px);border-color:var(--gold3)}
+.tcard .ic{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(180deg,#f7e6b4,#d9b24d);font-size:22px;margin-bottom:10px}
+.tcard h4{font-size:15px;font-weight:800;margin-bottom:5px}
+.tcard p{font-size:13px;color:var(--muted);line-height:1.6}
+.jinny-promo{margin:20px 0;border-radius:20px;overflow:hidden;position:relative;color:#fff;
+  background:radial-gradient(500px 250px at 15% 10%,rgba(255,205,90,.32),transparent 60%),linear-gradient(120deg,#1a1147,#0f2a5c 60%,#2b1250);
+  padding:clamp(20px,4vw,34px);display:flex;gap:18px;align-items:center;flex-wrap:wrap;border:1px solid rgba(243,210,122,.4)}
+.jinny-promo .jp-txt{flex:1;min-width:220px}
+.jinny-promo h3{font-family:'Playfair Display',serif;font-size:clamp(22px,5vw,32px);font-weight:900}
+.jinny-promo p{font-size:13.5px;color:#ddd4f0;margin-top:6px;max-width:560px;line-height:1.6}
+.jp-avatar{width:96px;height:96px;border-radius:50%;border:3px solid var(--gold3);overflow:hidden;flex:none;box-shadow:0 0 40px rgba(243,210,122,.5);animation:float 5s ease-in-out infinite}
+.jp-avatar img{width:100%;height:100%;object-fit:cover}
+
+/* ============ FOOTER ============ */
+footer{background:linear-gradient(180deg,#0d1330,#070a1c);color:#cfc9e6;margin-top:26px;padding:34px 0 22px}
+footer .fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:22px}
+footer h5{color:#f3d27a;font-size:13px;letter-spacing:1.6px;text-transform:uppercase;margin-bottom:12px;font-weight:800}
+footer a,footer li{font-size:13px;line-height:2;color:#b9b3d4;cursor:pointer;list-style:none}
+footer a:hover{color:#f3d27a}
+.fbrand{font-family:'Playfair Display',serif;font-size:26px;font-weight:900;background:linear-gradient(180deg,#f7e2a8,#c68f14);-webkit-background-clip:text;background-clip:text;color:transparent}
+.fbottom{margin-top:24px;padding-top:16px;border-top:1px solid rgba(255,255,255,.12);font-size:12px;color:#8f89ad;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+
+/* ============ BOTTOM NAV ============ */
+.bottomnav{position:fixed;left:0;right:0;bottom:0;z-index:70;height:calc(var(--nav-h) + env(safe-area-inset-bottom));
+  padding-bottom:env(safe-area-inset-bottom);background:rgba(255,255,255,.96);backdrop-filter:blur(16px);border-top:1.5px solid var(--gold3);
+  display:flex;box-shadow:0 -6px 24px rgba(80,60,10,.12)}
+.navbtn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:10px;font-weight:700;color:#7d776c;position:relative;transition:.15s;min-width:0;padding:0 2px}
+.navbtn svg{width:21px;height:21px}
+.navbtn.on{color:var(--gold-dark)}
+.navbtn.on::after{content:"";position:absolute;top:0;left:22%;right:22%;height:3px;border-radius:0 0 4px 4px;background:linear-gradient(90deg,#f3d27a,#b8860b)}
+.navbtn:active{transform:scale(.92)}
+.navbtn .badge{top:4px;right:18%}
+@media(max-width:400px){.navbtn span.lbl{font-size:9px}.navbtn svg{width:19px;height:19px}}
+
+/* ============ DRAWER / MODALS / TOAST ============ */
+.scrim{position:fixed;inset:0;background:rgba(10,8,20,.55);backdrop-filter:blur(3px);z-index:90;opacity:0;pointer-events:none;transition:.25s}
+.scrim.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(84vw,340px);background:#fff;z-index:95;transform:translateX(102%);transition:transform .3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;box-shadow:-10px 0 40px rgba(0,0,0,.25)}
+.drawer.open{transform:none}
+.drawer .dhead{padding:22px 20px;background:linear-gradient(135deg,#1a1147,#2b1250);color:#fff}
+.drawer .dhead b{font-family:'Playfair Display',serif;font-size:22px;display:block;background:linear-gradient(180deg,#f7e2a8,#c68f14);-webkit-background-clip:text;background-clip:text;color:transparent}
+.drawer .dhead small{font-size:12px;color:#cfc6e8}
+.drawer nav{padding:10px;overflow-y:auto;flex:1}
+.drawer nav button{display:flex;align-items:center;gap:12px;width:100%;padding:13px 14px;border-radius:12px;font-size:14.5px;font-weight:600;text-align:left}
+.drawer nav button:hover{background:var(--gold-soft);color:var(--gold-dark)}
+.drawer nav .sep{height:1px;background:var(--line);margin:8px 12px}
+.drawer nav .grp{font-size:11px;letter-spacing:1.6px;text-transform:uppercase;color:#a29b8c;padding:12px 14px 4px;font-weight:800}
+
+.modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.modal .m\boxed{background:#fff;border-radius:20px;width:min(560px,100%);max-height:90dvh;overflow-y:auto;box-shadow:0 30px 70px rgba(0,0,0,.4);animation:pop .28s cubic-bezier(.3,1.4,.5,1)}
+@keyframes pop{from{opacity:0;transform:translateY(22px) scale(.96)}to{opacity:1;transform:none}}
+.mhead{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff;z-index:2}
+.mhead h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:900}
+.mclose{width:34px;height:34px;border-radius:50%;background:var(--soft);display:grid;place-items:center;font-size:18px;font-weight:700}
+.mclose:hover{background:#ffe9e9;color:var(--red)}
+.mbody{padding:18px}
+.pv{display:flex;gap:16px;flex-wrap:wrap}
+.pv img{width:min(240px,100%);aspect-ratio:1;object-fit:cover;border-radius:14px;border:1px solid var(--line);background:#f4efdf}
+.pv .pvinfo{flex:1;min-width:200px}
+.pv h2{font-family:'Playfair Display',serif;font-size:24px;font-weight:900;line-height:1.2}
+.pv .brandline{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--gold-dark);font-weight:800;margin-top:6px}
+.pv .desc{font-size:13.5px;color:#57524a;line-height:1.65;margin-top:12px}
+.pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.pill{font-size:11.5px;font-weight:700;border:1px solid var(--line);border-radius:999px;padding:5px 11px;background:var(--soft)}
+.steps{display:flex;gap:6px;align-items:center;margin-bottom:16px;flex-wrap:wrap}
+.step{font-size:11.5px;font-weight:800;padding:6px 12px;border-radius:999px;background:var(--soft);color:#8b8478}
+.step.on{background:linear-gradient(180deg,#2a2a2a,#000);color:#fff}
+.step.done{background:var(--gold-soft);color:var(--gold-dark)}
+.summary{background:var(--soft);border-radius:12px;padding:12px 14px;margin-top:6px}
+
+/* toast */
+#toasts{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(var(--nav-h) + 18px);z-index:120;display:flex;flex-direction:column;gap:8px;width:min(92vw,400px)}
+.toast{background:#141210;color:#fff;padding:12px 16px;border-radius:12px;font-size:13px;font-weight:600;box-shadow:0 12px 30px rgba(0,0,0,.35);
+  display:flex;align-items:center;gap:10px;border-left:4px solid var(--gold2);animation:slidein .3s ease}
+.toast.ok{border-left-color:#39c46e}
+@keyframes slidein{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* AI JINNY CHAT */
+.jinny-fab{position:fixed;right:16px;bottom:calc(var(--nav-h) + 16px + env(safe-area-inset-bottom));z-index:75;width:58px;height:58px;border-radius:50%;overflow:hidden;
+  border:2.5px solid var(--gold3);box-shadow:0 10px 26px rgba(0,0,0,.35);animation:float 4s ease-in-out infinite}
+.jinny-fab img{width:100%;height:100%;object-fit:cover}
+.jinny-fab::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:2px solid rgba(243,210,122,.55);animation:ring 2.2s ease-out infinite}
+@keyframes ring{0%{transform:scale(.9);opacity:.9}100%{transform:scale(1.3);opacity:0}}
+.chat{position:fixed;right:12px;left:12px;bottom:calc(var(--nav-h) + 12px + env(safe-area-inset-bottom));z-index:110;width:min(400px,calc(100vw - 24px));height:min(70vh,560px);
+  background:#fff;border-radius:20px;box-shadow:0 24px 60px rgba(0,0,0,.4);display:none;flex-direction:column;overflow:hidden;border:1px solid var(--gold3);margin-left:auto}
+.chat.open{display:flex;animation:pop .28s ease}
+.chat .chead{background:linear-gradient(135deg,#1a1147,#2b1250);color:#fff;padding:12px 14px;display:flex;align-items:center;gap:10px}
+.chat .chead img{width:38px;height:38px;border-radius:50%;object-fit:cover;border:2px solid var(--gold3)}
+.chat .chead b{font-family:'Playfair Display',serif;font-size:16px;display:block}
+.chat .chead small{font-size:11px;color:#bfe9c9}
+.clog{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;background:linear-gradient(180deg,#fdfbf4,#fff)}
+.msg{max-width:82%;padding:10px 13px;border-radius:14px;font-size:13.5px;line-height:1.55;animation:fade .25s ease}
+.msg.bot{background:#fff;border:1px solid var(--line);border-bottom-left-radius:4px;align-self:flex-start}
+.msg.me{background:linear-gradient(180deg,#2a2a2a,#000);color:#fff;border-bottom-right-radius:4px;align-self:flex-end}
+.msg .mprod{display:flex;gap:8px;align-items:center;margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:7px;cursor:pointer;background:#fff;color:var(--ink)}
+.msg .mprod img{width:40px;height:40px;border-radius:8px;object-fit:cover}
+.cform{display:flex;gap:8px;padding:10px;border-top:1px solid var(--line);background:#fff}
+.cform input{flex:1;border:1.5px solid var(--line);border-radius:999px;padding:10px 14px;outline:none;font-size:13.5px;min-width:0}
+.cform input:focus{border-color:var(--gold2)}
+.cform button{width:42px;height:42px;border-radius:50%;background:linear-gradient(180deg,#ddb852,#8a6410);color:#fff;display:grid;place-items:center;flex:none}
+.qreplies{display:flex;gap:6px;overflow-x:auto;padding:0 10px 8px;scrollbar-width:none}
+.qreplies::-webkit-scrollbar{display:none}
+.qreplies button{flex:none;font-size:11.5px;font-weight:700;border:1px solid var(--line);border-radius:999px;padding:6px 11px;background:var(--gold-soft);color:var(--gold-dark);white-space:nowrap}
+.spinner{width:16px;height:16px;border:2px solid var(--line);border-top-color:var(--gold);border-radius:50%;animation:spin .7s linear infinite;display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hidden{display:none!important}
+</style>
 </head>
-<body class="bg-[#FAF9F6] text-[#1A1A1A] antialiased selection:bg-[#D93D26] selection:text-white">
-  <div id="root"></div>
+<body>
+<div id="magicbg"></div>
+<div class="lamp-glow"></div>
+<div class="stars" id="stars"></div>
 
-  <!-- Standalone React Application -->
-  <script type="text/babel">
-    const { useState, useEffect, useMemo } = React;
+<div class="app">
+  <!-- ============ HEADER ============ -->
+  <header class="hero">
+    <div class="wrap">
+      <div class="logo-mark" onclick="navigate('home')" title="Wish Jinny">
+        <div class="inner"><img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=400&q=80" alt="Wish Jinny magic" onerror="this.style.display='none'"></div>
+      </div>
+      <h1 class="brand">WISH JINNY</h1>
+      <div class="brand-sub">Your Wish, Our Command</div>
+      <p class="tagline">Wishjinny.com — yahan milega bahut saara pyaar aur bahut saare offers</p>
+      <div class="rule"><i></i><span>✦</span><i></i></div>
+    </div>
+  </header>
 
-    // Inline Vector Icons
-    const Icon = ({ name, className = "w-4 h-4" }) => {
-      switch (name) {
-        case "Sparkles":
-          return <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>;
-        case "ShoppingBag":
-          return <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>;
-        case "Heart":
-          return <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>;
-        case "Search":
-          return <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>;
-        case "CheckCircle":
-          return <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>;
-        case "Clock":
-          return <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>;
-        case "Video":
-          return <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg>;
-        case "Trash":
-          return <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>;
-        case "Send":
-          return <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>;
-        default:
-          return <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/></svg>;
-      }
-    };
+  <!-- ============ TOOLBAR / SEARCH ============ -->
+  <div class="toolbar">
+    <div class="wrap">
+      <div class="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="searchInput" type="search" placeholder="Search products, brands, essentials…" autocomplete="off">
+        <div class="suggest" id="suggest"></div>
+      </div>
+      <button class="iconbtn" onclick="navigate('wishlist')" aria-label="Wishlist">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20.5S3.5 15 3.5 9.2A4.7 4.7 0 0 1 12 6.6a4.7 4.7 0 0 1 8.5 2.6C20.5 15 12 20.5 12 20.5z"/></svg>
+        <i class="badge hide" id="wishBadge"></i>
+      </button>
+      <button class="iconbtn" onclick="navigate('cart')" aria-label="Cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg>
+        <i class="badge hide" id="cartBadge"></i>
+      </button>
+      <button class="avatar" onclick="navigate('account')" title="Account">WJ</button>
+      <button class="iconbtn" onclick="openDrawer()" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
 
-    const CATEGORIES = [
-      { id: "cosmetics", nameHi: "कॉस्मेटिक्स", nameEn: "Cosmetics & Beauty", badge: "-50%", desc: "24K Serums, Velvet Lipsticks, Glow Oils" },
-      { id: "jewelries", nameHi: "ज्वेलरीज़", nameEn: "Jewelry Collection", badge: "-50%", desc: "Royal Kundan, Temple Gold, Polki Chokers" },
-      { id: "garments", nameHi: "गारमेंट्स", nameEn: "Garments & Apparel", badge: "-50%", desc: "Kanjeevaram Sarees, Kurtis, Linen Shirts" },
-      { id: "footwears", nameHi: "फुटवेयर्स", nameEn: "Footwear & Shoes", badge: "-50%", desc: "Kolhapuri Juttis, Leather Loafers, Heels" },
-      { id: "undergarments", nameHi: "अंडरगारमेंट्स", nameEn: "Undergarments", badge: "-50%", desc: "Bamboo Cotton Sets, Modal Briefs, Shapewear" },
-      { id: "gadgets", nameHi: "गैजेट्स", nameEn: "Smart Gadgets", badge: "-50%", desc: "AMOLED Smartwatches, ANC Buds, Fast Chargers" },
-      { id: "kitchenware", nameHi: "किचन वेयर", nameEn: "Kitchenware", badge: "-50%", desc: "Granite Cookware, Cold Press Blenders, Cast Iron" },
-    ];
-
-    const PRODUCTS = [
-      {
-        id: "cos-01",
-        categoryId: "cosmetics",
-        nameHi: "24K गोल्ड ग्लो फेशियल सीरम व प्राइमर",
-        nameEn: "24K Gold Radiant Facial Serum & Primer",
-        descriptionHi: "त्वचा को तुरंत चमकदार और हाइड्रेटेड बनाने वाला 24 कैरेट गोल्ड इन्फ्यूज्ड सीरम। 50% की भारी छूट पर उपलब्ध।",
-        descriptionEn: "Infused with 24K gold flakes and pure hyaluronic acid for deep hydration and glass-skin glow.",
-        originalPrice: 1999,
-        discountedPrice: 999,
-        rating: 4.8,
-        images: ["https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=700&auto=format&fit=crop&q=80"],
-        stockCount: 14,
-        specs: [{ label: "Formulation", value: "Lightweight Serum" }, { label: "Key Ingredient", value: "24K Gold + Hyaluronic Acid" }]
-      },
-      {
-        id: "cos-02",
-        categoryId: "cosmetics",
-        nameHi: "मैट 16-घंटे वाटरप्रूफ लिपस्टिक सेट (6 शेड्स)",
-        nameEn: "Velvet Matte 16-Hour Longwear Lipstick Kit (Set of 6)",
-        descriptionHi: "स्मज-प्रूफ और हाइड्रेटिंग मैट लिपस्टिक किट। सभी स्किन टोंस के लिए 6 खूबसूरत ट्रेंडी शेड्स।",
-        descriptionEn: "Super lightweight, non-drying transfer-proof liquid lip colors with intense pigment.",
-        originalPrice: 1598,
-        discountedPrice: 799,
-        rating: 4.9,
-        images: ["https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=700&auto=format&fit=crop&q=80"],
-        stockCount: 8,
-        specs: [{ label: "Finish", value: "Ultra Matte" }, { label: "Duration", value: "Up to 16 Hours" }]
-      },
-      {
-        id: "jew-01",
-        categoryId: "jewelries",
-        nameHi: "रॉयल कुंदन व पर्ल ब्राइडल चोकर सेट",
-        nameEn: "Royal Kundan & Pearl Heritage Choker Set",
-        descriptionHi: "शाही राजपूताना डिजाइन वाला 22K गोल्ड प्लेटेड कुंदन चोकर सेट। शादी-विवाह और फेस्टिव के लिए परफेक्ट।",
-        descriptionEn: "Intricately handcrafted Kundan choker with cascading emerald beads, matching jhumkas and maangtikka.",
-        originalPrice: 4999,
-        discountedPrice: 2499,
-        rating: 4.9,
-        images: ["https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=700&auto=format&fit=crop&q=80"],
-        stockCount: 5,
-        specs: [{ label: "Plating", value: "22K Micron Gold Plated" }, { label: "Stones", value: "Handcut Kundan & Fresh Pearls" }]
-      },
-      {
-        id: "gar-01",
-        categoryId: "garments",
-        nameHi: "प्योर कांजीवरम सिल्क साड़ी (जरी बॉर्डर + ब्लाउज)",
-        nameEn: "Pure Kanjeevaram Jacquard Silk Saree with Zari Weave",
-        descriptionHi: "पारंपरिक साउथ इंडियन कांजीवरम रिच पल्लू साड़ी। प्योर गोल्डन जरी वर्क और अनस्टिच्ड ब्लाउज पीस।",
-        descriptionEn: "Opulent woven jacquard silk saree with temple zari border, festive motifs and matching blouse.",
-        originalPrice: 5999,
-        discountedPrice: 2999,
-        rating: 4.9,
-        images: ["https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=700&auto=format&fit=crop&q=80"],
-        stockCount: 7,
-        specs: [{ label: "Fabric", value: "Pure Blended Kanjeevaram Silk" }, { label: "Length", value: "6.3 Meters with Blouse" }]
-      },
-      {
-        id: "foot-01",
-        categoryId: "footwears",
-        nameHi: "हैंडक्राफ्टेड एम्ब्रॉयडर्ड पंजाबी जूती",
-        nameEn: "Artisanal Velvet Hand-Embroidered Punjabi Mojari Jutti",
-        descriptionHi: "असली लेदर सोल और आरामदायक कुशनिंग वाली हाथ की कढ़ाई वाली ट्रेडिशनल जूती।",
-        descriptionEn: "Cushioned insole with genuine leather sole, zero bite guarantee, and dabka threadwork.",
-        originalPrice: 1999,
-        discountedPrice: 999,
-        rating: 4.8,
-        images: ["https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=700&auto=format&fit=crop&q=80"],
-        stockCount: 12,
-        specs: [{ label: "Sole", value: "100% Genuine Leather" }, { label: "Padding", value: "Memory Foam Insole" }]
-      },
-      {
-        id: "und-01",
-        categoryId: "undergarments",
-        nameHi: "बैम्बू कॉटन अल्ट्रा-सॉफ्ट ब्रीफ्स (3 का पैक)",
-        nameEn: "Organic Bamboo Cotton Breathable Trunks (Pack of 3)",
-        descriptionHi: "एंटी-बैक्टीरियल, बदबू-मुक्त और बेहद आरामदायक ऑर्गेनिक बैम्बू कॉटन अंडरवियर पैक।",
-        descriptionEn: "4-way stretch moisture-wicking organic bamboo fabric with no-roll waistband.",
-        originalPrice: 1198,
-        discountedPrice: 599,
-        rating: 4.8,
-        images: ["https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?w=700&auto=format&fit=crop&q=80"],
-        stockCount: 25,
-        specs: [{ label: "Material", value: "95% Bamboo Fibre, 5% Spandex" }]
-      },
-      {
-        id: "gad-01",
-        categoryId: "gadgets",
-        nameHi: "अल्ट्रा 2.01\" AMOLED ब्लूटूथ कॉलिंग स्मार्टवॉच",
-        nameEn: "Titanium Elite 2.01\" AMOLED BT Calling Smartwatch",
-        descriptionHi: "शानदार AMOLED डिस्प्ले, मेटालिक केसिंग, हार्ट-रेट, SpO2 और 7 दिन की बैटरी बैकअप।",
-        descriptionEn: "Always-On 1000 Nits AMOLED display with military zinc alloy frame and fast magnetic charger.",
-        originalPrice: 4999,
-        discountedPrice: 2499,
-        rating: 4.9,
-        images: ["https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=700&auto=format&fit=crop&q=80"],
-        stockCount: 10,
-        specs: [{ label: "Display", value: "2.01 inch Curved AMOLED" }, { label: "Battery", value: "Up to 7 Days" }]
-      },
-      {
-        id: "kit-01",
-        categoryId: "kitchenware",
-        nameHi: "ग्रेनाइट 3-पीस नॉन-स्टिक कुकवेयर सेट",
-        nameEn: "German Granite 3-Piece Non-Stick Cookware Master Set",
-        descriptionHi: "जर्मन तकनीक वाला 5-लेयर ग्रेनाइट नॉन-स्टिक सेट। 100% PFOA फ्री और इंडक्शन कम्पैटिबल।",
-        descriptionEn: "Tough scratch-resistant granite coating, cool-touch bakelite handles, and heavy induction bottom.",
-        originalPrice: 3998,
-        discountedPrice: 1999,
-        rating: 4.9,
-        images: ["https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=700&auto=format&fit=crop&q=80"],
-        stockCount: 8,
-        specs: [{ label: "Pieces", value: "Kadhai + Tawa + Frypan" }, { label: "Coating", value: "5-Layer German Granite" }]
-      }
-    ];
-
-    function App() {
-      const [lang, setLang] = useState("hi");
-      const [selectedCategory, setSelectedCategory] = useState("all");
-      const [searchQuery, setSearchQuery] = useState("");
-      const [sortBy, setSortBy] = useState("featured");
-
-      const [cart, setCart] = useState([]);
-      const [wishlist, setWishlist] = useState([]);
-      const [isCartOpen, setIsCartOpen] = useState(false);
-      const [isWishlistOpen, setIsWishlistOpen] = useState(false);
-      const [selectedProduct, setSelectedProduct] = useState(null);
-      const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
-      const [checkoutStep, setCheckoutStep] = useState("form");
-      const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
-      const [isJinnyAssistantOpen, setIsJinnyAssistantOpen] = useState(false);
-      const [toastMsg, setToastMsg] = useState("");
-
-      const [couponCode, setCouponCode] = useState("");
-      const [couponDiscount, setCouponDiscount] = useState(0);
-
-      const [clientName, setClientName] = useState("");
-      const [clientPhone, setClientPhone] = useState("");
-      const [clientAddress, setClientAddress] = useState("");
-      const [clientCity, setClientCity] = useState("");
-      const [clientPincode, setClientPincode] = useState("");
-      const [paymentMethod, setPaymentMethod] = useState("cod");
-      const [lastOrder, setLastOrder] = useState(null);
-
-      const [chatMessages, setChatMessages] = useState([
-        { sender: "jinny", text: "नमस्ते! मैं Wish Jinny AI सहायक हूँ। सभी 7 डिपार्टमेंट्स पर आज फ्लैट 50% डिस्काउंट उपलब्ध है। मैं आपकी क्या मदद करूँ?" }
-      ]);
-      const [chatInput, setChatInput] = useState("");
-
-      const [timeLeft, setTimeLeft] = useState({ h: 3, m: 42, s: 19 });
-      useEffect(() => {
-        const timer = setInterval(() => {
-          setTimeLeft(prev => {
-            if (prev.s > 0) return { ...prev, s: prev.s - 1 };
-            if (prev.m > 0) return { ...prev, m: 59, s: 59 };
-            if (prev.h > 0) return { h: prev.h - 1, m: 59, s: 59 };
-            return { h: 3, m: 59, s: 59 };
-          });
-        }, 1000);
-        return () => clearInterval(timer);
-      }, []);
-
-      const showToast = (msg) => {
-        setToastMsg(msg);
-        setTimeout(() => setToastMsg(""), 3000);
-      };
-
-      const filteredProducts = useMemo(() => {
-        return PRODUCTS.filter(p => {
-          const matchCat = selectedCategory === "all" || p.categoryId === selectedCategory;
-          const q = searchQuery.toLowerCase().trim();
-          const matchSearch = !q || p.nameEn.toLowerCase().includes(q) || p.nameHi.toLowerCase().includes(q) || p.categoryId.toLowerCase().includes(q);
-          return matchCat && matchSearch;
-        }).sort((a, b) => {
-          if (sortBy === "price-low") return a.discountedPrice - b.discountedPrice;
-          if (sortBy === "price-high") return b.discountedPrice - a.discountedPrice;
-          if (sortBy === "rating") return b.rating - a.rating;
-          return -1;
-        });
-      }, [selectedCategory, searchQuery, sortBy]);
-
-      const cartOriginalTotal = cart.reduce((acc, item) => acc + item.product.originalPrice * item.quantity, 0);
-      const cartDiscountedTotal = cart.reduce((acc, item) => acc + item.product.discountedPrice * item.quantity, 0);
-      const flat50Savings = cartOriginalTotal - cartDiscountedTotal;
-      const finalCheckoutTotal = Math.max(0, cartDiscountedTotal - couponDiscount);
-
-      const addToCart = (product) => {
-        setCart(prev => {
-          const idx = prev.findIndex(item => item.product.id === product.id);
-          if (idx >= 0) {
-            const updated = [...prev];
-            updated[idx].quantity += 1;
-            return updated;
-          }
-          return [...prev, { product, quantity: 1 }];
-        });
-        showToast(lang === "hi" ? `"${product.nameHi}" कार्ट में जोड़ा गया!` : `Added "${product.nameEn}" to Bag!`);
-      };
-
-      const updateQuantity = (id, delta) => {
-        setCart(prev => prev.map(item => {
-          if (item.product.id === id) {
-            const n = item.quantity + delta;
-            return n > 0 ? { ...item, quantity: n } : null;
-          }
-          return item;
-        }).filter(Boolean));
-      };
-
-      const removeFromCart = (id) => {
-        setCart(prev => prev.filter(item => item.product.id !== id));
-      };
-
-      const toggleWishlist = (product) => {
-        const exists = wishlist.some(p => p.id === product.id);
-        if (exists) {
-          setWishlist(prev => prev.filter(p => p.id !== product.id));
-          showToast(lang === "hi" ? "विशलिस्ट से हटाया गया" : "Removed from Wishlist");
-        } else {
-          setWishlist(prev => [...prev, product]);
-          showToast(lang === "hi" ? "विशलिस्ट में सुरक्षित किया गया" : "Saved to Wishlist");
-        }
-      };
-
-      const applyCoupon = (e) => {
-        e.preventDefault();
-        const code = couponCode.trim().toUpperCase();
-        if (code === "JINNY50" || code === "WISH50" || code === "FLAT50") {
-          const extra = 250;
-          setCouponDiscount(extra);
-          showToast(lang === "hi" ? `कूपन ${code} लागू! ₹${extra} की अतिरिक्त छूट मिली!` : `Coupon ${code} applied! ₹${extra} extra off!`);
-        } else {
-          showToast(lang === "hi" ? "अमान्य कूपन। 'JINNY50' आज़माएं।" : "Invalid Code. Try 'JINNY50'");
-        }
-      };
-
-      const handleConfirmOrder = (e) => {
-        e.preventDefault();
-        if (!clientName || !clientPhone || !clientAddress || !clientCity || !clientPincode) {
-          alert(lang === "hi" ? "कृपया सभी आवश्यक जानकारी भरें।" : "Please complete all shipping fields.");
-          return;
-        }
-
-        const newOrderId = "WJ-" + Math.floor(100000 + Math.random() * 900000);
-        const orderData = {
-          orderId: newOrderId,
-          name: clientName,
-          phone: clientPhone,
-          address: clientAddress,
-          city: clientCity,
-          pincode: clientPincode,
-          payment: paymentMethod,
-          items: [...cart],
-          total: finalCheckoutTotal,
-          savings: flat50Savings + couponDiscount,
-          date: new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })
-        };
-
-        setLastOrder(orderData);
-        setCheckoutStep("success");
-        setCart([]);
-        if (window.confetti) {
-          window.confetti({ particleCount: 120, spread: 70, origin: { y: 0.6 } });
-        }
-      };
-
-      const handleSendMessage = (e) => {
-        e.preventDefault();
-        if (!chatInput.trim()) return;
-
-        const userMsg = chatInput;
-        setChatMessages(prev => [...prev, { sender: "user", text: userMsg }]);
-        setChatInput("");
-
-        setTimeout(() => {
-          let reply = "";
-          const lower = userMsg.toLowerCase();
-          if (lower.includes("साड़ी") || lower.includes("saree")) {
-            reply = "कांजीवरम सिल्क साड़ी (जरी वर्क) अभी 50% छूट पर केवल ₹2,999 में उपलब्ध है। इसके साथ अनस्टिच्ड ब्लाउज और फ्री कैश ऑन डिलीवरी मिलती है।";
-          } else if (lower.includes("ज्वेलरी") || lower.includes("चोकर") || lower.includes("kundan")) {
-            reply = "रॉयल कुंदन व पर्ल ब्राइडल चोकर सेट केवल ₹2,499 (पहले ₹4,999) में उपलब्ध है। इसमें 22K गोल्ड प्लेटिंग, मैचिंग झुमके और मांगटीका शामिल हैं।";
-          } else if (lower.includes("स्मार्टवॉच") || lower.includes("watch")) {
-            reply = "2.01\" AMOLED ब्लूटूथ कॉलिंग स्मार्टवॉच ₹2,499 में 7-दिन की बैटरी लाइफ और 120 स्पोर्ट्स मोड्स के साथ उपलब्ध है।";
-          } else {
-            reply = "Wish Jinny पर सभी 7 डिपार्टमेंट्स (कॉस्मेटिक्स, ज्वेलरी, गारमेंट्स, फुटवियर, अंडरगारमेंट्स, गैजेट्स, किचनवेयर) पर फ्लैट 50% छूट और फ्री COD उपलब्ध है।";
-          }
-          setChatMessages(prev => [...prev, { sender: "jinny", text: reply }]);
-        }, 500);
-      };
-
-      return (
-        <div className="min-h-screen flex flex-col justify-between">
-          {toastMsg && (
-            <div className="fixed bottom-6 right-6 z-50 bg-[#1A1A1A] text-white px-5 py-3 border border-[#E5E2DC] shadow-2xl flex items-center gap-3 text-xs font-mono">
-              <Icon name="CheckCircle" className="w-4 h-4 text-[#D93D26]" />
-              <span>{toastMsg}</span>
-            </div>
-          )}
-
-          {/* Top Marquee */}
-          <div className="bg-[#1A1A1A] text-white text-[11px] font-mono tracking-widest py-2 px-4 border-b border-[#333333] flex justify-between items-center">
-            <div className="flex items-center gap-2">
-              <span className="bg-[#D93D26] text-white px-2 py-0.5 text-[9px] font-bold uppercase">ARCHIVE NOTICE</span>
-              <span className="hidden sm:inline">सब कुछ फ्लैट 50% डिस्काउंट पर • सातों कैटेगरीज़ में कैश ऑन डिलीवरी</span>
-            </div>
-            <div className="flex items-center gap-4 text-xs font-mono">
-              <span className="text-[#D93D26] flex items-center gap-1 font-bold">
-                <Icon name="Clock" className="w-3.5 h-3.5" />
-                समाप्त: {String(timeLeft.h).padStart(2, '0')}:{String(timeLeft.m).padStart(2, '0')}:{String(timeLeft.s).padStart(2, '0')}
-              </span>
-              <button 
-                onClick={() => setLang(l => l === 'en' ? 'hi' : 'en')}
-                className="hover:text-[#D93D26] uppercase border border-[#444] px-2 py-0.5"
-              >
-                {lang === 'en' ? 'हिन्दी (HI)' : 'ENGLISH'}
-              </button>
-            </div>
+  <main>
+    <!-- ============ HOME ============ -->
+    <section class="page active" id="page-home">
+      <div class="wrap">
+        <div class="sec">
+          <div>
+            <h2>Namaste, <em>Jinny ka mehmaan</em> ✨</h2>
+            <p>2,40,000+ wishes fulfilled across India</p>
           </div>
-
-          {/* Header */}
-          <header className="sticky top-0 z-40 bg-[#FAF9F6] border-b border-[#E5E2DC] backdrop-blur-md">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between gap-4">
-              <div className="flex items-center gap-3 cursor-pointer" onClick={() => { setSelectedCategory("all"); setSearchQuery(""); }}>
-                <div className="w-9 h-9 bg-[#1A1A1A] text-white flex items-center justify-center font-serif font-bold text-lg">
-                  W
-                </div>
-                <div>
-                  <h1 className="font-serif font-bold text-xl sm:text-2xl text-[#1A1A1A] tracking-wider uppercase">
-                    WISH JINNY
-                  </h1>
-                  <p className="text-[9px] font-mono text-[#73706B] tracking-widest uppercase">
-                    FLAT 50% STORE // 7 DEPARTMENTS
-                  </p>
-                </div>
-              </div>
-
-              {/* Search */}
-              <div className="hidden md:flex flex-1 max-w-md relative">
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder={lang === 'hi' ? "7 कैटेगरीज़ में खोजें..." : "Search across 7 departments..."}
-                  className="w-full bg-white border border-[#E5E2DC] px-4 py-2 pl-9 text-xs text-[#1A1A1A] outline-none"
-                />
-                <Icon name="Search" className="w-4 h-4 text-[#73706B] absolute left-3 top-2.5" />
-              </div>
-
-              {/* Actions */}
-              <div className="flex items-center gap-2 sm:gap-3">
-                <button
-                  onClick={() => setIsVideoModalOpen(true)}
-                  className="hidden sm:flex items-center gap-1.5 px-3 py-2 border border-[#E5E2DC] bg-white hover:bg-[#FAF9F6] text-xs font-mono uppercase"
-                >
-                  <Icon name="Video" className="w-3.5 h-3.5 text-[#D93D26]" />
-                  <span>वीडियो AI</span>
-                </button>
-
-                <button
-                  onClick={() => setIsWishlistOpen(true)}
-                  className="relative p-2.5 border border-[#E5E2DC] bg-white text-[#1A1A1A]"
-                >
-                  <Icon name="Heart" className="w-4 h-4" />
-                  {wishlist.length > 0 && (
-                    <span className="absolute -top-1.5 -right-1.5 bg-[#D93D26] text-white text-[9px] font-mono w-4 h-4 flex items-center justify-center font-bold">
-                      {wishlist.length}
-                    </span>
-                  )}
-                </button>
-
-                <button
-                  onClick={() => setIsCartOpen(true)}
-                  className="relative flex items-center gap-2 px-4 py-2 bg-[#1A1A1A] hover:bg-[#D93D26] text-white text-xs font-mono uppercase tracking-wider transition-colors"
-                >
-                  <Icon name="ShoppingBag" className="w-4 h-4" />
-                  <span>बैग ({cart.reduce((a, c) => a + c.quantity, 0)})</span>
-                </button>
-              </div>
-            </div>
-
-            {/* Department Navigation Tabs */}
-            <div className="border-t border-[#E5E2DC] bg-white overflow-x-auto scrollbar-none">
-              <div className="max-w-7xl mx-auto px-4 flex items-center gap-1 sm:gap-2 py-2">
-                <button
-                  onClick={() => setSelectedCategory("all")}
-                  className={`px-3 py-1.5 text-xs font-mono uppercase whitespace-nowrap ${
-                    selectedCategory === "all" ? "bg-[#1A1A1A] text-white font-bold" : "text-[#1A1A1A] hover:bg-[#FAF9F6]"
-                  }`}
-                >
-                  {lang === 'hi' ? 'सभी 7 कैटेगरीज़' : 'All Departments (7)'}
-                </button>
-                {CATEGORIES.map(cat => (
-                  <button
-                    key={cat.id}
-                    onClick={() => setSelectedCategory(cat.id)}
-                    className={`px-3 py-1.5 text-xs font-mono uppercase whitespace-nowrap ${
-                      selectedCategory === cat.id ? "bg-[#1A1A1A] text-white font-bold" : "text-[#73706B] hover:text-[#1A1A1A]"
-                    }`}
-                  >
-                    {lang === 'hi' ? cat.nameHi : cat.nameEn}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </header>
-
-          {/* Hero Banner */}
-          <section className="bg-white border-b border-[#E5E2DC] py-12 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              <div className="lg:col-span-7 space-y-4">
-                <div className="inline-flex items-center gap-2 border border-[#E5E2DC] bg-[#FAF9F6] px-3 py-1 text-[10px] font-mono tracking-widest uppercase">
-                  <span className="w-2 h-2 bg-[#D93D26] inline-block"></span>
-                  WISH JINNY 50% OFFICIAL ARCHIVE
-                </div>
-                <h2 className="font-serif text-3xl sm:text-5xl font-bold text-[#1A1A1A] leading-tight">
-                  सब कुछ सीधे 50% की भारी छूट पर।
-                </h2>
-                <p className="text-sm text-[#73706B] max-w-xl leading-relaxed">
-                  कॉस्मेटिक्स, राजपूताना ज्वेलरी, कांजीवरम साड़ियां, फुटवियर, अंडरगारमेंट्स, गैजेट्स और किचनवेयर पर आधी कीमत और पूरे भारत में सुरक्षित कैश ऑन डिलीवरी।
-                </p>
-                <div className="pt-2 flex flex-wrap gap-3">
-                  <button 
-                    onClick={() => {
-                      const el = document.getElementById("catalog-grid");
-                      if (el) el.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                    className="px-6 py-3 bg-[#1A1A1A] hover:bg-[#D93D26] text-white text-xs font-mono uppercase tracking-widest transition-colors cursor-pointer"
-                  >
-                    50% कलेक्शन देखें
-                  </button>
-                  <button 
-                    onClick={() => setIsJinnyAssistantOpen(true)}
-                    className="px-6 py-3 border border-[#1A1A1A] text-[#1A1A1A] hover:bg-[#FAF9F6] text-xs font-mono uppercase tracking-widest cursor-pointer"
-                  >
-                    जिनी AI से पूछें
-                  </button>
-                </div>
-              </div>
-
-              <div className="lg:col-span-5 border border-[#E5E2DC] p-3 bg-[#FAF9F6] shadow-xl">
-                <img
-                  src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&auto=format&fit=crop&q=80"
-                  alt="Kundan Set"
-                  className="w-full h-72 object-cover"
-                />
-                <div className="p-3 bg-white border-t border-[#E5E2DC] flex justify-between items-center">
-                  <div>
-                    <div className="text-[10px] font-mono text-[#73706B]">FEATURED</div>
-                    <div className="font-serif font-bold text-sm text-[#1A1A1A]">रॉयल कुंदन चोकर सेट</div>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-xs line-through text-[#73706B] font-mono">₹4,999</div>
-                    <div className="text-base font-serif font-bold text-[#D93D26]">₹2,499 (-50%)</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Catalog Grid */}
-          <main id="catalog-grid" className="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-1">
-            <div className="flex justify-between items-center gap-4 mb-8 pb-4 border-b border-[#E5E2DC]">
-              <div>
-                <h3 className="font-serif font-bold text-2xl text-[#1A1A1A]">
-                  {selectedCategory === "all" ? "सभी प्रोडक्ट्स पर फ्लैट 50% छूट" : selectedCategory.toUpperCase()}
-                </h3>
-                <p className="text-xs font-mono text-[#73706B] mt-0.5">
-                  {filteredProducts.length} प्रोडक्ट्स उपलब्ध • 50% डिस्काउंट पहले से लागू
-                </p>
-              </div>
-
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-mono text-[#73706B]">सॉर्ट:</span>
-                <select
-                  value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value)}
-                  className="bg-white border border-[#E5E2DC] px-3 py-1.5 text-xs font-mono outline-none"
-                >
-                  <option value="featured">लोकप्रिय (Featured)</option>
-                  <option value="price-low">कीमत: कम से ज्यादा</option>
-                  <option value="price-high">कीमत: ज्यादा से कम</option>
-                  <option value="rating">हाई रेटिंग</option>
-                </select>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {filteredProducts.map(product => {
-                const inWishlist = wishlist.some(w => w.id === product.id);
-                return (
-                  <div key={product.id} className="bg-white border border-[#E5E2DC] flex flex-col justify-between group hover:border-[#1A1A1A] transition-all">
-                    <div className="relative overflow-hidden bg-[#FAF9F6]">
-                      <img
-                        src={product.images[0]}
-                        alt={product.nameEn}
-                        className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105 cursor-pointer"
-                        onClick={() => setSelectedProduct(product)}
-                      />
-                      <span className="absolute top-3 left-3 bg-[#D93D26] text-white text-[10px] font-mono px-2 py-0.5 uppercase tracking-widest font-bold">
-                        -50% FLAT
-                      </span>
-                      <button
-                        onClick={() => toggleWishlist(product)}
-                        className={`absolute top-3 right-3 p-2 bg-white/90 border border-[#E5E2DC] ${
-                          inWishlist ? "text-[#D93D26]" : "text-[#73706B]"
-                        }`}
-                      >
-                        <Icon name="Heart" className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
-
-                    <div className="p-4 flex-1 flex flex-col justify-between">
-                      <div>
-                        <div className="text-[10px] font-mono uppercase text-[#73706B] tracking-wider mb-1">
-                          {product.categoryId}
-                        </div>
-                        <h4
-                          onClick={() => setSelectedProduct(product)}
-                          className="font-serif font-bold text-sm text-[#1A1A1A] line-clamp-1 hover:text-[#D93D26] cursor-pointer"
-                        >
-                          {lang === 'hi' ? product.nameHi : product.nameEn}
-                        </h4>
-                        <p className="text-xs text-[#73706B] mt-1 line-clamp-2 leading-relaxed">
-                          {lang === 'hi' ? product.descriptionHi : product.descriptionEn}
-                        </p>
-                      </div>
-
-                      <div className="pt-4 border-t border-[#E5E2DC] mt-4">
-                        <div className="flex items-baseline justify-between">
-                          <div>
-                            <span className="text-xs text-[#73706B] line-through font-mono">₹{product.originalPrice.toLocaleString('en-IN')}</span>
-                            <span className="ml-2 font-serif font-bold text-base text-[#1A1A1A]">₹{product.discountedPrice.toLocaleString('en-IN')}</span>
-                          </div>
-                          <div className="text-[10px] font-mono text-[#D93D26] font-bold">50% बचत</div>
-                        </div>
-
-                        <div className="grid grid-cols-2 gap-2 mt-3">
-                          <button
-                            onClick={() => addToCart(product)}
-                            className="w-full py-2 bg-[#FAF9F6] hover:bg-[#EFECE6] border border-[#E5E2DC] text-[#1A1A1A] text-[11px] font-mono uppercase"
-                          >
-                            कार्ट में जोड़ें
-                          </button>
-                          <button
-                            onClick={() => {
-                              addToCart(product);
-                              setIsCheckoutOpen(true);
-                            }}
-                            className="w-full py-2 bg-[#1A1A1A] hover:bg-[#D93D26] text-white text-[11px] font-mono uppercase"
-                          >
-                            बाय करें
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </main>
-
-          {/* Cart Drawer */}
-          {isCartOpen && (
-            <div className="fixed inset-0 z-50 bg-black/50 flex justify-end">
-              <div className="w-full max-w-md bg-[#FAF9F6] h-full shadow-2xl border-l border-[#E5E2DC] flex flex-col justify-between">
-                <div className="p-4 border-b border-[#E5E2DC] bg-white flex justify-between items-center">
-                  <div className="flex items-center gap-2">
-                    <Icon name="ShoppingBag" className="w-4 h-4 text-[#D93D26]" />
-                    <h3 className="font-serif font-bold text-base text-[#1A1A1A]">शॉपिंग बैग</h3>
-                  </div>
-                  <button onClick={() => setIsCartOpen(false)} className="p-1 border border-[#E5E2DC]">✕</button>
-                </div>
-
-                <div className="p-4 overflow-y-auto flex-1 space-y-3">
-                  {cart.length === 0 ? (
-                    <div className="py-20 text-center text-[#73706B]">
-                      <Icon name="ShoppingBag" className="w-12 h-12 mx-auto stroke-1 text-[#D5D1C8] mb-3" />
-                      <div className="font-serif font-bold text-base text-[#1A1A1A]">बैग खाली है</div>
-                    </div>
-                  ) : (
-                    cart.map(({ product, quantity }) => (
-                      <div key={product.id} className="p-3 bg-white border border-[#E5E2DC] flex gap-3 items-center">
-                        <img src={product.images[0]} alt={product.nameEn} className="w-16 h-16 object-cover border border-[#E5E2DC]" />
-                        <div className="flex-1 min-w-0">
-                          <h4 className="font-serif font-bold text-xs text-[#1A1A1A] truncate">{lang === 'hi' ? product.nameHi : product.nameEn}</h4>
-                          <div className="flex items-baseline gap-2 mt-1">
-                            <span className="font-serif font-bold text-sm text-[#1A1A1A]">₹{product.discountedPrice.toLocaleString('en-IN')}</span>
-                            <span className="text-[10px] line-through text-[#73706B] font-mono">₹{product.originalPrice.toLocaleString('en-IN')}</span>
-                          </div>
-                          <div className="flex items-center gap-2 mt-2">
-                            <button onClick={() => updateQuantity(product.id, -1)} className="w-6 h-6 border border-[#E5E2DC] bg-[#FAF9F6] text-xs font-mono">-</button>
-                            <span className="text-xs font-mono px-2">{quantity}</span>
-                            <button onClick={() => updateQuantity(product.id, 1)} className="w-6 h-6 border border-[#E5E2DC] bg-[#FAF9F6] text-xs font-mono">+</button>
-                          </div>
-                        </div>
-                        <button onClick={() => removeFromCart(product.id)} className="p-1 text-[#73706B] hover:text-[#D93D26]">
-                          <Icon name="Trash" className="w-4 h-4" />
-                        </button>
-                      </div>
-                    ))
-                  )}
-                </div>
-
-                {cart.length > 0 && (
-                  <div className="p-4 border-t border-[#E5E2DC] bg-white space-y-3">
-                    <form onSubmit={applyCoupon} className="flex gap-2">
-                      <input
-                        type="text"
-                        value={couponCode}
-                        onChange={(e) => setCouponCode(e.target.value)}
-                        placeholder="कूपन कोड (उदा: JINNY50)"
-                        className="flex-1 bg-[#FAF9F6] border border-[#E5E2DC] px-3 py-1.5 text-xs font-mono uppercase outline-none"
-                      />
-                      <button type="submit" className="px-3 py-1.5 bg-[#1A1A1A] text-white text-xs font-mono uppercase">
-                        लागू करें
-                      </button>
-                    </form>
-
-                    <div className="space-y-1 text-xs font-mono">
-                      <div className="flex justify-between text-[#73706B]">
-                        <span>असली कीमत:</span>
-                        <span>₹{cartOriginalTotal.toLocaleString('en-IN')}</span>
-                      </div>
-                      <div className="flex justify-between text-[#D93D26] font-bold">
-                        <span>50% फ्लैट छूट:</span>
-                        <span>-₹{flat50Savings.toLocaleString('en-IN')}</span>
-                      </div>
-                      {couponDiscount > 0 && (
-                        <div className="flex justify-between text-[#2E7D32] font-bold">
-                          <span>अतिरिक्त कूपन छूट:</span>
-                          <span>-₹{couponDiscount.toLocaleString('en-IN')}</span>
-                        </div>
-                      )}
-                      <div className="flex justify-between text-sm font-serif font-bold text-[#1A1A1A] pt-2 border-t border-[#E5E2DC]">
-                        <span>कुल भुगतान:</span>
-                        <span>₹{finalCheckoutTotal.toLocaleString('en-IN')}</span>
-                      </div>
-                    </div>
-
-                    <button
-                      onClick={() => {
-                        setIsCartOpen(false);
-                        setIsCheckoutOpen(true);
-                      }}
-                      className="w-full py-3 bg-[#1A1A1A] hover:bg-[#D93D26] text-white text-xs font-mono uppercase tracking-widest transition-colors"
-                    >
-                      चेकआउट के लिए आगे बढ़ें
-                    </button>
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
-
-          {/* Checkout Modal */}
-          {isCheckoutOpen && (
-            <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
-              <div className="bg-[#FAF9F6] border border-[#E5E2DC] max-w-xl w-full max-h-[90vh] overflow-y-auto p-6 shadow-2xl relative">
-                <button onClick={() => setIsCheckoutOpen(false)} className="absolute top-4 right-4 p-2 bg-white border border-[#E5E2DC]">✕</button>
-
-                {checkoutStep === "form" ? (
-                  <form onSubmit={handleConfirmOrder} className="space-y-4">
-                    <div className="border-b border-[#E5E2DC] pb-3">
-                      <span className="text-[10px] font-mono text-[#D93D26] uppercase">ऑर्डर विवरण</span>
-                      <h3 className="font-serif font-bold text-xl text-[#1A1A1A]">डिलीवरी पता व भुगतान</h3>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      <div>
-                        <label className="block text-[11px] font-mono text-[#73706B] mb-1">पूरा नाम *</label>
-                        <input
-                          type="text"
-                          required
-                          value={clientName}
-                          onChange={(e) => setClientName(e.target.value)}
-                          placeholder="उदा: राहुल वर्मा"
-                          className="w-full bg-white border border-[#E5E2DC] px-3 py-2 text-xs outline-none"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-[11px] font-mono text-[#73706B] mb-1">मोबाइल नंबर *</label>
-                        <input
-                          type="tel"
-                          required
-                          value={clientPhone}
-                          onChange={(e) => setClientPhone(e.target.value)}
-                          placeholder="उदा: 9876543210"
-                          className="w-full bg-white border border-[#E5E2DC] px-3 py-2 text-xs outline-none"
-                        />
-                      </div>
-                      <div className="sm:col-span-2">
-                        <label className="block text-[11px] font-mono text-[#73706B] mb-1">मकान नं. व पता *</label>
-                        <input
-                          type="text"
-                          required
-                          value={clientAddress}
-                          onChange={(e) => setClientAddress(e.target.value)}
-                          placeholder="उदा: 402, शांति अपार्टमेंट, सिविल लाइंस"
-                          className="w-full bg-white border border-[#E5E2DC] px-3 py-2 text-xs outline-none"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-[11px] font-mono text-[#73706B] mb-1">शहर / राज्य *</label>
-                        <input
-                          type="text"
-                          required
-                          value={clientCity}
-                          onChange={(e) => setClientCity(e.target.value)}
-                          placeholder="उदा: जयपुर, राजस्थान"
-                          className="w-full bg-white border border-[#E5E2DC] px-3 py-2 text-xs outline-none"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-[11px] font-mono text-[#73706B] mb-1">पिनकोड *</label>
-                        <input
-                          type="text"
-                          required
-                          value={clientPincode}
-                          onChange={(e) => setClientPincode(e.target.value)}
-                          placeholder="उदा: 302001"
-                          className="w-full bg-white border border-[#E5E2DC] px-3 py-2 text-xs outline-none"
-                        />
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className="block text-[11px] font-mono text-[#73706B] mb-2">भुगतान का तरीका:</label>
-                      <div className="grid grid-cols-2 gap-2">
-                        {[
-                          { id: "cod", title: "कैश ऑन डिलीवरी (COD)", desc: "सामान आने पर पैसे दें" },
-                          { id: "upi", title: "UPI / QR कोड", desc: "GPay, PhonePe, Paytm" },
-                        ].map(m => (
-                          <div
-                            key={m.id}
-                            onClick={() => setPaymentMethod(m.id)}
-                            className={`p-2.5 border cursor-pointer bg-white ${
-                              paymentMethod === m.id ? "border-[#1A1A1A] ring-1 ring-[#1A1A1A]" : "border-[#E5E2DC]"
-                            }`}
-                          >
-                            <div className="font-serif font-bold text-xs text-[#1A1A1A]">{m.title}</div>
-                            <div className="text-[10px] font-mono text-[#73706B]">{m.desc}</div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="p-3 bg-white border border-[#E5E2DC] text-xs font-mono space-y-1">
-                      <div className="flex justify-between text-[#73706B]">
-                        <span>कुल भुगतान:</span>
-                        <span className="font-serif font-bold text-sm text-[#1A1A1A]">₹{finalCheckoutTotal.toLocaleString('en-IN')}</span>
-                      </div>
-                      <div className="text-[10px] text-[#2E7D32]">✓ पूरे भारत में फ्री डिलीवरी व 7-दिन की आसान वापसी</div>
-                    </div>
-
-                    <button
-                      type="submit"
-                      className="w-full py-3.5 bg-[#1A1A1A] hover:bg-[#D93D26] text-white text-xs font-mono uppercase tracking-widest transition-colors cursor-pointer"
-                    >
-                      ऑर्डर कन्फर्म करें (₹{finalCheckoutTotal.toLocaleString('en-IN')})
-                    </button>
-                  </form>
-                ) : (
-                  <div className="text-center py-6 space-y-4">
-                    <div className="w-12 h-12 bg-white border border-[#E5E2DC] text-[#2E7D32] flex items-center justify-center mx-auto">
-                      <Icon name="CheckCircle" className="w-6 h-6" />
-                    </div>
-                    <h3 className="font-serif font-bold text-2xl text-[#1A1A1A]">ऑर्डर सफलतापूर्वक दर्ज हुआ!</h3>
-                    <p className="text-xs font-mono text-[#73706B]">
-                      ऑर्डर आईडी: {lastOrder?.orderId} • जल्द डिस्पैच होगा
-                    </p>
-
-                    <div className="bg-white border border-[#E5E2DC] p-4 text-left text-xs font-mono space-y-2">
-                      <div className="flex justify-between border-b border-[#E5E2DC] pb-1">
-                        <span className="text-[#73706B]">ग्राहक:</span>
-                        <span className="text-[#1A1A1A] font-bold">{lastOrder?.name}</span>
-                      </div>
-                      <div className="flex justify-between border-b border-[#E5E2DC] pb-1">
-                        <span className="text-[#73706B]">पता:</span>
-                        <span className="text-[#1A1A1A]">{lastOrder?.address}, {lastOrder?.city} - {lastOrder?.pincode}</span>
-                      </div>
-                      <div className="flex justify-between border-b border-[#E5E2DC] pb-1">
-                        <span className="text-[#73706B]">भुगतान:</span>
-                        <span className="text-[#1A1A1A] font-bold uppercase">{lastOrder?.payment} (₹{lastOrder?.total.toLocaleString('en-IN')})</span>
-                      </div>
-                    </div>
-
-                    <div className="flex gap-3 justify-center pt-2">
-                      <button onClick={() => window.print()} className="px-5 py-2.5 border border-[#1A1A1A] text-xs font-mono uppercase">
-                        रसीद प्रिंट करें
-                      </button>
-                      <button onClick={() => { setIsCheckoutOpen(false); setCheckoutStep("form"); }} className="px-5 py-2.5 bg-[#1A1A1A] text-white text-xs font-mono uppercase">
-                        दुकान पर वापस जाएं
-                      </button>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
-
-          {/* Jinny Concierge Assistant */}
-          {isJinnyAssistantOpen && (
-            <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
-              <div className="bg-[#FAF9F6] border border-[#E5E2DC] max-w-lg w-full h-[500px] flex flex-col justify-between shadow-2xl">
-                <div className="p-4 border-b border-[#E5E2DC] bg-white flex justify-between items-center">
-                  <div className="flex items-center gap-2">
-                    <Icon name="Sparkles" className="w-4 h-4 text-[#D93D26]" />
-                    <h3 className="font-serif font-bold text-base text-[#1A1A1A]">Wish Jinny AI सहायक</h3>
-                  </div>
-                  <button onClick={() => setIsJinnyAssistantOpen(false)} className="p-1 border border-[#E5E2DC]">✕</button>
-                </div>
-
-                <div className="p-4 overflow-y-auto flex-1 space-y-3">
-                  {chatMessages.map((m, idx) => (
-                    <div key={idx} className={`flex ${m.sender === "user" ? "justify-end" : "justify-start"}`}>
-                      <div className={`max-w-[85%] p-3 text-xs ${m.sender === "user" ? "bg-[#1A1A1A] text-white font-mono" : "bg-white border border-[#E5E2DC] text-[#1A1A1A]"}`}>
-                        {m.text}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <form onSubmit={handleSendMessage} className="p-3 border-t border-[#E5E2DC] bg-white flex gap-2">
-                  <input
-                    type="text"
-                    value={chatInput}
-                    onChange={(e) => setChatInput(e.target.value)}
-                    placeholder="साड़ी, ज्वेलरी, स्मार्टवॉच या 50% छूट के बारे में पूछें..."
-                    className="flex-1 bg-[#FAF9F6] border border-[#E5E2DC] px-3 py-2 text-xs outline-none"
-                  />
-                  <button type="submit" className="px-4 py-2 bg-[#1A1A1A] text-white text-xs font-mono uppercase">
-                    <Icon name="Send" className="w-3.5 h-3.5" />
-                  </button>
-                </form>
-              </div>
-            </div>
-          )}
-
-          {/* Footer */}
-          <footer className="bg-white border-t border-[#E5E2DC] py-12 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-              <div>
-                <h4 className="font-serif font-bold text-lg text-[#1A1A1A]">WISH JINNY</h4>
-                <p className="text-xs font-mono text-[#73706B] mt-1">
-                  7 कोर डिपार्टमेंट्स • पूरे भारत में फ्लैट 50% भारी छूट • सुरक्षित कैश ऑन डिलीवरी
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-4 text-xs font-mono text-[#73706B]">
-                <span>100% सुरक्षित COD</span>
-                <span>•</span>
-                <span>7-दिन आसान वापसी</span>
-                <span>•</span>
-                <span>100% ओरिजिनल सामान</span>
-              </div>
-            </div>
-          </footer>
+          <a class="link" onclick="navigate('shop')">All products →</a>
         </div>
-      );
-    }
-
-    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
-  </script>
-</body>
-</html>
-import express from "express";
-import path from "path";
-import { GoogleGenAI } from "@google/genai";
-import dotenv from "dotenv";
-
-dotenv.config();
-
-const app = express();
-const PORT = 3000;
-
-// Middleware for parsing JSON with generous limit for video base64 payloads
-app.use(express.json({ limit: "50mb" }));
-app.use(express.urlencoded({ extended: true, limit: "50mb" }));
-
-// Lazy Google GenAI Client
-let genAIClient: GoogleGenAI | null = null;
-
-function getGenAI(): GoogleGenAI {
-  if (!genAIClient) {
-    const apiKey = process.env.GEMINI_API_KEY;
-    if (!apiKey) {
-      console.warn("GEMINI_API_KEY is not set in environment. Gemini features will return friendly fallback response.");
-    }
-    genAIClient = new GoogleGenAI({
-      apiKey: apiKey || "dummy-key",
-      httpOptions: {
-        headers: {
-          "User-Agent": "aistudio-build",
-        },
-      },
-    });
-  }
-  return genAIClient;
-}
-
-// Standalone Index HTML routes for direct download & GitHub Pages use
-app.get("/standalone_index.html", (req, res) => {
-  res.sendFile(path.join(process.cwd(), "public", "standalone_index.html"));
-});
-
-app.get("/download-index.html", (req, res) => {
-  res.download(path.join(process.cwd(), "public", "standalone_index.html"), "index.html");
-});
-
-app.get("/download-source", (req, res) => {
-  res.download(path.join(process.cwd(), "public", "wish-jinny-source.tar.gz"), "wish-jinny-source.tar.gz");
-});
-
-// Health check API
-app.get("/api/health", (req, res) => {
-  res.json({
-    status: "ok",
-    app: "Wish Jinny E-Commerce Store",
-    discount: "50% FLAT OFF",
-    categories: [
-      "Cosmetics",
-      "Jewelries",
-      "Garments",
-      "Footwears",
-      "Undergarments",
-      "Gadgets",
-      "Kitchenware",
-    ],
-  });
-});
-
-/**
- * Video Analysis Endpoint using Gemini 3.1 Pro Preview (gemini-3.1-pro-preview)
- * Analyzes product review, unboxing, styling, or demo videos for key information,
- * quality analysis, timestamps, pros/cons, and shopping guidance.
- */
-app.post("/api/gemini/analyze-video", async (req, res) => {
-  try {
-    const { videoBase64, mimeType = "video/mp4", videoTitle = "Product Video", prompt = "" } = req.body;
-
-    if (!process.env.GEMINI_API_KEY) {
-      // Return high-quality mock analytical response if API key is not yet set
-      return res.json({
-        success: true,
-        isSimulated: true,
-        analysis: {
-          summary: `Video analysis for "${videoTitle}": High quality craftsmanship observed with 100% genuine build and seamless usability. Perfect fit for Wish Jinny's 50% discount collection.`,
-          keyPoints: [
-            "Premium finish and genuine materials verified through high-definition visual inspection.",
-            "Demonstrated 100% functional reliability and user-friendly ergonomics.",
-            "Exceptional value proposition under the current Wish Jinny 50% OFF mega discount.",
-            "Passed durability, finish, and real-world performance tests.",
-          ],
-          pros: [
-            "Authentic build quality matching premium grade standards",
-            "Effortless everyday use with high aesthetic appeal",
-            "Super saver deal with flat 50% instant discount applied",
-          ],
-          cons: [
-            "High demand product with limited stock in current flash sale",
-          ],
-          timestamps: [
-            { time: "00:05", label: "Product Unboxing & First Look" },
-            { time: "00:20", label: "Material Quality & Detail Inspection" },
-            { time: "00:45", label: "Live Demonstration & Performance Test" },
-            { time: "01:15", label: "Final Verdict & 50% Discount Recommendation" },
-          ],
-          authenticityScore: 98,
-          verdict: "Highly Recommended (Must Buy at 50% OFF)",
-        },
-      });
-    }
-
-    const ai = getGenAI();
-
-    const systemInstruction = `You are the expert Wish Jinny AI Video Analyst for an e-commerce platform that sells Cosmetics, Jewelries, Garments, Footwears, Undergarments, Gadgets, and Kitchenware at flat 50% discount.
-Analyze the provided video clip or video summary in detail and extract key information.
-Always return response in strict JSON format matching the schema:
-{
-  "summary": "Clear, concise overview of what is shown in the video in both Hindi & English mix or clear Hindi/English",
-  "keyPoints": ["Key point 1", "Key point 2", "Key point 3", "Key point 4"],
-  "pros": ["Pro 1", "Pro 2", "Pro 3"],
-  "cons": ["Potential limit or tip 1"],
-  "timestamps": [
-    {"time": "00:00", "label": "Introduction"},
-    {"time": "00:15", "label": "Feature showcase"},
-    {"time": "00:30", "label": "Quality test"},
-    {"time": "00:50", "label": "Verdict"}
-  ],
-  "authenticityScore": 95,
-  "verdict": "Clear purchasing recommendation highlighting the 50% discount benefit"
-}`;
-
-    let contents: any;
-
-    if (videoBase64 && videoBase64.length > 50) {
-      // Clean base64 string if data URL prefix exists
-      const cleanBase64 = videoBase64.includes(",")
-        ? videoBase64.split(",")[1]
-        : videoBase64;
-
-      contents = {
-        parts: [
-          {
-            inlineData: {
-              mimeType: mimeType || "video/mp4",
-              data: cleanBase64,
-            },
-          },
-          {
-            text: `Analyze this product video for key information: ${prompt || "What are the main features, quality details, and buyer recommendations for this product sold on Wish Jinny with 50% discount?"}`,
-          },
-        ],
-      };
-    } else {
-      contents = {
-        parts: [
-          {
-            text: `Analyze this product video concept: "${videoTitle}". User query: ${prompt || "Provide full video analysis breakdown, key points, pros, cons, and shopping verdict with 50% off discount advantage."}`,
-          },
-        ],
-      };
-    }
-
-    // Call gemini-3.1-pro-preview as requested
-    let responseText = "";
-    try {
-      const result = await ai.models.generateContent({
-        model: "gemini-3.1-pro-preview",
-        contents: contents,
-        config: {
-          systemInstruction: systemInstruction,
-          responseMimeType: "application/json",
-        },
-      });
-      responseText = result.text || "";
-    } catch (modelError) {
-      console.warn("Error with gemini-3.1-pro-preview, falling back to gemini-3.7-flash:", modelError);
-      const fallbackResult = await ai.models.generateContent({
-        model: "gemini-3.7-flash",
-        contents: contents,
-        config: {
-          systemInstruction: systemInstruction,
-          responseMimeType: "application/json",
-        },
-      });
-      responseText = fallbackResult.text || "";
-    }
-
-    let parsed = null;
-    try {
-      parsed = JSON.parse(responseText.trim());
-    } catch (e) {
-      parsed = {
-        summary: responseText,
-        keyPoints: [
-          "50% discount makes this an incredible deal",
-          "High build standard and premium texture",
-          "Fast delivery available all across India",
-        ],
-        pros: ["Superior quality", "Great value at 50% off"],
-        cons: ["High demand item"],
-        timestamps: [
-          { time: "00:00", label: "Overview" },
-          { time: "00:30", label: "Performance" },
-        ],
-        authenticityScore: 96,
-        verdict: "Top recommended item at Wish Jinny 50% OFF Sale",
-      };
-    }
-
-    res.json({
-      success: true,
-      analysis: parsed,
-    });
-  } catch (error: any) {
-    console.error("Error in /api/gemini/analyze-video:", error);
-    res.status(500).json({
-      success: false,
-      error: error.message || "Failed to analyze video",
-      fallbackAnalysis: {
-        summary: "Wish Jinny 50% Off Product Analysis: Verified 100% authentic product with unbeatable value.",
-        keyPoints: [
-          "Flat 50% discount applied automatically on Wish Jinny",
-          "Quality tested materials across all 7 categories",
-          "Fast dispatch & 7-day hassle free returns",
-        ],
-        pros: ["Guaranteed 50% savings", "Top rated by buyers"],
-        cons: ["Limited flash sale stock"],
-        timestamps: [
-          { time: "00:00", label: "Product Highlights" },
-          { time: "00:40", label: "Usage & Quality Check" },
-        ],
-        authenticityScore: 97,
-        verdict: "Great Buy at 50% Off",
-      },
-    });
-  }
-});
-
-/**
- * Jinny AI Shopping Assistant Endpoint
- * Helps users find products across all 7 categories in Hindi and English with 50% discount advice.
- */
-app.post("/api/gemini/assistant", async (req, res) => {
-  try {
-    const { message, conversationHistory = [] } = req.body;
-
-    if (!process.env.GEMINI_API_KEY) {
-      return res.json({
-        reply: `नमस्ते! मैं Wish Jinny AI सहायक हूँ। हमारी वेबसाइट पर कॉस्मेटिक्स (Cosmetics), ज्वेलरीज़ (Jewelries), गारमेंट्स (Garments), फुटवेयर्स (Footwears), अंडरगारमेंट्स (Undergarments), गैजेट्स (Gadgets) और किचन वेयर (Kitchenware) सभी पर फ्लैट 50% डिस्काउंट चल रहा है! आप क्या खरीदना चाहते हैं?`,
-        suggestedCategories: ["Cosmetics", "Jewelries", "Garments", "Gadgets", "Kitchenware"],
-      });
-    }
-
-    const ai = getGenAI();
-
-    const systemPrompt = `You are 'Wish Jinny', the warm, helpful, and energetic AI shopping genie of 'Wish Jinny' e-commerce store (wishjinnyofficial@gmail.com).
-The store sells 7 categories:
-1. Cosmetics (कॉस्मेटिक्स)
-2. Jewelries (ज्वेलरीज़)
-3. Garments (गारमेंट्स)
-4. Footwears (फुटवेयर्स)
-5. Undergarments (अंडरगारमेंट्स)
-6. Gadgets (गैजेट्स)
-7. Kitchenware (किचन वेयर)
-
-EVERY SINGLE ITEM is on FLAT 50% DISCOUNT ("सब कुछ 50% डिस्काउंट पर! जल्द से जल्द बाय करें").
-Tone: Extremely friendly, polite, respectful, bilingual (Hindi + English or pure Hindi according to user's language).
-Provide concise, enticing shopping advice, highlight the 50% savings in Rupees (₹), and recommend relevant products.`;
-
-    const promptText = `User says: "${message || "Hello"}"\nHelp the user find the best products on Wish Jinny with 50% discount.`;
-
-    const response = await ai.models.generateContent({
-      model: "gemini-3.7-flash",
-      contents: promptText,
-      config: {
-        systemInstruction: systemPrompt,
-      },
-    });
-
-    res.json({
-      reply: response.text || "Wish Jinny पर आपका स्वागत है! हर प्रोडक्ट पर फ्लैट 50% की भारी छूट है।",
-    });
-  } catch (error: any) {
-    console.error("Error in /api/gemini/assistant:", error);
-    res.json({
-      reply: "नमस्ते! Wish Jinny पर कॉस्मेटिक्स, ज्वेलरीज़, गारमेंट्स, फुटवेयर्स, अंडरगारमेंट्स, गैजेट्स और किचन वेयर सब पर 50% डिस्काउंट उपलब्ध है। कार्ट में डालें और तुरंत ऑर्डर करें!",
-    });
-  }
-});
-
-// Vite Middleware & Static Serving
-async function setupApp() {
-  if (process.env.NODE_ENV !== "production") {
-    const { createServer: createViteServer } = await import("vite");
-    const vite = await createViteServer({
-      server: { middlewareMode: true },
-      appType: "spa",
-    });
-    app.use(vite.middlewares);
-  } else {
-    const distPath = path.join(process.cwd(), "dist");
-    app.use(express.static(distPath));
-    app.get("*", (req, res) => {
-      res.sendFile(path.join(distPath, "index.html"));
-    });
-  }
-
-  app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Wish Jinny Store Server running on http://0.0.0.0:${PORT}`);
-  });
-}
-
-setupApp();
-import React, { useState } from "react";
-import {
-  ShoppingBag,
-  Heart,
-  Search,
-  Sparkles,
-  Video,
-  Menu,
-  X,
-  Flame,
-  Globe,
-  Tag,
-} from "lucide-react";
-import { CategoryId } from "../types";
-import { CATEGORIES } from "../data/products";
-
-interface HeaderProps {
-  lang: "hi" | "en";
-  setLang: (lang: "hi" | "en") => void;
-  selectedCategory: CategoryId;
-  onSelectCategory: (id: CategoryId) => void;
-  searchQuery: string;
-  setSearchQuery: (q: string) => void;
-  cartCount: number;
-  wishlistCount: number;
-  onOpenCart: () => void;
-  onOpenWishlist: () => void;
-  onOpenVideoAnalyzer: () => void;
-  onOpenJinnyAssistant: () => void;
-}
-
-export const Header: React.FC<HeaderProps> = ({
-  lang,
-  setLang,
-  selectedCategory,
-  onSelectCategory,
-  searchQuery,
-  setSearchQuery,
-  cartCount,
-  wishlistCount,
-  onOpenCart,
-  onOpenWishlist,
-  onOpenVideoAnalyzer,
-  onOpenJinnyAssistant,
-}) => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  return (
-    <header className="sticky top-0 z-40 bg-[#FAF9F6]/95 backdrop-blur-md border-b border-[#E5E2DC]">
-      {/* Top Banner: Editorial Urgency 50% Off */}
-      <div className="bg-[#1A1A1A] text-[#FAF9F6] text-xs font-medium px-4 py-2 text-center flex items-center justify-center gap-2 flex-wrap border-b border-[#1A1A1A]">
-        <span className="inline-flex items-center gap-1 bg-[#D93D26] text-white px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest">
-          <Flame className="w-3 h-3 fill-white inline" />
-          N° 50% OFF ISSUE
-        </span>
-        <span className="text-[12px] tracking-wide text-neutral-200">
-          {lang === "hi"
-            ? "विश जिनी स्पेशल सेल — सभी 7 कैटेगरीज़ पर फ्लैट 50% डिस्काउंट! सीमित स्टॉक, जल्द से जल्द बाय करें।"
-            : "Special Editorial Edition — Flat 50% OFF across all 7 departments. Limited archival pieces."}
-        </span>
-        <button
-          id="topbar-video-ai-btn"
-          onClick={onOpenVideoAnalyzer}
-          className="ml-2 inline-flex items-center gap-1.5 bg-[#FAF9F6] text-[#1A1A1A] hover:bg-[#D93D26] hover:text-white px-2.5 py-0.5 transition-colors text-[10px] font-bold uppercase tracking-wider cursor-pointer border border-[#FAF9F6]"
-        >
-          <Video className="w-3 h-3" />
-          {lang === "hi" ? "वीडियो AI" : "AI Video"}
-        </button>
-        <a
-          id="topbar-github-html-link"
-          href="/standalone_index.html"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 bg-[#D93D26] text-white hover:bg-black px-2.5 py-0.5 transition-colors text-[10px] font-bold uppercase tracking-wider cursor-pointer border border-[#D93D26]"
-          title="Opens the 100% exact Google AI Studio application as a single index.html file"
-        >
-          {lang === "hi" ? "📄 असली AI Studio index.html खोलें" : "📄 Open Exact AI Studio index.html"}
-        </a>
-        <a
-          id="topbar-download-source-link"
-          href="/download-source"
-          className="inline-flex items-center gap-1.5 bg-[#1A1A1A] text-white hover:bg-[#D93D26] px-2 py-0.5 transition-colors text-[10px] font-bold uppercase tracking-wider cursor-pointer border border-[#444]"
-          title="Download the complete project source code (React, Vite, TypeScript)"
-        >
-          {lang === "hi" ? "📦 पूरा प्रोजेक्ट डाउनलोड (.tar.gz)" : "📦 Download Full Project (.tar.gz)"}
-        </a>
       </div>
 
-      {/* Main Navigation Bar */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-20 gap-4">
-          {/* Logo & Brand */}
-          <div className="flex items-center gap-3">
-            <button
-              id="mobile-menu-toggle-btn"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 text-[#1A1A1A] hover:bg-[#EFECE6] transition-colors border border-[#E5E2DC]"
-              aria-label="Toggle menu"
-            >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
-
-            <button
-              id="brand-logo-btn"
-              onClick={() => onSelectCategory("all")}
-              className="flex items-center gap-3 group text-left cursor-pointer"
-            >
-              <div className="w-10 h-10 bg-[#1A1A1A] text-[#FAF9F6] flex items-center justify-center transition-colors group-hover:bg-[#D93D26]">
-                <Sparkles className="w-5 h-5 text-[#FAF9F6]" />
-              </div>
-              <div className="flex flex-col">
-                <div className="flex items-center gap-2">
-                  <span className="font-serif text-2xl sm:text-3xl font-black tracking-tight text-[#1A1A1A] uppercase">
-                    Wish <span className="italic font-normal">Jinny</span>
-                  </span>
-                  <span className="bg-[#D93D26] text-white text-[9px] font-bold px-1.5 py-0.5 tracking-widest uppercase">
-                    -50%
-                  </span>
-                </div>
-                <span className="text-[10px] uppercase tracking-[0.2em] text-[#73706B] font-semibold hidden sm:inline">
-                  {lang === "hi" ? "विशेष ई-कॉमर्स संग्रह" : "Editorial Department Store"}
-                </span>
-              </div>
-            </button>
+      <!-- 50% SALE MAGICAL BANNER (full width) -->
+      <div class="sale-banner">
+        <div class="sale-inner">
+          <span class="sale-kicker">✦ Magical Mahotsav ✦</span>
+          <div class="sale-title">FLAT 50% OFF</div>
+          <div class="sale-sub">Har wish par double khushi — sitaron ki baarish</div>
+          <div class="coupon">
+            <span id="couponCode">JINNY50</span>
+            <button onclick="copyCode('JINNY50',this)">COPY</button>
           </div>
-
-          {/* Search Box with Instant Querying */}
-          <div className="flex-1 max-w-lg mx-2 sm:mx-4 hidden md:block">
-            <div className="relative">
-              <Search className="w-4 h-4 text-[#73706B] absolute left-3.5 top-1/2 -translate-y-1/2" />
-              <input
-                id="search-input-desktop"
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder={
-                  lang === "hi"
-                    ? "सर्च करें: साड़ी, कुंदन ज्वेलरी, लिपस्टिक, स्मार्टवॉच, किचन वेयर..."
-                    : "Search 50% off cosmetics, jewelry, garments, footwear, gadgets..."
-                }
-                className="w-full pl-10 pr-8 py-2 text-xs sm:text-sm bg-white text-[#1A1A1A] placeholder-[#8C887F] border border-[#E5E2DC] focus:border-[#1A1A1A] focus:ring-1 focus:ring-[#1A1A1A] outline-none transition-all"
-              />
-              {searchQuery && (
-                <button
-                  onClick={() => setSearchQuery("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#73706B] hover:text-[#1A1A1A] text-xs bg-[#EFECE6] w-4 h-4 flex items-center justify-center cursor-pointer"
-                >
-                  ✕
-                </button>
-              )}
-            </div>
+          <div class="countdown" id="countdown">
+            <div class="cd"><b id="cd-h">00</b><span>Hours</span></div>
+            <div class="cd"><b id="cd-m">00</b><span>Mins</span></div>
+            <div class="cd"><b id="cd-s">00</b><span>Secs</span></div>
           </div>
-
-          {/* Action Buttons */}
-          <div className="flex items-center gap-2 sm:gap-3">
-            {/* Language Switcher */}
-            <button
-              id="lang-switch-btn"
-              onClick={() => setLang(lang === "hi" ? "en" : "hi")}
-              className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold text-[#1A1A1A] bg-white hover:bg-[#EFECE6] border border-[#E5E2DC] transition-colors cursor-pointer"
-              title="Change Language"
-            >
-              <Globe className="w-3.5 h-3.5 text-[#D93D26]" />
-              <span className="tracking-wider uppercase text-[11px] font-bold">{lang === "hi" ? "EN" : "HI"}</span>
-            </button>
-
-            {/* Gemini Video Analyzer Button */}
-            <button
-              id="video-analyzer-trigger-btn"
-              onClick={onOpenVideoAnalyzer}
-              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-[#1A1A1A] bg-[#EFECE6] hover:bg-[#E5E2DC] border border-[#D5D1C8] transition-all cursor-pointer uppercase tracking-wider text-[11px]"
-            >
-              <Video className="w-3.5 h-3.5 text-[#D93D26]" />
-              <span>{lang === "hi" ? "वीडियो AI" : "Video AI"}</span>
-            </button>
-
-            {/* Jinny Assistant AI */}
-            <button
-              id="jinny-assistant-trigger-btn"
-              onClick={onOpenJinnyAssistant}
-              className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-[#1A1A1A] bg-[#FAF9F6] hover:bg-[#1A1A1A] hover:text-white border border-[#1A1A1A] transition-all cursor-pointer uppercase tracking-wider text-[11px]"
-            >
-              <Sparkles className="w-3.5 h-3.5 text-[#D93D26]" />
-              <span>{lang === "hi" ? "जिनी AI" : "Ask Jinny"}</span>
-            </button>
-
-            {/* Wishlist Button */}
-            <button
-              id="wishlist-btn"
-              onClick={onOpenWishlist}
-              className="relative p-2 text-[#1A1A1A] bg-white hover:bg-[#EFECE6] border border-[#E5E2DC] transition-colors cursor-pointer"
-              aria-label="Wishlist"
-            >
-              <Heart className="w-4 h-4" />
-              {wishlistCount > 0 && (
-                <span className="absolute -top-1.5 -right-1.5 min-w-[18px] h-[18px] bg-[#D93D26] text-white text-[10px] font-bold flex items-center justify-center px-1">
-                  {wishlistCount}
-                </span>
-              )}
-            </button>
-
-            {/* Cart Button */}
-            <button
-              id="cart-btn"
-              onClick={onOpenCart}
-              className="relative flex items-center gap-2 bg-[#1A1A1A] hover:bg-[#D93D26] text-white px-3.5 sm:px-4 py-2 font-bold text-xs sm:text-sm tracking-wider uppercase transition-colors cursor-pointer border border-[#1A1A1A]"
-            >
-              <ShoppingBag className="w-4 h-4 text-white" />
-              <span className="hidden sm:inline">
-                {lang === "hi" ? "बैग" : "Bag"}
-              </span>
-              {cartCount > 0 && (
-                <span className="bg-[#D93D26] text-white text-[10px] font-bold px-1.5 py-0.2 min-w-[18px] text-center border border-white/20">
-                  {cartCount}
-                </span>
-              )}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Search Bar */}
-        <div className="md:hidden pb-3">
-          <div className="relative">
-            <Search className="w-4 h-4 text-[#73706B] absolute left-3.5 top-1/2 -translate-y-1/2" />
-            <input
-              id="search-input-mobile"
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder={
-                lang === "hi"
-                  ? "सर्च करें 50% डिस्काउंट प्रोडक्ट्स..."
-                  : "Search all 50% off products..."
-              }
-              className="w-full pl-10 pr-4 py-2 text-xs bg-white text-[#1A1A1A] border border-[#E5E2DC] outline-none"
-            />
+          <div style="margin-top:20px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+            <button class="btn-gold" onclick="navigate('offers')">Grab The Offer</button>
+            <button class="btn-ghost" style="background:transparent;color:#f3d27a" onclick="navigate('shop')">Browse Store</button>
           </div>
         </div>
       </div>
 
-      {/* Category Pills Bar */}
-      <div className="border-t border-[#E5E2DC] bg-[#FAF9F6]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-1 sm:gap-2 overflow-x-auto py-2 scrollbar-none">
-            <button
-              id="cat-btn-all"
-              onClick={() => onSelectCategory("all")}
-              className={`px-3 py-1 text-xs font-semibold whitespace-nowrap transition-all flex items-center gap-1.5 cursor-pointer uppercase tracking-wider text-[11px] border ${
-                selectedCategory === "all"
-                  ? "bg-[#1A1A1A] text-white border-[#1A1A1A]"
-                  : "bg-white text-[#1A1A1A] hover:bg-[#EFECE6] border-[#E5E2DC]"
-              }`}
-            >
-              <Tag className="w-3 h-3 text-[#D93D26]" />
-              <span>{lang === "hi" ? "सभी संग्रह (All)" : "Index / All"}</span>
-            </button>
+      <div class="wrap">
+        <!-- categories rail -->
+        <div class="sec">
+          <div><h2>Shop by <em>Category</em></h2><p>Jinny ke jaadui collection se apni pasand chuniye</p></div>
+          <a class="link" onclick="navigate('categories')">See all →</a>
+        </div>
+        <div class="rail" id="catRail"></div>
 
-            {CATEGORIES.map((cat, idx) => {
-              const isSelected = selectedCategory === cat.id;
-              return (
-                <button
-                  key={cat.id}
-                  id={`cat-btn-${cat.id}`}
-                  onClick={() => onSelectCategory(cat.id)}
-                  className={`px-3 py-1 text-xs whitespace-nowrap transition-all flex items-center gap-1.5 cursor-pointer tracking-wider text-[11px] border ${
-                    isSelected
-                      ? "bg-[#1A1A1A] text-white font-bold border-[#1A1A1A]"
-                      : "bg-white text-[#1A1A1A] hover:bg-[#EFECE6] border-[#E5E2DC]"
-                  }`}
-                >
-                  <span className="text-[9px] text-[#73706B] font-mono">0{idx + 1}.</span>
-                  <span className="font-medium">{lang === "hi" ? cat.nameHi : cat.nameEn}</span>
-                  <span
-                    className={`text-[9px] px-1 py-0.2 font-bold uppercase ${
-                      isSelected
-                        ? "bg-[#D93D26] text-white"
-                        : "bg-[#FAF9F6] text-[#D93D26] border border-[#D93D26]/30"
-                    }`}
-                  >
-                    -50%
-                  </span>
-                </button>
-              );
-            })}
+        <!-- featured -->
+        <div class="sec">
+          <div><h2>✨ Jinny's <em>Top Wishes</em></h2><p>Bestsellers loved by 1M+ shoppers</p></div>
+          <a class="link" onclick="navigate('shop')">View all →</a>
+        </div>
+        <div class="grid" id="featuredGrid"></div>
+
+        <!-- deal of the day strip -->
+        <div class="sec"><div><h2>Deal of the <em>Day</em></h2><p>Prices that disappear at midnight</p></div></div>
+        <div class="grid" id="dealGrid"></div>
+
+        <!-- trust -->
+        <div class="sec"><div><h2>Why <em>Wish Jinny</em>?</h2></div></div>
+        <div class="cards3">
+          <div class="tcard"><div class="ic">🪔</div><h4>Jaadui Prices</h4><p>Up to 70% off on 12,000+ products from verified vendors across India.</p></div>
+          <div class="tcard"><div class="ic">🚚</div><h4>Free & Fast Delivery</h4><p>Free shipping above ₹499. Express 2-day delivery in 19,000+ pin codes.</p></div>
+          <div class="tcard"><div class="ic">🔄</div><h4>7-Day Easy Returns</h4><p>Wish nahi bhooi? Instant pickup and refund within 72 hours.</p></div>
+          <div class="tcard"><div class="ic">🔒</div><h4>100% Secure Payments</h4><p>UPI, cards, wallets & COD protected by Jinny Shield encryption.</p></div>
+        </div>
+
+        <!-- AI Jinny promo -->
+        <div class="jinny-promo">
+          <div class="jp-avatar"><img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=300&q=80" alt="AI Jinny"></div>
+          <div class="jp-txt">
+            <h3>AI Jinny — Aapka Personal Shopper</h3>
+            <p>Bolo, "Mere liye ₹5,000 ke andar gift dhoondo" — Jinny turant best products, coupons aur delivery date bata dega. 24×7 free.</p>
+            <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+              <button class="btn-gold" onclick="openChat()">Talk to Jinny</button>
+              <button class="btn-ghost" style="background:transparent;color:#f3d27a;border-color:#f3d27a" onclick="navigate('vendor')">Become a Vendor</button>
+            </div>
           </div>
         </div>
       </div>
+    </section>
 
-      {/* Mobile Drawer Navigation */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-x-0 top-[110px] bg-[#FAF9F6] border-b border-[#E5E2DC] p-4 shadow-xl z-50 animate-in slide-in-from-top-2">
-          <div className="flex flex-col gap-2">
-            <div className="text-[10px] font-bold text-[#73706B] uppercase tracking-widest mb-1">
-              {lang === "hi" ? "कैटेगरी इंडेक्स (50% छूट)" : "Department Index (-50%)"}
-            </div>
-            <button
-              onClick={() => {
-                onSelectCategory("all");
-                setMobileMenuOpen(false);
-              }}
-              className={`p-2.5 text-left text-sm font-semibold flex items-center justify-between border ${
-                selectedCategory === "all"
-                  ? "bg-[#1A1A1A] text-white border-[#1A1A1A]"
-                  : "bg-white text-[#1A1A1A] border-[#E5E2DC] hover:bg-[#EFECE6]"
-              }`}
-            >
-              <span>{lang === "hi" ? "सभी 7 कैटेगरीज़" : "All 7 Departments"}</span>
-              <span className="bg-[#D93D26] text-white text-[10px] px-2 py-0.5 font-bold uppercase tracking-wider">
-                50% OFF
-              </span>
-            </button>
-            {CATEGORIES.map((cat, idx) => (
-              <button
-                key={cat.id}
-                onClick={() => {
-                  onSelectCategory(cat.id);
-                  setMobileMenuOpen(false);
-                }}
-                className={`p-2.5 text-left text-sm font-medium flex items-center justify-between border ${
-                  selectedCategory === cat.id
-                    ? "bg-[#1A1A1A] text-white border-[#1A1A1A]"
-                    : "bg-white text-[#1A1A1A] border-[#E5E2DC] hover:bg-[#EFECE6]"
-                }`}
-              >
-                <span>
-                  <span className="font-mono text-xs text-[#73706B] mr-2">0{idx + 1}.</span>
-                  {lang === "hi" ? cat.nameHi : cat.nameEn}
-                </span>
-                <span className="text-xs text-[#D93D26] font-bold uppercase tracking-wider">-50%</span>
-              </button>
-            ))}
+    <!-- ============ CATEGORIES ============ -->
+    <section class="page" id="page-categories">
+      <div class="wrap">
+        <div class="sec"><div><h2>All <em>Categories</em></h2><p>12 jaadui collections — tap karke shop karein</p></div></div>
+        <div class="catgrid" id="catGrid"></div>
+        <div class="sec"><div><h2>Trending <em>Now</em></h2></div></div>
+        <div class="grid" id="trendGrid"></div>
+      </div>
+    </section>
 
-            <div className="pt-3 border-t border-[#E5E2DC] flex flex-col gap-2">
-              <button
-                onClick={() => {
-                  onOpenVideoAnalyzer();
-                  setMobileMenuOpen(false);
-                }}
-                className="w-full py-2.5 bg-[#EFECE6] hover:bg-[#E5E2DC] text-[#1A1A1A] font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 border border-[#D5D1C8]"
-              >
-                <Video className="w-4 h-4 text-[#D93D26]" />
-                <span>{lang === "hi" ? "वीडियो AI विश्लेषण (Gemini Pro)" : "Analyze Videos with Gemini"}</span>
-              </button>
-              <button
-                onClick={() => {
-                  onOpenJinnyAssistant();
-                  setMobileMenuOpen(false);
-                }}
-                className="w-full py-2.5 bg-[#1A1A1A] hover:bg-[#D93D26] text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 border border-[#1A1A1A]"
-              >
-                <Sparkles className="w-4 h-4 text-[#FAF9F6]" />
-                <span>{lang === "hi" ? "Wish Jinny AI सहायक से पूछें" : "Chat with Wish Jinny AI"}</span>
-              </button>
+    <!-- ============ SHOP ============ -->
+    <section class="page" id="page-shop">
+      <div class="wrap">
+        <div class="sec"><div><h2>The <em>Wish Store</em></h2><p id="resultCount">Loading products…</p></div></div>
+      </div>
+      <div class="filterbar">
+        <div class="wrap">
+          <div class="chips" id="filterChips"></div>
+          <div class="sortrow">
+            <label class="switch"><input type="checkbox" id="inStockOnly"> In stock only</label>
+            <div class="range">
+              <span>Max <b id="priceLabel">₹50,000</b></span>
+              <input type="range" id="priceRange" min="500" max="50000" step="500" value="50000">
             </div>
+            <label>Sort:
+              <select id="sortSelect">
+                <option value="pop">Popularity</option>
+                <option value="low">Price: Low → High</option>
+                <option value="high">Price: High → Low</option>
+                <option value="rate">Customer Rating</option>
+                <option value="disc">Biggest Discount</option>
+              </select>
+            </label>
           </div>
         </div>
-      )}
-    </header>
-  );
+      </div>
+      <div class="wrap">
+        <div class="grid" id="shopGrid"></div>
+        const PRODUCTS = [
+  // ==========================================
+  // 1. कॉस्मेटिक्स (COSMETICS & BEAUTY)
+  // ==========================================
+  {
+    id: "cos-01",
+    categoryId: "cosmetics",
+    nameHi: "24K गोल्ड ग्लो फेशियल सीरम व प्राइमर",
+    nameEn: "24K Gold Radiant Facial Serum & Primer",
+    descriptionHi: "त्वचा को तुरंत चमकदार और हाइड्रेटेड बनाने वाला 24 कैरेट गोल्ड इन्फ्यूज्ड सीरम।",
+    descriptionEn: "Infused with 24K gold flakes and pure hyaluronic acid for deep hydration.",
+    originalPrice: 1999,
+    discountedPrice: 999,
+    rating: 4.8,
+    images: ["https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=700&auto=format&fit=crop&q=80"],
+    stockCount: 14,
+    specs: [{ label: "Formulation", value: "Lightweight Serum" }, { label: "Key Ingredient", value: "24K Gold + Hyaluronic Acid" }]
+  },
+  {
+    id: "cos-02",
+    categoryId: "cosmetics",
+    nameHi: "मैट 16-घंटे वाटरप्रूफ लिपस्टिक सेट (6 शेड्स)",
+    nameEn: "Velvet Matte 16-Hour Longwear Lipstick Kit (Set of 6)",
+    descriptionHi: "स्मज-प्रूफ और हाइड्रेटिंग मैट लिपस्टिक किट। सभी स्किन टोंस के लिए 6 खूबसूरत शेड्स।",
+    descriptionEn: "Super lightweight, non-drying transfer-proof liquid lip colors with intense pigment.",
+    originalPrice: 1598,
+    discountedPrice: 799,
+    rating: 4.9,
+    images: ["https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=700&auto=format&fit=crop&q=80"],
+    stockCount: 8,
+    specs: [{ label: "Finish", value: "Ultra Matte" }, { label: "Duration", value: "Up to 16 Hours" }]
+  },
+  {
+    id: "cos-03",
+    categoryId: "cosmetics",
+    nameHi: "विटामिन C ग्लोइंग फेस वॉश व स्क्रब कॉम्बो",
+    nameEn: "Brightening Vitamin C Face Cleanser & Exfoliator",
+    descriptionHi: "त्वचा की टैनिंग हटाने और प्राकृतिक चमक लाने वाला प्राकृतिक फेस वॉश।",
+    descriptionEn: "Deep pore brightening cleanser infused with orange extracts and niacinamide.",
+    originalPrice: 798,
+    discountedPrice: 399,
+    rating: 4.7,
+    images: ["https://images.unsplash.com/photo-1556228720-195a672e8a03?w=700&auto=format&fit=crop&q=80"],
+    stockCount: 20,
+    specs: [{ label: "Skin Type", value: "All Skin Types" }, { label: "Chemicals", value: "Paraben & Sulphate Free" }]
+  },
+  {
+    id: "cos-04",
+    categoryId: "cosmetics",
+    nameHi: "अल्ट्रा एचडी लिक्विड फाउंडेशन (फुल कवरेज)",
+    nameEn: "Ultra HD Waterproof Liquid Foundation",
+    descriptionHi: "चेहरे के दाग-धब्बों को छुपाने वाला नेचुरल फिनिश और वाटरप्रूफ फाउंडेशन।",
+    descriptionEn: "Seamless blendable full coverage formula with SPF 25 sun protection.",
+    originalPrice: 1198,
+    discountedPrice: 599,
+    rating: 4.8,
+    images: ["https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&auto=format&fit=crop&q=80"],
+    stockCount: 16,
+    specs: [{ label: "Coverage", value: "Full Coverage Matte" }, { label: "SPF", value: "SPF 25 PA++" }]
+  },
+  {
+    id: "cos-05",
+    categoryId: "cosmetics",
+    nameHi: "18-कलर शिमर व मैट आईशैडो पैलेट",
+    nameEn: "18-Color Twilight Shimmer & Matte Eyeshadow Palette",
+    descriptionHi: "पार्टी, शादी और रोजमर्रा के लिए हाई-पिगमेंटेड आईशैडो पैलेट।",
+    descriptionEn: "Richly pigmented silky smooth powder shades that blend effortlessly.",
+    originalPrice: 1398,
+    discountedPrice: 699,
+    rating: 4.9,
+    images: ["https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=700&auto=format&fit=crop&q=80"],
+    stockCount: 11,
+    specs: [{ label: "Shades", value: "10 Matte + 8 Shimmer" }, { label: "Fallout", value: "Zero Crease" }]
+  },
+
+  // ==========================================
+  // 2. ज्वेलरी (JEWELRIES & ORNAMENTS)
+  // ==========================================
+  {
+    id: "jew-01",
+    categoryId: "jewelries",
+    nameHi: "रॉयल कुंदन व पर्ल ब्राइडल चोकर सेट",
+    nameEn: "Royal Kundan & Pearl Heritage Choker Set",
+    descriptionHi: "शाही राजपूताना डिजाइन वाला 22K गोल्ड प्लेटेड कुंदन चोकर सेट (झुमके व मांगटीका सहित)।",
+    descriptionEn: "Intricately handcrafted Kundan choker with cascading emerald beads and jhumkas.",
+    originalPrice: 4999,
+    discountedPrice: 2499,
+    rating: 4.9,
+    images: ["https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=700&auto=format&fit=crop&q=80"],
+    stockCount: 5,
+    specs: [{ label: "Plating", value: "22K Micron Gold Plated" }, { label: "Stones", value: "Handcut Kundan & Fresh Pearls" }]
+  },
+  {
+    id: "jew-02",
+    categoryId: "jewelries",
+    nameHi: "एंटीक टेम्पल लक्ष्मी माता नेकलेस व झुमके",
+    nameEn: "South Heritage Temple Lakshmi Goddess Necklace",
+    descriptionHi: "पारंपरिक साउथ इंडियन एंटीक नक्काशी वर्क वाला टेम्पल ज्वेलरी सेट।",
+    descriptionEn: "Traditional South Indian antique temple jewellery featuring Goddess Lakshmi medallion.",
+    originalPrice: 3598,
+    discountedPrice: 1799,
+    rating: 4.8,
+    images: ["https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=700&auto=format&fit=crop&q=80"],
+    stockCount: 12,
+    specs: [{ label: "Style", value: "Traditional Temple" }, { label: "Material", value: "Brass with Antique Gold" }]
+  },
+  {
+    id: "jew-03",
+    categoryId: "jewelries",
+    nameHi: "अमेरिकन डायमंड (AD) फ्लोरल पेंडेंट सेट",
+    nameEn: "Sparkling American Diamond Solitaire Pendant & Studs",
+    descriptionHi: "असली हीरे जैसी चमक वाला अमेरिकन डायमंड नेकपीस और मैचिंग ईयररिंग्स।",
+    descriptionEn: "Rhodium silver-finished necklace with brilliant AAA+ cubic zirconia stones.",
+    originalPrice: 2198,
+    discountedPrice: 1099,
+    rating: 4.8,
+    images: ["https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=700&auto=format&fit=crop&q=80"],
+    stockCount: 15,
+    specs: [{ label: "Stone", value: "AAA+ Cubic Zirconia" }, { label: "Finish", value: "Anti-Tarnish Rhodium" }]
+  },
+  {
+    id: "jew-04",
+    categoryId: "jewelries",
+    nameHi: "ट्रेडिशनल मीनाकारी पीकॉक झुमकी इयररिंग्स",
+    nameEn: "Hand-Painted Jaipuri Meenakari Peacock Jhumkas",
+    descriptionHi: "हैंडक्राफ्टेड जयपुरी मीनाकारी और पर्ल ड्रॉप्स वाली फेस्टिव झुमकी।",
+    descriptionEn: "Artisanal enamel coated peacock chandelier jhumkas with hanging pearl cluster.",
+    originalPrice: 998,
+    discountedPrice: 499,
+    rating: 4.7,
+    images: ["https://images.unsplash.com/photo-1630019852942-f89202989a59?w=700&auto=format&fit=crop&q=80"],
+    stockCount: 22,
+    specs: [{ label: "Craft", value: "Jaipuri Meenakari" }, { label: "Weight", value: "Lightweight Ear-friendly" }]
+  },
+  {
+    id: "jew-05",
+    categoryId: "jewelries",
+    nameHi: "24K गोल्ड प्लेटेड बैंगल सेट (4 चूड़ियों का सेट)",
+    nameEn: "Classic Micro Gold Plated Designer Bangles (Set of 4)",
+    descriptionHi: "डेली वियर और फेस्टिवल्स के लिए नक्काशीदार मजबूत सोने की पॉलिश वाली चूड़ियां।",
+    descriptionEn: "High-durability micro gold plated bangles with delicate filigree embossing.",
+    originalPrice: 1798,
+    discountedPrice: 899,
+    rating: 4.9,
+    images: ["https://images.unsplash.com/photo-1611591475841-4770146059d0?w=700&auto=format&fit=crop&q=80"],
+    stockCount: 18,
+    specs: [{ label: "Set", value: "4 Bangles" }, { label: "Sizes Available", value: "2.4, 2.6, 2.8" }]
+  },
+
+  // ==========================================
+  // 3. गारमेंट्स: जींस, शर्ट, टी-शर्ट, कुर्ती (GARMENTS)
+  // ==========================================
+  {
+    id: "gar-01",
+    categoryId: "garments",
+    nameHi: "प्रीमियम स्ट्रेचेबल स्लिम फिट मेन्स जींस",
+    nameEn: "Men's Premium Stretch Denim Slim Fit Jeans",
+    descriptionHi: "आरामदायक कॉटन स्ट्रेच फैब्रिक और टिकाऊ फिनिश वाली स्टाइलिश डार्क ब्लू डेनिम जींस।",
+    descriptionEn: "Engineered comfort-stretch denim trousers with 5 pockets and reinforced stitching.",
+    originalPrice: 2398,
+    discountedPrice: 1199,
+    rating: 4.8,
+    images: ["https://images.unsplash.com/photo-1542272604-787c3835535d?w=700&auto=format&fit=crop&q=80"],
+    stockCount: 25,
+    specs: [{ label: "Fabric", value: "98% Cotton, 2% Elastane" }, { label: "Fit", value: "Slim Tapered" }]
+  },
+  {
+    id: "gar-02",
+    categoryId: "garments",
+    nameHi: "प्योर कॉटन फॉर्मल व कैजुअल फुल स्लीव शर्ट",
+    nameEn: "Pure Breathable Cotton Solid Casual Shirt",
+    descriptionHi: "ऑफिस और कैजुअल दोनों के लिए परफेक्ट हवादार प्रीमियम कॉटन शर्ट।",
+    descriptionEn: "Crisp spread-collar tailored woven cotton shirt with curved hem.",
+    originalPrice: 1598,
+    discountedPrice: 799,
+    rating: 4.7,
+    images: ["https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=700&auto=format&fit=crop&q=80"],
+    stockCount: 30,
+    specs: [{ label: "Fabric", value: "100% Combed Cotton" }, { label: "Pattern", value: "Solid Classic" }]
+  },
+  {
+    id: "gar-03",
+    categoryId: "garments",
+    nameHi: "ओवरसाइज़्ड ड्रॉप शोल्डर कॉटन टी-शर्ट (ग्राफिक)",
+    nameEn: "Heavyweight Cotton Oversized Streetwear T-Shirt",
+    descriptionHi: "ट्रेंडी यूथ स्ट्रीटवियर डिजाइन वाली 220 GSM प्योर कॉटन टी-शर्ट।",
+    descriptionEn: "Trendy drop-shoulder streetwear tee featuring high-density typography print.",
+    originalPrice: 998,
+    discountedPrice: 499,
+    rating: 4.9,
+    images: ["https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=700&auto=format&fit=crop&q=80"],
+    stockCount: 40,
+    specs: [{ label: "Weight", value: "220 GSM Heavyweight Cotton" }, { label: "Fit", value: "Relaxed Oversized" }]
+  },
+  {
+    id: "gar-04",
+    categoryId: "garments",
+    nameHi: "हाई-वेस्ट विमेंस एंकल लेंथ स्ट्रेच जींस",
+    nameEn: "Women's High-Rise Clean Ankle Length Stretch Denim",
+    descriptionHi: "सुपर कम्फर्टेबल हाई-वेस्ट जींस जो हर बॉडी शेप को स्लिम लुक देती है।",
+    descriptionEn: "Sculpting high-rise stretchy denim pants with contour waistband.",
+    originalPrice: 2198,
+    discountedPrice: 1099,
+    rating: 4.8,
+    images: ["https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=700&auto=format&fit=crop&q=80"],
+    stockCount: 19,
+    specs: [{ label: "Rise", value: "High Rise" }, { label: "Stretch", value: "Super Flex Stretch" }]
+  },
+  {
+    id: "gar-05",
+    categoryId: "garments",
+    nameHi: "प्योर कांजीवरम सिल्क साड़ी (जरी बॉर्डर + ब्लाउज)",
+    nameEn: "Pure Kanjeevaram Jacquard Silk Saree with Zari Weave",
+    descriptionHi: "पारंपरिक साउथ इंडियन कांजीवरम रिच पल्लू साड़ी। प्योर गोल्डन जरी वर्क।",
+    descriptionEn: "Opulent woven jacquard silk saree with temple zari border and unstitched blouse.",
+    originalPrice: 5999,
+    discountedPrice: 2999,
+    rating: 4.9,
+    images: ["https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=700&auto=format&fit=crop&q=80"],
+    stockCount: 9,
+    specs: [{ label: "Fabric", value: "Kanjeevaram Art Silk" }, { label: "Length", value: "6.3 Mtr with Blouse" }]
+  },
+  {
+    id: "gar-06",
+    categoryId: "garments",
+    nameHi: "हाथ की कसीदाकारी चिकनकारी कुर्ती व पैंट सेट",
+    nameEn: "Handcrafted Lucknowi Chikan Rayon Kurti & Pant Set",
+    descriptionHi: "बारीक हाथ की कढ़ाई वाली सॉफ्ट कॉटन चिकनकारी कुर्ती व पैंट सेट।",
+    descriptionEn: "Authentic Lucknow hand embroidery with tonal threadwork and matching pants.",
+    originalPrice: 2398,
+    discountedPrice: 1199,
+    rating: 4.7,
+    images: ["https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=700&auto=format&fit=crop&q=80"],
+    stockCount: 18,
+    specs: [{ label: "Craft", value: "Lucknowi Hand Chikan" }, { label: "Fabric", value: "Breathable Viscose" }]
+  },
+
+  // ==========================================
+  // 4. फुटवेयर्स (FOOTWEAR & SHOES)
+  // ==========================================
+  {
+    id: "foot-01",
+    categoryId: "footwears",
+    nameHi: "हैंडक्राफ्टेड एम्ब्रॉयडर्ड पंजाबी जूती",
+    nameEn: "Artisanal Velvet Hand-Embroidered Punjabi Mojari Jutti",
+    descriptionHi: "असली लेदर सोल और आरामदायक कुशनिंग वाली हाथ की कढ़ाई वाली ट्रेडिशनल जूती।",
+    descriptionEn: "Cushioned insole with genuine leather sole, zero bite guarantee, and dabka work.",
+    originalPrice: 1999,
+    discountedPrice: 999,
+    rating: 4.8,
+    images: ["https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=700&auto=format&fit=crop&q=80"],
+    stockCount: 12,
+    specs: [{ label: "Sole", value: "100% Genuine Leather" }, { label: "Padding", value: "Memory Foam Insole" }]
+  },
+  {
+    id: "foot-02",
+    categoryId: "footwears",
+    nameHi: "प्रीमियम हैंडमेड लेदर पेनी लोफर्स",
+    nameEn: "Italian-Crafted Breathable Leather Penny Loafers",
+    descriptionHi: "ऑफिस, पार्टी और कैजुअल के लिए क्लासिक इटैलियन लेदर स्लिप-ऑन शूज।",
+    descriptionEn: "Hand-burnished full-grain leather loafers with flexible anti-slip sole.",
+    originalPrice: 3999,
+    discountedPrice: 1999,
+    rating: 4.9,
+    images: ["https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=700&auto=format&fit=crop&q=80"],
+    stockCount: 10,
+    specs: [{ label: "Upper", value: "Full-Grain Leather" }, { label: "Sole", value: "Anti-Skid TPR" }]
+  },
+  {
+    id: "foot-03",
+    categoryId: "footwears",
+    nameHi: "अल्ट्रा-लाइटवेट रनिंग व जिम स्नीकर्स",
+    nameEn: "Ultra-Lightweight Air Cushion Running Shoes",
+    descriptionHi: "दौड़ने और वॉक के लिए शॉक-एब्जॉर्बिंग सोल वाले बेहद हल्के स्पोर्ट्स शूज।",
+    descriptionEn: "Breathable flyknit mesh sneakers with air-cushioned responsive bounce sole.",
+    originalPrice: 2598,
+    discountedPrice: 1299,
+    rating: 4.8,
+    images: ["https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700&auto=format&fit=crop&q=80"],
+    stockCount: 22,
+    specs: [{ label: "Weight", value: "Superlight 210g" }, { label: "Sole", value: "EVA Air Cushion" }]
+  },
+  {
+    id: "foot-04",
+    categoryId: "footwears",
+    nameHi: "विमेन्स ब्लॉक हील कम्फर्ट सैंडल्स",
+    nameEn: "Women's Strappy Block Heel Party Sandals",
+    descriptionHi: "पैरों में दर्द न होने वाली पैडेड कुशन इनसोल के साथ 2.5 इंच ब्लॉक हील सैंडल।",
+    descriptionEn: "Elegant party heel with dual ankle strap and anti-fatigue footbed.",
+    originalPrice: 1798,
+    discountedPrice: 899,
+    rating: 4.7,
+    images: ["https://images.unsplash.com/photo-1562273138-f46be4ebdf33?w=700&auto=format&fit=crop&q=80"],
+    stockCount: 16,
+    specs: [{ label: "Heel Height", value: "2.5 Inches Block" }, { label: "Closure", value: "Buckle Strap" }]
+  },
+  {
+    id: "foot-05",
+    categoryId: "footwears",
+    nameHi: "डेली वियर वॉटरप्रूफ ऑर्थोपेडिक स्लिपर्स",
+    nameEn: "Orthopedic Soft Cloud Cushion Daily Slides",
+    descriptionHi: "घर और बाहर दोनों जगह पहनने के लिए सुपर-सॉफ्ट वाटरप्रूफ फुट-रिलैक्स स्लाइडर्स।",
+    descriptionEn: "Ergonomic arch support slides made from high-density rebound EVA.",
+    originalPrice: 798,
+    discountedPrice: 399,
+    rating: 4.8,
+    images: ["https://images.unsplash.com/photo-1603808033192-082d6919d3e1?w=700&auto=format&fit=crop&q=80"],
+    stockCount: 35,
+    specs: [{ label: "Material", value: "Medical Grade EVA" }, { label: "Feature", value: "Waterproof & Washable" }]
+  },
+
+  // ==========================================
+  // 5. किचन व होम अप्लायंसेज (KITCHEN & HOME APPLIANCES)
+  // ==========================================
+  {
+    id: "app-01",
+    categoryId: "kitchenware",
+    nameHi: "डिजिटल एयर फ्रायर (4.5 लीटर, 85% कम तेल)",
+    nameEn: "Vortex Pro 4.5L Digital Touchscreen Air Fryer",
+    descriptionHi: "बिना ज्यादा तेल के समोसे, फ्रेंच फ्राइज और टिक्की कुरकुरी बनाने वाला स्मार्ट एयर फ्रायर।",
+    descriptionEn: "Rapid 360-degree hot air circulation with 8 one-touch cooking presets.",
+    originalPrice: 6998,
+    discountedPrice: 3499,
+    rating: 4.9,
+    images: ["https://images.unsplash.com/photo-1585515320310-259814833e62?w=700&auto=format&fit=crop&q=80"],
+    stockCount: 8,
+    specs: [{ label: "Capacity", value: "4.5 Litres" }, { label: "Power", value: "1400 Watts Rapid Heat" }]
+  },
+  {
+    id: "app-02",
+    categoryId: "kitchenware",
+    nameHi: "750W हैवी ड्यूटी 3-जार मिक्सर ग्राइंडर",
+    nameEn: "750W Heavy-Duty 3-Jar Mixer Grinder with Copper Motor",
+    descriptionHi: "कड़क मसाले, चटनी और बैटर पीसने के लिए 100% कॉपर मोटर वाला मिक्सर ग्राइंडर।",
+    descriptionEn: "Pure copper motor with 3 stainless steel jars and overload protection circuit.",
+    originalPrice: 4198,
+    discountedPrice: 2099,
+    rating: 4.8,
+    images: ["https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=700&auto=format&fit=crop&q=80"],
+    stockCount: 14,
+    specs: [{ label: "Motor", value: "750W 100% Copper" }, { label: "Jars", value: "3 Stainless Steel Jars" }]
+  },
+  {
+    id: "app-03",
+    categoryId: "kitchenware",
+    nameHi: "ऑटोमैटिक 2-स्लाइस पॉप-अप ब्रेड टोस्टर",
+    nameEn: "Stainless Steel 2-Slice Pop-Up Fast Bread Toaster",
+    descriptionHi: "6 ब्राउनिंग सेटिंग्स और रिमूवेबल क्रम्ब ट्रे वाला फास्ट ब्रेकफास्ट टोस्टर।",
+    descriptionEn: "Even-toast technology with variable browning control and defrost function.",
+    originalPrice: 1998,
+    discountedPrice: 999,
+    rating: 4.7,
+    images: ["https://images.unsplash.com/photo-1583778176476-4a8b02a64c01?w=700&auto=format&fit=crop&q=80"],
+    stockCount: 18,
+    specs: [{ label: "Controls", value: "6 Browning Levels" }, { label: "Body", value: "Cool-Touch Exterior" }]
+  },
+  {
+    id: "app-04",
+    categoryId: "kitchenware",
+    nameHi: "1.8 लीटर स्टेनलेस स्टील कॉर्डलेस इलेक्ट्रिक केतली",
+    nameEn: "1.8L Fast-Boil Stainless Steel Electric Kettle",
+    descriptionHi: "2 मिनट में पानी, चाय या नूडल्स उबालने वाली ऑटो-कटऑफ इलेक्ट्रिक केतली।",
+    descriptionEn: "Food-grade 304 stainless steel interior with 360-degree swivel base.",
+    originalPrice: 1398,
+    discountedPrice: 699,
+    rating: 4.8,
+    images: ["https://images.unsplash.com/photo-1544816155-12df9643f363?w=700&auto=format&fit=crop&q=80"],
+    stockCount: 25,
+    specs: [{ label: "Capacity", value: "1.8 Litres" }, { label: "Safety", value: "Auto Shut-Off & Boil Dry" }]
+  },
+  {
+    id: "app-05",
+    categoryId: "kitchenware",
+    nameHi: "हैंडहेल्ड गारमेंट स्टीमर (प्रेस/आयरन)",
+    nameEn: "Portable Quick-Heat Handheld Garment Steamer",
+    descriptionHi: "कपड़ों की सिलवटें बिना जलाए सेकंडों में मिटाने वाला पोर्टेबल स्टीम आयरन।",
+    descriptionEn: "1200W powerful continuous steam generator with anti-drip nozzle.",
+    originalPrice: 2598,
+    discountedPrice: 1299,
+    rating: 4.8,
+    images: ["https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=700&auto=format&fit=crop&q=80"],
+    stockCount: 15,
+    specs: [{ label: "Power", value: "1200W Rapid Steam" }, { label: "Water Tank", value: "250ml Detachable" }]
+  },
+
+  // ==========================================
+  // 6. किचन गैजेट्स व कुकवेयर (KITCHEN GADGETS & TOOLS)
+  // ==========================================
+  {
+    id: "gad-kit-01",
+    categoryId: "kitchenware",
+    nameHi: "ग्रेनाइट 3-पीस नॉन-स्टिक कुकवेयर सेट (कड़ाही + तवा + पैन)",
+    nameEn: "German Granite 3-Piece Non-Stick Cookware Master Set",
+    descriptionHi: "जर्मन तकनीक वाला 5-लेयर ग्रेनाइट नॉन-स्टिक सेट। 100% PFOA फ्री और इंडक्शन कम्पैटिबल।",
+    descriptionEn: "Scratch-resistant granite coating with heavy induction base and cool-touch handles.",
+    originalPrice: 3998,
+    discountedPrice: 1999,
+    rating: 4.9,
+    images: ["https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=700&auto=format&fit=crop&q=80"],
+    stockCount: 8,
+    specs: [{ label: "Pieces", value: "24cm Kadhai + 28cm Tawa + 24cm Frypan" }, { label: "Coating", value: "5-Layer German Granite" }]
+  },
+  {
+    id: "gad-kit-02",
+    categoryId: "kitchenware",
+    nameHi: "यूएसबी रिचार्जेबल पोर्टेबल स्मूदी ब्लेंडर",
+    nameEn: "USB Rechargeable 6-Blade Portable Smoothie Blender",
+    descriptionHi: "यात्रा, ऑफिस और जिम में तुरंत ताजा जूस और शेक बनाने वाली मिनी ब्लेंडर बोतल।",
+    descriptionEn: "Cordless personal blender featuring 6 3D stainless steel blades and 2000mAh battery.",
+    originalPrice: 1398,
+    discountedPrice: 699,
+    rating: 4.8,
+    images: ["https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=700&auto=format&fit=crop&q=80"],
+    stockCount: 28,
+    specs: [{ label: "Blades", value: "6 SUS304 Steel Blades" }, { label: "Battery", value: "2000mAh Type-C" }]
+  },
+  {
+    id: "gad-kit-03",
+    categoryId: "kitchenware",
+    nameHi: "12-इन-1 मल्टीफंक्शनल वेजिटेबल व फ्रूट चॉपर",
+    nameEn: "12-in-1 Precision Vegetable & Salad Dicer Slicer",
+    descriptionHi: "सब्जियां, प्याज, सलाद को 10 सेकंड में एकसमान काटने वाला कटिंग गैजेट।",
+    descriptionEn: "Heavy-duty chopper box with 12 interchangeable razor-sharp stainless steel blades.",
+    originalPrice: 998,
+    discountedPrice: 499,
+    rating: 4.7,
+    images: ["https://images.unsplash.com/photo-1540420773420-3366772f4999?w=700&auto=format&fit=crop&q=80"],
+    stockCount: 30,
+    specs: [{ label: "Blades", value: "12 Food Grade Blades" }, { label: "Container", value: "BPA Free Large Box" }]
+  },
+  {
+    id: "gad-kit-04",
+    categoryId: "kitchenware",
+    nameHi: "ऑटोमैटिक रिचार्जेबल वाटर डिस्पेंसर पंप",
+    nameEn: "Wireless Automatic Water Bottle Dispenser Pump",
+    descriptionHi: "20 लीटर पानी के कैन पर सीधे फिट होने वाला वन-टच ऑटोमैटिक वाटर पंप।",
+    descriptionEn: "Food-grade silicone tube pump operated via single touch button, USB rechargeable.",
+    originalPrice: 798,
+    discountedPrice: 399,
+    rating: 4.8,
+    images: ["https://images.unsplash.com/photo-1548839140-29a749e1bc4e?w=700&auto=format&fit=crop&q=80"],
+    stockCount: 40,
+    specs: [{ label: "Compatibility", value: "Standard 20L Water Cans" }, { label: "Charging", value: "Fast USB Charging" }]
+  },
+  {
+    id: "gad-kit-05",
+    categoryId: "kitchenware",
+    nameHi: "डिजिटल किचन वेइंग स्केल (1 ग्राम से 10 किग्रा)",
+    nameEn: "Digital Food Weighing Kitchen Scale with LCD",
+    descriptionHi: "रसोई, बेकिंग और डाइट मापने के लिए सटीक डिजिटल वजन कांटा।",
+    descriptionEn: "High-precision strain gauge sensor with tare calculation function.",
+    originalPrice: 698,
+    discountedPrice: 349,
+    rating: 4.9,
+    images: ["https://images.unsplash.com/photo-1590736969955-71cc94801759?w=700&auto=format&fit=crop&q=80"],
+    stockCount: 22,
+    specs: [{ label: "Capacity", value: "1g to 10,000g" }, { label: "Display", value: "Backlit Digital LCD" }]
+  },
+
+  // ==========================================
+  // 7. बच्चों के खिलौने (KIDS TOYS & GAMES)
+  // ==========================================
+  {
+    id: "toy-01",
+    categoryId: "gadgets",
+    nameHi: "360° स्टंट RC रिमोट कंट्रोल कार (रिचार्जेबल)",
+    nameEn: "360° Stunt Double-Sided RC Rock Crawler Car",
+    descriptionHi: "पलटकर चलने वाली, रंग-बिरंगी LED लाइट्स और शॉकप्रूफ पहियों वाली रिमोट कार।",
+    descriptionEn: "High-speed 2.4GHz remote control flip car capable of extreme spins and obstacles.",
+    originalPrice: 1598,
+    discountedPrice: 799,
+    rating: 4.9,
+    images: ["https://images.unsplash.com/photo-1594787318286-3d835c1d207f?w=700&auto=format&fit=crop&q=80"],
+    stockCount: 25,
+    specs: [{ label: "Range", value: "2.4GHz 50 Meters" }, { label: "Battery", value: "Rechargeable Li-Ion Included" }]
+  },
+  {
+    id: "toy-02",
+    categoryId: "gadgets",
+    nameHi: "किड्स 8.5-इंच LCD राइटिंग व ड्रॉइंग पैड",
+    nameEn: "Kids 8.5-Inch Magic LCD Doodle & Writing Tablet",
+    descriptionHi: "बच्चों के लिखने, चित्रकारी और पढ़ाई के लिए आंखों पर जोर न डालने वाला डिजिटल स्लेट।",
+    descriptionEn: "Paper-saving pressure-sensitive drawing board with one-touch instant erase button.",
+    originalPrice: 598,
+    discountedPrice: 299,
+    rating: 4.8,
+    images: ["https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=700&auto=format&fit=crop&q=80"],
+    stockCount: 50,
+    specs: [{ label: "Screen", value: "Eye-Protection Paperless LCD" }, { label: "Battery", value: "Replaceable Button Cell (1 Year)" }]
+  },
+  {
+    id: "toy-03",
+    categoryId: "gadgets",
+    nameHi: "एजुकेशनल सोलर रोबोट 12-इन-1 DIY किट",
+    nameEn: "12-in-1 STEM Educational Solar Powered Robot Toy",
+    descriptionHi: "धूप से चलने वाले 12 अलग-अलग रोबोट बनाने वाली बच्चों की विज्ञान STEM किट।",
+    descriptionEn: "Hands-on building block kit powered by solar energy, developing logic and engineering.",
+    originalPrice: 1998,
+    discountedPrice: 999,
+    rating: 4.9,
+    images: ["https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=700&auto=format&fit=crop&q=80"],
+    stockCount: 15,
+    specs: [{ label: "Power Source", value: "100% Solar Powered (No Batteries)" }, { label: "Age Group", value: "8+ Years" }]
+  },
+  {
+    id: "toy-04",
+    categoryId: "gadgets",
+    nameHi: "टॉकिंग कैक्टस टॉय (डांसिंग व आवाज दोहराने वाला)",
+    nameEn: "Dancing & Mimicking Talking Cactus Plush Toy",
+    descriptionHi: "आपकी आवाज दोहराने वाला, 120 गाने बजाने वाला और लाइट के साथ नाचने वाला खिलौना।",
+    descriptionEn: "Funny interactive plush cactus that repeats what you say, records voice and dances.",
+    originalPrice: 998,
+    discountedPrice: 499,
+    rating: 4.7,
+    images: ["https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=700&auto=format&fit=crop&q=80"],
+    stockCount: 35,
+    specs: [{ label: "Features", value: "Voice Recording + 120 Tracks" }, { label: "Material", value: "Ultra-Soft Knitted Plush" }]
+  },
+  {
+    id: "toy-05",
+    categoryId: "gadgets",
+    nameHi: "किड्स डिजिटल मिनी HD कैमरा (गेम्स व वीडियो सहित)",
+    nameEn: "Kids Instant Digital Video & Photo Camera",
+    descriptionHi: "बच्चों के फोटोग्राफी सीखने के लिए शॉकप्रूफ सिलिकॉन केस और गेम्स वाला मिनी कैमरा।",
+    descriptionEn: "1080P HD front and rear selfie camera with creative frames, filters, and puzzle games.",
+    originalPrice: 1798,
+    discountedPrice: 899,
+    rating: 4.8,
+    images: ["https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=700&auto=format&fit=crop&q=80"],
+    stockCount: 18,
+    specs: [{ label: "Resolution", value: "1080P Full HD Video" }, { label: "Screen", value: "2.0-inch Color Display" }]
+  },
+  {
+    id: "toy-06",
+    categoryId: "gadgets",
+    nameHi: "मैग्नेटिक 3D बिल्डिंग ब्लॉक्स पहेली सेट (64 पीस)",
+    nameEn: "64-Piece Magnetic 3D Geometric Building Tiles Set",
+    descriptionHi: "बच्चों की रचनात्मकता और कल्पना शक्ति बढ़ाने वाले सुरक्षित मैग्नेटिक ब्लॉक्स।",
+    descriptionEn: "Vibrant translucent magnetic tiles with strong magnets and rounded child-safe edges.",
+    originalPrice: 2198,
+    discountedPrice: 1099,
+    rating: 4.9,
+    images: ["https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=700&auto=format&fit=crop&q=80"],
+    stockCount: 20,
+    specs: [{ label: "Pieces", value: "64 Magnetic Tiles" }, { label: "Material", value: "Food-Grade ABS Plastic" }]
+  }
+];
+        <div class="empty hidden" id="shopEmpty"><div class="big">🪔</div><h3>Koi wish mili nahi</h3><p>Try a different search or category.</p><br><button class="btn-ghost" onclick="resetFilters()">Reset filters</button></div>
+      </div>
+    </section>
+
+    <!-- ============ OFFERS ============ -->
+    <section class="page" id="page-offers">
+      <div class="sale-banner" style="margin-top:0">
+        <div class="sale-inner">
+          <span class="sale-kicker">✦ Limited Period ✦</span>
+          <div class="sale-title">50% SALE</div>
+          <div class="sale-sub">Extra 10% off on first order + Free express delivery</div>
+          <div class="coupon"><span>JINNY50</span><button onclick="copyCode('JINNY50',this)">COPY</button></div>
+        </div>
+      </div>
+      <div class="wrap">
+        <div class="sec"><div><h2>Live <em>Offers</em></h2><p>Code copy karo aur checkout par apply karo</p></div></div>
+        <div class="offer-grid" id="offerGrid"></div>
+        <div class="sec"><div><h2>Offers ka <em>Mela</em></h2><p>Products jinpar aaj sabse zyada discount chal raha hai</p></div></div>
+        <div class="grid" id="offerProducts"></div>
+      </div>
+    </section>
+
+    <!-- ============ WISHLIST ============ -->
+    <section class="page" id="page-wishlist">
+      <div class="wrap">
+        <div class="sec"><div><h2>My <em>Wishlist</em></h2><p id="wishCountText">0 wishes saved</p></div>
+          <button class="btn-ghost" onclick="moveAllWish()">Move all to bag</button>
+        </div>
+        <div class="grid" id="wishGrid"></div>
+        <div class="empty hidden" id="wishEmpty"><div class="big">💖</div><h3>Aapki wishlist khali hai</h3><p>Dil wale icon dabakar products save karein.</p><br><button class="btn-gold" onclick="navigate('shop')">Explore Store</button></div>
+      </div>
+    </section>
+
+    <!-- ============ CART ============ -->
+    <section class="page" id="page-cart">
+      <div class="wrap">
+        <div class="sec"><div><h2>Shopping <em>Bag</em></h2><p id="cartCountText">0 items</p></div><a class="link" onclick="navigate('shop')">+ Add more</a></div>
+        <div class="two-col">
+          <div id="cartList"></div>
+          <div class="panel" id="cartSummary"></div>
+        </div>
+        <div class="empty hidden" id="cartEmpty"><div class="big">🛒</div><h3>Aapka bag khaali hai</h3><p>Jinny kuch jaadui laaye kya?</p><br><button class="btn-gold" onclick="navigate('shop')">Start Shopping</button></div>
+      </div>
+    </section>
+
+    <!-- ============ ACCOUNT ============ -->
+    <section class="page" id="page-account">
+      <div class="wrap">
+        <div class="sec"><div><h2>My <em>Account</em></h2><p>Namaste, Wish Jinny Member 🪔</p></div></div>
+        <div class="cards3">
+          <div class="tcard"><div class="ic">👤</div><h4>Rahul Sharma</h4><p>+91 98•••••210<br>rahul.sharma@example.com<br>Gold Magic Member</p>
+            <button class="btn-ghost" style="margin-top:10px;padding:9px 16px;font-size:13px" onclick="toast('Profile editing coming soon ✨')">Edit Profile</button></div>
+          <div class="tcard"><div class="ic">📦</div><h4>My Orders</h4><p>3 active orders · 24 delivered<br>Track, return or exchange anytime.</p>
+            <button class="btn-ghost" style="margin-top:10px;padding:9px 16px;font-size:13px" onclick="openOrders()">Track Order</button></div>
+          <div class="tcard"><div class="ic">🪙</div><h4>Jinny Coins</h4><p><b style="font-size:22px;color:var(--gold-dark)">1,240</b> coins = ₹124 off<br>Earn 5% back on every order.</p></div>
+        </div>
+
+        <div class="sec"><div><h2>Quick <em>Links</em></h2></div></div>
+        <div class="cards3">
+          <div class="tcard" onclick="openChat()" style="cursor:pointer"><div class="ic">🧞</div><h4>AI Jinny Assistant</h4><p>Instant product search, gift ideas, order help — 24×7.</p></div>
+          <div class="tcard" onclick="navigate('vendor')" style="cursor:pointer"><div class="ic">✅</div><h4>Vendor Verification</h4><p>Sell on Wish Jinny. Get GST-verified in 48 hours.</p></div>
+          <div class="tcard" onclick="navigate('about')" style="cursor:pointer"><div class="ic">📖</div><h4>About Wish Jinny</h4><p>Our story, mission and the magic behind the lamp.</p></div>
+          <div class="tcard" onclick="navigate('contact')" style="cursor:pointer"><div class="ic">💬</div><h4>Customer Care</h4><p>support@wishjinny.com · 1800 200 JINNY</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ VENDOR ============ -->
+    <section class="page" id="page-vendor">
+      <div class="wrap">
+        <div class="sec"><div><h2>Vendor <em>Verification</em></h2><p>Sell on Wish Jinny — verified sellers get the ✅ Jaadui Badge</p></div></div>
+        <div class="two-col">
+          <div class="panel" style="position:static">
+            <h3>Apply as a Seller</h3>
+            <form id="vendorForm" novalidate>
+              <div class="field"><label>Business / Brand name</label><input name="bname" placeholder="e.g. Aura Audio Pvt Ltd"><div class="err">Please enter your business name</div></div>
+              <div class="field"><label>GSTIN</label><input name="gst" placeholder="22AAAAA0000A1Z5"><div class="err">Enter a valid 15-digit GSTIN</div></div>
+              <div class="field"><label>Category</label><select name="vc"><option>Electronics</option><option>Fashion</option><option>Beauty</option><option>Home & Living</option><option>Accessories</option></select></div>
+              <div class="field"><label>Email</label><input name="vemail" type="email" placeholder="you@brand.com"><div class="err">Enter a valid email</div></div>
+              <div class="field"><label>Phone</label><input name="vphone" placeholder="+91 98765 43210"><div class="err">Enter a 10-digit phone number</div></div>
+              <button class="btn-gold" type="submit" style="width:100%">Submit for Verification</button>
+            </form>
+          </div>
+          <div>
+            <div class="info-card"><h4>✅ Verification Steps</h4><p>1. Business details & GSTIN<br>2. Cancelled cheque / bank verification<br>3. Brand authorization (if applicable)<br>4. Quality check by Jinny team — 48 hrs</p></div>
+            <div class="info-card"><h4>🌟 Jaadui Seller Benefits</h4><p>Zero listing fee for 90 days · 0% commission on first 50 orders · Priority placement in Sale events · Dedicated relationship manager · Weekly payouts.</p></div>
+            <div class="info-card"><h4>📞 Seller Helpdesk</h4><p>seller@wishjinny.com · +91 80 4000 1111<br>Mon–Sat, 9 AM – 8 PM IST</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="page" id="page-about">
+      <div class="wrap">
+        <div class="sec"><div><h2>About <em>Wish Jinny</em></h2><p>Hamari kahani — ek chhoti si lamp se shuru hui</p></div></div>
+        <div class="prose">
+          <p><b>Wish Jinny</b> ek jaadui marketplace hai jahan har order ek wish ki tarah poora hota hai. 2019 mein Jaipur ke ek chhote se office se shuru hua hamara sapna, aaj 19,000+ pin codes mein 2 lakh se zyada customers ki khushi ban chuka hai.</p>
+          <p>Hum maante hain ki shopping sirf products kharidna nahi — ek experience hai. Isliye har product hamari team dwara check hota hai, har vendor GST-verified hota hai, aur har delivery par "Wish Fulfilled" likha ek chhota sa note aapke paas aata hai.</p>
+          <p>Hamara mission: <b>premium quality ko affordable banana</b> — bina kisi jaadu ke, sirf sachchi mehnat aur smart logistics se.</p>
+        </div>
+        <div class="stats">
+          <div class="stat"><b>2.4L+</b><span>Happy Customers</span></div>
+          <div class="stat"><b>12K+</b><span>Products</span></div>
+          <div class="stat"><b>850+</b><span>Verified Vendors</span></div>
+          <div class="stat"><b>4.8★</b><span>Average Rating</span></div>
+        </div>
+        <div class="cards3">
+          <div class="tcard"><div class="ic">🎯</div><h4>Our Mission</h4><p>Har ghar tak verified, affordable aur delightful products pahunchana.</p></div>
+          <div class="tcard"><div class="ic">🤝</div><h4>Our Promise</h4><p>Transparent pricing, genuine reviews aur zero hidden charges — hamesha.</p></div>
+          <div class="tcard"><div class="ic">🌱</div><h4>Our Values</h4><p>Sustainability, fair vendor pay aur customer-first decision making.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="page" id="page-contact">
+      <div class="wrap">
+        <div class="sec"><div><h2>Contact & <em>Customer Care</em></h2><p>Hum 24×7 available hain — aapki wish sunne ke liye</p></div></div>
+        <div class="two-col">
+          <div class="panel" style="position:static">
+            <h3>Send a Wish 🪔</h3>
+            <form id="contactForm" novalidate>
+              <div class="field"><label>Your name</label><input name="cname" placeholder="Full name"><div class="err">Please enter your name</div></div>
+              <div class="field"><label>Email</label><input name="cemail" type="email" placeholder="you@example.com"><div class="err">Enter a valid email</div></div>
+              <div class="field"><label>Topic</label><select name="ct"><option>Order issue</option><option>Returns & refunds</option><option>Product question</option><option>Vendor enquiry</option><option>Feedback</option></select></div>
+              <div class="field"><label>Message</label><textarea name="cmsg" placeholder="Apni wish batayein…"></textarea><div class="err">Please write at least 10 characters</div></div>
+              <button class="btn-gold" type="submit" style="width:100%">Send Message</button>
+            </form>
+          </div>
+          <div>
+            <div class="info-card"><h4>📞 Toll Free</h4><p>1800 200 JINNY (54669)<br>Mon–Sun, 8 AM – 11 PM IST</p></div>
+            <div class="info-card"><h4>✉️ Email</h4><p>support@wishjinny.com · Orders: orders@wishjinny.com<br>Vendors: seller@wishjinny.com</p></div>
+            <div class="info-card"><h4>🏢 Registered Office</h4><p>Wish Jinny Technologies Pvt. Ltd.<br>3rd Floor, Amrapali Marg, Vaishali Nagar, Jaipur, Rajasthan 302021</p></div>
+            <div class="sec" style="padding-top:6px"><div><h2 style="font-size:20px">FAQs</h2></div></div>
+            <div id="faqList"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="wrap">
+      <div class="fgrid">
+        <div>
+          <div class="fbrand">WISH JINNY</div>
+          <p style="font-size:13px;margin-top:8px;line-height:1.7;color:#b9b3d4">Your Wish, Our Command. India's magical marketplace for verified brands, honest prices and delightful delivery.</p>
+          <div style="margin-top:12px"><button class="btn-gold" style="padding:10px 18px;font-size:13px" onclick="openChat()">🧞 Talk to AI Jinny</button></div>
+        </div>
+        <div><h5>Shop</h5><ul>
+          <li onclick="navigate('shop')">All Products</li><li onclick="navigate('categories')">Categories</li>
+          <li onclick="navigate('offers')">Offers</li><li onclick="navigate('wishlist')">Wishlist</li><li onclick="navigate('cart')">Cart & Checkout</li></ul></div>
+        <div><h5>Company</h5><ul>
+          <li onclick="navigate('about')">About Us</li><li onclick="navigate('contact')">Contact</li>
+          <li onclick="navigate('vendor')">Vendor Verification</li><li onclick="navigate('contact')">Customer Care</li></ul></div>
+        <div><h5>Support</h5><ul>
+          <li onclick="navigate('contact')">Shipping & Delivery</li><li onclick="navigate('contact')">Returns & Refunds</li>
+          <li onclick="navigate('contact')">Privacy Policy</li><li onclick="navigate('contact')">Terms of Use</li></ul></div>
+      </div>
+      <div class="fbottom"><span>© 2025 Wish Jinny Technologies Pvt. Ltd.</span><span>Made with 🪔 in Jaipur, India</span></div>
+    </div>
+  </footer>
+</div>
+
+<!-- ============ BOTTOM NAV ============ -->
+<nav class="bottomnav" id="bottomNav">
+  <button class="navbtn on" data-page="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/></svg><span class="lbl">Home</span></button>
+  <button class="navbtn" data-page="categories"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3.5" y="3.5" width="7" height="7" rx="2"/><rect x="13.5" y="3.5" width="7" height="7" rx="2"/><rect x="3.5" y="13.5" width="7" height="7" rx="2"/><rect x="13.5" y="13.5" width="7" height="7" rx="2"/></svg><span class="lbl">Categories</span></button>
+  <button class="navbtn" data-page="shop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8h16l-1 12H5z"/><path d="M8.5 8V6a3.5 3.5 0 0 1 7 0v2"/></svg><span class="lbl">Shop</span></button>
+  <button class="navbtn" data-page="offers"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.5 12.5 12 21l-8.5-8.5V4h8.5z"/><circle cx="8" cy="8" r="1.4"/></svg><span class="lbl">Offers</span></button>
+  <button class="navbtn" data-page="wishlist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20.5S3.5 15 3.5 9.2A4.7 4.7 0 0 1 12 6.6a4.7 4.7 0 0 1 8.5 2.6C20.5 15 12 20.5 12 20.5z"/></svg><span class="lbl">Wishlist</span><i class="badge hide" id="navWishBadge"></i></button>
+  <button class="navbtn" data-page="cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg><span class="lbl">Cart</span><i class="badge hide" id="navCartBadge"></i></button>
+  <button class="navbtn" data-page="account"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8.5" r="3.5"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg><span class="lbl">Account</span></button>
+</nav>
+
+<!-- ============ DRAWER ============ -->
+<div class="scrim" id="scrim" onclick="closeAll()"></div>
+<aside class="drawer" id="drawer">
+  <div class="dhead"><b>WISH JINNY</b><small>Your Wish, Our Command</small></div>
+  <nav>
+    <div class="grp">Explore</div>
+    <button onclick="nav('home')">🪔 Home</button>
+    <button onclick="nav('categories')">🗂️ Categories</button>
+    <button onclick="nav('shop')">🛍️ Shop All</button>
+    <button onclick="nav('offers')">🏷️ Offers & Sale</button>
+    <div class="sep"></div>
+    <div class="grp">You</div>
+    <button onclick="nav('wishlist')">💖 Wishlist</button>
+    <button onclick="nav('cart')">🛒 Cart & Checkout</button>
+    <button onclick="nav('account')">👤 My Account</button>
+    <div class="sep"></div>
+    <div class="grp">Magic</div>
+    <button onclick="closeAll();openChat()">🧞 AI Jinny</button>
+    <button onclick="nav('vendor')">✅ Vendor Verification</button>
+    <button onclick="nav('about')">📖 About Us</button>
+    <button onclick="nav('contact')">💬 Contact / Customer Care</button>
+  </nav>
+</aside>
+
+<!-- ============ PRODUCT MODAL ============ -->
+<div class="modal" id="productModal">
+  <div class="mbox">
+    <div class="mhead"><h3>Product Details</h3><button class="mclose" onclick="closeModal('productModal')">✕</button></div>
+    <div class="mbody" id="productBody"></div>
+  </div>
+</div>
+
+<!-- ============ CHECKOUT MODAL ============ -->
+<div class="modal" id="checkoutModal">
+  <div class="mbox">
+    <div class="mhead"><h3>Checkout 🪔</h3><button class="mclose" onclick="closeModal('checkoutModal')">✕</button></div>
+    <div class="mbody" id="checkoutBody"></div>
+  </div>
+</div>
+
+<!-- ============ ORDERS MODAL ============ -->
+<div class="modal" id="ordersModal">
+  <div class="mbox">
+    <div class="mhead"><h3>My Orders</h3><button class="mclose" onclick="closeModal('ordersModal')">✕</button></div>
+    <div class="mbody" id="ordersBody"></div>
+  </div>
+</div>
+
+<!-- ============ AI JINNY CHAT ============ -->
+<button class="jinny-fab" id="jinnyFab" onclick="toggleChat()" title="AI Jinny">
+  <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=200&q=80" alt="AI Jinny">
+</button>
+<div class="chat" id="chat">
+  <div class="chead">
+    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=200&q=80" alt="Jinny">
+    <div style="flex:1"><b>AI Jinny</b><small>● Online — aapki wish sunne ke liye</small></div>
+    <button class="mclose" style="background:rgba(255,255,255,.15);color:#fff" onclick="toggleChat()">✕</button>
+  </div>
+  <div class="clog" id="clog"></div>
+  <div class="qreplies">
+    <button onclick="quickAsk('Show me best sellers')">Best sellers</button>
+    <button onclick="quickAsk('Any offers today?')">Today's offers</button>
+    <button onclick="quickAsk('Gift under 5000')">Gift under ₹5000</button>
+    <button onclick="quickAsk('Track my order')">Track order</button>
+  </div>
+  <form class="cform" id="chatForm">
+    <input id="chatInput" placeholder="Apni wish bolo…" autocomplete="off">
+    <button type="submit" aria-label="Send"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
+  </form>
+</div>
+
+<div id="toasts"></div>
+
+<script>
+/* ================= DATA ================= */
+const IMG = {
+  watch:'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=700&q=80',
+  headphones:'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=700&q=80',
+  sunglasses:'https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=700&q=80',
+  perfume:'https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=700&q=80',
+  bag:'https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=700&q=80',
+  sneaker:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=80',
+  camera:'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=700&q=80',
+  laptop:'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=700&q=80',
+  speaker:'https://images.unsplash.com/photo-1543512214-318c7553f230?auto=format&fit=crop&w=700&q=80',
+  beauty:'https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=700&q=80',
+  jewellery:'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=700&q=80',
+  backpack:'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=700&q=80',
+  bracelet:'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=700&q=80',
+  phone:'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=700&q=80',
+  home:'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=700&q=80',
+  watch2:'https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=700&q=80',
+  watch3:'https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?auto=format&fit=crop&w=700&q=80',
+  jacket:'https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=700&q=80',
+  earbuds:'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=700&q=80',
+  lamp:'https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=700&q=80'
 };
+const CATEGORIES = [
+  {name:'Electronics', img:IMG.headphones},
+  {name:'Fashion', img:IMG.jacket},
+  {name:'Beauty', img:IMG.beauty},
+  {name:'Accessories', img:IMG.sunglasses},
+  {name:'Home & Living', img:IMG.home},
+  {name:'Watches', img:IMG.watch2},
+  {name:'Footwear', img:IMG.sneaker},
+  {name:'Bags', img:IMG.backpack},
+  {name:'Jewellery', img:IMG.jewellery},
+  {name:'Cameras', img:IMG.camera}
+];
+const PRODUCTS = [
+  {id:1,name:'Apex Pro Smartwatch',brand:'APEXTECH',cat:'Watches',price:21999,mrp:29999,rating:4.9,rev:312,stock:'in',tag:'Best Seller',img:IMG.watch,desc:'1.9" AMOLED display, 14-day battery, SpO2 + HRM, 120+ sport modes, 5ATM water resistance and Bluetooth calling.'},
+  {id:2,name:'AuraSound ANC Headphones',brand:'AURAAUDIO',cat:'Electronics',price:13499,mrp:18999,rating:4.8,rev:428,stock:'in',tag:'Deal',img:IMG.headphones,desc:'Hybrid active noise cancellation, 40h playback, LDAC Hi-Res audio, memory-foam earcups and multipoint pairing.'},
+  {id:3,name:'Solstice Polarized Sunglasses',brand:'SOLSTICE',cat:'Accessories',price:2499,mrp:4999,rating:4.6,rev:187,stock:'in',tag:'Deal',img:IMG.sunglasses,desc:'UV400 polarized lenses, TR90 feather-light frame, anti-slip temples with a magnetic travel case.'},
+  {id:4,name:'Noor Eau De Parfum 100ml',brand:'NOOR',cat:'Beauty',price:3299,mrp:5999,rating:4.7,rev:512,stock:'in',tag:'Best Seller',img:IMG.perfume,desc:'A royal blend of oud, saffron and jasmine with a warm vanilla base. 12-hour long-lasting Indian oud fragrance.'},
+  {id:5,name:'Aria Leather Tote Bag',brand:'ARIA',cat:'Bags',price:5899,mrp:9999,rating:4.5,rev:143,stock:'low',tag:'New',img:IMG.bag,desc:'Full-grain vegan leather tote with padded 15" laptop sleeve, gold hardware and detachable sling strap.'},
+  {id:6,name:'Velocity Running Sneakers',brand:'VELOCITY',cat:'Footwear',price:3799,mrp:6999,rating:4.4,rev:266,stock:'in',tag:'Deal',img:IMG.sneaker,desc:'Responsive foam midsole, breathable knit upper and high-grip outsole — engineered for daily training.'},
+  {id:7,name:'Lumen X100 Mirrorless Camera',brand:'LUMEN',cat:'Cameras',price:48999,mrp:62999,rating:4.8,rev:98,stock:'in',tag:'Premium',img:IMG.camera,desc:'24.2MP APS-C sensor, 4K60 video, in-body stabilisation and eye-detect AF with a 18-55mm kit lens.'},
+  {id:8,name:'Zenbook Air 14 Laptop',brand:'ZENPRO',cat:'Electronics',price:47990,mrp:64990,rating:4.7,rev:221,stock:'in',tag:'Deal',img:IMG.laptop,desc:'Intel Core Ultra 7, 16GB RAM, 1TB SSD, 2.8K 90Hz OLED display and 1.2kg magnesium chassis.'},
+  {id:9,name:'BoomPods Bluetooth Speaker',brand:'BOOMPOD',cat:'Electronics',price:2799,mrp:5499,rating:4.3,rev:390,stock:'in',tag:'Deal',img:IMG.speaker,desc:'360° sound with dual passive radiators, IPX7 waterproofing, 24h playtime and stereo pairing.'},
+  {id:10,name:'Velvet Matte Lip Kit',brand:'LUXEBEAUTÉ',cat:'Beauty',price:1299,mrp:2499,rating:4.6,rev:634,stock:'in',tag:'Best Seller',img:IMG.beauty,desc:'6-shade transfer-proof matte lip kit enriched with argan oil and vitamin E. Cruelty-free & vegan.'},
+  {id:11,name:'Celeste Gold Necklace',brand:'CELESTE',cat:'Jewellery',price:4499,mrp:8999,rating:4.7,rev:176,stock:'in',tag:'New',img:IMG.jewellery,desc:'18k gold-plated brass necklace with cubic zirconia drops and an anti-tarnish e-coating.'},
+  {id:12,name:'Terra Travel Backpack 28L',brand:'TERRA',cat:'Bags',price:2599,mrp:4299,rating:4.5,rev:302,stock:'in',tag:'Deal',img:IMG.backpack,desc:'Water-resistant 900D polyester, anti-theft back pocket, USB charging port and shoe compartment.'},
+  {id:13,name:'Mystic Gold Bracelet',brand:'MYSTIC',cat:'Jewellery',price:1899,mrp:3499,rating:4.4,rev:118,stock:'in',tag:'New',img:IMG.bracelet,desc:'Handcrafted chain bracelet with a genie-charm pendant, adjustable clasp and gift box included.'},
+  {id:14,name:'Nova 5G Smartphone',brand:'NOVA',cat:'Electronics',price:24999,mrp:31999,rating:4.6,rev:874,stock:'low',tag:'Deal',img:IMG.phone,desc:'6.7" 120Hz AMOLED, 108MP OIS camera, 5000mAh battery with 68W turbo charging.'},
+  {id:15,name:'Haven Accent Table Lamp',brand:'HAVEN',cat:'Home & Living',price:2199,mrp:3999,rating:4.5,rev:96,stock:'in',tag:'New',img:IMG.lamp,desc:'Warm dimmable LED with brass-finish base and linen shade — perfect for a cosy reading corner.'},
+  {id:16,name:'Zen Smart Speaker Mini',brand:'ZENPRO',cat:'Home & Living',price:3499,mrp:4999,rating:4.4,rev:210,stock:'in',tag:'Deal',img:IMG.speaker,desc:'Voice assistant ready, 360° audio, smart-home controls and multi-room grouping.'},
+  {id:17,name:'Chrono Steel Automatic Watch',brand:'CHRONO',cat:'Watches',price:15999,mrp:24999,rating:4.8,rev:151,stock:'in',tag:'Premium',img:IMG.watch3,desc:'Automatic movement with 42h power reserve, sapphire crystal and 100m water resistance.'},
+  {id:18,name:'Pulse Fitness Band',brand:'APEXTECH',cat:'Watches',price:1999,mrp:3999,rating:4.2,rev:721,stock:'in',tag:'Deal',img:IMG.watch2,desc:'AMOLED band with 100+ sport modes, sleep tracking, Bluetooth calling and 10-day battery.'},
+  {id:19,name:'Aero Studio Headphones',brand:'AURAAUDIO',cat:'Electronics',price:8999,mrp:12999,rating:4.5,rev:264,stock:'in',tag:'New',img:IMG.earbuds,desc:'Studio-grade drivers, wired + wireless hybrid mode and foldable design for creators on the move.'},
+  {id:20,name:'Heritage Denim Jacket',brand:'HERITAGE',cat:'Fashion',price:3499,mrp:6499,rating:4.5,rev:189,stock:'in',tag:'Deal',img:IMG.jacket,desc:'Washed indigo denim jacket with antique brass buttons and a relaxed unisex fit.'}
+];
+const OFFERS = [
+  {c:'o1',t:'FLAT 50% OFF',s:'Electronics, Watches & Audio par. Max ₹8,000 off.',code:'JINNY50'},
+  {c:'o2',t:'₹300 OFF',s:'
