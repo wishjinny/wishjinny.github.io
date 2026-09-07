@@ -1,3140 +1,677 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WishJinny.com - Where Your Wishes Come True ✨</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>WishJinny.com — Rub. Wish. Granted.</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+tailwind.config={
+  theme:{
+    extend:{
+      fontFamily:{cinzel:['Cinzel','serif'],jakarta:['Plus Jakarta Sans','sans-serif']},
+      colors:{ink:'#070E22',deep:'#0B1933',gold:'#F5C542',aqua:'#7DD3FF',mist:'#E6F7FF'},
+      boxShadow:{glow:'0 0 40px rgba(125,211,255,.6),0 0 80px rgba(245,197,66,.25)'}
+    }
+  }
+}
+</script>
 <style>
-:root {
-  --magic-blue: #00b4d8;
-  --deep-blue: #03045e;
-  --night-blue: #020617;
-  --gold: #f4a261;
-  --bright-gold: #ffd700;
-  --cyan: #00e5ff;
-  --glow: #48cae4;
-  --dark-bg: #0a0e27;
-  --card-bg: rgba(10, 14, 39, 0.85);
-  --surface: rgba(20, 30, 80, 0.6);
-  --text: #e8e8f0;
-  --text-muted: #8892b0;
-  --danger: #ff6b6b;
-  --success: #51cf66;
-  --purple: #7c3aed;
-  --gradient-magic: linear-gradient(135deg, #00b4d8, #7c3aed, #f4a261);
-  --gradient-gold: linear-gradient(135deg, #ffd700, #f4a261, #e76f51);
-  --shadow-glow: 0 0 30px rgba(0, 180, 216, 0.3);
-  --shadow-gold: 0 0 30px rgba(255, 215, 0, 0.3);
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: 'Raleway', sans-serif;
-  background: var(--night-blue);
-  color: var(--text);
-  overflow-x: hidden;
-  min-height: 100vh;
-}
-
-/* Scrollbar */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: var(--deep-blue); }
-::-webkit-scrollbar-thumb { background: var(--magic-blue); border-radius: 4px; }
-
-/* Magic particles background */
-#particles-canvas {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* ===== HEADER ===== */
-.header {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 1000;
-  background: rgba(2, 6, 23, 0.92);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(0, 180, 216, 0.15);
-  transition: all 0.3s ease;
-}
-
-.header.scrolled {
-  background: rgba(2, 6, 23, 0.98);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-}
-
-.header-inner {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 20px;
-  display: flex;
-  align-items: center;
-  height: 70px;
-  gap: 20px;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  flex-shrink: 0;
-}
-
-.logo-icon {
-  width: 42px; height: 42px;
-  background: var(--gradient-magic);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  animation: logoFloat 3s ease-in-out infinite;
-  box-shadow: var(--shadow-glow);
-}
-
-@keyframes logoFloat {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-4px) rotate(5deg); }
-}
-
-.logo-text {
-  font-family: 'Cinzel Decorative', cursive;
-  font-size: 1.5rem;
-  font-weight: 700;
-  background: var(--gradient-gold);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  letter-spacing: 1px;
-}
-
-.logo-text span {
-  font-size: 0.7rem;
-  display: block;
-  font-family: 'Raleway', sans-serif;
-  -webkit-text-fill-color: var(--text-muted);
-  letter-spacing: 3px;
-  text-transform: uppercase;
-}
-
-/* Search Bar */
-.search-bar {
-  flex: 1;
-  max-width: 500px;
-  position: relative;
-}
-
-.search-bar input {
-  width: 100%;
-  padding: 10px 20px 10px 45px;
-  border: 1px solid rgba(0, 180, 216, 0.3);
-  border-radius: 50px;
-  background: rgba(10, 14, 39, 0.8);
-  color: var(--text);
-  font-size: 0.95rem;
-  font-family: 'Raleway', sans-serif;
-  outline: none;
-  transition: all 0.3s ease;
-}
-
-.search-bar input::placeholder { color: var(--text-muted); }
-.search-bar input:focus {
-  border-color: var(--cyan);
-  box-shadow: 0 0 20px rgba(0, 229, 255, 0.2);
-}
-
-.search-bar .search-icon {
-  position: absolute;
-  left: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--text-muted);
-  font-size: 1rem;
-}
-
-/* Nav Actions */
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.nav-btn {
-  position: relative;
-  width: 42px; height: 42px;
-  border: none;
-  background: rgba(0, 180, 216, 0.1);
-  border: 1px solid rgba(0, 180, 216, 0.2);
-  border-radius: 12px;
-  color: var(--text);
-  font-size: 1.2rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-}
-
-.nav-btn:hover {
-  background: rgba(0, 180, 216, 0.2);
-  border-color: var(--cyan);
-  color: var(--cyan);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(0, 180, 216, 0.2);
-}
-
-.nav-btn .badge {
-  position: absolute;
-  top: -4px; right: -4px;
-  width: 18px; height: 18px;
-  background: var(--danger);
-  border-radius: 50%;
-  font-size: 0.65rem;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  box-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
-}
-
-.nav-btn-vendor {
-  padding: 0 16px;
-  width: auto;
-  font-size: 0.85rem;
-  font-family: 'Raleway', sans-serif;
-  font-weight: 600;
-  gap: 6px;
-}
-
-.mobile-menu-btn {
-  display: none;
-  width: 42px; height: 42px;
-  border: 1px solid rgba(0, 180, 216, 0.2);
-  background: rgba(0, 180, 216, 0.1);
-  border-radius: 12px;
-  color: var(--text);
-  font-size: 1.3rem;
-  cursor: pointer;
-  align-items: center;
-  justify-content: center;
-}
-
-/* ===== HERO SECTION ===== */
-.hero {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  padding-top: 70px;
-}
-
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  background: url('https://dvxrhkgloakisnvqoxgl.supabase.co/storage/v1/object/sign/images/inputs/1788724253057_gtti4k76f.JPG?token=eyJraWQiOiI0NWE1YWU1ZS0xNzg4LTRiMWYtYWM5OC1hMjgwNmQ2OTM4ZWMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJpbWFnZXMvaW5wdXRzLzE3ODg3MjQyNTMwNTdfZ3R0aTRrNzZmLkpQRyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3ODg3MjQyNjMsImV4cCI6MTgyMDI2MDI2M30.uqMo_HJHNZy0qqI-3nR8-09HQeIT3DbmlIjbEamJbvE') center/cover no-repeat;
-  opacity: 0.35;
-  filter: saturate(1.2) brightness(0.7);
-}
-
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(2, 6, 23, 0.4) 0%,
-    rgba(2, 6, 23, 0.2) 40%,
-    rgba(2, 6, 23, 0.7) 70%,
-    rgba(2, 6, 23, 1) 100%
-  );
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  max-width: 800px;
-  padding: 0 20px;
-}
-
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 20px;
-  background: rgba(0, 180, 216, 0.15);
-  border: 1px solid rgba(0, 180, 216, 0.3);
-  border-radius: 50px;
-  font-size: 0.85rem;
-  color: var(--cyan);
-  margin-bottom: 24px;
-  animation: fadeInDown 1s ease;
-}
-
-.hero-badge .pulse {
-  width: 8px; height: 8px;
-  background: var(--cyan);
-  border-radius: 50%;
-  animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.5); }
-}
-
-.hero h1 {
-  font-family: 'Cinzel Decorative', cursive;
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  font-weight: 900;
-  line-height: 1.1;
-  margin-bottom: 20px;
-  animation: fadeInUp 1s ease 0.2s both;
-}
-
-.hero h1 .magic-text {
-  background: var(--gradient-magic);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.hero h1 .gold-text {
-  background: var(--gradient-gold);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.hero p {
-  font-size: 1.15rem;
-  color: var(--text-muted);
-  max-width: 550px;
-  margin: 0 auto 36px;
-  line-height: 1.7;
-  animation: fadeInUp 1s ease 0.4s both;
-}
-
-.hero-buttons {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  flex-wrap: wrap;
-  animation: fadeInUp 1s ease 0.6s both;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 14px 32px;
-  border: none;
-  border-radius: 50px;
-  font-family: 'Raleway', sans-serif;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-decoration: none;
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-primary {
-  background: var(--gradient-magic);
-  color: white;
-  box-shadow: 0 4px 25px rgba(0, 180, 216, 0.3);
-}
-
-.btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 35px rgba(0, 180, 216, 0.4);
-}
-
-.btn-secondary {
-  background: transparent;
-  color: var(--text);
-  border: 1px solid rgba(244, 162, 97, 0.4);
-}
-
-.btn-secondary:hover {
-  background: rgba(244, 162, 97, 0.1);
-  border-color: var(--gold);
-  color: var(--gold);
-  transform: translateY(-3px);
-}
-
-.btn-gold {
-  background: var(--gradient-gold);
-  color: var(--deep-blue);
-  box-shadow: 0 4px 25px rgba(255, 215, 0, 0.3);
-}
-
-.btn-gold:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 35px rgba(255, 215, 0, 0.4);
-}
-
-.btn-sm {
-  padding: 8px 20px;
-  font-size: 0.85rem;
-}
-
-.btn-icon {
-  width: 42px; height: 42px;
-  padding: 0;
-  border-radius: 12px;
-  font-size: 1.1rem;
-}
-
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Floating elements */
-.hero-float {
-  position: absolute;
-  z-index: 1;
-  animation: float 6s ease-in-out infinite;
-}
-
-.hero-float:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
-.hero-float:nth-child(2) { top: 30%; right: 8%; animation-delay: 2s; }
-.hero-float:nth-child(3) { bottom: 25%; left: 15%; animation-delay: 4s; }
-
-@keyframes float {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  33% { transform: translateY(-15px) rotate(5deg); }
-  66% { transform: translateY(10px) rotate(-3deg); }
-}
-
-/* ===== SALE BANNER ===== */
-.sale-banner {
-  background: linear-gradient(135deg, var(--purple), var(--magic-blue));
-  padding: 16px 20px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.sale-banner::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-  animation: shimmer 3s ease-in-out infinite;
-}
-
-@keyframes shimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
-}
-
-.sale-banner p {
-  position: relative;
-  z-index: 1;
-  font-family: 'Cinzel', serif;
-  font-weight: 700;
-  font-size: 1.1rem;
-  letter-spacing: 2px;
-}
-
-.sale-banner p span {
-  background: var(--gradient-gold);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-family: 'Cinzel Decorative', cursive;
-  font-size: 1.3rem;
-}
-
-/* ===== JINNY MAGIC - Scratch Card ===== */
-.jinny-magic-section {
-  padding: 80px 20px;
-  position: relative;
-  z-index: 2;
-}
-
-.section-header {
-  text-align: center;
-  margin-bottom: 50px;
-}
-
-.section-header h2 {
-  font-family: 'Cinzel Decorative', cursive;
-  font-size: clamp(1.8rem, 4vw, 2.5rem);
-  margin-bottom: 12px;
-}
-
-.section-header p {
-  color: var(--text-muted);
-  font-size: 1.05rem;
-}
-
-.scratch-container {
-  max-width: 480px;
-  margin: 0 auto;
-  position: relative;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: var(--shadow-glow);
-  border: 2px solid rgba(0, 180, 216, 0.3);
-}
-
-.scratch-result {
-  background: linear-gradient(135deg, var(--deep-blue), #1a0a3e);
-  padding: 50px 30px;
-  text-align: center;
-  position: relative;
-}
-
-.scratch-result h3 {
-  font-family: 'Cinzel Decorative', cursive;
-  font-size: 1.8rem;
-  margin-bottom: 10px;
-  color: var(--bright-gold);
-}
-
-.scratch-result .discount {
-  font-size: 4rem;
-  font-weight: 900;
-  background: var(--gradient-gold);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  line-height: 1;
-  margin-bottom: 8px;
-}
-
-.scratch-result .code {
-  display: inline-block;
-  padding: 8px 24px;
-  background: rgba(255, 215, 0, 0.15);
-  border: 1px dashed var(--gold);
-  border-radius: 8px;
-  font-family: monospace;
-  font-size: 1.2rem;
-  letter-spacing: 3px;
-  color: var(--bright-gold);
-  margin: 12px 0;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.scratch-result .code:hover {
-  background: rgba(255, 215, 0, 0.25);
-}
-
-.scratch-result .apply-btn {
-  margin-top: 16px;
-}
-
-#scratch-canvas {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'><circle cx='20' cy='20' r='15' fill='rgba(255,215,0,0.3)' stroke='%23ffd700' stroke-width='2'/></svg>") 20 20, crosshair;
-  border-radius: 18px;
-}
-
-.scratch-instruction {
-  text-align: center;
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  margin-top: 16px;
-  animation: bounce 2s ease-in-out infinite;
-}
-
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
-}
-
-/* ===== CATEGORIES ===== */
-.categories-section {
-  padding: 60px 20px;
-  position: relative;
-  z-index: 2;
-}
-
-.categories-grid {
-  display: flex;
-  gap: 16px;
-  overflow-x: auto;
-  padding: 10px 0;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-}
-
-.categories-grid::-webkit-scrollbar { display: none; }
-
-.category-card {
-  flex-shrink: 0;
-  width: 140px;
-  padding: 24px 16px;
-  background: var(--surface);
-  border: 1px solid rgba(0, 180, 216, 0.15);
-  border-radius: 16px;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  scroll-snap-align: start;
-}
-
-.category-card:hover, .category-card.active {
-  background: rgba(0, 180, 216, 0.15);
-  border-color: var(--cyan);
-  transform: translateY(-5px);
-  box-shadow: 0 8px 30px rgba(0, 180, 216, 0.15);
-}
-
-.category-card.active {
-  background: rgba(0, 180, 216, 0.2);
-}
-
-.category-icon {
-  font-size: 2.2rem;
-  margin-bottom: 10px;
-  display: block;
-}
-
-.category-card span {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--text-muted);
-}
-
-.category-card:hover span, .category-card.active span {
-  color: var(--cyan);
-}
-
-/* ===== PRODUCTS ===== */
-.products-section {
-  padding: 40px 20px 80px;
-  position: relative;
-  z-index: 2;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 24px;
-}
-
-.product-card {
-  background: var(--card-bg);
-  border: 1px solid rgba(0, 180, 216, 0.1);
-  border-radius: 20px;
-  overflow: hidden;
-  transition: all 0.4s ease;
-  cursor: pointer;
-  position: relative;
-}
-
-.product-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(0, 180, 216, 0.3);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), var(--shadow-glow);
-}
-
-.product-image {
-  position: relative;
-  height: 240px;
-  background: linear-gradient(135deg, rgba(0,180,216,0.1), rgba(124,58,237,0.1));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.product-image .product-emoji {
-  font-size: 5rem;
-  transition: transform 0.4s ease;
-}
-
-.product-card:hover .product-emoji {
-  transform: scale(1.15) rotate(-5deg);
-}
-
-.product-badges {
-  position: absolute;
-  top: 12px; left: 12px;
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-}
-
-.product-badge {
-  padding: 4px 10px;
-  border-radius: 6px;
-  font-size: 0.7rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.badge-sale {
-  background: var(--danger);
-  color: white;
-}
-
-.badge-new {
-  background: var(--purple);
-  color: white;
-}
-
-.badge-hot {
-  background: var(--gradient-gold);
-  color: var(--deep-blue);
-}
-
-.product-wishlist-btn {
-  position: absolute;
-  top: 12px; right: 12px;
-  width: 36px; height: 36px;
-  border: none;
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(10px);
-  border-radius: 50%;
-  color: var(--text-muted);
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.product-wishlist-btn:hover, .product-wishlist-btn.active {
-  color: var(--danger);
-  background: rgba(255, 107, 107, 0.2);
-}
-
-.product-info {
-  padding: 20px;
-}
-
-.product-vendor {
-  font-size: 0.75rem;
-  color: var(--cyan);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 6px;
-}
-
-.product-name {
-  font-family: 'Cinzel', serif;
-  font-size: 1.05rem;
-  font-weight: 600;
-  margin-bottom: 8px;
-  line-height: 1.3;
-}
-
-.product-rating {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 12px;
-}
-
-.stars { color: var(--bright-gold); font-size: 0.85rem; }
-
-.rating-count {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-}
-
-.product-price {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 16px;
-}
-
-.price-current {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--bright-gold);
-}
-
-.price-original {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  text-decoration: line-through;
-}
-
-.price-discount {
-  font-size: 0.75rem;
-  background: rgba(255, 107, 107, 0.15);
-  color: var(--danger);
-  padding: 2px 8px;
-  border-radius: 4px;
-  font-weight: 600;
-}
-
-.product-actions {
-  display: flex;
-  gap: 10px;
-}
-
-.product-actions .btn {
-  flex: 1;
-  padding: 10px 16px;
-  font-size: 0.85rem;
-  justify-content: center;
-}
-
-/* ===== DRAWERS / MODALS ===== */
-.drawer-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(4px);
-  z-index: 2000;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
-}
-
-.drawer-overlay.active {
-  opacity: 1;
-  visibility: visible;
-}
-
-.drawer {
-  position: fixed;
-  top: 0;
-  width: 420px;
-  max-width: 90vw;
-  height: 100vh;
-  background: var(--dark-bg);
-  border-left: 1px solid rgba(0, 180, 216, 0.15);
-  z-index: 2001;
-  transform: translateX(100%);
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  display: flex;
-  flex-direction: column;
-}
-
-.drawer-left {
-  left: 0;
-  right: auto;
-  border-left: none;
-  border-right: 1px solid rgba(0, 180, 216, 0.15);
-  transform: translateX(-100%);
-}
-
-.drawer.active {
-  transform: translateX(0);
-}
-
-.drawer-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px 24px;
-  border-bottom: 1px solid rgba(0, 180, 216, 0.1);
-  flex-shrink: 0;
-}
-
-.drawer-header h3 {
-  font-family: 'Cinzel', serif;
-  font-size: 1.2rem;
-}
-
-.drawer-close {
-  width: 36px; height: 36px;
-  border: none;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
-  color: var(--text);
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.drawer-close:hover {
-  background: rgba(255, 107, 107, 0.2);
-  color: var(--danger);
-}
-
-.drawer-body {
-  flex: 1;
-  overflow-y: auto;
-  padding: 20px 24px;
-}
-
-.drawer-footer {
-  padding: 20px 24px;
-  border-top: 1px solid rgba(0, 180, 216, 0.1);
-  flex-shrink: 0;
-}
-
-/* Cart Items */
-.cart-item {
-  display: flex;
-  gap: 14px;
-  padding: 16px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  animation: fadeInUp 0.3s ease;
-}
-
-.cart-item-image {
-  width: 70px; height: 70px;
-  border-radius: 12px;
-  background: var(--surface);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  flex-shrink: 0;
-}
-
-.cart-item-info { flex: 1; }
-
-.cart-item-name {
-  font-weight: 600;
-  font-size: 0.95rem;
-  margin-bottom: 4px;
-}
-
-.cart-item-price {
-  color: var(--bright-gold);
-  font-weight: 700;
-}
-
-.cart-item-qty {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 8px;
-}
-
-.qty-btn {
-  width: 28px; height: 28px;
-  border: 1px solid rgba(0, 180, 216, 0.3);
-  background: transparent;
-  border-radius: 8px;
-  color: var(--text);
-  font-size: 0.9rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
-}
-
-.qty-btn:hover {
-  background: rgba(0, 180, 216, 0.2);
-  border-color: var(--cyan);
-}
-
-.cart-item-remove {
-  background: none;
-  border: none;
-  color: var(--text-muted);
-  cursor: pointer;
-  font-size: 1rem;
-  padding: 4px;
-  transition: color 0.2s;
-  align-self: flex-start;
-}
-
-.cart-item-remove:hover { color: var(--danger); }
-
-.cart-total {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
-}
-
-.cart-total-label {
-  font-size: 1.1rem;
-  font-weight: 600;
-}
-
-.cart-total-amount {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--bright-gold);
-}
-
-.cart-empty {
-  text-align: center;
-  padding: 60px 20px;
-  color: var(--text-muted);
-}
-
-.cart-empty .empty-icon {
-  font-size: 4rem;
-  margin-bottom: 16px;
-  opacity: 0.5;
-}
-
-/* Modal */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(8px);
-  z-index: 3000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
-  padding: 20px;
-}
-
-.modal-overlay.active {
-  opacity: 1;
-  visibility: visible;
-}
-
-.modal {
-  background: var(--dark-bg);
-  border: 1px solid rgba(0, 180, 216, 0.2);
-  border-radius: 24px;
-  max-width: 700px;
-  width: 100%;
-  max-height: 90vh;
-  overflow-y: auto;
-  transform: scale(0.9) translateY(20px);
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.modal-overlay.active .modal {
-  transform: scale(1) translateY(0);
-}
-
-.modal-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 24px 28px;
-  border-bottom: 1px solid rgba(0, 180, 216, 0.1);
-}
-
-.modal-body {
-  padding: 28px;
-}
-
-/* Product Detail Modal */
-.product-detail {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
-}
-
-.product-detail-image {
-  height: 300px;
-  background: linear-gradient(135deg, rgba(0,180,216,0.1), rgba(124,58,237,0.1));
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 6rem;
-}
-
-.product-detail-info h2 {
-  font-family: 'Cinzel', serif;
-  font-size: 1.5rem;
-  margin-bottom: 8px;
-}
-
-.product-detail-info .vendor-name {
-  color: var(--cyan);
-  font-size: 0.85rem;
-  font-weight: 600;
-  margin-bottom: 16px;
-}
-
-.product-detail-info .description {
-  color: var(--text-muted);
-  font-size: 0.95rem;
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
-
-.product-detail-info .detail-price {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--bright-gold);
-  margin-bottom: 24px;
-}
-
-.detail-actions {
-  display: flex;
-  gap: 12px;
-}
-
-.detail-actions .btn { flex: 1; justify-content: center; }
-
-/* ===== FORMS ===== */
-.form-group {
-  margin-bottom: 18px;
-}
-
-.form-group label {
-  display: block;
-  font-size: 0.85rem;
-  font-weight: 600;
-  margin-bottom: 6px;
-  color: var(--text-muted);
-}
-
-.form-input {
-  width: 100%;
-  padding: 12px 16px;
-  background: rgba(10, 14, 39, 0.8);
-  border: 1px solid rgba(0, 180, 216, 0.2);
-  border-radius: 12px;
-  color: var(--text);
-  font-family: 'Raleway', sans-serif;
-  font-size: 0.95rem;
-  outline: none;
-  transition: all 0.3s ease;
-}
-
-.form-input:focus {
-  border-color: var(--cyan);
-  box-shadow: 0 0 15px rgba(0, 229, 255, 0.15);
-}
-
-.form-input::placeholder { color: var(--text-muted); }
-
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-}
-
-/* ===== TOAST NOTIFICATIONS ===== */
-.toast-container {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 5000;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.toast {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 20px;
-  background: rgba(10, 14, 39, 0.95);
-  border: 1px solid rgba(0, 180, 216, 0.2);
-  border-radius: 14px;
-  backdrop-filter: blur(20px);
-  min-width: 300px;
-  max-width: 400px;
-  animation: toastIn 0.4s ease;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-}
-
-.toast.removing {
-  animation: toastOut 0.3s ease forwards;
-}
-
-.toast-icon {
-  width: 32px; height: 32px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-  flex-shrink: 0;
-}
-
-.toast-success .toast-icon { background: rgba(81, 207, 102, 0.2); color: var(--success); }
-.toast-error .toast-icon { background: rgba(255, 107, 107, 0.2); color: var(--danger); }
-.toast-info .toast-icon { background: rgba(0, 180, 216, 0.2); color: var(--cyan); }
-.toast-magic .toast-icon { background: rgba(255, 215, 0, 0.2); color: var(--bright-gold); }
-
-.toast-content { flex: 1; }
-.toast-title { font-weight: 600; font-size: 0.9rem; }
-.toast-message { font-size: 0.8rem; color: var(--text-muted); }
-
-.toast-close {
-  background: none;
-  border: none;
-  color: var(--text-muted);
-  cursor: pointer;
-  font-size: 1rem;
-  padding: 4px;
-}
-
-@keyframes toastIn {
-  from { opacity: 0; transform: translateX(100px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes toastOut {
-  from { opacity: 1; transform: translateX(0); }
-  to { opacity: 0; transform: translateX(100px); }
-}
-
-/* ===== AI JINNY CHAT ===== */
-.ai-jinny-btn {
-  position: fixed;
-  bottom: 24px;
-  left: 24px;
-  z-index: 1500;
-  width: 60px; height: 60px;
-  border: none;
-  background: var(--gradient-magic);
-  border-radius: 50%;
-  color: white;
-  font-size: 1.6rem;
-  cursor: pointer;
-  box-shadow: 0 4px 25px rgba(0, 180, 216, 0.4);
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: aiFloat 4s ease-in-out infinite;
-}
-
-.ai-jinny-btn:hover {
-  transform: scale(1.1);
-  box-shadow: 0 8px 35px rgba(0, 180, 216, 0.5);
-}
-
-@keyframes aiFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-
-.ai-chat-panel {
-  position: fixed;
-  bottom: 100px;
-  left: 24px;
-  width: 380px;
-  max-width: calc(100vw - 48px);
-  height: 500px;
-  max-height: 70vh;
-  background: var(--dark-bg);
-  border: 1px solid rgba(0, 180, 216, 0.2);
-  border-radius: 24px;
-  z-index: 1500;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  transform: scale(0) translateY(20px);
-  transform-origin: bottom left;
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  opacity: 0;
-}
-
-.ai-chat-panel.active {
-  transform: scale(1) translateY(0);
-  opacity: 1;
-}
-
-.ai-chat-header {
-  padding: 18px 20px;
-  background: linear-gradient(135deg, rgba(0,180,216,0.15), rgba(124,58,237,0.15));
-  border-bottom: 1px solid rgba(0, 180, 216, 0.1);
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.ai-avatar {
-  width: 40px; height: 40px;
-  background: var(--gradient-magic);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.3rem;
-}
-
-.ai-chat-header h4 {
-  font-family: 'Cinzel', serif;
-  font-size: 1rem;
-}
-
-.ai-chat-header p {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-}
-
-.ai-chat-body {
-  flex: 1;
-  overflow-y: auto;
-  padding: 16px 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.chat-message {
-  max-width: 85%;
-  padding: 12px 16px;
-  border-radius: 16px;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  animation: fadeInUp 0.3s ease;
-}
-
-.chat-message.bot {
-  background: rgba(0, 180, 216, 0.1);
-  border: 1px solid rgba(0, 180, 216, 0.15);
-  align-self: flex-start;
-  border-bottom-left-radius: 4px;
-}
-
-.chat-message.user {
-  background: rgba(124, 58, 237, 0.2);
-  border: 1px solid rgba(124, 58, 237, 0.2);
-  align-self: flex-end;
-  border-bottom-right-radius: 4px;
-}
-
-.ai-chat-input {
-  display: flex;
-  gap: 10px;
-  padding: 14px 20px;
-  border-top: 1px solid rgba(0, 180, 216, 0.1);
-}
-
-.ai-chat-input input {
-  flex: 1;
-  padding: 10px 16px;
-  background: rgba(10, 14, 39, 0.8);
-  border: 1px solid rgba(0, 180, 216, 0.2);
-  border-radius: 50px;
-  color: var(--text);
-  font-family: 'Raleway', sans-serif;
-  font-size: 0.9rem;
-  outline: none;
-}
-
-.ai-chat-input input:focus {
-  border-color: var(--cyan);
-}
-
-.ai-send-btn {
-  width: 40px; height: 40px;
-  border: none;
-  background: var(--gradient-magic);
-  border-radius: 50%;
-  color: white;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: transform 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.ai-send-btn:hover { transform: scale(1.1); }
-
-/* ===== FOOTER ===== */
-.footer {
-  background: rgba(2, 6, 23, 0.95);
-  border-top: 1px solid rgba(0, 180, 216, 0.1);
-  padding: 60px 20px 30px;
-  position: relative;
-  z-index: 2;
-}
-
-.footer-grid {
-  max-width: 1400px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 40px;
-  margin-bottom: 40px;
-}
-
-.footer-brand .logo {
-  margin-bottom: 16px;
-}
-
-.footer-brand p {
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  line-height: 1.7;
-  margin-bottom: 20px;
-}
-
-.footer-social {
-  display: flex;
-  gap: 10px;
-}
-
-.footer-social a {
-  width: 40px; height: 40px;
-  border: 1px solid rgba(0, 180, 216, 0.2);
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-muted);
-  text-decoration: none;
-  transition: all 0.3s ease;
-  font-size: 1.1rem;
-}
-
-.footer-social a:hover {
-  border-color: var(--cyan);
-  color: var(--cyan);
-  background: rgba(0, 180, 216, 0.1);
-}
-
-.footer h4 {
-  font-family: 'Cinzel', serif;
-  font-size: 1rem;
-  margin-bottom: 20px;
-  color: var(--bright-gold);
-}
-
-.footer-links {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.footer-links a {
-  color: var(--text-muted);
-  text-decoration: none;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
-}
-
-.footer-links a:hover {
-  color: var(--cyan);
-  padding-left: 5px;
-}
-
-.footer-bottom {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding-top: 30px;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
-.footer-bottom p {
-  color: var(--text-muted);
-  font-size: 0.85rem;
-}
-
-.footer-bottom .payment-icons {
-  display: flex;
-  gap: 8px;
-  font-size: 1.5rem;
-  opacity: 0.5;
-}
-
-/* ===== CHECKOUT ===== */
-.checkout-steps {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 30px;
-}
-
-.checkout-step {
-  flex: 1;
-  height: 4px;
-  border-radius: 2px;
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.checkout-step.active {
-  background: var(--gradient-magic);
-}
-
-.checkout-step.completed {
-  background: var(--success);
-}
-
-/* ===== MOBILE NAV ===== */
-.mobile-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(2, 6, 23, 0.95);
-  backdrop-filter: blur(20px);
-  border-top: 1px solid rgba(0, 180, 216, 0.15);
-  z-index: 999;
-  display: none;
-  padding: 8px 0;
-  padding-bottom: env(safe-area-inset-bottom);
-}
-
-.mobile-nav-items {
-  display: flex;
-  justify-content: space-around;
-}
-
-.mobile-nav-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  background: none;
-  border: none;
-  color: var(--text-muted);
-  font-size: 0.65rem;
-  cursor: pointer;
-  padding: 6px 12px;
-  transition: all 0.2s ease;
-  position: relative;
-}
-
-.mobile-nav-item .nav-item-icon {
-  font-size: 1.3rem;
-}
-
-.mobile-nav-item.active, .mobile-nav-item:hover {
-  color: var(--cyan);
-}
-
-.mobile-nav-item .badge {
-  position: absolute;
-  top: 0;
-  right: 4px;
-  width: 16px; height: 16px;
-  background: var(--danger);
-  border-radius: 50%;
-  font-size: 0.6rem;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 1024px) {
-  .footer-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-  .product-detail {
-    grid-template-columns: 1fr;
-  }
-  .product-detail-image {
-    height: 200px;
-  }
-}
-
-@media (max-width: 768px) {
-  .search-bar { display: none; }
-  .mobile-menu-btn { display: flex; }
-  .nav-btn-vendor { display: none; }
-  .header-inner { gap: 12px; }
-  .mobile-nav { display: block; }
-  
-  body { padding-bottom: 70px; }
-  
-  .hero h1 { font-size: 2rem; }
-  .hero p { font-size: 1rem; }
-  
-  .products-grid {
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 16px;
-  }
-  
-  .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-  
-  .footer-bottom {
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  .product-detail {
-    grid-template-columns: 1fr;
-  }
-  
-  .ai-chat-panel {
-    left: 12px;
-    right: 12px;
-    width: auto;
-    bottom: 80px;
-  }
-  
-  .ai-jinny-btn {
-    bottom: 80px;
-    left: 16px;
-  }
-  
-  .toast-container {
-    right: 12px;
-    left: 12px;
-    bottom: 80px;
-  }
-  
-  .toast {
-    min-width: auto;
-    max-width: none;
-  }
-}
-
-@media (max-width: 480px) {
-  .products-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .hero-buttons {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .hero-buttons .btn {
-    width: 100%;
-    max-width: 280px;
-    justify-content: center;
-  }
-  
-  .form-row {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ===== LOADING SPINNER ===== */
-.spinner {
-  width: 40px; height: 40px;
-  border: 3px solid rgba(0, 180, 216, 0.2);
-  border-top-color: var(--cyan);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-  margin: 20px auto;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-/* ===== MAGIC EFFECTS ===== */
-.magic-glow {
-  position: relative;
-}
-
-.magic-glow::after {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  background: var(--gradient-magic);
-  border-radius: inherit;
-  z-index: -1;
-  opacity: 0;
-  filter: blur(12px);
-  transition: opacity 0.3s ease;
-}
-
-.magic-glow:hover::after {
-  opacity: 0.5;
-}
-
-/* Coupon section */
-.coupon-section {
-  padding: 60px 20px;
-  position: relative;
-  z-index: 2;
-}
-
-.coupon-card {
-  max-width: 600px;
-  margin: 0 auto;
-  background: linear-gradient(135deg, rgba(124,58,237,0.2), rgba(0,180,216,0.2));
-  border: 2px dashed rgba(255, 215, 0, 0.4);
-  border-radius: 20px;
-  padding: 40px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.coupon-card::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: conic-gradient(from 0deg, transparent, rgba(255,215,0,0.1), transparent, rgba(0,180,216,0.1), transparent);
-  animation: rotateBg 10s linear infinite;
-}
-
-@keyframes rotateBg {
-  to { transform: rotate(360deg); }
-}
-
-.coupon-card > * { position: relative; z-index: 1; }
-
-/* Tab navigation for Account */
-.account-tabs {
-  display: flex;
-  gap: 4px;
-  margin-bottom: 24px;
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 12px;
-  padding: 4px;
-}
-
-.account-tab {
-  flex: 1;
-  padding: 10px;
-  border: none;
-  background: transparent;
-  color: var(--text-muted);
-  font-family: 'Raleway', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 600;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.account-tab.active {
-  background: var(--gradient-magic);
-  color: white;
-}
-
-.tab-content {
-  display: none;
-}
-
-.tab-content.active {
-  display: block;
-  animation: fadeInUp 0.3s ease;
-}
-
-/* Notification dot pulse */
-.notification-dot {
-  position: absolute;
-  top: 8px; right: 8px;
-  width: 8px; height: 8px;
-  background: var(--danger);
-  border-radius: 50%;
-  animation: pulse 2s ease-in-out infinite;
-}
+*{font-family:'Plus Jakarta Sans',sans-serif}
+.cinzel{font-family:'Cinzel',serif}
+.fog-layer{position:absolute;left:-30%;width:160%;height:45%;background:radial-gradient(ellipse at 40% 50%,rgba(125,211,255,.28) 0%,rgba(125,211,255,.08) 35%,transparent 70%);filter:blur(22px);pointer-events:none}
+@keyframes drift{0%{transform:translateX(-8%) translateY(0) scaleX(1)}50%{transform:translateX(8%) translateY(-10px) scaleX(1.1)}100%{transform:translateX(-8%) translateY(0) scaleX(1)}}
+@keyframes floatJinny{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-10px) rotate(1deg)}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+.shimmer{background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.35) 50%,transparent 100%);background-size:200% 100%;animation:shimmer 2.2s infinite}
+.glass{background:rgba(255,255,255,.86);backdrop-filter:blur(16px)}
+.glass-dark{background:rgba(11,25,51,.72);backdrop-filter:blur(18px)}
+.scroll-hide::-webkit-scrollbar{display:none}
+.scroll-hide{-ms-overflow-style:none;scrollbar-width:none}
+.lamp-glow{box-shadow:0 0 0 0 rgba(245,197,66,.7);animation:lampPulse 2.5s infinite}
+@keyframes lampPulse{0%{box-shadow:0 0 0 0 rgba(245,197,66,.6)}70%{box-shadow:0 0 0 28px rgba(245,197,66,0)}100%{box-shadow:0 0 0 0 rgba(245,197,66,0)}}
 </style>
 </head>
-<body>
+<body class="bg-[#F6F3EA] text-ink overflow-x-hidden">
+<!-- Toast -->
+<div id="toastRoot" class="fixed top-[86px] right-3 z-[100] flex flex-col gap-2 pointer-events-none"></div>
 
-<!-- Particles Canvas -->
-<canvas id="particles-canvas"></canvas>
+<!-- Chirag Top Banner -->
+<div class="relative z-50 w-full bg-[#0B1933] text-white border-b border-white/10">
+  <div class="mx-auto max-w-[1440px] px-4 md:px-6 h-[52px] flex items-center justify-between gap-3">
+    <div class="flex items-center gap-3 min-w-0">
+      <div class="relative">
+        <img src="https://i.pravatar.cc/100?img=15" alt="Chirag" class="w-8 h-8 rounded-full object-cover ring-2 ring-gold/60"/>
+        <span class="absolute -bottom-1 -right-1 w-3 h-3 bg-emerald-400 rounded-full ring-2 ring-[#0B1933]"></span>
+      </div>
+      <div class="flex items-center gap-2 text-[13px] leading-none min-w-0">
+        <span class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/10 border border-white/10"><i data-lucide="sparkles" class="w-3.5 h-3.5 text-gold"></i> Curated by Chirag</span>
+        <span class="truncate">Chirag's Pick: <b class="text-gold font-semibold">Blue Enamel Jinny Lamp</b> — authentic, limited 37 left • Ships from Jaipur</span>
+      </div>
+    </div>
+    <div class="flex items-center gap-2 shrink-0">
+      <span class="hidden md:inline text-[11px] tracking-widest uppercase opacity-70">Multi-Vendor • 4.8/5 Trust</span>
+      <button onclick="openVendor()" class="h-7 px-3 rounded-full bg-gold text-ink text-[11px] font-bold tracking-wide uppercase hover:brightness-110 transition">Vendor Login</button>
+    </div>
+  </div>
+</div>
 
-<!-- ===== HEADER ===== -->
-<header class="header" id="header">
-  <div class="header-inner">
-    <a href="#" class="logo" onclick="event.preventDefault()">
-      <div class="logo-icon">🧞</div>
-      <div class="logo-text">
-        WishJinny
-        <span>Magical Marketplace</span>
+<!-- Header -->
+<header class="sticky top-0 z-40 bg-[#FFFDF6]/90 backdrop-blur-xl border-b border-black/[.06]">
+  <div class="mx-auto max-w-[1440px] px-4 md:px-6 h-[68px] flex items-center gap-4">
+    <button id="menuBtn" class="md:hidden w-10 h-10 grid place-items-center rounded-full border border-black/10"><i data-lucide="menu" class="w-5 h-5"></i></button>
+    <a class="flex items-center gap-2.5 shrink-0" href="#">
+      <div class="w-9 h-9 rounded-[12px] bg-ink grid place-items-center text-gold"><span class="cinzel font-extrabold text-[18px] leading-none">W</span></div>
+      <div class="leading-none">
+        <div class="cinzel font-extrabold text-[18px] tracking-[-.02em]">wishjinny<span class="text-[#1E5BFF]">.com</span></div>
+        <div class="text-[10px] tracking-[.22em] uppercase opacity-60 font-bold -mt-0.5">Rub • Wish • Granted</div>
       </div>
     </a>
-    
-    <div class="search-bar">
-      <span class="search-icon"></span>
-      <input type="text" id="searchInput" placeholder="Search magical products, vendors..." oninput="handleSearch(this.value)">
+    <div class="hidden lg:flex items-center gap-1 ml-2 text-[13px] font-semibold">
+      <button class="px-3 py-2 rounded-full bg-ink text-white flex items-center gap-1.5"><i data-lucide="layout-grid" class="w-4 h-4"></i> All</button>
+      <a href="#products" class="px-3 py-2 rounded-full hover:bg-black/5">Jinny Magic</a>
+      <a href="#sale" class="px-3 py-2 rounded-full hover:bg-black/5 flex items-center gap-1"><span class="w-5 h-5 rounded-full bg-[#FF3B30] text-white grid place-items-center text-[10px]">%</span> 50% Sale</a>
+      <a href="#about" class="px-3 py-2 rounded-full hover:bg-black/5">About</a>
+      <a href="#contact" class="px-3 py-2 rounded-full hover:bg-black/5">Contact</a>
     </div>
-    
-    <div class="nav-actions">
-      <button class="nav-btn" onclick="openDrawer('wishlist')" title="Wishlist">
-        ♡
-        <span class="badge" id="wishlistBadge" style="display:none">0</span>
-      </button>
-      <button class="nav-btn" onclick="openDrawer('cart')" title="Cart">
-        🛒
-        <span class="badge" id="cartBadge" style="display:none">0</span>
-      </button>
-      <button class="nav-btn" onclick="openModal('accountModal')" title="Account">
-        👤
-      </button>
-      <button class="nav-btn nav-btn-vendor" onclick="openModal('vendorModal')">
-         Vendor
-      </button>
-      <button class="mobile-menu-btn" onclick="openDrawer('mobileNav')">☰</button>
+    <div class="flex-1 flex items-center justify-end lg:justify-center gap-2">
+      <div class="relative w-full max-w-[560px] hidden md:flex">
+        <i data-lucide="search" class="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 opacity-50"></i>
+        <input id="searchInput" placeholder="Search lamps, attars, kaftans, artifacts..." class="w-full h-11 pl-10 pr-[96px] rounded-full bg-white border border-black/10 text-[14px] focus:outline-none focus:ring-2 focus:ring-ink/10"/>
+        <button class="absolute right-1 top-1 h-9 px-4 rounded-full bg-ink text-white text-[13px] font-semibold">Search</button>
+      </div>
+    </div>
+    <div class="flex items-center gap-1.5 shrink-0">
+      <button onclick="openAI()" class="hidden sm:flex h-10 px-3.5 rounded-full bg-[#E9F6FF] border border-[#BFE6FF] items-center gap-1.5 text-[13px] font-bold text-[#0B5FFF]"><i data-lucide="sparkles" class="w-4 h-4"></i> Jinny AI</button>
+      <button onclick="openAccount()" class="w-10 h-10 rounded-full bg-white border border-black/10 grid place-items-center hover:bg-black/5"><i data-lucide="user" class="w-[18px] h-[18px]"></i></button>
+      <button onclick="openDrawer('wishlistDrawer')" class="relative w-10 h-10 rounded-full bg-white border border-black/10 grid place-items-center hover:bg-black/5"><i data-lucide="heart" class="w-[18px] h-[18px]"></i><span id="wishCount" class="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-[#FF3B30] text-white text-[11px] font-bold grid place-items-center hidden">0</span></button>
+      <button onclick="openDrawer('cartDrawer')" class="relative h-10 pl-3 pr-1.5 rounded-full bg-ink text-white flex items-center gap-2"><span class="text-[13px] font-semibold hidden sm:inline">Cart</span><span class="w-7 h-7 rounded-full bg-white text-ink grid place-items-center"><i data-lucide="shopping-bag" class="w-4 h-4"></i></span><span id="cartCount" class="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-gold text-ink text-[11px] font-bold grid place-items-center hidden">0</span></button>
+    </div>
+  </div>
+  <div class="md:hidden px-4 pb-3">
+    <div class="relative">
+      <i data-lucide="search" class="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 opacity-50"></i>
+      <input id="searchInputM" placeholder="Search wishjinny..." class="w-full h-11 pl-10 pr-4 rounded-full bg-white border border-black/10 text-[14px] focus:outline-none"/>
     </div>
   </div>
 </header>
 
-<!-- ===== HERO ===== -->
-<section class="hero" id="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-overlay"></div>
-  
-  <div class="hero-content">
-    <div class="hero-badge">
-      <span class="pulse"></span>
-      ✨ New magical deals daily
+<!-- Mobile Menu Drawer -->
+<div id="mobileDrawer" class="fixed inset-0 z-[60] hidden">
+  <div class="absolute inset-0 bg-black/40" onclick="closeMobile()"></div>
+  <div class="absolute left-0 top-0 h-full w-[84%] max-w-[340px] bg-[#FFFEFB] p-5 flex flex-col">
+    <div class="flex items-center justify-between"><div class="cinzel font-extrabold text-xl">wishjinny</div><button onclick="closeMobile()" class="w-9 h-9 rounded-full bg-black/5 grid place-items-center"><i data-lucide="x" class="w-5 h-5"></i></button></div>
+    <div class="mt-6 grid gap-2 text-[15px] font-medium">
+      <a href="#products" onclick="closeMobile()" class="h-11 px-4 rounded-full bg-ink text-white flex items-center gap-2"><i data-lucide="sparkles" class="w-4 h-4 text-gold"></i> Jinny Magic</a>
+      <a href="#sale" onclick="closeMobile()" class="h-11 px-4 rounded-full border flex items-center gap-2">🔥 50% Sale Live</a>
+      <button onclick="openAI();closeMobile()" class="h-11 px-4 rounded-full border text-left flex items-center gap-2"><i data-lucide="bot" class="w-4 h-4"></i> AI Jinny</button>
+      <a href="#vendors" onclick="closeMobile()" class="h-11 px-4 rounded-full border flex items-center gap-2">Vendor Section</a>
+      <a href="#about" onclick="closeMobile()" class="h-11 px-4 rounded-full border">About</a>
+      <a href="#contact" onclick="closeMobile()" class="h-11 px-4 rounded-full border">Contact</a>
+      <button onclick="openVendor();closeMobile()" class="h-11 px-4 rounded-full bg-gold font-bold">Vendor Login / Admin</button>
     </div>
-    <h1>
-      Where Your <span class="magic-text">Wishes</span><br>
-      Come <span class="gold-text">True</span>
-    </h1>
-    <p>Discover enchanted products from magical vendors worldwide. Rub the lamp of deals and watch your wishes materialize into reality.</p>
-    <div class="hero-buttons">
-      <button class="btn btn-primary" onclick="scrollToProducts()">
-         Explore Wonders
-      </button>
-      <button class="btn btn-secondary" onclick="openModal('jinnyMagic')">
-        🧞 Rub the Lamp
-      </button>
-      <button class="btn btn-gold" onclick="scrollToSale()">
-        🔥 50% OFF Sale
-      </button>
-    </div>
-  </div>
-</section>
-
-<!-- ===== SALE BANNER ===== -->
-<div class="sale-banner" onclick="scrollToSale()">
-  <p>✨ <span>MAGIC SALE</span> — Up to 50% OFF on Enchanted Items! Limited Time Only ✨</p>
-</div>
-
-<!-- ===== JINNY MAGIC SCRATCH CARD ===== -->
-<section class="jinny-magic-section" id="jinnyMagicSection">
-  <div class="section-header">
-    <h2>🧞 Jinny Magic </h2>
-    <p>Rub the lamp to reveal your magical discount!</p>
-  </div>
-  
-  <div class="scratch-container">
-    <div class="scratch-result">
-      <h3>🎉 Your Magic Deal!</h3>
-      <div class="discount">50% OFF</div>
-      <p style="color: var(--text-muted); font-size: 0.9rem;">On your next purchase</p>
-      <div class="code" onclick="copyCode(this)" title="Click to copy">JINNY50</div>
-      <p style="color: var(--text-muted); font-size: 0.75rem; margin-top: 8px;">Click code to copy</p>
-      <button class="btn btn-gold btn-sm apply-btn" onclick="applyCoupon('JINNY50')">Apply Coupon ✨</button>
-    </div>
-    <canvas id="scratch-canvas"></canvas>
-  </div>
-  <p class="scratch-instruction">👆 Drag to rub the magical lamp and reveal your discount!</p>
-</section>
-
-<!-- ===== CATEGORIES ===== -->
-<section class="categories-section" id="categories">
-  <div class="section-header">
-    <h2>✨ Enchanted Categories</h2>
-    <p>Browse through magical realms of products</p>
-  </div>
-  <div class="categories-grid" id="categoriesGrid">
-    <div class="category-card active" onclick="filterCategory('all', this)">
-      <span class="category-icon">🌟</span>
-      <span>All Wonders</span>
-    </div>
-    <div class="category-card" onclick="filterCategory('artifacts', this)">
-      <span class="category-icon"></span>
-      <span>Artifacts</span>
-    </div>
-    <div class="category-card" onclick="filterCategory('potions', this)">
-      <span class="category-icon">🧪</span>
-      <span>Potions</span>
-    </div>
-    <div class="category-card" onclick="filterCategory('scrolls', this)">
-      <span class="category-icon">📜</span>
-      <span>Scrolls</span>
-    </div>
-    <div class="category-card" onclick="filterCategory('crystals', this)">
-      <span class="category-icon">💎</span>
-      <span>Crystals</span>
-    </div>
-    <div class="category-card" onclick="filterCategory('armor', this)">
-      <span class="category-icon">🛡️</span>
-      <span>Armor</span>
-    </div>
-    <div class="category-card" onclick="filterCategory('books', this)">
-      <span class="category-icon">📖</span>
-      <span>Spell Books</span>
-    </div>
-    <div class="category-card" onclick="filterCategory('jewelry', this)">
-      <span class="category-icon">💍</span>
-      <span>Enchanted</span>
-    </div>
-  </div>
-</section>
-
-<!-- ===== PRODUCTS ===== -->
-<section class="products-section" id="products">
-  <div class="section-header">
-    <h2> Featured Wonders</h2>
-    <p>Handpicked by the Jinny's wisdom</p>
-  </div>
-  <div class="products-grid" id="productsGrid"></div>
-</section>
-
-<!-- ===== FOOTER ===== -->
-<footer class="footer">
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <a href="#" class="logo">
-        <div class="logo-icon">🧞</div>
-        <div class="logo-text">WishJinny</div>
-      </a>
-      <p>The world's most magical marketplace. Where enchanted vendors meet wishful buyers. Every product tells a story, every purchase grants a wish.</p>
-      <div class="footer-social">
-        <a href="#" title="Twitter">𝕏</a>
-        <a href="#" title="Instagram">📷</a>
-        <a href="#" title="Facebook">f</a>
-        <a href="#" title="YouTube">▶</a>
-      </div>
-    </div>
-    <div>
-      <h4>Marketplace</h4>
-      <ul class="footer-links">
-        <li><a href="#" onclick="event.preventDefault()">All Products</a></li>
-        <li><a href="#" onclick="event.preventDefault()">Featured Deals</a></li>
-        <li><a href="#" onclick="event.preventDefault()">New Arrivals</a></li>
-        <li><a href="#" onclick="event.preventDefault()">Best Sellers</a></li>
-        <li><a href="#" onclick="event.preventDefault()">Vendor Directory</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Support</h4>
-      <ul class="footer-links">
-        <li><a href="#" onclick="event.preventDefault()">Help Center</a></li>
-        <li><a href="#" onclick="event.preventDefault()">Shipping Magic</a></li>
-        <li><a href="#" onclick="event.preventDefault()">Returns & Spells</a></li>
-        <li><a href="#" onclick="event.preventDefault()">Contact the Jinny</a></li>
-        <li><a href="#" onclick="event.preventDefault()">FAQ</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Company</h4>
-      <ul class="footer-links">
-        <li><a href="#" onclick="event.preventDefault()">About WishJinny</a></li>
-        <li><a href="#" onclick="event.preventDefault()">Become a Vendor</a></li>
-        <li><a href="#" onclick="event.preventDefault()">Affiliate Program</a></li>
-        <li><a href="#" onclick="event.preventDefault()">Privacy & Curses</a></li>
-        <li><a href="#" onclick="event.preventDefault()">Terms of Magic</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>© 2025 WishJinny.com — All wishes reserved ✨</p>
-    <div class="payment-icons"> 🏦 🪙 </div>
-  </div>
-</footer>
-
-<!-- ===== MOBILE NAV ===== -->
-<nav class="mobile-nav">
-  <div class="mobile-nav-items">
-    <button class="mobile-nav-item active" onclick="scrollToTop()">
-      <span class="nav-item-icon">🏠</span>
-      Home
-    </button>
-    <button class="mobile-nav-item" onclick="scrollToProducts()">
-      <span class="nav-item-icon">✨</span>
-      Explore
-    </button>
-    <button class="mobile-nav-item" onclick="openDrawer('cart')">
-      <span class="nav-item-icon">🛒</span>
-      Cart
-      <span class="badge" id="mobileCartBadge" style="display:none">0</span>
-    </button>
-    <button class="mobile-nav-item" onclick="openDrawer('wishlist')">
-      <span class="nav-item-icon">♡</span>
-      Wishlist
-      <span class="badge" id="mobileWishBadge" style="display:none">0</span>
-    </button>
-    <button class="mobile-nav-item" onclick="openModal('accountModal')">
-      <span class="nav-item-icon">👤</span>
-      Account
-    </button>
-  </div>
-</nav>
-
-<!-- ===== DRAWERS ===== -->
-
-<!-- Cart Drawer -->
-<div class="drawer-overlay" id="cartOverlay" onclick="closeDrawer('cart')"></div>
-<div class="drawer" id="cartDrawer">
-  <div class="drawer-header">
-    <h3>🛒 Your Cart</h3>
-    <button class="drawer-close" onclick="closeDrawer('cart')">✕</button>
-  </div>
-  <div class="drawer-body" id="cartBody">
-    <div class="cart-empty" id="cartEmpty">
-      <div class="empty-icon">🛒</div>
-      <p>Your cart is empty</p>
-      <p style="font-size: 0.8rem; margin-top: 8px;">Start adding magical items!</p>
-    </div>
-    <div id="cartItems" style="display:none"></div>
-  </div>
-  <div class="drawer-footer" id="cartFooter" style="display:none">
-    <div class="cart-total">
-      <span class="cart-total-label">Total</span>
-      <span class="cart-total-amount" id="cartTotal">$0.00</span>
-    </div>
-    <button class="btn btn-primary" style="width:100%; justify-content:center" onclick="openCheckout()">
-      ✨ Proceed to Checkout
-    </button>
-    <button class="btn btn-secondary btn-sm" style="width:100%; justify-content:center; margin-top:8px" onclick="applyCouponPrompt()">
-       Apply Coupon
-    </button>
-  </div>
-</div>
-
-
-</div>
-
-<!-- Mobile Nav Drawer -->
-<div class="drawer-overlay" id="mobileNavOverlay" onclick="closeDrawer('mobileNav')"></div>
-<div class="drawer drawer-left" id="mobileNavDrawer">
-  <div class="drawer-header">
-    <h3>🧞 Menu</h3>
-    <button class="drawer-close" onclick="closeDrawer('mobileNav')">✕</button>
-  </div>
-  <div class="drawer-body">
-    <div style="display:flex; flex-direction:column; gap: 4px;">
-      <button class="btn btn-secondary" style="justify-content:center" onclick="scrollToTop(); closeDrawer('mobileNav')">🏠 Home</button>
-      <button class="btn btn-secondary" style="justify-content:center" onclick="scrollToProducts(); closeDrawer('mobileNav')">✨ Explore Products</button>
-      <button class="btn btn-secondary" style="justify-content:center" onclick="openModal('jinnyMagic'); closeDrawer('mobileNav')">🧞 Jinny Magic</button>
-      <button class="btn btn-secondary" style="justify-content:center" onclick="scrollToSale(); closeDrawer('mobileNav')"> 50% Sale</button>
-      <button class="btn btn-secondary" style="justify-content:center" onclick="openModal('vendorModal'); closeDrawer('mobileNav')">🏪 Vendor Login</button>
-      <button class="btn btn-secondary" style="justify-content:center" onclick="openModal('accountModal'); closeDrawer('mobileNav')">👤 My Account</button>
-      <button class="btn btn-secondary" style="justify-content:center" onclick="openDrawer('cart'); closeDrawer('mobileNav')"> Cart</button>
-      <button class="btn btn-secondary" style="justify-content:center" onclick="openDrawer('wishlist'); closeDrawer('mobileNav')">♡ Wishlist</button>
+    <div class="mt-auto p-4 rounded-[20px] bg-[#0B1933] text-white">
+      <div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=15" class="w-10 h-10 rounded-full"/><div><div class="font-bold text-sm">Chirag • Founder</div><div class="text-xs opacity-70">Jaipur • 127 vendors</div></div></div>
+      <div class="mt-3 text-[12px] leading-5 opacity-80">Every lamp is hand-checked. Rub it right and Jinny remembers your name.</div>
     </div>
   </div>
 </div>
 
-<!-- ===== MODALS ===== -->
-
-<!-- Product Detail Modal -->
-<div class="modal-overlay" id="productModal">
-  <div class="modal" style="max-width: 750px;">
-    <div class="modal-header">
-      <h3 id="modalProductName">Product</h3>
-      <button class="drawer-close" onclick="closeModal('productModal')">✕</button>
+<!-- HERO -->
+<section class="relative mx-auto max-w-[1440px] px-3 md:px-6 pt-3">
+  <div class="relative rounded-[28px] md:rounded-[32px] overflow-hidden bg-[#06102A] min-h-[620px] md:min-h-[640px] flex">
+    <!-- bg image -->
+    <img src="https://dvxrhkgloakisnvqoxgl.supabase.co/storage/v1/object/sign/images/inputs/1788806813554_irjtysvmp.JPG?token=eyJraWQiOiI0NWE1YWU1ZS0xNzg4LTRiMWYtYWM5OC1hMjgwNmQ2OTM4ZWMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJpbWFnZXMvaW5wdXRzLzE3ODg4MDY4MTM1NTRfaXJqdHlzdm1wLkpQRyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3ODg4MDc5MDYsImV4cCI6MTgyMDM0MzkwNn0.idxgWcgtHrYMW4n9ycS-nJq_AJ8KCWkA52QkWpyXN2I" alt="Jinny Lamp" class="absolute inset-0 w-full h-full object-cover object-[55%_28%] md:object-center opacity-[.92]"/>
+    <div class="absolute inset-0 bg-gradient-to-r from-[#06102A] via-[#06102A]/70 to-transparent md:to-[#06102A]/10"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-[#06102A] via-transparent to-transparent"></div>
+    <!-- fog -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="fog-layer top-[18%] " style="animation:drift 14s ease-in-out infinite"></div>
+      <div class="fog-layer top-[38%] opacity-80" style="animation:drift 18s ease-in-out infinite reverse"></div>
+      <div class="fog-layer top-[58%] opacity-60" style="animation:drift 22s ease-in-out infinite"></div>
+      <div class="absolute left-[22%] top-[36%] w-[180px] h-[180px] rounded-full bg-aqua/20 blur-[30px] animate-pulse"></div>
     </div>
-    <div class="modal-body">
-      <div class="product-detail">
-        <div class="product-detail-image" id="modalProductImage">🏺</div>
-        <div class="product-detail-info">
-          <div class="vendor-name" id="modalProductVendor">Vendor Name</div>
-          <h2 id="modalProductTitle">Product Title</h2>
-          <div class="product-rating">
-            <span class="stars" id="modalProductStars">★★★★★</span>
-            <span class="rating-count" id="modalProductRating">(128)</span>
-          </div>
-          <p class="description" id="modalProductDesc">Product description goes here.</p>
-          <div class="detail-price" id="modalProductPrice">$0.00</div>
-          <div class="detail-actions">
-            <button class="btn btn-primary" id="modalAddCart" onclick="">🛒 Add to Cart</button>
-            <button class="btn btn-gold" id="modalBuyNow" onclick=""> Buy Now</button>
-          </div>
-          <button class="btn btn-secondary btn-sm" style="margin-top:10px" id="modalWishlist" onclick="">♡ Add to Wishlist</button>
+
+    <div class="relative z-10 w-full grid md:grid-cols-[1.15fr_.85fr] gap-6 p-5 md:p-10 items-center">
+      <div class="text-white">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/15 text-[11px] tracking-widest uppercase font-bold"><span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Live • 2,341 wishes granted today</div>
+        <h1 class="cinzel mt-4 text-[34px] md:text-[56px] leading-[.95] font-[800] tracking-[-.03em]">Rub the lamp.<br/>Your <span class="text-aqua">wish</span> is<br/>our checkout.</h1>
+        <p class="mt-4 text-[14px] md:text-[16px] leading-6 max-w-[44ch] text-white/80">WishJinny is a multi-vendor bazaar of magical goods — each product blessed by Jinny AI. Real vendors, real stories, unreal prices.</p>
+        <div class="mt-5 flex flex-wrap gap-2">
+          <div class="h-9 px-3 rounded-full bg-white text-ink flex items-center gap-2 text-[13px] font-semibold"><img src="https://i.pravatar.cc/100?img=33" class="w-6 h-6 rounded-full"/> +127 verified vendors</div>
+          <div class="h-9 px-3 rounded-full bg-gold text-ink flex items-center gap-1.5 text-[13px] font-bold"><i data-lucide="shield-check" class="w-4 h-4"></i> Buyer Protection</div>
+        </div>
+        <div class="mt-7 flex gap-3">
+          <button id="rubBtn" class="lamp-glow h-[52px] px-6 rounded-full bg-gold text-ink font-extrabold text-[14px] tracking-wide flex items-center gap-2 hover:brightness-110 active:scale-[.98] transition"><i data-lucide="hand" class="w-5 h-5"></i> RUB LAMP FOR 50% OFF</button>
+          <button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})" class="h-[52px] px-6 rounded-full bg-white/10 border border-white/20 text-white font-semibold text-[14px] hover:bg-white/15">Explore Bazaar</button>
+        </div>
+        <div class="mt-6 flex items-center gap-4 text-[12px] text-white/70">
+          <span class="flex items-center gap-1.5"><i data-lucide="truck" class="w-4 h-4"></i> Free delivery over ₹999</span>
+          <span class="flex items-center gap-1.5"><i data-lucide="rotate-ccw" class="w-4 h-4"></i> 7-day Jinny return</span>
         </div>
       </div>
+
+      <!-- Magical Offer Card -->
+      <div class="relative md:justify-self-end w-full max-w-[380px]">
+        <div id="offerCard" class="translate-y-10 opacity-0 scale-[.96] transition-all duration-[900ms] ease-[cubic-bezier(.16,1,.3,1)]">
+          <div class="relative rounded-[24px] overflow-hidden glass border border-white/60 shadow-[0_20px_60px_rgba(0,0,0,.35)]">
+            <div class="absolute top-0 inset-x-0 h-[6px] bg-gradient-to-r from-gold via-aqua to-gold"></div>
+            <div class="p-5">
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex items-center gap-2">
+                  <div class="w-9 h-9 rounded-full bg-ink text-gold grid place-items-center"><i data-lucide="sparkles" class="w-5 h-5"></i></div>
+                  <div><div class="text-[11px] tracking-widest uppercase font-bold opacity-60">Jinny Says</div><div class="font-bold leading-none">Your first wish is FREE-ish</div></div>
+                </div>
+                <span class="px-2.5 py-1 rounded-full bg-[#0B1933] text-white text-[10px] font-bold tracking-widest uppercase">LIVE NOW</span>
+              </div>
+              <div class="mt-4 rounded-[16px] bg-[#0B1933] text-white p-4 relative overflow-hidden">
+                <div class="absolute -right-10 -top-10 w-32 h-32 rounded-full bg-aqua/20 blur-[12px]"></div>
+                <div class="flex items-end gap-2"><span class="text-[42px] leading-none font-extrabold">50%</span><span class="text-[16px] font-bold mb-1">OFF</span><span class="ml-auto text-[11px] px-2 py-1 rounded-full bg-white/15">CODE: JINNY50</span></div>
+                <div class="mt-2 text-[13px] text-white/70">On any lamp + free Jinny AI styling. Auto-applied at checkout for 2 hrs.</div>
+                <div class="mt-3 h-1.5 rounded-full bg-white/10 overflow-hidden"><div id="offerProgress" class="h-full w-[72%] bg-gradient-to-r from-gold to-aqua"></div></div>
+                <div class="mt-2 flex justify-between text-[10px] tracking-widest uppercase opacity-60"><span>2,341 claimed</span><span>Expires in <b id="offerTimer" class="text-white">14:32</b></span></div>
+              </div>
+              <div class="mt-4 grid grid-cols-2 gap-2">
+                <button onclick="applyCoupon('JINNY50')" class="h-11 rounded-full bg-ink text-white font-bold text-[13px] flex items-center justify-center gap-1.5"><i data-lucide="copy" class="w-4 h-4"></i> Copy Code</button>
+                <button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})" class="h-11 rounded-full bg-gold text-ink font-extrabold text-[13px]">Shop Now →</button>
+              </div>
+              <div class="mt-3 flex items-center gap-2 text-[11px] text-black/60"><i data-lucide="users" class="w-3.5 h-3.5"></i> 18 friends from Jaipur also rubbing</div>
+            </div>
+            <div class="shimmer absolute inset-0 pointer-events-none opacity-20"></div>
+          </div>
+          <!-- floating jinny hint -->
+          <div class="mt-3 flex justify-center"><div class="px-3 py-1.5 rounded-full bg-white/90 border text-[11px] font-semibold shadow flex items-center gap-1.5"><span class="w-5 h-5 rounded-full bg-aqua/30 grid place-items-center">🧞</span> Tip: Ask Jinny AI “style my room like Agrabah”</div></div>
+        </div>
+        <!-- small vendor card stack -->
+        <div class="mt-4 hidden md:flex gap-2">
+          <div class="flex-1 rounded-[14px] bg-white/90 border p-2.5 flex items-center gap-2"><img src="https://i.pravatar.cc/100?img=15" class="w-8 h-8 rounded-full"/><div class="leading-tight"><div class="text-[11px] font-bold">Chirag's Vault</div><div class="text-[10px] opacity-60">Top Rated • 4.9</div></div><span class="ml-auto w-5 h-5 rounded-full bg-emerald-500 text-white grid place-items-center text-[10px]">✓</span></div>
+          <div class="flex-1 rounded-[14px] bg-white/90 border p-2.5 flex items-center gap-2"><img src="https://i.pravatar.cc/100?img=32" class="w-8 h-8 rounded-full"/><div class="leading-tight"><div class="text-[11px] font-bold">Noor Attars</div><div class="text-[10px] opacity-60">127 sales</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Coupon strip -->
+<div id="sale" class="mx-auto max-w-[1440px] px-3 md:px-6 mt-3">
+  <div class="rounded-[18px] bg-ink text-white flex flex-wrap items-center gap-3 px-4 py-3">
+    <span class="inline-flex items-center gap-2 text-[12px] font-bold tracking-widest uppercase"><i data-lucide="ticket" class="w-4 h-4 text-gold"></i> Jinny Magic Coupons</span>
+    <div class="flex gap-2 overflow-auto scroll-hide">
+      <button onclick="applyCoupon('JINNY50')" class="shrink-0 h-8 px-3 rounded-full bg-white text-ink text-[12px] font-bold border border-dashed border-black/20">JINNY50 — 50% OFF</button>
+      <button onclick="applyCoupon('FIRSTWISH')" class="shrink-0 h-8 px-3 rounded-full bg-gold text-ink text-[12px] font-bold">FIRSTWISH — ₹300 OFF</button>
+      <button onclick="applyCoupon('CHIRAG20')" class="shrink-0 h-8 px-3 rounded-full bg-white/10 border border-white/15 text-[12px] font-semibold">CHIRAG20 — Curator’s 20%</button>
+    </div>
+    <span class="ml-auto text-[11px] opacity-70 hidden md:inline">Auto-applies at checkout • Stack with vendor offers</span>
+  </div>
+</div>
+
+<!-- Products -->
+<section id="products" class="mx-auto max-w-[1440px] px-3 md:px-6 mt-6 grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-6">
+  <!-- filters -->
+  <aside class="lg:sticky lg:top-[88px] h-fit">
+    <div class="rounded-[20px] bg-white border border-black/[.06] p-4">
+      <div class="flex items-center justify-between"><h3 class="font-bold">Filters</h3><button onclick="resetFilters()" class="text-[12px] font-bold text-[#0B5FFF]">Reset</button></div>
+      <div class="mt-4">
+        <div class="text-[11px] tracking-widest uppercase font-bold opacity-60 mb-2">Categories</div>
+        <div id="catList" class="grid gap-1.5"></div>
+      </div>
+      <div class="mt-5">
+        <div class="text-[11px] tracking-widest uppercase font-bold opacity-60 mb-2">Price</div>
+        <div class="flex items-center gap-2"><input id="priceMin" type="number" placeholder="Min" class="w-full h-9 rounded-full border px-3 text-[13px]"/><input id="priceMax" type="number" placeholder="Max" class="w-full h-9 rounded-full border px-3 text-[13px]"/></div>
+        <button onclick="applyPrice()" class="mt-2 w-full h-9 rounded-full bg-ink text-white text-[13px] font-semibold">Apply</button>
+      </div>
+      <div class="mt-5 rounded-[14px] bg-[#F6F3EA] p-3 border">
+        <div class="flex items-center gap-2 text-[13px] font-bold"><i data-lucide="bot" class="w-4 h-4"></i> Ask Jinny AI</div>
+        <div class="mt-2 text-[12px] leading-5 opacity-70">“Show me blue lamps under ₹2000 from Chirag”</div>
+        <button onclick="openAI()" class="mt-3 w-full h-9 rounded-full bg-white border font-semibold text-[12px]">Try AI Search</button>
+      </div>
+    </div>
+    <div id="vendors" class="mt-4 rounded-[20px] bg-[#0B1933] text-white p-4">
+      <div class="text-[11px] tracking-widest uppercase opacity-60 font-bold">Vendor Spotlight</div>
+      <div class="mt-3 flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=15" class="w-11 h-11 rounded-full ring-2 ring-gold"/><div><div class="font-bold text-[14px]">Chirag Mehta</div><div class="text-[11px] opacity-70">Top Vendor • Jaipur • 4.9★</div></div></div>
+      <div class="mt-3 text-[12px] leading-5 opacity-80">Hand-engraved brass, blue enamel from the old city. Every piece blessed before shipping.</div>
+      <button onclick="filterByVendor('Chirag\'s Vault')" class="mt-3 w-full h-9 rounded-full bg-gold text-ink font-bold text-[12px]">View Chirag's Store</button>
+    </div>
+  </aside>
+
+  <div>
+    <div class="flex flex-wrap items-center gap-3 justify-between">
+      <h2 class="cinzel text-[22px] md:text-[28px] font-extrabold leading-none">The Bazaar — <span class="text-black/40 font-normal">Amazon-style, Jinny-blessed</span></h2>
+      <div class="flex items-center gap-2">
+        <select id="sortSel" class="h-9 rounded-full border bg-white px-3 text-[13px] font-medium"><option value="featured">Featured • Jinny Picks</option><option value="low">Price: Low to High</option><option value="high">Price: High to Low</option><option value="rating">Top Rated</option><option value="discount">Biggest Discount</option></select>
+        <span id="resultCount" class="text-[12px] opacity-60">—</span>
+      </div>
+    </div>
+    <div id="productGrid" class="mt-4 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4"></div>
+  </div>
+</section>
+
+<!-- About & Contact -->
+<section id="about" class="mx-auto max-w-[1440px] px-3 md:px-6 mt-12 grid md:grid-cols-2 gap-4">
+  <div class="rounded-[24px] bg-white border p-6 md:p-8">
+    <div class="inline-flex px-2.5 py-1 rounded-full bg-ink text-white text-[10px] tracking-widest uppercase font-bold">About WishJinny</div>
+    <h3 class="cinzel mt-3 text-[26px] font-extrabold leading-[1.05]">A multi-vendor lamp that actually grants wishes.</h3>
+    <p class="mt-3 text-[14px] leading-6 opacity-70">We host 100+ artisans. Vendors manage their own inventory via the admin panel. Jinny AI matches your vibe to products — no creepy tracking, just magical intent.</p>
+    <div class="mt-5 grid grid-cols-3 gap-3 text-center">
+      <div class="rounded-[14px] bg-[#F6F3EA] p-3"><div class="text-[20px] font-extrabold">127</div><div class="text-[10px] uppercase tracking-widest opacity-60 font-bold">Vendors</div></div>
+      <div class="rounded-[14px] bg-[#F6F3EA] p-3"><div class="text-[20px] font-extrabold">4.8★</div><div class="text-[10px] uppercase tracking-widest opacity-60 font-bold">Avg Rating</div></div>
+      <div class="rounded-[14px] bg-[#F6F3EA] p-3"><div class="text-[20px] font-extrabold">24h</div><div class="text-[10px] uppercase tracking-widest opacity-60 font-bold">Dispatch</div></div>
+    </div>
+  </div>
+  <div id="contact" class="rounded-[24px] bg-ink text-white p-6 md:p-8 relative overflow-hidden">
+    <div class="absolute -right-16 -top-16 w-64 h-64 rounded-full bg-aqua/20 blur-[20px]"></div>
+    <h3 class="cinzel text-[22px] font-bold">Contact the Cave</h3>
+    <p class="mt-2 text-[13px] text-white/70">Have a wish? Vendor query? Talk to Chirag or Jinny AI.</p>
+    <form id="contactForm" class="mt-5 grid gap-3">
+      <div class="grid grid-cols-2 gap-3"><input required placeholder="Your name" class="h-11 rounded-full bg-white/10 border border-white/15 px-4 text-[14px] placeholder:text-white/50"/><input required placeholder="Email" class="h-11 rounded-full bg-white/10 border border-white/15 px-4 text-[14px] placeholder:text-white/50"/></div>
+      <textarea required placeholder="Tell us your wish..." class="min-h-[90px] rounded-[18px] bg-white/10 border border-white/15 p-4 text-[14px] placeholder:text-white/50"></textarea>
+      <button class="h-11 rounded-full bg-gold text-ink font-bold">Send Message ✨</button>
+    </form>
+    <div class="mt-4 text-[11px] opacity-60">Or email: wishes@wishjinny.com • Response in &lt; 2 hrs</div>
+  </div>
+</section>
+
+<!-- Admin Panel -->
+<section id="adminSection" class="mx-auto max-w-[1440px] px-3 md:px-6 mt-12 hidden">
+  <div class="rounded-[28px] bg-white border shadow-[0_20px_60px_rgba(0,0,0,.08)] overflow-hidden">
+    <div class="p-6 md:p-8 flex flex-wrap items-center justify-between gap-4 border-b">
+      <div><h3 class="cinzel text-[22px] font-extrabold">Vendor Admin • Product Upload</h3><p class="text-[13px] opacity-60 mt-1">Logged in as <b id="vendorNameLabel">Chirag's Vault</b> — add products to the bazaar instantly.</p></div>
+      <div class="flex gap-2"><button onclick="logoutVendor()" class="h-9 px-4 rounded-full border font-semibold text-[13px]">Logout</button><button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})" class="h-9 px-4 rounded-full bg-ink text-white font-semibold text-[13px]">View Live Store</button></div>
+    </div>
+    <form id="productForm" class="p-6 md:p-8 grid md:grid-cols-[320px_1fr] gap-8">
+      <div>
+        <div class="text-[11px] tracking-widest uppercase font-bold opacity-60 mb-2">Product Photo</div>
+        <div class="rounded-[18px] border-2 border-dashed border-black/15 bg-[#F6F3EA] p-4">
+          <img id="previewImg" src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=400" class="w-full h-[220px] object-cover rounded-[12px]"/>
+          <input id="f_photo" type="url" placeholder="Paste image URL (or keep preview)" class="mt-3 w-full h-10 rounded-full border bg-white px-4 text-[13px]"/>
+          <div class="mt-2 text-[11px] opacity-60">Tip: Use Unsplash or your CDN. 1:1 square looks best.</div>
+        </div>
+        <div class="mt-4 grid grid-cols-2 gap-3">
+          <div><label class="text-[11px] font-bold uppercase opacity-60">Rating</label><input id="f_rating" type="number" step="0.1" min="0" max="5" value="4.7" class="mt-1 w-full h-10 rounded-full border px-4 text-[13px]"/></div>
+          <div><label class="text-[11px] font-bold uppercase opacity-60">Reviews</label><input id="f_reviews" type="number" value="128" class="mt-1 w-full h-10 rounded-full border px-4 text-[13px]"/></div>
+        </div>
+      </div>
+      <div class="grid gap-4">
+        <div class="grid md:grid-cols-2 gap-4">
+          <div><label class="text-[11px] font-bold uppercase opacity-60">Product Name *</label><input id="f_name" required placeholder="Blue Enamel Jinny Lamp" class="mt-1 w-full h-11 rounded-full border px-4 text-[14px]"/></div>
+          <div><label class="text-[11px] font-bold uppercase opacity-60">Brand *</label><input id="f_brand" required placeholder="Chirag's Vault" class="mt-1 w-full h-11 rounded-full border px-4 text-[14px]"/></div>
+        </div>
+        <div class="grid md:grid-cols-3 gap-4">
+          <div><label class="text-[11px] font-bold uppercase opacity-60">Category *</label><select id="f_category" class="mt-1 w-full h-11 rounded-full border px-4 text-[14px]"><option>Lamps</option><option>Home Decor</option><option>Fragrances</option><option>Apparel</option><option>Mystic Jewels</option><option>Artifacts</option></select></div>
+          <div><label class="text-[11px] font-bold uppercase opacity-60">Selling Price *</label><input id="f_price" required type="number" placeholder="1499" class="mt-1 w-full h-11 rounded-full border px-4 text-[14px]"/></div>
+          <div><label class="text-[11px] font-bold uppercase opacity-60">MRP</label><input id="f_mrp" type="number" placeholder="2999" class="mt-1 w-full h-11 rounded-full border px-4 text-[14px]"/></div>
+        </div>
+        <div class="grid md:grid-cols-3 gap-4">
+          <div><label class="text-[11px] font-bold uppercase opacity-60">Discount %</label><input id="f_discount" type="number" placeholder="50" class="mt-1 w-full h-11 rounded-full border px-4 text-[14px]"/></div>
+          <div><label class="text-[11px] font-bold uppercase opacity-60">Stock</label><input id="f_stock" type="number" placeholder="42" class="mt-1 w-full h-11 rounded-full border px-4 text-[14px]"/></div>
+          <div><label class="text-[11px] font-bold uppercase opacity-60">Vendor</label><input id="f_vendor" placeholder="Chirag's Vault" class="mt-1 w-full h-11 rounded-full border px-4 text-[14px]"/></div>
+        </div>
+        <div><label class="text-[11px] font-bold uppercase opacity-60">Product Description</label><textarea id="f_desc" placeholder="Hand-engraved brass with blue enamel, blessed by..." class="mt-1 w-full min-h-[96px] rounded-[18px] border p-4 text-[14px]"></textarea></div>
+        <div class="flex gap-3"><button type="submit" class="h-11 px-6 rounded-full bg-ink text-white font-bold text-[14px] flex items-center gap-2"><i data-lucide="plus" class="w-4 h-4"></i> Add Product to Bazaar</button><button type="button" onclick="fillDemo()" class="h-11 px-5 rounded-full bg-[#F6F3EA] border font-semibold text-[13px]">Fill Demo Data</button></div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<footer class="mx-auto max-w-[1440px] px-3 md:px-6 mt-12 mb-6">
+  <div class="rounded-[24px] bg-ink text-white p-6 md:p-8 flex flex-wrap gap-8 justify-between">
+    <div><div class="cinzel font-extrabold text-xl">wishjinny.com</div><div class="mt-2 text-[13px] text-white/60 max-w-[36ch]">Multi-vendor magical marketplace. Built with Jinny AI. Founded by Chirag in Jaipur.</div><div class="mt-4 flex gap-2"><span class="px-3 py-1 rounded-full bg-white/10 border border-white/10 text-[11px]">Buyer Protection</span><span class="px-3 py-1 rounded-full bg-white/10 border border-white/10 text-[11px]">Vendor Payouts Daily</span></div></div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-[13px]"><div><div class="font-bold mb-3">Bazaar</div><div class="grid gap-2 opacity-70"><a href="#">Lamps</a><a href="#">Fragrances</a><a href="#">Jewels</a><a href="#">50% Sale</a></div></div><div><div class="font-bold mb-3">Vendors</div><div class="grid gap-2 opacity-70"><a href="#" onclick="openVendor();return false;">Vendor Login</a><a href="#">Sell on Jinny</a><a href="#">Payouts</a><a href="#">Chirag's Vault</a></div></div><div><div class="font-bold mb-3">Jinny AI</div><div class="grid gap-2 opacity-70"><a href="#" onclick="openAI();return false;">Ask Jinny</a><a href="#">Style My Room</a><a href="#">Wish History</a><a href="#">Magic Tips</a></div></div><div><div class="font-bold mb-3">Care</div><div class="grid gap-2 opacity-70"><a href="#about">About</a><a href="#contact">Contact</a><a href="#">Returns</a><a href="#">Terms</a></div></div></div>
+  </div>
+  <div class="mt-3 text-center text-[11px] opacity-50">© 2025 WishJinny • Rub responsibly. Jinny may grant extra discounts when you’re nice. • Made for Chirag</div>
+</footer>
+
+<!-- Drawers -->
+<div id="cartDrawer" class="fixed inset-0 z-[70] hidden">
+  <div class="absolute inset-0 bg-black/40 backdrop-blur-[2px]" onclick="closeDrawer('cartDrawer')"></div>
+  <div class="absolute right-0 top-0 h-full w-[92%] max-w-[420px] bg-[#FFFEFB] shadow-2xl flex flex-col">
+    <div class="p-5 flex items-center justify-between border-b"><h3 class="font-bold text-[18px]">Your Wishes (Cart)</h3><button onclick="closeDrawer('cartDrawer')" class="w-9 h-9 rounded-full bg-black/5 grid place-items-center"><i data-lucide="x" class="w-5 h-5"></i></button></div>
+    <div id="cartList" class="flex-1 overflow-auto p-4 grid gap-3 content-start"></div>
+    <div class="p-4 border-t bg-white">
+      <div class="flex gap-2"><input id="couponInput" placeholder="Coupon code" class="flex-1 h-10 rounded-full border px-4 text-[13px] uppercase"/><button onclick="applyCoupon(document.getElementById('couponInput').value)" class="h-10 px-4 rounded-full bg-ink text-white text-[13px] font-bold">Apply</button></div>
+      <div id="couponMsg" class="mt-2 text-[12px]"></div>
+      <div class="mt-4 grid gap-1 text-[13px]"><div class="flex justify-between"><span class="opacity-60">Subtotal</span><span id="cartSubtotal" class="font-bold">₹0</span></div><div class="flex justify-between"><span class="opacity-60">Jinny Discount</span><span id="cartDiscount" class="font-bold text-emerald-600">-₹0</span></div><div class="flex justify-between text-[16px] font-extrabold pt-2 border-t mt-2"><span>Total</span><span id="cartTotal">₹0</span></div></div>
+      <button onclick="openCheckout()" class="mt-4 w-full h-12 rounded-full bg-gold text-ink font-extrabold text-[14px]">Checkout • Jinny Blessed →</button>
+      <div class="mt-2 text-[11px] text-center opacity-60">Free delivery • Cash on wish available</div>
+    </div>
+  </div>
+</div>
+
+<div id="wishlistDrawer" class="fixed inset-0 z-[70] hidden">
+  <div class="absolute inset-0 bg-black/40" onclick="closeDrawer('wishlistDrawer')"></div>
+  <div class="absolute right-0 top-0 h-full w-[92%] max-w-[380px] bg-[#FFFEFB] shadow-2xl flex flex-col">
+    <div class="p-5 flex items-center justify-between border-b"><h3 class="font-bold">Wishlist</h3><button onclick="closeDrawer('wishlistDrawer')" class="w-9 h-9 rounded-full bg-black/5 grid place-items-center"><i data-lucide="x" class="w-5 h-5"></i></button></div>
+    <div id="wishList" class="flex-1 overflow-auto p-4 grid gap-3 content-start"></div>
+  </div>
+</div>
+
+<!-- Product Modal -->
+<div id="productModal" class="fixed inset-0 z-[80] hidden">
+  <div class="absolute inset-0 bg-[#070E22]/70 backdrop-blur-[8px]" onclick="closeModal('productModal')"></div>
+  <div class="absolute inset-0 md:inset-6 lg:inset-10 bg-white rounded-t-[24px] md:rounded-[24px] overflow-hidden flex flex-col md:grid md:grid-cols-2">
+    <div class="relative bg-[#F6F3EA] p-4 md:p-8 flex flex-col">
+      <button onclick="closeModal('productModal')" class="absolute top-4 left-4 w-9 h-9 rounded-full bg-white border grid place-items-center"><i data-lucide="x" class="w-5 h-5"></i></button>
+      <img id="m_img" src="" class="w-full h-[360px] md:h-[520px] object-cover rounded-[18px]"/>
+      <div class="mt-4 flex gap-2"><span class="px-3 py-1 rounded-full bg-ink text-white text-[11px] font-bold" id="m_vendor">Vendor</span><span class="px-3 py-1 rounded-full bg-gold text-ink text-[11px] font-bold" id="m_cat">Category</span></div>
+    </div>
+    <div class="p-6 md:p-8 overflow-auto">
+      <div class="flex items-start justify-between gap-4"><h3 id="m_name" class="cinzel text-[26px] font-extrabold leading-[1.05]"></h3><button id="m_wishBtn" class="w-10 h-10 rounded-full border grid place-items-center"><i data-lucide="heart" class="w-5 h-5"></i></button></div>
+      <div class="mt-2 flex items-center gap-2 text-[13px]"><span id="m_rating" class="px-2 py-1 rounded-full bg-emerald-50 border border-emerald-200 font-bold text-emerald-700"></span><span id="m_reviews" class="opacity-60"></span><span class="opacity-30">•</span><span id="m_brand" class="font-semibold"></span></div>
+      <div class="mt-5 flex items-end gap-3"><span id="m_price" class="text-[32px] font-extrabold leading-none"></span><span id="m_mrp" class="opacity-50 line-through text-[16px]"></span><span id="m_disc" class="px-2.5 py-1 rounded-full bg-[#FF3B30] text-white text-[12px] font-bold"></span></div>
+      <p id="m_desc" class="mt-4 text-[14px] leading-6 opacity-70"></p>
+      <div class="mt-6 grid grid-cols-2 gap-3"><button id="m_add" class="h-12 rounded-full bg-ink text-white font-bold">Add to Cart</button><button id="m_buy" class="h-12 rounded-full bg-gold text-ink font-extrabold">Buy Now • 50% OFF</button></div>
+      <div class="mt-6 rounded-[16px] bg-[#F6F3EA] p-4 border">
+        <div class="flex items-center gap-2 text-[13px] font-bold"><i data-lucide="sparkles" class="w-4 h-4"></i> Jinny AI says</div>
+        <div id="m_ai" class="mt-2 text-[13px] leading-5 opacity-80"></div>
+      </div>
+      <div class="mt-6 text-[11px] tracking-widest uppercase font-bold opacity-50">Stock • <span id="m_stock"></span> left • Ships from Jaipur</div>
     </div>
   </div>
 </div>
 
 <!-- Checkout Modal -->
-<div class="modal-overlay" id="checkoutModal">
-  <div class="modal" style="max-width: 600px;">
-    <div class="modal-header">
-      <h3>✨ Checkout</h3>
-      <button class="drawer-close" onclick="closeModal('checkoutModal')">✕</button>
-    </div>
-    <div class="modal-body" id="checkoutBody">
-      <div class="checkout-steps">
-        <div class="checkout-step active" id="step1"></div>
-        <div class="checkout-step" id="step2"></div>
-        <div class="checkout-step" id="step3"></div>
-      </div>
-      
-      <div id="checkoutStep1">
-        <h4 style="margin-bottom: 20px; font-family: 'Cinzel', serif;">📦 Shipping Details</h4>
-        <div class="form-row">
-          <div class="form-group">
-            <label>First Name</label>
-            <input class="form-input" type="text" placeholder="Aladdin">
-          </div>
-          <div class="form-group">
-            <label>Last Name</label>
-            <input class="form-input" type="text" placeholder="Agrabah">
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Email</label>
-          <input class="form-input" type="email" placeholder="aladdin@magic.com">
-        </div>
-        <div class="form-group">
-          <label>Address</label>
-          <input class="form-input" type="text" placeholder="123 Magic Carpet Lane">
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>City</label>
-            <input class="form-input" type="text" placeholder="Agrabah">
-          </div>
-          <div class="form-group">
-            <label>ZIP Code</label>
-            <input class="form-input" type="text" placeholder="12345">
-          </div>
-        </div>
-        <button class="btn btn-primary" style="width:100%; justify-content:center; margin-top:10px" onclick="goToStep(2)">
-          Continue to Payment →
-        </button>
-      </div>
-      
-      <div id="checkoutStep2" style="display:none">
-        <h4 style="margin-bottom: 20px; font-family: 'Cinzel', serif;">💳 Payment</h4>
-        <div class="form-group">
-          <label>Card Number</label>
-          <input class="form-input" type="text" placeholder="4242 4242 4242 4242" maxlength="19">
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Expiry</label>
-            <input class="form-input" type="text" placeholder="MM/YY">
-          </div>
-          <div class="form-group">
-            <label>CVV</label>
-            <input class="form-input" type="text" placeholder="123" maxlength="3">
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Name on Card</label>
-          <input class="form-input" type="text" placeholder="Aladdin">
-        </div>
-        <div style="display:flex; gap:10px; margin-top:10px">
-          <button class="btn btn-secondary" style="flex:1; justify-content:center" onclick="goToStep(1)">
-            ← Back
-          </button>
-          <button class="btn btn-primary" style="flex:2; justify-content:center" onclick="goToStep(3)">
-            Review Order →
-          </button>
-        </div>
-      </div>
-      
-      <div id="checkoutStep3" style="display:none">
-        <h4 style="margin-bottom: 20px; font-family: 'Cinzel', serif;">📋 Order Review</h4>
-        <div id="orderSummary"></div>
-        <div style="display:flex; gap:10px; margin-top:20px">
-          <button class="btn btn-secondary" style="flex:1; justify-content:center" onclick="goToStep(2)">
-            ← Back
-          </button>
-          <button class="btn btn-gold" style="flex:2; justify-content:center" onclick="placeOrder()">
-            ✨ Place Order
-          </button>
-        </div>
+<div id="checkoutModal" class="fixed inset-0 z-[80] hidden">
+  <div class="absolute inset-0 bg-black/60 backdrop-blur-[4px]" onclick="closeModal('checkoutModal')"></div>
+  <div class="absolute inset-x-0 bottom-0 md:inset-0 md:grid place-items-center p-3">
+    <div class="bg-white rounded-[24px] w-full max-w-[560px] overflow-hidden">
+      <div class="p-6 border-b flex items-center justify-between"><h3 class="font-extrabold text-[18px]">Checkout • Jinny Express</h3><button onclick="closeModal('checkoutModal')" class="w-9 h-9 rounded-full bg-black/5 grid place-items-center"><i data-lucide="x" class="w-5 h-5"></i></button></div>
+      <div class="p-6 grid gap-4">
+        <div class="grid md:grid-cols-2 gap-3"><input placeholder="Full Name" class="h-11 rounded-full border px-4 text-[14px]"/><input placeholder="Phone" class="h-11 rounded-full border px-4 text-[14px]"/></div>
+        <input placeholder="Address — Jinny will find you" class="h-11 rounded-full border px-4 text-[14px]"/>
+        <div class="rounded-[14px] bg-[#F6F3EA] p-4 border text-[13px]"><div class="flex justify-between font-bold"><span>Order Total</span><span id="checkoutTotal">₹0</span></div><div id="checkoutCoupon" class="mt-1 text-emerald-700 font-semibold"></div><div class="mt-2 text-[11px] opacity-60">Pay with UPI, Card, or “Promise to make a wish”.</div></div>
+        <button onclick="placeOrder()" class="h-12 rounded-full bg-ink text-white font-bold text-[14px]">Place Order • Wish Granted ✨</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Account Modal -->
-<div class="modal-overlay" id="accountModal">
-  <div class="modal" style="max-width: 500px;">
-    <div class="modal-header">
-      <h3>👤 My Account</h3>
-      <button class="drawer-close" onclick="closeModal('accountModal')">✕</button>
-    </div>
-    <div class="modal-body">
-      <div class="account-tabs">
-        <button class="account-tab active" onclick="switchAccountTab('login', this)">Sign In</button>
-        <button class="account-tab" onclick="switchAccountTab('register', this)">Register</button>
-        <button class="account-tab" onclick="switchAccountTab('profile', this)">Profile</button>
-      </div>
-      
-      <div class="tab-content active" id="loginTab">
-        <div class="form-group">
-          <label>Email</label>
-          <input class="form-input" type="email" placeholder="your@email.com">
-        </div>
-        <div class="form-group">
-          <label>Password</label>
-          <input class="form-input" type="password" placeholder="••••••••">
-        </div>
-        <button class="btn btn-primary" style="width:100%; justify-content:center" onclick="showToast('success', 'Welcome back!', 'You have signed in successfully.')">
-          ✨ Sign In
-        </button>
-        <p style="text-align:center; margin-top:16px; font-size:0.85rem; color: var(--text-muted)">
-          Forgot your password? <a href="#" style="color: var(--cyan)" onclick="event.preventDefault(); showToast('info', 'Password Reset', 'Check your inbox for the magic reset link!')">Reset it here</a>
-        </p>
-      </div>
-      
-      <div class="tab-content" id="registerTab">
-        <div class="form-row">
-          <div class="form-group">
-            <label>First Name</label>
-            <input class="form-input" type="text" placeholder="Aladdin">
-          </div>
-          <div class="form-group">
-            <label>Last Name</label>
-            <input class="form-input" type="text" placeholder="Agrabah">
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Email</label>
-          <input class="form-input" type="email" placeholder="your@email.com">
-        </div>
-        <div class="form-group">
-          <label>Password</label>
-          <input class="form-input" type="password" placeholder="••••••••">
-        </div>
-        <div class="form-group">
-          <label>Confirm Password</label>
-          <input class="form-input" type="password" placeholder="••••••••">
-        </div>
-        <button class="btn btn-primary" style="width:100%; justify-content:center" onclick="showToast('success', 'Account Created!', 'Welcome to WishJinny! Your magic journey begins.')">
-           Create Account
-        </button>
-      </div>
-      
-      <div class="tab-content" id="profileTab">
-        <div style="text-align:center; margin-bottom:20px">
-          <div style="width:70px;height:70px;border-radius:50%;background:var(--gradient-magic);margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:2rem">🧞</div>
-          <h4>Aladdin Agrabah</h4>
-          <p style="color:var(--text-muted);font-size:0.85rem">aladdin@magic.com</p>
-        </div>
-        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-bottom:20px">
-          <div style="text-align:center; padding:16px; background:var(--surface); border-radius:12px">
-            <div style="font-size:1.5rem;font-weight:700;color:var(--bright-gold)">12</div>
-            <div style="font-size:0.75rem;color:var(--text-muted)">Orders</div>
-          </div>
-          <div style="text-align:center; padding:16px; background:var(--surface); border-radius:12px">
-            <div style="font-size:1.5rem;font-weight:700;color:var(--cyan)">5</div>
-            <div style="font-size:0.75rem;color:var(--text-muted)">Wishlist</div>
-          </div>
-          <div style="text-align:center; padding:16px; background:var(--surface); border-radius:12px">
-            <div style="font-size:1.5rem;font-weight:700;color:var(--success)">3</div>
-            <div style="font-size:0.75rem;color:var(--text-muted)">Coupons</div>
-          </div>
-        </div>
-        <button class="btn btn-secondary" style="width:100%; justify-content:center" onclick="showToast('info', 'Logged Out', 'You have been signed out.')">
-          Sign Out
-        </button>
-      </div>
+<!-- Vendor Login -->
+<div id="vendorModal" class="fixed inset-0 z-[80] hidden">
+  <div class="absolute inset-0 bg-black/60 backdrop-blur-[4px]" onclick="closeModal('vendorModal')"></div>
+  <div class="absolute inset-0 grid place-items-center p-4">
+    <div class="bg-white rounded-[24px] w-full max-w-[400px] p-6 border shadow-2xl">
+      <div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-ink text-gold grid place-items-center"><i data-lucide="store" class="w-5 h-5"></i></div><div><div class="font-extrabold">Vendor Login</div><div class="text-[12px] opacity-60">Multi-vendor access • Admin panel</div></div></div>
+      <form id="vendorLoginForm" class="mt-6 grid gap-3">
+        <input required id="v_email" placeholder="Vendor email (try chirag@wishjinny.com)" class="h-11 rounded-full border px-4 text-[14px]"/>
+        <input required id="v_pass" type="password" placeholder="Password (anything works in demo)" class="h-11 rounded-full border px-4 text-[14px]"/>
+        <button class="h-11 rounded-full bg-ink text-white font-bold">Login as Vendor</button>
+        <div class="text-[11px] opacity-60 text-center">Demo: any email works. Use “Chirag’s Vault” to feature on top banner.</div>
+      </form>
     </div>
   </div>
 </div>
 
-<!-- Vendor Modal -->
-<div class="modal-overlay" id="vendorModal">
-  <div class="modal" style="max-width: 500px;">
-    <div class="modal-header">
-      <h3>🏪 Vendor Portal</h3>
-      <button class="drawer-close" onclick="closeModal('vendorModal')">✕</button>
-    </div>
-    <div class="modal-body">
-      <div class="account-tabs">
-        <button class="account-tab active" onclick="switchVendorTab('vlogin', this)">Vendor Login</button>
-        <button class="account-tab" onclick="switchVendorTab('vregister', this)">Become a Vendor</button>
-        <button class="account-tab" onclick="switchVendorTab('vdashboard', this)">Dashboard</button>
-      </div>
-      
-      <div class="tab-content active" id="vloginTab">
-        <div class="form-group">
-          <label>Vendor Email</label>
-          <input class="form-input" type="email" placeholder="vendor@shop.com">
-        </div>
-        <div class="form-group">
-          <label>Password</label>
-          <input class="form-input" type="password" placeholder="••••••••">
-        </div>
-        <button class="btn btn-primary" style="width:100%; justify-content:center" onclick="showToast('success', 'Welcome Vendor!', 'Dashboard loaded successfully.')">
-          🏪 Login to Dashboard
-        </button>
-      </div>
-      
-      <div class="tab-content" id="vregisterTab">
-        <div class="form-group">
-          <label>Shop Name</label>
-          <input class="form-input" type="text" placeholder="Magic Artifacts Co.">
-        </div>
-        <div class="form-group">
-          <label>Vendor Email</label>
-          <input class="form-input" type="email" placeholder="vendor@shop.com">
-        </div>
-        <div class="form-group">
-          <label>Business License</label>
-          <input class="form-input" type="text" placeholder="MAG-12345">
-        </div>
-        <div class="form-group">
-          <label>Product Category</label>
-          <input class="form-input" type="text" placeholder="Artifacts, Potions, Scrolls...">
-        </div>
-        <button class="btn btn-gold" style="width:100%; justify-content:center" onclick="showToast('success', 'Application Submitted!', 'Our Jinny will review your application within 24 hours.')">
-          ✨ Submit Application
-        </button>
-      </div>
-      
-      <div class="tab-content" id="vdashboardTab">
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:20px">
-          <div style="padding:16px; background:var(--surface); border-radius:12px; text-align:center">
-            <div style="font-size:1.8rem;font-weight:700;color:var(--bright-gold)">248</div>
-            <div style="font-size:0.75rem;color:var(--text-muted)">Total Sales</div>
-          </div>
-          <div style="padding:16px; background:var(--surface); border-radius:12px; text-align:center">
-            <div style="font-size:1.8rem;font-weight:700;color:var(--cyan)">$12,450</div>
-            <div style="font-size:0.75rem;color:var(--text-muted)">Revenue</div>
-          </div>
-          <div style="padding:16px; background:var(--surface); border-radius:12px; text-align:center">
-            <div style="font-size:1.8rem;font-weight:700;color:var(--success)">42</div>
-            <div style="font-size:0.75rem;color:var(--text-muted)">Products</div>
-          </div>
-          <div style="padding:16px; background:var(--surface); border-radius:12px; text-align:center">
-            <div style="font-size:1.8rem;font-weight:700;color:var(--purple)">4.8</div>
-            <div style="font-size:0.75rem;color:var(--text-muted)">Rating</div>
-          </div>
-        </div>
-        <button class="btn btn-primary" style="width:100%; justify-content:center" onclick="showToast('info', 'Products', 'Manage your magical inventory.')">
-          📦 Manage Products
-        </button>
-      </div>
-    </div>
+<!-- Account -->
+<div id="accountModal" class="fixed inset-0 z-[80] hidden">
+  <div class="absolute inset-0 bg-black/50" onclick="closeModal('accountModal')"></div>
+  <div class="absolute right-0 top-0 h-full w-[92%] max-w-[360px] bg-white p-6 flex flex-col">
+    <div class="flex items-center justify-between"><h3 class="font-bold">Account</h3><button onclick="closeModal('accountModal')" class="w-9 h-9 rounded-full bg-black/5 grid place-items-center"><i data-lucide="x" class="w-5 h-5"></i></button></div>
+    <div class="mt-6 flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=12" class="w-12 h-12 rounded-full"/><div><div class="font-bold">Aarav • Wishmaker</div><div class="text-[12px] opacity-60">aarav@example.com</div></div></div>
+    <div class="mt-6 grid gap-2 text-[14px]"><button class="h-11 px-4 rounded-full border text-left flex items-center gap-2"><i data-lucide="package" class="w-4 h-4"></i> Orders (3)</button><button onclick="openDrawer('wishlistDrawer');closeModal('accountModal')" class="h-11 px-4 rounded-full border text-left flex items-center gap-2"><i data-lucide="heart" class="w-4 h-4"></i> Wishlist</button><button class="h-11 px-4 rounded-full border text-left flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4"></i> Addresses</button><button onclick="openVendor()" class="h-11 px-4 rounded-full bg-gold font-bold">Switch to Vendor</button></div>
+    <div class="mt-auto text-[11px] opacity-50">Jinny AI remembers your last 3 wishes.</div>
   </div>
 </div>
 
-<!-- Jinny Magic Modal (for button click) -->
-<div class="modal-overlay" id="jinnyMagicModal">
-  <div class="modal" style="max-width: 500px;">
-    <div class="modal-header">
-      <h3> Jinny Magic</h3>
-      <button class="drawer-close" onclick="closeModal('jinnyMagicModal')">✕</button>
-    </div>
-    <div class="modal-body">
-      <div class="coupon-card">
-        <div style="font-size:3rem; margin-bottom:16px">‍♂️</div>
-        <h3 style="font-family:'Cinzel Decorative',cursive; font-size:1.5rem; margin-bottom:8px">Your Wish is Granted!</h3>
-        <div style="font-size:3rem; font-weight:900; color:var(--bright-gold); margin:12px 0">50% OFF</div>
-        <p style="color:var(--text-muted); margin-bottom:16px">Use code on your next purchase</p>
-        <div class="code" onclick="copyCode(this)" style="font-family:monospace; font-size:1.3rem; letter-spacing:3px; color:var(--bright-gold); background:rgba(255,215,0,0.1); border:1px dashed var(--gold); padding:10px 24px; border-radius:8px; display:inline-block; cursor:pointer">JINNY50</div>
-        <p style="color:var(--text-muted); font-size:0.75rem; margin-top:8px">Click to copy</p>
-      </div>
-    </div>
+<!-- Jinny AI Widget -->
+<div id="aiWidget" class="fixed bottom-4 right-4 z-[75] w-[94%] max-w-[360px] hidden">
+  <div class="rounded-[22px] overflow-hidden bg-white border shadow-[0_20px_60px_rgba(0,0,0,.25)] flex flex-col max-h-[72vh]">
+    <div class="p-4 bg-ink text-white flex items-center justify-between"><div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-gold text-ink grid place-items-center font-extrabold">J</div><div><div class="font-bold text-[13px] leading-none">Jinny AI</div><div class="text-[11px] opacity-70">Your personal bazaar genie • Online</div></div></div><button onclick="closeAI()" class="w-8 h-8 rounded-full bg-white/10 grid place-items-center"><i data-lucide="x" class="w-4 h-4"></i></button></div>
+    <div id="aiMessages" class="flex-1 overflow-auto p-4 grid gap-3 content-start bg-[#FFFEFB]"></div>
+    <div class="p-3 border-t bg-white flex gap-2"><input id="aiInput" placeholder="Ask: blue lamps under 2000?" class="flex-1 h-10 rounded-full border px-4 text-[13px]"/><button onclick="sendAI()" class="w-10 h-10 rounded-full bg-ink text-white grid place-items-center"><i data-lucide="send" class="w-4 h-4"></i></button></div>
   </div>
 </div>
-
-<!-- ===== AI JINNY CHAT ===== -->
-<button class="ai-jinny-btn" id="aiJinnyBtn" onclick="toggleAIChat()"></button>
-
-<div class="ai-chat-panel" id="aiChatPanel">
-  <div class="ai-chat-header">
-    <div class="ai-avatar">🧞</div>
-    <div>
-      <h4>AI Jinny</h4>
-      <p>Always here to grant your shopping wishes ✨</p>
-    </div>
-    <button class="drawer-close" onclick="toggleAIChat()" style="margin-left:auto">✕</button>
-  </div>
-  <div class="ai-chat-body" id="aiChatBody">
-    <div class="chat-message bot">
-      Welcome, dear wisher! ✨ I'm your AI Jinny. I can help you find magical products, apply discounts, or answer any questions. What can I grant for you today?
-    </div>
-  </div>
-  <div class="ai-chat-input">
-    <input type="text" id="aiChatInput" placeholder="Ask the Jinny anything..." onkeypress="if(event.key==='Enter')sendAIMessage()">
-    <button class="ai-send-btn" onclick="sendAIMessage()">➤</button>
-  </div>
-</div>
-
-<!-- ===== TOAST CONTAINER ===== -->
-<div class="toast-container" id="toastContainer"></div>
+<button id="aiFab" onclick="openAI()" class="fixed bottom-5 right-5 z-[74] h-[56px] px-5 rounded-full bg-ink text-white shadow-[0_12px_30px_rgba(0,0,0,.35)] flex items-center gap-2 font-bold text-[13px]"><span class="w-8 h-8 rounded-full bg-gold text-ink grid place-items-center"><i data-lucide="sparkles" class="w-4 h-4"></i></span> Ask Jinny AI</button>
 
 <script>
-// ===== DATA =====
-const products = [
-  { id: 1, name: "Ancient Genie Lamp", emoji: "🏺", price: 199.99, originalPrice: 399.99, category: "artifacts", vendor: "Agrabah Antiques", rating: 4.9, reviews: 234, badge: "sale", description: "A genuine ancient lamp with traces of magical residue. Perfect for collectors and aspiring wish-granters." },
-  { id: 2, name: "Elixir of Eternal Youth", emoji: "🧪", price: 89.99, originalPrice: 179.99, category: "potions", vendor: "Merlin's Brew", rating: 4.7, reviews: 156, badge: "hot", description: "Handcrafted by ancient alchemists. One sip and you'll feel centuries younger. Side effects may include glowing." },
-  { id: 3, name: "Scroll of Infinite Wisdom", emoji: "📜", price: 149.99, originalPrice: 299.99, category: "scrolls", vendor: "The Grand Library", rating: 4.8, reviews: 89, badge: "sale", description: "Contains all the knowledge of the ancient world. Read at your own risk — may cause spontaneous enlightenment." },
-  { id: 4, name: "Dragon's Heart Crystal", emoji: "💎", price: 349.99, originalPrice: null, category: "crystals", vendor: "Crystal Caverns", rating: 5.0, reviews: 67, badge: "new", description: "Rare crystal formed in the heart of a dormant volcano. Radiates warmth and protective energy." },
-  { id: 5, name: "Enchanted Shield", emoji: "🛡️", price: 259.99, originalPrice: 499.99, category: "armor", vendor: "Forged in Fire", rating: 4.6, reviews: 198, badge: "sale", description: "Forged by dwarven smiths using moon-touched steel. Repels all but the most powerful dark magic." },
-  { id: 6, name: "Grimoire of Dark Arts", emoji: "📖", price: 179.99, originalPrice: null, category: "books", vendor: "Forbidden Tomes", rating: 4.5, reviews: 112, badge: "hot", description: "A comprehensive guide to shadow magic. Warning: Do not read aloud after midnight." },
-  { id: 7, name: "Ring of Invisibility", emoji: "💍", price: 499.99, originalPrice: 999.99, category: "jewelry", vendor: "Elven Crafters", rating: 4.9, reviews: 45, badge: "sale", description: "Handcrafted by elven artisans using moonstone and shadow silk. Makes the wearer truly invisible." },
-  { id: 8, name: "Phoenix Feather Quill", emoji: "✒️", price: 79.99, originalPrice: null, category: "artifacts", vendor: "Agrabah Antiques", rating: 4.8, reviews: 203, badge: "new", description: "Writes words that come true. Each quill is a genuine phoenix feather, blessed by fire elementals." },
-  { id: 9, name: "Love Potion No. 9", emoji: "", price: 59.99, originalPrice: 119.99, category: "potions", vendor: "Merlin's Brew", rating: 4.4, reviews: 321, badge: "sale", description: "The original formula from Merlin himself. Guaranteed to make anyone fall madly in love within 24 hours." },
-  { id: 10, name: "Teleportation Orb", emoji: "🔮", price: 599.99, originalPrice: null, category: "crystals", vendor: "Crystal Caverns", rating: 4.7, reviews: 78, badge: "hot", description: "Travel anywhere in the world instantly. Requires a full moon for optimal performance." },
-  { id: 11, name: "Wizard's Robe", emoji: "🧙", price: 189.99, originalPrice: 349.99, category: "armor", vendor: "Forged in Fire", rating: 4.6, reviews: 156, badge: "sale", description: "Woven from enchanted threads. Increases spellcasting power by 50%. Available in midnight blue and starlight silver." },
-  { id: 12, name: "Spell of Protection", emoji: "📜", price: 129.99, originalPrice: null, category: "scrolls", vendor: "The Grand Library", rating: 4.9, reviews: 167, badge: "new", description: "One-time use scroll that creates an impenetrable magical barrier around the caster for 24 hours." }
+lucide.createIcons();
+const $ = s=>document.querySelector(s);
+const $$ = s=>[...document.querySelectorAll(s)];
+
+let products = [
+  {id:1,name:"Blue Enamel Jinny Lamp — Chirag Edition",brand:"Chirag's Vault",category:"Lamps",price:1499,mrp:2999,discount:50,stock:37,rating:4.9,reviews:324,vendor:"Chirag's Vault",photo:"https://dvxrhkgloakisnvqoxgl.supabase.co/storage/v1/object/sign/images/inputs/1788806813554_irjtysvmp.JPG?token=eyJraWQiOiI0NWE1YWU1ZS0xNzg4LTRiMWYtYWM5OC1hMjgwNmQ2OTM4ZWMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJpbWFnZXMvaW5wdXRzLzE3ODg4MDY4MTM1NTRfaXJqdHlzdm1wLkpQRyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3ODg4MDc5MDYsImV4cCI6MTgyMDM0MzkwNn0.idxgWcgtHrYMW4n9ycS-nJq_AJ8KCWkA52QkWpyXN2I",desc:"Hand-engraved brass with Rajasthani blue enamel. When rubbed, releases a cool mist (Jinny not included, but discount is)."},
+  {id:2,name:"Midnight Attar — Smoke & Saffron",brand:"Noor Attars",category:"Fragrances",price:899,mrp:1799,discount:50,stock:82,rating:4.7,reviews:189,vendor:"Noor Bazaar",photo:"https://images.unsplash.com/photo-1541643600914-78b084683601?w=600",desc:"12-hour attar, distilled over sandal smoke. Smells like a wish at 2am."},
+  {id:3,name:"Kaftan of Clouds — Handloom",brand:"Loom & Lamp",category:"Apparel",price:2199,mrp:3999,discount:45,stock:14,rating:4.6,reviews:76,vendor:"Loom & Lamp",photo:"https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=600",desc:"Airy cotton kaftan, block printed in Sanganer. Jinny approved for summer wishes."},
+  {id:4,name:"Wish Pearl Choker — Gold Plated",brand:"Zahra Jewels",category:"Mystic Jewels",price:1299,mrp:2599,discount:50,stock:22,rating:4.8,reviews:211,vendor:"Zahra Jewels",photo:"https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600",desc:"Freshwater pearls with a tiny lamp charm. Makes every neckline magical."},
+  {id:5,name:"Brass Incense Cave — Fog Edition",brand:"Chirag's Vault",category:"Home Decor",price:749,mrp:1499,discount:50,stock:64,rating:4.9,reviews:412,vendor:"Chirag's Vault",photo:"https://images.unsplash.com/photo-1603006905003-be475563bc59?w=600",desc:"Emits slow fog like Jinny emerging. Pair with midnight attar."},
+  {id:6,name:"Desert Rose Artifact — Mini",brand:"Nomad Finds",category:"Artifacts",price:3499,mrp:6999,discount:50,stock:6,rating:4.9,reviews:44,vendor:"Nomad Finds",photo:"https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=600",desc:"Crystal cluster from Thar, said to hold a lazy genie."},
+  {id:7,name:"Aqua Silk Table Runner",brand:"Loom & Lamp",category:"Home Decor",price:999,mrp:1999,discount:50,stock:31,rating:4.5,reviews:98,vendor:"Loom & Lamp",photo:"https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600",desc:"Matches the lamp's cloth exactly. For your dining wishes."},
+  {id:8,name:"Oud Wood Lamp — Charred Finish",brand:"Chirag's Vault",category:"Lamps",price:2799,mrp:4599,discount:39,stock:9,rating:4.8,reviews:67,vendor:"Chirag's Vault",photo:"https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=600",desc:"Reclaimed oud wood base, brass spout, warm glow."},
 ];
 
-let cart = [];
-let wishlist = [];
-let activeCategory = 'all';
-let searchQuery = '';
-let appliedCoupon = null;
+let cart=[], wishlist=[], activeCategory="All", searchQ="", priceMin=null, priceMax=null, sortBy="featured", coupon=null, isVendor=false, vendorName="Chirag's Vault";
 
-// ===== INIT =====
-document.addEventListener('DOMContentLoaded', () => {
-  renderProducts();
-  initParticles();
-  initScratchCard();
-  
-  // Header scroll effect
-  window.addEventListener('scroll', () => {
-    const header = document.getElementById('header');
-    if (window.scrollY > 50) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
-  });
+function toast(msg,type="ok"){
+  const el=document.createElement("div");
+  el.className=`pointer-events-auto px-4 py-3 rounded-full text-[13px] font-semibold shadow-xl border flex items-center gap-2 ${type==="ok"?"bg-ink text-white border-white/10":"bg-[#FF3B30] text-white"}`;
+  el.innerHTML=`<span class="w-6 h-6 rounded-full bg-white/15 grid place-items-center">${type==="ok"?"✨":"⚠️"}</span><span>${msg}</span>`;
+  $("#toastRoot").appendChild(el);
+  setTimeout(()=>{el.style.opacity="0";el.style.transform="translateY(-6px)";},2600);
+  setTimeout(()=>el.remove(),3000);
+}
+
+function money(n){return "₹"+Number(n).toLocaleString("en-IN");}
+function calcDiscount(p){if(coupon==="JINNY50") return Math.round(p*0.5); if(coupon==="FIRSTWISH") return 300; if(coupon==="CHIRAG20") return Math.round(p*0.2); return 0;}
+
+function renderCats(){
+  const cats=["All","Lamps","Home Decor","Fragrances","Apparel","Mystic Jewels","Artifacts"];
+  $("#catList").innerHTML=cats.map(c=>`<button onclick="setCat('${c}')" class="w-full h-9 px-3 rounded-full border text-left text-[13px] flex items-center justify-between ${activeCategory===c?"bg-ink text-white border-ink":"bg-white hover:bg-black/[.04]"}"><span>${c}</span><span class="text-[11px] opacity-60">${c==="All"?products.length:products.filter(p=>p.category===c).length}</span></button>`).join("");
+}
+function setCat(c){activeCategory=c;renderCats();renderProducts();}
+function filterByVendor(v){activeCategory="All";searchQ=v;$("#searchInput").value=v;renderProducts();toast(`Showing ${v} store`);}
+
+function getFiltered(){
+  let list=[...products];
+  if(activeCategory!=="All") list=list.filter(p=>p.category===activeCategory);
+  if(searchQ) {
+    const q=searchQ.toLowerCase();
+    list=list.filter(p=> (p.name+" "+p.brand+" "+p.vendor+" "+p.category).toLowerCase().includes(q));
+  }
+  if(priceMin!=null) list=list.filter(p=>p.price>=priceMin);
+  if(priceMax!=null) list=list.filter(p=>p.price<=priceMax);
+  if(sortBy==="low") list.sort((a,b)=>a.price-b.price);
+  if(sortBy==="high") list.sort((a,b)=>b.price-a.price);
+  if(sortBy==="rating") list.sort((a,b)=>b.rating-a.rating);
+  if(sortBy==="discount") list.sort((a,b)=>b.discount-a.discount);
+  return list;
+}
+
+function renderProducts(){
+  const list=getFiltered();
+  $("#resultCount").textContent=`${list.length} wishes`;
+  $("#productGrid").innerHTML=list.map(p=>`
+    <div class="group relative rounded-[18px] bg-white border border-black/[.06] overflow-hidden hover:shadow-[0_12px_30px_rgba(0,0,0,.08)] hover:-translate-y-[1px] transition-all">
+      <div class="relative aspect-[4/3] bg-[#F6F3EA] overflow-hidden">
+        <img src="${p.photo}" class="w-full h-full object-cover group-hover:scale-[1.04] transition duration-700"/>
+        <div class="absolute top-2 left-2 flex gap-1.5">
+          <span class="px-2 py-1 rounded-full bg-[#0B1933] text-white text-[10px] font-bold tracking-widest uppercase">${p.vendor.split(' ')[0]}</span>
+          ${p.discount>=50?`<span class="px-2 py-1 rounded-full bg-[#FF3B30] text-white text-[10px] font-bold">${p.discount}% OFF</span>`:""}
+        </div>
+        <button onclick="toggleWish(${p.id})" class="absolute top-2 right-2 w-8 h-8 rounded-full bg-white/90 border grid place-items-center hover:bg-white ${wishlist.includes(p.id)?"text-[#FF3B30]":"text-black/60"}"><i data-lucide="heart" class="w-4 h-4 ${wishlist.includes(p.id)?"fill-current":""}"></i></button>
+        <div class="absolute bottom-2 left-2 right-2 flex gap-1.5">
+          <span class="px-2 py-1 rounded-full bg-white/90 border text-[11px] font-semibold flex items-center gap-1"><i data-lucide="star" class="w-3 h-3 fill-amber-400 text-amber-400"></i> ${p.rating} • ${p.reviews}</span>
+          <span class="ml-auto px-2 py-1 rounded-full bg-gold text-ink text-[10px] font-bold">Jinny Pick</span>
+        </div>
+      </div>
+      <div class="p-3">
+        <div class="text-[11px] tracking-widest uppercase font-bold opacity-50">${p.category} • ${p.brand}</div>
+        <div class="mt-1 font-semibold text-[13px] leading-[1.25] line-clamp-2 min-h-[34px]">${p.name}</div>
+        <div class="mt-2 flex items-end gap-2"><span class="text-[16px] font-extrabold">${money(p.price)}</span><span class="text-[12px] opacity-50 line-through">${money(p.mrp)}</span><span class="text-[11px] font-bold text-emerald-600">${p.discount}% off</span></div>
+        <div class="mt-3 grid grid-cols-[1fr_auto] gap-2">
+          <button onclick="addToCart(${p.id})" class="h-9 rounded-full bg-ink text-white text-[12px] font-bold flex items-center justify-center gap-1.5 hover:brightness-110"><i data-lucide="shopping-bag" class="w-4 h-4"></i> Add</button>
+          <button onclick="openProduct(${p.id})" class="h-9 px-3 rounded-full border text-[12px] font-semibold bg-[#F6F3EA]">View</button>
+        </div>
+      </div>
+    </div>
+  `).join("");
+  lucide.createIcons();
+}
+
+function addToCart(id){
+  const p=products.find(x=>x.id===id);
+  const ex=cart.find(c=>c.id===id);
+  if(ex) ex.qty++; else cart.push({id,qty:1,price:p.price});
+  updateCart();
+  toast(`${p.name.slice(0,22)}… added to cart`);
+}
+function toggleWish(id){
+  if(wishlist.includes(id)) wishlist=wishlist.filter(x=>x!==id); else wishlist.push(id);
+  updateWish(); renderProducts();
+  toast(wishlist.includes(id)?"Added to wishlist • Jinny remembers":"Removed from wishlist");
+}
+function updateCart(){
+  const totalQty=cart.reduce((s,c)=>s+c.qty,0);
+  const countEl=$("#cartCount"); if(totalQty>0){countEl.textContent=totalQty;countEl.classList.remove("hidden");} else countEl.classList.add("hidden");
+  let subtotal=0; cart.forEach(c=>{const p=products.find(x=>x.id===c.id); subtotal+=p.price*c.qty;});
+  const disc=calcDiscount(subtotal);
+  $("#cartSubtotal").textContent=money(subtotal);
+  $("#cartDiscount").textContent="-"+money(disc);
+  $("#cartTotal").textContent=money(Math.max(0,subtotal-disc));
+  $("#checkoutTotal").textContent=money(Math.max(0,subtotal-disc));
+  $("#checkoutCoupon").textContent=coupon?`Coupon ${coupon} applied • -${money(disc)}`:"";
+  $("#cartList").innerHTML=cart.length?cart.map(c=>{
+    const p=products.find(x=>x.id===c.id);
+    return `<div class="flex gap-3 p-3 rounded-[14px] border bg-white"><img src="${p.photo}" class="w-16 h-16 rounded-[10px] object-cover"/><div class="flex-1 min-w-0"><div class="text-[13px] font-semibold leading-tight line-clamp-2">${p.name}</div><div class="text-[11px] opacity-60">${p.vendor}</div><div class="mt-2 flex items-center gap-2"><button onclick="changeQty(${c.id},-1)" class="w-7 h-7 rounded-full border grid place-items-center">−</button><span class="text-[13px] font-bold w-6 text-center">${c.qty}</span><button onclick="changeQty(${c.id},1)" class="w-7 h-7 rounded-full border grid place-items-center">+</button><span class="ml-auto font-bold text-[13px]">${money(p.price*c.qty)}</span></div></div></div>`;
+  }).join(""):`<div class="py-16 text-center"><div class="text-4xl">🧞‍♂️</div><div class="mt-3 font-bold">Your lamp is empty</div><div class="text-[13px] opacity-60 mt-1">Rub products to add wishes.</div><button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'});closeDrawer('cartDrawer')" class="mt-4 h-9 px-4 rounded-full bg-ink text-white text-[13px] font-bold">Browse Bazaar</button></div>`;
+  lucide.createIcons();
+}
+function changeQty(id,d){const c=cart.find(x=>x.id===id); if(!c) return; c.qty+=d; if(c.qty<=0) cart=cart.filter(x=>x.id!==id); updateCart();}
+function updateWish(){
+  const el=$("#wishCount"); if(wishlist.length){el.textContent=wishlist.length;el.classList.remove("hidden");} else el.classList.add("hidden");
+  $("#wishList").innerHTML=wishlist.length?wishlist.map(id=>{const p=products.find(x=>x.id===id);return `<div class="flex gap-3 p-3 rounded-[14px] border bg-white"><img src="${p.photo}" class="w-14 h-14 rounded-[10px] object-cover"/><div class="flex-1"><div class="text-[13px] font-semibold leading-tight">${p.name}</div><div class="text-[12px] font-bold mt-1">${money(p.price)}</div><div class="mt-2 flex gap-2"><button onclick="addToCart(${p.id})" class="h-8 px-3 rounded-full bg-ink text-white text-[12px] font-bold">Add to Cart</button><button onclick="toggleWish(${p.id})" class="h-8 px-3 rounded-full border text-[12px]">Remove</button></div></div></div>`}).join(""):`<div class="py-16 text-center opacity-60 text-[13px]">No wishes yet. Tap ♥ on any product.</div>`;
+}
+
+function openProduct(id){
+  const p=products.find(x=>x.id===id);
+  $("#m_img").src=p.photo; $("#m_name").textContent=p.name; $("#m_brand").textContent=p.brand; $("#m_vendor").textContent=p.vendor; $("#m_cat").textContent=p.category;
+  $("#m_price").textContent=money(p.price); $("#m_mrp").textContent=money(p.mrp); $("#m_disc").textContent=p.discount+"% OFF";
+  $("#m_rating").textContent=`★ ${p.rating}`; $("#m_reviews").textContent=`${p.reviews} reviews`; $("#m_desc").textContent=p.desc; $("#m_stock").textContent=p.stock;
+  $("#m_ai").textContent=`Jinny AI: This ${p.category.toLowerCase()} pairs perfectly with blue tones. ${p.vendor} ships in 24h. Use JINNY50 for 50% off — your aura says you’ll love it.`;
+  $("#m_add").onclick=()=>{addToCart(id);}; $("#m_buy").onclick=()=>{addToCart(id);openDrawer('cartDrawer');closeModal('productModal');openCheckout();};
+  $("#m_wishBtn").onclick=()=>toggleWish(id);
+  $("#productModal").classList.remove("hidden");
+}
+function openDrawer(id){document.getElementById(id).classList.remove("hidden");}
+function closeDrawer(id){document.getElementById(id).classList.add("hidden");}
+function closeModal(id){document.getElementById(id).classList.add("hidden");}
+function openCheckout(){
+  if(!cart.length){toast("Cart empty — add a wish first","err");return;}
+  $("#checkoutModal").classList.remove("hidden");
+}
+function placeOrder(){
+  toast("Order placed! Jinny is packing your wish 📦✨");
+  cart=[]; updateCart(); closeModal('checkoutModal'); closeDrawer('cartDrawer');
+}
+function openVendor(){$("#vendorModal").classList.remove("hidden");}
+function logoutVendor(){isVendor=false;$("#adminSection").classList.add("hidden");toast("Vendor logged out");}
+function openAccount(){$("#accountModal").classList.remove("hidden");}
+function openAI(){$("#aiWidget").classList.remove("hidden");$("#aiFab").classList.add("hidden"); if(!$("#aiMessages").children.length){aiSay("Hey, I’m Jinny 🧞 — your AI bazaar buddy. Ask me for blue lamps under ₹2000, or say ‘style my room’!");}}
+function closeAI(){$("#aiWidget").classList.add("hidden");$("#aiFab").classList.remove("hidden");}
+function aiSay(text,who="jinny"){
+  const div=document.createElement("div");
+  div.className=`max-w-[85%] rounded-[16px] px-3.5 py-2.5 text-[13px] leading-5 ${who==="me"?"ml-auto bg-ink text-white rounded-br-[4px]":"bg-white border shadow-sm rounded-bl-[4px]"}`;
+  div.textContent=text;
+  $("#aiMessages").appendChild(div);
+  $("#aiMessages").scrollTop=$("#aiMessages").scrollHeight;
+}
+function sendAI(){
+  const inp=$("#aiInput"); const q=inp.value.trim(); if(!q) return;
+  aiSay(q,"me"); inp.value="";
+  setTimeout(()=>{
+    const low=q.toLowerCase();
+    if(low.includes("blue")||low.includes("lamp")){ const matches=products.filter(p=>p.category==="Lamps").slice(0,2); aiSay(`Found ${matches.length} blue-ish lamps: ${matches.map(m=>m.name+" at "+money(m.price)).join(" • ")}. Want me to add the Chirag Edition to cart?`); }
+    else if(low.includes("discount")||low.includes("coupon")){ aiSay("Use JINNY50 for 50% off, FIRSTWISH for ₹300 off, or CHIRAG20 for curator’s 20%. I’ve auto-applied JINNY50 for you 😉"); applyCoupon("JINNY50"); }
+    else if(low.includes("chirag")){ aiSay("Chirag’s Vault is top-rated 4.9★ from Jaipur. 37 blue enamel lamps left. He personally engraves each one. Want to see his store?"); }
+    else if(low.includes("style")){ aiSay("Agrabah vibe: Blue lamp + aqua runner + midnight attar + pearl choker. Total ~₹3.9k after JINNY50. Should I build this bundle?"); }
+    else { aiSay(`Jinny magic: I found ${getFiltered().length} wishes matching “${q}”. Try filters or rub the lamp for 50% off!`); }
+  },600);
+}
+
+function applyCoupon(code){
+  if(!code) return;
+  code=code.trim().toUpperCase();
+  const valid=["JINNY50","FIRSTWISH","CHIRAG20"];
+  if(!valid.includes(code)){ $("#couponMsg").innerHTML=`<span class="text-[#FF3B30]">Invalid code: ${code}</span>`; toast("Invalid coupon","err"); return;}
+  coupon=code;
+  $("#couponMsg").innerHTML=`<span class="text-emerald-700 font-bold">Applied ${code} • ${code==="JINNY50"?"50% OFF":code==="FIRSTWISH"?"₹300 OFF":"20% OFF"} — Jinny approved ✨</span>`;
+  $("#couponInput").value=code;
+  updateCart();
+  toast(`Coupon ${code} applied • 50% magic active!`);
+}
+function resetFilters(){activeCategory="All";searchQ="";priceMin=null;priceMax=null;$("#searchInput").value="";$("#searchInputM").value="";$("#priceMin").value="";$("#priceMax").value="";renderCats();renderProducts();}
+function applyPrice(){priceMin=$("#priceMin").value?Number($("#priceMin").value):null; priceMax=$("#priceMax").value?Number($("#priceMax").value):null; renderProducts();}
+
+// lamp rub
+$("#rubBtn").addEventListener("click",()=>{
+  const card=$("#offerCard");
+  card.classList.remove("translate-y-10","opacity-0","scale-[.96]");
+  card.classList.add("translate-y-0","opacity-100","scale-100");
+  applyCoupon("JINNY50");
+  toast("You rubbed the lamp! 50% OFF granted — Jinny is dancing 💃");
+  $("#rubBtn").innerHTML=`<i data-lucide="check" class="w-5 h-5"></i> 50% APPLIED!`;
+  lucide.createIcons();
+  confettiBurst();
 });
-
-// ===== PARTICLES =====
-function initParticles() {
-  const canvas = document.getElementById('particles-canvas');
-  const ctx = canvas.getContext('2d');
-  
-  function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize);
-  
-  const particles = [];
-  const count = Math.min(60, Math.floor(window.innerWidth / 25));
-  
-  for (let i = 0; i < count; i++) {
-    particles.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      size: Math.random() * 2 + 0.5,
-      speedX: (Math.random() - 0.5) * 0.3,
-      speedY: (Math.random() - 0.5) * 0.3,
-      opacity: Math.random() * 0.5 + 0.1,
-      color: Math.random() > 0.5 ? '0, 180, 216' : '255, 215, 0'
-    });
-  }
-  
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    particles.forEach(p => {
-      p.x += p.speedX;
-      p.y += p.speedY;
-      
-      if (p.x < 0) p.x = canvas.width;
-      if (p.x > canvas.width) p.x = 0;
-      if (p.y < 0) p.y = canvas.height;
-      if (p.y > canvas.height) p.y = 0;
-      
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${p.color}, ${p.opacity})`;
-      ctx.fill();
-    });
-    
-    requestAnimationFrame(animate);
-  }
-  animate();
-}
-
-// ===== SCRATCH CARD =====
-function initScratchCard() {
-  const canvas = document.getElementById('scratch-canvas');
-  const container = canvas.parentElement;
-  const ctx = canvas.getContext('2d');
-  
-  canvas.width = container.offsetWidth;
-  canvas.height = container.offsetHeight;
-  
-  // Draw fog layer
-  const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-  gradient.addColorStop(0, '#1a0a3e');
-  gradient.addColorStop(0.5, '#0a1628');
-  gradient.addColorStop(1, '#1a0a3e');
-  ctx.fillStyle = gradient;
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  
-  // Add fog patterns
-  for (let i = 0; i < 30; i++) {
-    const x = Math.random() * canvas.width;
-    const y = Math.random() * canvas.height;
-    const r = Math.random() * 60 + 20;
-    const fogGrad = ctx.createRadialGradient(x, y, 0, x, y, r);
-    fogGrad.addColorStop(0, 'rgba(100, 140, 255, 0.3)');
-    fogGrad.addColorStop(1, 'rgba(100, 140, 255, 0)');
-    ctx.fillStyle = fogGrad;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-  }
-  
-  // Add text
-  ctx.fillStyle = 'rgba(255, 215, 0, 0.6)';
-  ctx.font = 'bold 28px Cinzel Decorative';
-  ctx.textAlign = 'center';
-  ctx.fillText('✨ Rub Here ✨', canvas.width / 2, canvas.height / 2 - 10);
-  ctx.font = '16px Raleway';
-  ctx.fillStyle = 'rgba(200, 200, 220, 0.5)';
-  ctx.fillText('Drag your finger to reveal the magic!', canvas.width / 2, canvas.height / 2 + 20);
-  
-  // Add lamp icon
-  ctx.font = '40px serif';
-  ctx.fillText('', canvas.width / 2, canvas.height / 2 + 60);
-  
-  let isDrawing = false;
-  let scratchedPercent = 0;
-  
-  function scratch(x, y) {
-    ctx.globalCompositeOperation = 'destination-out';
-    ctx.beginPath();
-    ctx.arc(x, y, 30, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.globalCompositeOperation = 'source-over';
-  }
-  
-  canvas.addEventListener('mousedown', (e) => {
-    isDrawing = true;
-    const rect = canvas.getBoundingClientRect();
-    scratch(e.clientX - rect.left, e.clientY - rect.top);
-  });
-  
-  canvas.addEventListener('mousemove', (e) => {
-    if (!isDrawing) return;
-    const rect = canvas.getBoundingClientRect();
-    scratch(e.clientX - rect.left, e.clientY - rect.top);
-  });
-  
-  canvas.addEventListener('mouseup', () => {
-    isDrawing = false;
-    checkScratchProgress();
-  });
-  
-  canvas.addEventListener('mouseleave', () => {
-    isDrawing = false;
-  });
-  
-  // Touch events
-  canvas.addEventListener('touchstart', (e) => {
-    e.preventDefault();
-    isDrawing = true;
-    const rect = canvas.getBoundingClientRect();
-    const touch = e.touches[0];
-    scratch(touch.clientX - rect.left, touch.clientY - rect.top);
-  });
-  
-  canvas.addEventListener('touchmove', (e) => {
-    e.preventDefault();
-    if (!isDrawing) return;
-    const rect = canvas.getBoundingClientRect();
-    const touch = e.touches[0];
-    scratch(touch.clientX - rect.left, touch.clientY - rect.top);
-  });
-  
-  canvas.addEventListener('touchend', () => {
-    isDrawing = false;
-    checkScratchProgress();
-  });
-  
-  function checkScratchProgress() {
-    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    const pixels = imageData.data;
-    let transparent = 0;
-    const total = pixels.length / 4;
-    
-    for (let i = 3; i < pixels.length; i += 4) {
-      if (pixels[i] < 128) transparent++;
-    }
-    
-    scratchedPercent = (transparent / total) * 100;
-    
-    if (scratchedPercent > 40) {
-      // Fade out remaining canvas
-      canvas.style.transition = 'opacity 0.8s ease';
-      canvas.style.opacity = '0';
-      setTimeout(() => {
-        canvas.style.display = 'none';
-        showToast('magic', '🧞 Wish Granted!', 'Your 50% discount coupon JINNY50 is ready!');
-      }, 800);
-    }
+function confettiBurst(){
+  for(let i=0;i<18;i++){
+    const d=document.createElement("div");
+    d.style.position="fixed"; d.style.left="50%"; d.style.top="45%"; d.style.width="8px"; d.style.height="8px"; d.style.borderRadius="999px";
+    d.style.background=i%2?"#F5C542":"#7DD3FF"; d.style.zIndex=200; d.style.pointerEvents="none";
+    document.body.appendChild(d);
+    const ang=Math.random()*Math.PI*2, dist=80+Math.random()*160;
+    d.animate([{transform:`translate(-50%,-50%) translate(0,0)`,opacity:1},{transform:`translate(-50%,-50%) translate(${Math.cos(ang)*dist}px,${Math.sin(ang)*dist}px)`,opacity:0}],{duration:900+Math.random()*600,easing:"cubic-bezier(.16,1,.3,1)"}).onfinish=()=>d.remove();
   }
 }
 
-// ===== PRODUCTS =====
-function renderProducts() {
-  const grid = document.getElementById('productsGrid');
-  let filtered = products;
-  
-  if (activeCategory !== 'all') {
-    filtered = filtered.filter(p => p.category === activeCategory);
-  }
-  
-  if (searchQuery) {
-    const q = searchQuery.toLowerCase();
-    filtered = filtered.filter(p => 
-      p.name.toLowerCase().includes(q) || 
-      p.vendor.toLowerCase().includes(q) ||
-      p.category.toLowerCase().includes(q) ||
-      p.description.toLowerCase().includes(q)
-    );
-  }
-  
-  if (filtered.length === 0) {
-    grid.innerHTML = `
-      <div style="grid-column: 1/-1; text-align:center; padding:60px 20px; color:var(--text-muted)">
-        <div style="font-size:4rem; margin-bottom:16px">🔮</div>
-        <p style="font-size:1.1rem">No magical items found</p>
-        <p style="font-size:0.85rem; margin-top:8px">Try a different search or category</p>
-      </div>
-    `;
-    return;
-  }
-  
-  grid.innerHTML = filtered.map(p => {
-    const discount = p.originalPrice ? Math.round((1 - p.price / p.originalPrice) * 100) : 0;
-    const stars = '★'.repeat(Math.floor(p.rating)) + (p.rating % 1 >= 0.5 ? '½' : '');
-    const isWished = wishlist.includes(p.id);
-    
-    return `
-      <div class="product-card" data-id="${p.id}" data-category="${p.category}">
-        <div class="product-image" onclick="openProductDetail(${p.id})">
-          <span class="product-emoji">${p.emoji}</span>
-          <div class="product-badges">
-            ${p.badge === 'sale' ? '<span class="product-badge badge-sale">Sale</span>' : ''}
-            ${p.badge === 'new' ? '<span class="product-badge badge-new">New</span>' : ''}
-            ${p.badge === 'hot' ? '<span class="product-badge badge-hot">🔥 Hot</span>' : ''}
-          </div>
-          <button class="product-wishlist-btn ${isWished ? 'active' : ''}" onclick="event.stopPropagation(); toggleWishlist(${p.id})" title="Wishlist">
-            ${isWished ? '❤️' : '♡'}
-          </button>
-        </div>
-        <div class="product-info" onclick="openProductDetail(${p.id})">
-          <div class="product-vendor">${p.vendor}</div>
-          <div class="product-name">${p.name}</div>
-          <div class="product-rating">
-            <span class="stars">${stars}</span>
-            <span class="rating-count">${p.rating} (${p.reviews})</span>
-          </div>
-          <div class="product-price">
-            <span class="price-current">$${p.price.toFixed(2)}</span>
-            ${p.originalPrice ? `<span class="price-original">$${p.originalPrice.toFixed(2)}</span>` : ''}
-            ${discount ? `<span class="price-discount">-${discount}%</span>` : ''}
-          </div>
-        </div>
-        <div style="padding: 0 20px 20px">
-          <div class="product-actions">
-            <button class="btn btn-primary btn-sm" onclick="event.stopPropagation(); addToCart(${p.id})">🛒 Add</button>
-            <button class="btn btn-gold btn-sm" onclick="event.stopPropagation(); buyNow(${p.id})">⚡ Buy</button>
-          </div>
-        </div>
-      </div>
-    `;
-  }).join('');
-}
-
-function filterCategory(cat, el) {
-  activeCategory = cat;
-  document.querySelectorAll('.category-card').forEach(c => c.classList.remove('active'));
-  if (el) el.classList.add('active');
-  renderProducts();
-}
-
-function handleSearch(value) {
-  searchQuery = value;
-  renderProducts();
-}
-
-function scrollToProducts() {
-  document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
-}
-
-function scrollToSale() {
-  document.getElementById('jinnyMagicSection').scrollIntoView({ behavior: 'smooth' });
-}
-
-function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-// ===== PRODUCT DETAIL =====
-function openProductDetail(id) {
-  const p = products.find(x => x.id === id);
-  if (!p) return;
-  
-  document.getElementById('modalProductImage').textContent = p.emoji;
-  document.getElementById('modalProductTitle').textContent = p.name;
-  document.getElementById('modalProductVendor').textContent = p.vendor;
-  document.getElementById('modalProductDesc').textContent = p.description;
-  document.getElementById('modalProductStars').textContent = '★'.repeat(Math.floor(p.rating)) + (p.rating % 1 >= 0.5 ? '½' : '');
-  document.getElementById('modalProductRating').textContent = `(${p.reviews} reviews)`;
-  
-  const discount = p.originalPrice ? Math.round((1 - p.price / p.originalPrice) * 100) : 0;
-  document.getElementById('modalProductPrice').innerHTML = `$${p.price.toFixed(2)} ${p.originalPrice ? `<span style="font-size:1rem;color:var(--text-muted);text-decoration:line-through;margin-left:8px">$${p.originalPrice.toFixed(2)}</span>` : ''} ${discount ? `<span class="price-discount" style="font-size:0.8rem">-${discount}%</span>` : ''}`;
-  
-  document.getElementById('modalAddCart').onclick = () => { addToCart(id); closeModal('productModal'); };
-  document.getElementById('modalBuyNow').onclick = () => { buyNow(id); };
-  
-  const isWished = wishlist.includes(id);
-  const wishBtn = document.getElementById('modalWishlist');
-  wishBtn.innerHTML = isWished ? '❤️ In Wishlist' : '♡ Add to Wishlist';
-  wishBtn.onclick = () => { toggleWishlist(id); };
-  
-  openModal('productModal');
-}
-
-// ===== CART =====
-function addToCart(id) {
-  const p = products.find(x => x.id === id);
-  const existing = cart.find(item => item.id === id);
-  
-  if (existing) {
-    existing.qty++;
-  } else {
-    cart.push({ ...p, qty: 1 });
-  }
-  
-  updateCartUI();
-  showToast('success', 'Added to Cart!', `${p.name} has been added to your cart.`);
-}
-
-function removeFromCart(id) {
-  cart = cart.filter(item => item.id !== id);
-  updateCartUI();
-  renderCart();
-}
-
-function updateCartQty(id, delta) {
-  const item = cart.find(x => x.id === id);
-  if (item) {
-    item.qty += delta;
-    if (item.qty <= 0) {
-      removeFromCart(id);
-      return;
-    }
-  }
-  updateCartUI();
-  renderCart();
-}
-
-function updateCartUI() {
-  const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
-  const badges = ['cartBadge', 'mobileCartBadge'];
-  badges.forEach(b => {
-    const el = document.getElementById(b);
-    if (totalItems > 0) {
-      el.style.display = 'flex';
-      el.textContent = totalItems;
-    } else {
-      el.style.display = 'none';
-    }
-  });
-}
-
-function renderCart() {
-  const itemsEl = document.getElementById('cartItems');
-  const emptyEl = document.getElementById('cartEmpty');
-  const footerEl = document.getElementById('cartFooter');
-  
-  if (cart.length === 0) {
-    emptyEl.style.display = 'block';
-    itemsEl.style.display = 'none';
-    footerEl.style.display = 'none';
-    return;
-  }
-  
-  emptyEl.style.display = 'none';
-  itemsEl.style.display = 'block';
-  footerEl.style.display = 'block';
-  
-  itemsEl.innerHTML = cart.map(item => `
-    <div class="cart-item">
-      <div class="cart-item-image">${item.emoji}</div>
-      <div class="cart-item-info">
-        <div class="cart-item-name">${item.name}</div>
-        <div class="cart-item-price">$${(item.price * item.qty).toFixed(2)}</div>
-        <div class="cart-item-qty">
-          <button class="qty-btn" onclick="updateCartQty(${item.id}, -1)">−</button>
-          <span>${item.qty}</span>
-          <button class="qty-btn" onclick="updateCartQty(${item.id}, 1)">+</button>
-        </div>
-      </div>
-      <button class="cart-item-remove" onclick="removeFromCart(${item.id})">🗑️</button>
-    </div>
-  `).join('');
-  
-  const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-  const discount = appliedCoupon ? subtotal * 0.5 : 0;
-  const total = subtotal - discount;
-  
-  document.getElementById('cartTotal').innerHTML = appliedCoupon 
-    ? `<span style="text-decoration:line-through;color:var(--text-muted);font-size:1rem;margin-right:8px">$${subtotal.toFixed(2)}</span> $${total.toFixed(2)} <span style="color:var(--success);font-size:0.85rem">(-50%)</span>`
-    : `$${subtotal.toFixed(2)}`;
-}
-
-// ===== WISHLIST =====
-function toggleWishlist(id) {
-  const idx = wishlist.indexOf(id);
-  const p = products.find(x => x.id === id);
-  
-  if (idx > -1) {
-    wishlist.splice(idx, 1);
-    showToast('info', 'Removed from Wishlist', `${p.name} removed.`);
-  } else {
-    wishlist.push(id);
-    showToast('magic', 'Added to Wishlist!', `${p.name} saved for later. ✨`);
-  }
-  
-  updateWishlistUI();
-  renderProducts();
-  renderWishlist();
-}
-
-function updateWishlistUI() {
-  const badges = ['wishlistBadge', 'mobileWishBadge'];
-  badges.forEach(b => {
-    const el = document.getElementById(b);
-    if (wishlist.length > 0) {
-      el.style.display = 'flex';
-      el.textContent = wishlist.length;
-    } else {
-      el.style.display = 'none';
-    }
-  });
-}
-
-function renderWishlist() {
-  const itemsEl = document.getElementById('wishlistItems');
-  const emptyEl = document.getElementById('wishlistEmpty');
-  
-  if (wishlist.length === 0) {
-    emptyEl.style.display = 'block';
-    itemsEl.style.display = 'none';
-    return;
-  }
-  
-  emptyEl.style.display = 'none';
-  itemsEl.style.display = 'block';
-  
-  itemsEl.innerHTML = wishlist.map(id => {
-    const p = products.find(x => x.id === id);
-    if (!p) return '';
-    return `
-      <div class="cart-item">
-        <div class="cart-item-image">${p.emoji}</div>
-        <div class="cart-item-info">
-          <div class="cart-item-name">${p.name}</div>
-          <div class="cart-item-price">$${p.price.toFixed(2)}</div>
-          <button class="btn btn-primary btn-sm" style="margin-top:8px; padding:6px 14px; font-size:0.75rem" onclick="addToCart(${p.id}); toggleWishlist(${p.id})"> Move to Cart</button>
-        </div>
-        <button class="cart-item-remove" onclick="toggleWishlist(${p.id})">️</button>
-      </div>
-    `;
-  }).join('');
-}
-
-// ===== BUY NOW =====
-function buyNow(id) {
-  const p = products.find(x => x.id === id);
-  if (!p) return;
-  
-  // Add to cart if not already
-  const existing = cart.find(item => item.id === id);
-  if (!existing) {
-    cart.push({ ...p, qty: 1 });
-    updateCartUI();
-  }
-  
-  closeModal('productModal');
-  openCheckout();
-}
-
-// ===== CHECKOUT =====
-function openCheckout() {
-  if (cart.length === 0) {
-    showToast('error', 'Cart Empty', 'Add some magical items first!');
-    return;
-  }
-  
-  closeDrawer('cart');
-  
-  // Reset steps
-  goToStep(1);
-  
-  openModal('checkoutModal');
-}
-
-function goToStep(step) {
-  document.getElementById('checkoutStep1').style.display = step === 1 ? 'block' : 'none';
-  document.getElementById('checkoutStep2').style.display = step === 2 ? 'block' : 'none';
-  document.getElementById('checkoutStep3').style.display = step === 3 ? 'block' : 'none';
-  
-  document.getElementById('step1').className = 'checkout-step' + (step >= 1 ? (step > 1 ? ' completed' : ' active') : '');
-  document.getElementById('step2').className = 'checkout-step' + (step >= 2 ? (step > 2 ? ' completed' : ' active') : '');
-  document.getElementById('step3').className = 'checkout-step' + (step >= 3 ? ' active' : '');
-  
-  if (step === 3) {
-    renderOrderSummary();
-  }
-}
-
-function renderOrderSummary() {
-  const summaryEl = document.getElementById('orderSummary');
-  const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-  const discount = appliedCoupon ? subtotal * 0.5 : 0;
-  const total = subtotal - discount;
-  
-  summaryEl.innerHTML = `
-    ${cart.map(item => `
-      <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.05)">
-        <div style="display:flex; align-items:center; gap:10px">
-          <span style="font-size:1.5rem">${item.emoji}</span>
-          <div>
-            <div style="font-weight:600; font-size:0.9rem">${item.name}</div>
-            <div style="font-size:0.8rem; color:var(--text-muted)">Qty: ${item.qty}</div>
-          </div>
-        </div>
-        <div style="font-weight:600; color:var(--bright-gold)">$${(item.price * item.qty).toFixed(2)}</div>
-      </div>
-    `).join('')}
-    <div style="display:flex; justify-content:space-between; padding:12px 0; border-top:1px solid rgba(255,255,255,0.1); margin-top:8px">
-      <span>Subtotal</span>
-      <span>$${subtotal.toFixed(2)}</span>
-    </div>
-    ${appliedCoupon ? `
-      <div style="display:flex; justify-content:space-between; padding:4px 0; color:var(--success)">
-        <span>Coupon (50% OFF)</span>
-        <span>-$${discount.toFixed(2)}</span>
-      </div>
-    ` : ''}
-    <div style="display:flex; justify-content:space-between; padding:12px 0; font-size:1.2rem; font-weight:700; border-top:1px solid rgba(255,255,255,0.1)">
-      <span>Total</span>
-      <span style="color:var(--bright-gold)">$${total.toFixed(2)}</span>
-    </div>
-  `;
-}
-
-function placeOrder() {
-  closeModal('checkoutModal');
-  cart = [];
-  updateCartUI();
-  renderCart();
-  showToast('success', '✨ Order Placed!', 'Your magical items are on their way! Thank you for shopping at WishJinny.');
-}
-
-// ===== COUPON =====
-function applyCoupon(code) {
-  if (code === 'JINNY50') {
-    appliedCoupon = code;
-    showToast('magic', ' Coupon Applied!', '50% discount has been applied to your cart!');
-    renderCart();
-    closeModal('jinnyMagicModal');
-  } else {
-    showToast('error', 'Invalid Coupon', 'This coupon code is not recognized.');
-  }
-}
-
-function applyCouponPrompt() {
-  const code = prompt('Enter your coupon code:');
-  if (code) {
-    if (code.toUpperCase() === 'JINNY50') {
-      applyCoupon('JINNY50');
-    } else {
-      showToast('error', 'Invalid Coupon', 'This coupon code is not recognized.');
-    }
-  }
-}
-
-function copyCode(el) {
-  navigator.clipboard.writeText('JINNY50').then(() => {
-    showToast('info', 'Copied!', 'Coupon code JINNY50 copied to clipboard.');
-  }).catch(() => {
-    showToast('info', 'Code: JINNY50', 'Use this code at checkout.');
-  });
-}
-
-// ===== DRAWERS =====
-function openDrawer(type) {
-  const overlay = document.getElementById(type + 'Overlay');
-  const drawer = document.getElementById(type + 'Drawer');
-  
-  overlay.classList.add('active');
-  drawer.classList.add('active');
-  document.body.style.overflow = 'hidden';
-  
-  if (type === 'cart') renderCart();
-  if (type === 'wishlist') renderWishlist();
-}
-
-function closeDrawer(type) {
-  const overlay = document.getElementById(type + 'Overlay');
-  const drawer = document.getElementById(type + 'Drawer');
-  
-  overlay.classList.remove('active');
-  drawer.classList.remove('active');
-  document.body.style.overflow = '';
-}
-
-// ===== MODALS =====
-function openModal(id) {
-  document.getElementById(id).classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeModal(id) {
-  document.getElementById(id).classList.remove('active');
-  document.body.style.overflow = '';
-}
-
-// Close modals on overlay click
-document.querySelectorAll('.modal-overlay').forEach(overlay => {
-  overlay.addEventListener('click', (e) => {
-    if (e.target === overlay) {
-      overlay.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-  });
+// events
+$("#searchInput").addEventListener("input",e=>{searchQ=e.target.value; renderProducts();});
+$("#searchInputM").addEventListener("input",e=>{searchQ=e.target.value; $("#searchInput").value=e.target.value; renderProducts();});
+$("#sortSel").addEventListener("change",e=>{sortBy=e.target.value; renderProducts();});
+$("#menuBtn").addEventListener("click",()=>{$("#mobileDrawer").classList.remove("hidden");});
+function closeMobile(){$("#mobileDrawer").classList.add("hidden");}
+$("#contactForm").addEventListener("submit",e=>{e.preventDefault(); toast("Message sent to Chirag & Jinny • Reply in 2 hrs"); e.target.reset();});
+$("#vendorLoginForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  const email=$("#v_email").value;
+  vendorName=email.includes("chirag")?"Chirag's Vault":email.split("@")[0];
+  isVendor=true; $("#vendorNameLabel").textContent=vendorName; $("#f_vendor").value=vendorName; $("#f_brand").value=vendorName;
+  $("#adminSection").classList.remove("hidden"); closeModal('vendorModal'); $("#adminSection").scrollIntoView({behavior:'smooth'});
+  toast(`Welcome ${vendorName} • Vendor admin unlocked`);
 });
-
-// ===== TABS =====
-function switchAccountTab(tab, btn) {
-  document.querySelectorAll('#accountModal .account-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('#accountModal .tab-content').forEach(t => t.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById(tab + 'Tab').classList.add('active');
-}
-
-function switchVendorTab(tab, btn) {
-  document.querySelectorAll('#vendorModal .account-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('#vendorModal .tab-content').forEach(t => t.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById(tab + 'Tab').classList.add('active');
-}
-
-// ===== TOAST NOTIFICATIONS =====
-function showToast(type, title, message) {
-  const container = document.getElementById('toastContainer');
-  const icons = {
-    success: '✓',
-    error: '✕',
-    info: 'ℹ',
-    magic: '✨'
+$("#productForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  const newP={
+    id:Date.now(),
+    name:$("#f_name").value,
+    brand:$("#f_brand").value||vendorName,
+    category:$("#f_category").value,
+    price:Number($("#f_price").value)||999,
+    mrp:Number($("#f_mrp").value)||Number($("#f_price").value)*2,
+    discount:Number($("#f_discount").value)||50,
+    stock:Number($("#f_stock").value)||10,
+    rating:Number($("#f_rating").value)||4.8,
+    reviews:Number($("#f_reviews").value)||0,
+    vendor:$("#f_vendor").value||vendorName,
+    photo:$("#f_photo").value||$("#previewImg").src,
+    desc:$("#f_desc").value||"New wish added by vendor."
   };
-  
-  const toast = document.createElement('div');
-  toast.className = `toast toast-${type}`;
-  toast.innerHTML = `
-    <div class="toast-icon">${icons[type]}</div>
-    <div class="toast-content">
-      <div class="toast-title">${title}</div>
-      <div class="toast-message">${message}</div>
-    </div>
-    <button class="toast-close" onclick="this.parentElement.classList.add('removing'); setTimeout(()=>this.parentElement.remove(), 300)">✕</button>
-  `;
-  
-  container.appendChild(toast);
-  
-  setTimeout(() => {
-    toast.classList.add('removing');
-    setTimeout(() => toast.remove(), 300);
-  }, 4000);
-}
-
-// ===== AI JINNY CHAT =====
-function toggleAIChat() {
-  const panel = document.getElementById('aiChatPanel');
-  panel.classList.toggle('active');
-}
-
-const aiResponses = {
-  'hello': "Greetings, wisher!  What magical item can I help you find today?",
-  'hi': "Hello there! 🧞 I'm ready to help you find the most enchanting products!",
-  'discount': "Great news! Use code JINNY50 for 50% off your next purchase! ",
-  'coupon': "We have an amazing coupon: JINNY50 for 50% off! Just rub the lamp on our homepage to reveal it. ✨",
-  'sale': "We're having a MEGA SALE with up to 50% off on enchanted items! Check out the sale banner at the top. 🔥",
-  'shipping': "We offer magical teleportation shipping! Most items arrive within 2-5 business days. Free shipping on orders over $100! 📦",
-  'return': "Our return policy is simple: 30-day returns for all items. If the magic doesn't work, we'll make it right! ",
-  'product': "We have amazing products: Genie Lamps, Elixirs, Scrolls, Crystals, Armor, Spell Books, and enchanted Jewelry! Browse our categories above. ✨",
-  'help': "I can help you with: finding products, applying coupons, checking orders, shipping info, or general questions. Just ask! 🧞",
-  'best': "Our best sellers are the Ancient Genie Lamp, Dragon's Heart Crystal, and the Ring of Invisibility! All with 5-star ratings. 💎",
-  'vendor': "Want to become a vendor? Click the Vendor button in the header to apply! We welcome all magical merchants. 🏪",
-  'default': "I'm not sure about that, but I'm always learning! Try asking about products, discounts, shipping, or how to become a vendor. ✨"
-};
-
-function sendAIMessage() {
-  const input = document.getElementById('aiChatInput');
-  const message = input.value.trim();
-  if (!message) return;
-  
-  const body = document.getElementById('aiChatBody');
-  
-  // User message
-  body.innerHTML += `<div class="chat-message user">${message}</div>`;
-  input.value = '';
-  body.scrollTop = body.scrollHeight;
-  
-  // AI response
-  setTimeout(() => {
-    const lowerMsg = message.toLowerCase();
-    let response = aiResponses.default;
-    
-    for (const [key, val] of Object.entries(aiResponses)) {
-      if (key !== 'default' && lowerMsg.includes(key)) {
-        response = val;
-        break;
-      }
-    }
-    
-    // Check for specific patterns
-    if (lowerMsg.includes('price') || lowerMsg.includes('cost')) {
-      response = "Our prices range from $59.99 to $599.99. And remember, with JINNY50 you get 50% off! 💰";
-    } else if (lowerMsg.includes('recommend') || lowerMsg.includes('suggest')) {
-      response = "I recommend the Dragon's Heart Crystal for its protective energy, or the Elixir of Eternal Youth for a rejuvenating experience! ✨";
-    } else if (lowerMsg.includes('thank')) {
-      response = "You're most welcome! May your wishes come true! ✨";
-    } else if (lowerMsg.includes('bye') || lowerMsg.includes('goodbye')) {
-      response = "Farewell, dear wisher! Remember, I'm always here when you need me. ✨";
-    }
-    
-    body.innerHTML += `<div class="chat-message bot">${response}</div>`;
-    body.scrollTop = body.scrollHeight;
-  }, 800);
-}
-
-// ===== KEYBOARD SHORTCUTS =====
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    document.querySelectorAll('.modal-overlay.active').forEach(m => m.classList.remove('active'));
-    document.querySelectorAll('.drawer.active').forEach(d => {
-      d.classList.remove('active');
-      d.previousElementSibling?.classList?.remove('active');
-    });
-    document.body.style.overflow = '';
-  }
+  products.unshift(newP);
+  renderCats(); renderProducts();
+  toast("Product added to bazaar • Live now!");
+  e.target.reset(); $("#previewImg").src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=400";
+  $("#f_vendor").value=vendorName; $("#f_brand").value=vendorName;
 });
+$("#f_photo").addEventListener("input",e=>{ if(e.target.value) $("#previewImg").src=e.target.value; });
+function fillDemo(){
+  $("#f_name").value="Turquoise Jinny Vase — Small"; $("#f_brand").value=vendorName; $("#f_category").value="Home Decor"; $("#f_price").value=1299; $("#f_mrp").value=2599; $("#f_discount").value=50; $("#f_stock").value=24; $("#f_desc").value="Hand-glazed turquoise vase, holds one genie or many flowers."; $("#f_photo").value="https://images.unsplash.com/photo-1578500351865-d6c3706f46bc?w=600"; $("#previewImg").src="https://images.unsplash.com/photo-1578500351865-d6c3706f46bc?w=600";
+}
 
-// Search on mobile - show search bar
-document.querySelector('.mobile-menu-btn')?.addEventListener('click', () => {
-  // The mobile menu drawer opens instead
-});
+// init
+renderCats(); renderProducts(); updateCart(); updateWish();
+setTimeout(()=>{const card=$("#offerCard"); if(card){card.classList.remove("translate-y-10","opacity-0","scale-[.96]"); card.classList.add("translate-y-0","opacity-100","scale-100");}},1400);
+let secs=14*60+32; setInterval(()=>{secs--; if(secs<0) secs=14*60+32; const m=String(Math.floor(secs/60)).padStart(2,"0"), s=String(secs%60).padStart(2,"0"); const t=$("#offerTimer"); if(t) t.textContent=`${m}:${s}`;},1000);
+$("#aiInput").addEventListener("keydown",e=>{if(e.key==="Enter") sendAI();});
 </script>
 </body>
 </html>
